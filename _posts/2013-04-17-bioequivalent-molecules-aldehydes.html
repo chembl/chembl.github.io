@@ -1,0 +1,38 @@
+---
+layout: post
+title: Bioequivalent molecules - aldehydes, ketones, epimers, and all that stuff
+date: '2013-04-17T13:02:00.002+01:00'
+author: John Overington
+tags:
+- Some Of The Interesting Things You'll See On A Long Distance Flight
+modified_time: '2013-04-17T14:21:51.364+01:00'
+thumbnail: http://2.bp.blogspot.com/-4h1Q1INMKz4/UW6hkDkwSjI/AAAAAAAAC8o/CZNt2qcarxI/s72-c/Untitled.png
+blogger_id: tag:blogger.com,1999:blog-2546008714740235720.post-5188768354175397336
+blogger_orig_url: http://chembl.blogspot.com/2013/04/bioequivalent-molecules-aldehydes.html
+---
+
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://2.bp.blogspot.com/-4h1Q1INMKz4/UW6hkDkwSjI/AAAAAAAAC8o/CZNt2qcarxI/s1600/Untitled.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="251" src="http://2.bp.blogspot.com/-4h1Q1INMKz4/UW6hkDkwSjI/AAAAAAAAC8o/CZNt2qcarxI/s640/Untitled.png" width="640" /></a></div>
+<br />
+<br />
+Following on from the post on oxidized/reduced forms of molecules there are a few more cases of small that may be capturable in a useful, practical and potentially programmatic way - no plans for incorporation of these in any forthcoming release of ChEMBL!, but they are useful examples to be aware of if you're planning to look at the activity of molecules either <i>in vitro </i>or <i>in vivo </i>and the molecule you think you have may actually exist in alternate chemically distinct forms that are responsible for the bioactivity and can't be equivalenced using standard inChIs.<br />
+<br />
+<i>1) Aldehydes and activated ketones</i><br />
+<br />
+Simple unhindered aldehydes, and many activated ketones exist in aqueous solution in equilibrium with 'hydrated' forms, the carbonyl carbon changes from sp<sup>2</sup> to sp<sup>3</sup>. The hydrated gem-diol form is responsible for the bioactivity in many cases - for example in fluoroketone aspartic proteinase inhibitors. This interconversion will affect all bioassays performed in water, and that is about everything in biology, so it is significant for both <i>in vivo</i> and an <i>in vitro</i> assays.<br />
+<br />
+This is similar to the sort of equilibrium that occurs within sugars, but usually the equilibrium is way over to the side of the cyclised form - there's another complexity for sugars too (see the epimer section below).<br />
+<br />
+<i>2) Prodrugs and metabolites</i><br />
+<br />
+This will affect the activity of a molecule <i>in vivo</i> only (or maybe in an <i>ex vivo</i> situation where enzymes capable of metabolism occur). In this case the conversion is not usually in equilibrium, and is irreversible. However, where this affect occurs, it can be confusing, since the observed bioactivity is not linked to the original molecule. Some classes of prodrugs are relatively easy to spot computationally, for example simple alkyl esters, where it is reasonable to propose that where you dose a simple methyl/ethyl ester of a compound then the parent acid will also get significant exposure, and may well be responsible for any observed bioactivity. However, not all classes of pro-drugs are so easy to identify/predict, and for these an annotation approach may well be appropriate.<br />
+<br />
+A second subset of this case is where there is some oxidative metabolism (e.g. p450 mediated) and then this metabolite has some independent/distinct bioactivity. There are many complexities in predicting metabolite identity and estimating levels, but it does happen, and can continue to surprise, especially in a safety pharmacology or toxicology setting.<br />
+<br />
+<i>3) Epimers and epimerization</i><br />
+<br />
+This can affect both <i>in vitro</i> and <i>in vivo</i> assays, but more often apply in an <i>in vivo</i> setting. Chirality is often really important for bioactivity, with big splits in activity often seen between enantiomers - due to the fundamental fact that biological receptors are (almost) invariably chiral. Usually stereocenters are stable and preserved once a molecule is synthethised and purified - however many molecules epimerise, and spontaneously establish an equilibrium between the two forms - examples include alpha and beta forms of sugars (where the special term anomers is used), and also some drugs - the most infamous of these is thalidomide. Yet again another setting where a conventional treatment of molecular structure has some shortcomings in understanding a bioassay.<br />
+<br />
+So a couple of examples, and maybe the seed of thinking about how to represent linked/bioequivalent forms of molecules at a higher level than that achieved with Standard InChIs.<br />
+<br />
+The picture above came from&nbsp;http://www.colby.edu/chemistry/CH242/15-2.pdf

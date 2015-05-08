@@ -1,0 +1,19 @@
+---
+layout: post
+title: Be Afraid of Spam Filters
+date: '2011-02-19T11:54:00.003Z'
+author: John Overington
+tags:
+- Some Of The Interesting Things You'll See On A Long Distance Flight
+modified_time: '2011-02-19T12:16:10.649Z'
+thumbnail: http://3.bp.blogspot.com/-j8C1oCZrNAU/TV-sHUFdNaI/AAAAAAAABBQ/XG1aYWjeYpA/s72-c/spam2.jpg
+blogger_id: tag:blogger.com,1999:blog-2546008714740235720.post-689893926681194930
+blogger_orig_url: http://chembl.blogspot.com/2011/02/be-afraid-of-spam-filters.html
+---
+
+<div class="separator" style="clear: both; text-align: center;"><a href="http://3.bp.blogspot.com/-j8C1oCZrNAU/TV-sHUFdNaI/AAAAAAAABBQ/XG1aYWjeYpA/s1600/spam2.jpg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="195" src="http://3.bp.blogspot.com/-j8C1oCZrNAU/TV-sHUFdNaI/AAAAAAAABBQ/XG1aYWjeYpA/s200/spam2.jpg" width="200" /></a></div><div class="separator" style="clear: both; text-align: center;"><br />
+</div>I am ill, in bed, taking <a href="http://en.wikipedia.org/wiki/Paracetamol">paracetamol</a> and <a href="http://en.wikipedia.org/wiki/Caffeine">caffeine</a>. I can still type though, but am bored...<br />
+<br />
+I had an email problem recently where people appeared to be ignoring my mails, simple things that would have taken a moment to think about and reply to. When asked, they nonchalantly replied they never got it, and I thought I was going mad. However, the messages were in my Sent mail folder, and on checking, found that they never arrived at the recipients mailbox. I mailed the systems team with a copy of the failed delivery messages, and no reply (they failed to be delivered also). Messing around with test mails established a phenotype for failure - guaranteed to fail were messaged with an <b>image</b>, a <b>url</b> and a <b>drug name</b>. Various cut down versions (<i>e.g.</i> no image, but a drug name and a web link) may or may not have failed, depending on the precise message. After <a href="http://www.phrases.org.uk/meanings/280900.html">the penny dropped</a>, the problem was with our internal spam filter, holding my mail in quarantine, silently, for ever. Of course, part of my job is to make frequent drug references, so there is some irony in this for me.<br />
+<br />
+So, bottom line is that it is remarkably easy to trigger mail server spam filters with technical discussion of drugs. My local fix was to be <a href="http://en.wikipedia.org/wiki/Whitelist">whitelisted</a> for internal mail - I can now send all sorts of spam, with complete impunity (trust me, I have tested it). So if anyone else has a similar problem and needs to refer to drugs as part of their work, maybe this post may just help (assuming the ChEMBL-og is not blacklisted...)

@@ -1,0 +1,21 @@
+---
+layout: post
+title: Pfam domain searching of targets in ChEMBL
+date: '2012-03-02T08:29:00.003Z'
+author: John Overington
+tags:
+- Databases
+modified_time: '2012-03-02T14:30:54.112Z'
+thumbnail: http://1.bp.blogspot.com/-dyLllce5JLQ/T1CECeJtqxI/AAAAAAAABlo/ReES3sKXfHQ/s72-c/pfamsearch.png
+blogger_id: tag:blogger.com,1999:blog-2546008714740235720.post-1609024702309709605
+blogger_orig_url: http://chembl.blogspot.com/2012/03/pfam-domain-searching-of-targets-in.html
+---
+
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://1.bp.blogspot.com/-dyLllce5JLQ/T1CECeJtqxI/AAAAAAAABlo/ReES3sKXfHQ/s1600/pfamsearch.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="140" src="http://1.bp.blogspot.com/-dyLllce5JLQ/T1CECeJtqxI/AAAAAAAABlo/ReES3sKXfHQ/s400/pfamsearch.png" width="400" /></a></div>
+<br />
+One thing new in the backend and interface for this release of ChEMBL is the ability to search for targets containing particular <a href="http://www.sanger.ac.uk/resources/databases/pfam.html">PFAM domains</a>. So if you know a PFAM id, you can search in the search box (and then select "Targets" for that domain. For example, <a href="http://pfam.sanger.ac.uk/family/PF00001">PF00001</a> is the Pfam ID for the rhodopsin-like GPCRs.<br />
+<br />
+A couple of important things on this though - the current functionality does exactly what it says - it returns proteins that contain that domain - the compounds do not necessarily (and often in fact do not) bind at that domain. This multidomain, and multi protein target issue is a surprisingly big challenge, and is a big trap for the unwary. So <i>caveat emptor</i>.<br />
+<br />
+We do plan in the next release or two, provide a prediction of the likely/known compound binding domain (however here, for proteins that contain multiple copies of the predicted/lknown binding domain it is complicated....).

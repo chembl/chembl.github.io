@@ -1,0 +1,25 @@
+---
+layout: post
+title: ChEMBL and Handling of Retracted Papers
+date: '2014-03-08T10:01:00.000Z'
+author: John Overington
+tags:
+- Some Of The Interesting Things You'll See On A Long Distance Flight
+modified_time: '2014-03-17T09:29:02.262Z'
+thumbnail: http://4.bp.blogspot.com/-P4Ti9p5r3ps/UxrkOvso6TI/AAAAAAAADUQ/7X_iTUZllDY/s72-c/retraction.tiff
+blogger_id: tag:blogger.com,1999:blog-2546008714740235720.post-5895290236008578881
+blogger_orig_url: http://chembl.blogspot.com/2014/03/chembl-and-handling-of-retracted-papers.html
+---
+
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://4.bp.blogspot.com/-P4Ti9p5r3ps/UxrkOvso6TI/AAAAAAAADUQ/7X_iTUZllDY/s1600/retraction.tiff" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="http://4.bp.blogspot.com/-P4Ti9p5r3ps/UxrkOvso6TI/AAAAAAAADUQ/7X_iTUZllDY/s1600/retraction.tiff" height="280" width="640" /></a></div>
+<br />
+There is much attention paid to retracted data and errors in the literature, and also to resources that use the literature to build knowledge on top of published papers (for example ChEMBL). Sometimes there is a deliberate intent to deceive, and other times an accident in data processing and interpretation. The <a href="http://retractionwatch.com/">Retraction Watch blog</a> is great reading on a long train journey if you want to see some of the pre-formal retraction discussion. With advances in text mining (in the broadest sense, so including images as text, <i>etc</i>.) and secondly with more publications becoming Open Access, it is easier to find and flag these errors; for example see some of the pioneering <a href="https://blogs.ch.cam.ac.uk/pmr/2014/03/02/content-mining-extracting-facts-from-plots-2-we-find-errors-in-the-paper/">work and ideas of Peter Murray-Rust</a>. We find errors and inconsistencies in the literature really frequently - units that don't make sense, an end point inconsistent with the reported assay, <i>etc</i>. We either fix, or flag these sort of inconsistencies when we curate data. In general, science is pretty robust to these errors, and most errors, to be frank, have little impact in many/most realistic applications of the data (and consequently on literature derived datasources). What we don't do is contact the editors of the journal or the original authors - and maybe this is something we should start doing.<br />
+<br />
+Given that we now are running SureChEMBL, which is completely automated in it's operation, we are thinking carefully about errors, and how to flag or mark them in some way (for example in the accuracy of text extracted chemical structures) - I think research into the processing and filtering of such 'big data' is going to be a very active and important field in the near future - and is core to reproducibility of analyses. I've looked a little at some cases where ChEMBL structures are the odd one out compared to other public chemistry resources - sometimes we've been wrong, and by comparison with other sources, we've then fixed things - sometimes though, we're right and the rest of the community is 'wrong'. For me this is the way that resources like ChEMBL improve, by verifying the data we hold in whatever reasonable way is available to us. Using simple consensus or voting approaches to validate proof is often right, and often wrong - the most insidious case is where wrong data is propagated without provenance, and this is especially problematic in integration resources which merge data from many sources. I have a draft blog post on some of the analyses I've done, but this currently unfinished work, but will contact the other data providers first to feedback the differences.<br />
+<br />
+There is one particular type of error though that can be captured semi-automatically, and then included - formal retractions of papers. The PubMed search above (in the picture) shows the retractions recorded for <i>J. Med. Chem.</i> - a small number you'd agree, it's then straightforward to identify the source papers and flag these in some way. Based on what I've found so far, the issue with the literature extracted in ChEMBL is very minor, but still important if you are basing work on analyses that rely on these particular data.<br />
+<br />
+We're still deciding what to do in ChEMBL, but when we've settled on exactly what to do, we'll process the data to correct for these retractions and corrections.<br />
+<br />
+I must acknowledge the fantastic <a href="http://grib.imim.es/about-us/laurai-furlong.html">Laura Furlong at IMIM</a> for help with this problem - Laura responded to a twitter post I wrote asking the question of how to link retractions with original papers - so social media does work in science.

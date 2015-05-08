@@ -1,0 +1,50 @@
+---
+layout: post
+title: Removal of Metal-Containing Compounds
+date: '2013-08-19T09:38:00.001+01:00'
+author: Louisa
+tags:
+- ChEMBL Curation Notes
+- Compound Clean Up
+modified_time: '2013-08-19T09:38:36.090+01:00'
+thumbnail: http://1.bp.blogspot.com/-X3O7SNGp-sg/UgzY-i7sLfI/AAAAAAAAAKE/JlBjmVqIHUA/s72-c/Metal_containing.png
+blogger_id: tag:blogger.com,1999:blog-2546008714740235720.post-6389469070596484183
+blogger_orig_url: http://chembl.blogspot.com/2013/08/removal-of-metal-containing-compounds.html
+---
+
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://1.bp.blogspot.com/-X3O7SNGp-sg/UgzY-i7sLfI/AAAAAAAAAKE/JlBjmVqIHUA/s1600/Metal_containing.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="http://1.bp.blogspot.com/-X3O7SNGp-sg/UgzY-i7sLfI/AAAAAAAAAKE/JlBjmVqIHUA/s1600/Metal_containing.png" /></a></div>
+<br />
+<br />
+<blockquote style="text-align: justify;" type="cite">
+Further to my post a few months ago (<a href="http://chembl.blogspot.co.uk/2013/03/to-remove-or-not-to-remove-that-is.html" target="_blank">To Remove or Not to Remove</a>) about removing certain problem metal-containing&nbsp;compounds,&nbsp;we have now come up with a plan of what to do.</blockquote>
+<blockquote type="cite">
+<div style="text-align: justify;">
+Instead
+ of labeling this curation as ‘removal of inorganics’, or ‘removal of 
+organometallics’, we simply want this to be known as ‘removal of some 
+metal-containing compounds’.</div>
+<div style="text-align: justify;">
+<br /></div>
+<div style="text-align: justify;">
+The criterion that we used was to 
+exclude a large proportion of compounds that contained a metal, apart 
+from cases where a metal was commonly found as part of a pharmaceutical 
+preparation (e.g. Ranitidine Bismuth Citrate <a href="https://www.ebi.ac.uk/chembldb/compound/inspect/CHEMBL2111286" target="_blank">CHEMBL2111286</a>, Silver Sulfadiazine <a href="https://www.ebi.ac.uk/chembldb/compound/inspect/CHEMBL1382627" target="_blank">CHEMBL1382627</a>, Bacitracin Zinc <a href="https://www.ebi.ac.uk/chembldb/compound/inspect/CHEMBL2096639" target="_blank">CHEMBL2096639</a>). The 
+reasoning behind the removal of such compounds was that most of these 
+metals are bonded to&nbsp;the rest of the compound components via coordinate bonds. However, due 
+to <a href="http://www.inchi-trust.org/fileadmin/user_upload/html/inchifaq/inchi-faq.html#7.3" target="_blank">InChI limitations</a>, there is no way of creating a Standard InChI that 
+retains coordinate bond information. As we use Standard InChI as the 
+main compound identifier of uniqueness in ChEMBL, it was decided to 
+exclude the structures altogether.</div>
+<div style="text-align: justify;">
+<br /></div>
+<div style="text-align: justify;">
+This change will come into effect with the release of ChEMBL_17, and only affects ~3,200 compounds. The compound image on the interface will be replaced with an icon that shows it’s a metal-containing compound (see picture, above). The structures will not be part of the download set on the FTP site, but we will retain the molecular formula in both the downloads and on the ChEMBL interface, so that you can still see the elemental make up of the compound. We will, of course, retain all of the bioactivity data on these compounds.</div>
+</blockquote>
+<blockquote type="cite">
+<div style="text-align: justify;">
+<br /></div>
+<div style="text-align: justify;">
+Any questions, please feel free to contact <a href="mailto:chembl-help@ebi.ac.uk">chembl-help@ebi.ac.uk</a></div>
+</blockquote>

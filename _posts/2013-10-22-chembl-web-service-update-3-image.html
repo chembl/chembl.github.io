@@ -1,0 +1,160 @@
+---
+layout: post
+title: 'ChEMBL Web Service Update 3: Image Rendering Changes'
+date: '2013-10-22T15:24:00.000+01:00'
+author: Mark Davies
+tags:
+- Web Services
+- Software
+modified_time: '2013-10-23T09:08:28.897+01:00'
+thumbnail: http://2.bp.blogspot.com/-zA4JmiistjU/Uk62goY4gfI/AAAAAAAAAPs/TDs7OJkpgHA/s72-c/index.jpg
+blogger_id: tag:blogger.com,1999:blog-2546008714740235720.post-3966541409699171699
+blogger_orig_url: http://chembl.blogspot.com/2013/10/chembl-web-service-update-3-image.html
+---
+
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://2.bp.blogspot.com/-zA4JmiistjU/Uk62goY4gfI/AAAAAAAAAPs/TDs7OJkpgHA/s1600/index.jpg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="http://2.bp.blogspot.com/-zA4JmiistjU/Uk62goY4gfI/AAAAAAAAAPs/TDs7OJkpgHA/s1600/index.jpg" /></a></div>
+<div style="text-align: left;">
+<br /></div>
+<div style="text-align: left;">
+<br /></div>
+If you are a follower of this blog you will have seen some earlier posts (<a href="http://chembl.blogspot.co.uk/2013/10/chembl-web-sevice-update-2-jsonp-support.html">here</a> and <a href="http://chembl.blogspot.co.uk/2013/10/chembl-web-service-update-1.html">here</a>) providing details on changes we are making to our Web Services. I recommend reviewing the previous posts, but in summary we have setup a temporary base URL to allow existing ChEMBL Web Service users to test the new ChEMBL API powered Web Services. The new temporary base URL is:<br />
+<br />
+<div style="text-align: center;">
+<span style="font-family: inherit;">https://www.ebi.ac.uk/chemblws2</span></div>
+<br />
+<span style="font-family: inherit;">As well as providing users with all </span><span style="font-family: inherit;"><a href="https://www.ebi.ac.uk/chembl/ws">existing functionality</a> we have also added a couple of extra features, one of which is improved molecule rendering options. The current live Web Services provides the following REST call to allow you to get a molecule image:</span><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">&nbsp;</span><br />
+<br />
+<div class="separator" style="clear: both; text-align: center;">
+<a href="https://www.ebi.ac.uk/chemblws/compounds/CHEMBL192/image"><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">https://www.ebi.ac.uk/chemblws/compounds/CHEMBL192/image</span></a></div>
+<div class="separator" style="clear: both;">
+<br /></div>
+<div class="separator" style="clear: both; text-align: center;">
+<span style="font-family: &quot;Courier New&quot;,Courier,monospace;">&nbsp;</span><a href="https://www.ebi.ac.uk/chemblws/compounds/CHEMBL192/image" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="320" src="https://www.ebi.ac.uk/chemblws/compounds/CHEMBL192/image" width="320" />&nbsp;</a></div>
+<div class="separator" style="clear: both;">
+<br /></div>
+<div style="text-align: left;">
+<div>
+</div>
+<div>
+<span style="font-family: inherit;">You are able to provide a <b>dimension</b> argument (pixels) to change the size of the image:</span><br />
+<br /></div>
+<div>
+<div style="text-align: center;">
+<span style="font-family: &quot;Courier New&quot;,Courier,monospace;"><a href="https://www.ebi.ac.uk/chemblws/compounds/CHEMBL192/image?dimensions=200">https://www.ebi.ac.uk/chemblws/compounds/CHEMBL192/image?dimensions=200</a></span></div>
+<br /></div>
+<div>
+</div>
+<div class="separator" style="clear: both; text-align: center;">
+<a href="https://www.ebi.ac.uk/chemblws/compounds/CHEMBL192/image?dimensions=200" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="https://www.ebi.ac.uk/chemblws/compounds/CHEMBL192/image?dimensions=200" /></a></div>
+<div class="separator" style="clear: both;">
+<br /></div>
+<div>
+</div>
+<div>
+<span style="font-family: inherit;">The image quality has deteriorated, this is because the image returned is simply re-sized version of the first image. The </span><span style="font-family: inherit;">new ChEMBL API powered Web Services addresses this issue by dynamically generating the images, using either the <a href="http://www.rdkit.org/">RDKit</a> or the <a href="http://www.ggasoftware.com/opensource/indigo">Indgio</a> chemistry toolkits (defaults to RDKit). So, </span>to get an image using the new services, you just need to add '2' to the base URL:<br />
+<br /></div>
+<div>
+<div style="text-align: center;">
+<a href="https://www.ebi.ac.uk/chemblws2/compounds/CHEMBL192/image"><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">https://www.ebi.ac.uk/chemblws2/compounds/CHEMBL192/image</span></a></div>
+<br /></div>
+<div>
+</div>
+<div class="separator" style="clear: both; text-align: center;">
+<a href="https://www.ebi.ac.uk/chemblws2/compounds/CHEMBL192/image" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="320" src="https://www.ebi.ac.uk/chemblws2/compounds/CHEMBL192/image" width="320" />&nbsp;</a></div>
+<div class="separator" style="clear: both;">
+<br /></div>
+<div>
+<div>
+</div>
+<div>
+When using the <b>dimensions</b> argument with the new Web Services you now get the following improved smaller image:<span style="font-family: inherit;"><br />
+</span></div>
+<div>
+<br />
+<div style="text-align: center;">
+<a href="https://www.ebi.ac.uk/chemblws2/compounds/CHEMBL192/image?dimensions=200"><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">https://www.ebi.ac.uk/chemblws2/compounds/CHEMBL192/image?dimensions=200</span></a></div>
+<br />
+<div style="text-align: center;">
+<span style="font-family: inherit;"><a href="https://www.ebi.ac.uk/chemblws2/compounds/CHEMBL192/image?dimensions=200" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="https://www.ebi.ac.uk/chemblws2/compounds/CHEMBL192/image?dimensions=200" /></a></span></div>
+</div>
+</div>
+<div>
+<br /></div>
+<div>
+<div>
+</div>
+<div>
+The coordinates used to generate the image are based on those found in the ChEMBL192 molfile. All current ChEMBL images are produced using Pipeline Pilot, which is currently setup to ignore the molfile coordinates and layout molecule how it sees best. This explains why the layout of the first two images are different to the second two. We can get the new Web Services to ignore coordinates and get the chemical toolkit to layout molecule coordinates how it sees best using the <b>ignoreCoords=1</b> argument:</div>
+<div>
+<br />
+<div style="text-align: center;">
+<a href="https://www.ebi.ac.uk/chemblws2/compounds/CHEMBL192/image?ignoreCoords=1"><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">https://www.ebi.ac.uk/chemblws2/compounds/CHEMBL192/image?ignoreCoords=1</span></a></div>
+<br /></div>
+<div>
+</div>
+<div>
+<div class="separator" style="clear: both;">
+<span style="font-family: inherit;"></span></div>
+<div class="separator" style="clear: both;">
+<span style="font-family: inherit;"></span></div>
+<div class="separator" style="clear: both;">
+<span style="font-family: inherit;"></span></div>
+<div class="separator" style="clear: both; text-align: center;">
+<span style="font-family: inherit;"><a href="https://www.ebi.ac.uk/chemblws2/compounds/CHEMBL192/image?ignoreCoords=1" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="320" src="https://www.ebi.ac.uk/chemblws2/compounds/CHEMBL192/image?ignoreCoords=1" width="320" /></a></span></div>
+<div class="separator" style="clear: both;">
+<br /></div>
+</div>
+<div>
+<span style="font-family: inherit;">If you would prefer to use Indigo to generate your ChEMBL molecule images you can use the <b>engine</b> argument:</span></div>
+<div>
+</div>
+<div>
+<br />
+<div style="text-align: center;">
+<span style="font-family: inherit;"><a href="https://www.ebi.ac.uk/chemblws2/compounds/CHEMBL192/image?engine=indigo"><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">https://www.ebi.ac.uk/chemblws2/compounds/CHEMBL192/image?engine=indig<span style="font-family: inherit;">o</span></span></a></span></div>
+<br /></div>
+<div>
+<span style="font-family: &quot;Courier New&quot;,Courier,monospace;"></span></div>
+<div>
+<span style="font-family: &quot;Courier New&quot;,Courier,monospace;"></span></div>
+<div class="separator" style="clear: both; text-align: center;">
+<a href="https://www.ebi.ac.uk/chemblws2/compounds/CHEMBL192/image?engine=indigo" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="320" src="https://www.ebi.ac.uk/chemblws2/compounds/CHEMBL192/image?engine=indigo" width="320" /></a></div>
+<div class="separator" style="clear: both; text-align: left;">
+<br /></div>
+<div class="separator" style="clear: both; text-align: left;">
+Finally, it is also possible to use any combination of the 3 arguments mentioned above:</div>
+<br />
+<div class="separator" style="clear: both; text-align: center;">
+<a href="https://www.ebi.ac.uk/chemblws2/compounds/CHEMBL192/image?engine=indigo&amp;ignoreCoords=1&amp;dimensions=200">https://www.ebi.ac.uk/chemblws2/compounds/CHEMBL192/image?engine=indigo&amp;ignoreCoords=1&amp;dimensions=200</a></div>
+<div class="separator" style="clear: both; text-align: left;">
+<br /></div>
+<div class="separator" style="clear: both; text-align: center;">
+<a href="https://www.ebi.ac.uk/chemblws2/compounds/CHEMBL192/image?engine=indigo&amp;ignoreCoords=1&amp;dimensions=200" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="https://www.ebi.ac.uk/chemblws2/compounds/CHEMBL192/image?engine=indigo&amp;ignoreCoords=1&amp;dimensions=200" />&nbsp;</a></div>
+<div class="separator" style="clear: both; text-align: left;">
+<br /></div>
+<div class="separator" style="clear: both; text-align: left;">
+In summary, the new Web Service base URL extends the the current image generating functionality, by improving the <b>dimensions</b> argument and introducing the <b>ignoreCoords</b> and <b>engine</b> arguments. More details in table below: </div>
+<div class="separator" style="clear: both; text-align: left;">
+<br /></div>
+<table border="1px"><tbody>
+<tr> <th style="text-align: center;">Argument Name</th> <th style="text-align: center;">Argument Description</th> <th style="text-align: center;">Argument Options</th> <th style="text-align: center;">Default</th> </tr>
+<tr> <td style="text-align: center;">dimensions</td> <td style="text-align: center;">Size of image in pixels</td> <td style="text-align: center;">1-500</td> <td style="text-align: center;">500</td> </tr>
+<tr> <td style="text-align: center;">ignoreCoords</td> <td style="text-align: center;">Choose to use or ignore coordinates in ChEMBL molfiles</td> <td style="text-align: center;">1 or 0 </td> <td style="text-align: center;">0 (Use ChEMBL molfile coordinates)</td> </tr>
+<tr> <td style="text-align: center;">engine</td> <td style="text-align: center;">Chemical toolkit used to generate image</td> <td style="text-align: center;">RDKit or indigo</td> <td style="text-align: center;">RDKit</td> </tr>
+</tbody></table>
+<div class="separator" style="clear: both; text-align: left;">
+<br /></div>
+We hope you find these image&nbsp; rendering changes useful and if you have any questions please let us know via mail to "chembl-help at ebi.ac.uk" if you have any questions.<br />
+<div class="separator" style="clear: both; text-align: left;">
+<br /></div>
+<div class="separator" style="clear: both; text-align: left;">
+The ChEMBL Team</div>
+<div class="separator" style="clear: both; text-align: left;">
+<br /></div>
+<div class="separator" style="clear: both;">
+<br /></div>
+<div>
+</div>
+</div>
+</div>

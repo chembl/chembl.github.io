@@ -1,0 +1,64 @@
+---
+layout: post
+title: Compiling inchi-1 to JavaScript
+date: '2013-05-09T15:19:00.001+01:00'
+author: John Overington
+tags:
+- Software
+modified_time: '2013-05-09T15:19:52.432+01:00'
+thumbnail: http://2.bp.blogspot.com/-bRvKI77fDyo/UYuvNf78ZuI/AAAAAAAAC_Y/qUUUXKFIuv8/s72-c/imagen_sacha_inchi_04.jpg
+blogger_id: tag:blogger.com,1999:blog-2546008714740235720.post-5277536269282216774
+blogger_orig_url: http://chembl.blogspot.com/2013/05/compiling-inchi-1-to-javascript.html
+---
+
+<br />
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://2.bp.blogspot.com/-bRvKI77fDyo/UYuvNf78ZuI/AAAAAAAAC_Y/qUUUXKFIuv8/s1600/imagen_sacha_inchi_04.jpg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="192" src="http://2.bp.blogspot.com/-bRvKI77fDyo/UYuvNf78ZuI/AAAAAAAAC_Y/qUUUXKFIuv8/s200/imagen_sacha_inchi_04.jpg" width="200" /></a></div>
+<div style="color: #222222; text-align: left;">
+<br /></div>
+<div style="color: #222222; text-align: left;">
+<span style="font-family: inherit; line-height: 26px;">There are more and more software libraries being ported to JavaScript. The best example is JavaScript/HTML5 Citadel demo of the&nbsp;<a href="http://t.co/GxEkn1pvsm" style="color: #333333; line-height: inherit; outline: rgb(0, 0, 0);">Unreal Engine</a>. So why not to try with some chemical stuff? One of the most important chemical software libraries is&nbsp;<a href="http://www.iupac.org/home/publications/e-resources/inchi.html" style="color: #333333; line-height: inherit; outline: rgb(0, 0, 0);">IUPAC InChi</a>. It's also extremely hard to reimplement as it's written in low-level, functional-style&nbsp;</span><span style="font-family: monospace;">C</span><span style="font-family: inherit;"><span style="line-height: 26px;">. On the other hand it's just a few headers and source files, without any dependencies so it's a perfect use case for&nbsp;</span></span><a href="https://github.com/kripken/emscripten" style="color: #333333; font-family: inherit; line-height: inherit; outline: rgb(0, 0, 0);">Emscripten</a><span style="font-family: inherit;"><span style="line-height: 26px;">.</span></span></div>
+<div style="color: #222222; line-height: 26px; text-align: left;">
+<span style="font-family: inherit;"><br /></span></div>
+<div style="color: #222222; line-height: 26px; text-align: left;">
+<span style="font-family: inherit;"><a href="https://github.com/kripken/emscripten" style="color: #333333; line-height: inherit; outline: rgb(0, 0, 0);">Emscripten</a>&nbsp;'is an LLVM-to-JavaScript compiler'. It can be used as a drop-in replacement for standard tools such as gcc or make. Recently it got support for&nbsp;<code style="line-height: normal;">asm.js</code>&nbsp;- optimizable, low-level subset of JavaScript.</span></div>
+<div style="color: #222222; line-height: 26px; text-align: left;">
+<span style="font-family: inherit;"><br /></span></div>
+<div style="text-align: left;">
+<span style="color: #222222; font-family: inherit;"><span style="line-height: 26px;">I wasn't the first to come up with this idea -&nbsp;one of our local&nbsp;</span></span><span style="color: #222222;"><span style="line-height: 26px;">heroes</span></span><span style="color: #222222; font-family: inherit;"><span style="line-height: 26px;">,&nbsp;</span></span><a href="http://baoilleach.blogspot.co.uk/" style="color: #333333; font-family: inherit; line-height: inherit; outline: rgb(0, 0, 0);">Noel O'Boyle</a><span style="color: #222222; font-family: inherit;"><span style="line-height: 26px;">&nbsp;wrote a&nbsp;</span></span><a href="http://baoilleach.blogspot.co.uk/2011/05/almost-translate-inchi-code-into_13.html" style="color: #333333; font-family: inherit; line-height: inherit; outline: rgb(0, 0, 0);">set of articles</a><span style="color: #222222; font-family: inherit;"><span style="line-height: 26px;">&nbsp;about translating the InChI code into JavaScript on his blog. I didn't know about his work during my experiments, which is good, because I took slightly different approach and came up with different results:</span></span></div>
+<ol style="list-style-image: initial; list-style-position: initial; margin-bottom: 20px; margin-left: 30px;">
+<li style="line-height: 24px; margin-bottom: 12px;"><div style="color: #222222; line-height: 21px; text-align: left;">
+<span style="font-family: inherit;">I decided to compile&nbsp;<code style="line-height: normal;">inchi-1</code>&nbsp;binary (by exposing its&nbsp;<code style="line-height: normal;">main</code>&nbsp;function) not the library, because, according to readme file in InChI distribution package, the binary 'does extensively check the input data and does provide diagnostic concerning input structure' so it's the only tool that can be used as an InChi generator with 100% guarantee of having correct results for all input files.</span></div>
+</li>
+<li style="line-height: 24px; margin-bottom: 12px;"><div style="color: #222222; line-height: 21px; text-align: left;">
+<span style="font-family: inherit;">I used&nbsp;<a href="https://github.com/kripken/emscripten/wiki/Tutorial#optimizing-code" style="color: #333333; line-height: inherit; outline: rgb(0, 0, 0);">'-O2 -s ASM_JS=1'</a>&nbsp;flags to optimize speed.</span></div>
+</li>
+<li style="line-height: 24px; margin-bottom: 12px;"><div style="color: #222222; line-height: 21px; text-align: left;">
+<span style="font-family: inherit;">The resulting JavaScript code (emscripten generated html with embedded JS) weighted 2.8 MB and 732 kB after zip compression (all modern servers and browsers support compressed files). The original&nbsp;<code style="line-height: normal;">inchi-1</code>&nbsp;binary is about 1.1 MB large so this sounds reasonable.</span></div>
+</li>
+</ol>
+<div style="color: #222222; line-height: 26px; text-align: left;">
+<span style="font-family: inherit;">Of course there are some drawbacks of my approach - the most obvious one is IO.&nbsp;<code style="line-height: normal;">inchi-1</code>&nbsp;is command line tool expecting a file or plain text as input and printing some text to&nbsp;<code style="line-height: normal;">stdout</code>and&nbsp;<code style="line-height: normal;">stderr</code>. JavaScript doesn't have any standard input or output. This means that this behavior must be somehow mapped to browser environment. Emscripten maps output to specific textarea element which is reasonable. On the other hand any request for user input is mapped to javascript prompt window. This prompt can accept one line of text at time. Molfiles contain many lines so putting a molfile line by line is tedious.</span></div>
+<div style="color: #222222; line-height: 26px; text-align: left;">
+<span style="font-family: inherit;"><br /></span></div>
+<div style="color: #222222; line-height: 26px; text-align: left;">
+<span style="font-family: inherit;">The solution to this problem would be adding a file input to the webpage and accessing it <i>via</i> Javascript Blob interface. Having the files selected allocating some memory in Emscripten using hints from&nbsp;<a href="http://stackoverflow.com/questions/15980585/how-to-change-emscripten-browser-input-method-from-window-prompt-to-something-mo" style="color: #333333; line-height: inherit; outline: rgb(0, 0, 0);">this SO question</a>&nbsp;and pass it to&nbsp;<code style="line-height: normal;">process_single_input</code>&nbsp;function from&nbsp;<code style="line-height: normal;">inchimain.c</code>&nbsp;file (this should be exported instead of&nbsp;<code style="line-height: normal;">main</code>).</span></div>
+<div style="color: #222222; line-height: 26px; text-align: left;">
+<span style="font-family: inherit;"><br /></span></div>
+<div style="color: #222222; line-height: 26px; text-align: left;">
+<span style="font-family: inherit;">So far I haven't solved the last issue. You can check proof-of-concept&nbsp;<a href="http://mnowotka.kei.pl/inchi/" style="color: #333333; line-height: inherit; outline: rgb(0, 0, 0);">here</a>. To use it, open link in your browser, open javascript console (<code style="line-height: normal;">Control-Shift-K</code>&nbsp;on Firefox,&nbsp;<code style="line-height: normal;">Control-Shift-J</code>&nbsp;on Chrome), then type (as two separate commands, pressing Enter after each one):</span></div>
+<div style="color: #222222; line-height: 26px; text-align: left;">
+<span style="font-family: inherit;"><br /></span></div>
+<pre><div style="text-align: left;">
+<span style="font-family: inherit;">bla = Module.cwrap('process_single_input', 'string', 'string')</span></div>
+<code><div style="text-align: left;">
+<span style="font-family: inherit;">bla('bla -STDIO')</span></div>
+</code></pre>
+<div style="color: #222222; line-height: 26px; text-align: left;">
+<span style="font-family: inherit;"><br /></span></div>
+<div style="color: #222222; line-height: 26px; text-align: left;">
+<span style="font-family: inherit;">After that, the standard javascript prompt will pop up. You have to copy there your mol file - line by line. If the line should be empty (usually 1st and 3rd lines are) just press enter in the input box. After last line (<code style="line-height: normal;">M END</code>) hit&nbsp;<code style="line-height: normal;">cancel</code>&nbsp;instead of&nbsp;<code style="line-height: normal;">OK</code>. Then select a checkbox suppressing all further popups and press&nbsp;<code style="line-height: normal;">OK</code>. If you entered all mol file lines correctly you will see the result!</span></div>
+<div style="color: #222222; line-height: 26px; text-align: left;">
+<span style="font-family: inherit;"><br /></span></div>
+<div style="color: #222222; line-height: 26px; text-align: left;">
+<span style="font-family: inherit;">michal</span></div>

@@ -1,0 +1,36 @@
+---
+layout: post
+title: Privileged Scaffold Identification from StARlite data
+date: '2009-03-09T06:23:00.021Z'
+author: John Overington
+tags:
+- Databases
+- Robot Chemist
+modified_time: '2009-03-12T07:14:39.036Z'
+thumbnail: http://3.bp.blogspot.com/_SlPG9DIz_AA/SbS6VXz7ymI/AAAAAAAAALI/V6Q5olT95Xw/s72-c/images.jpeg
+blogger_id: tag:blogger.com,1999:blog-2546008714740235720.post-5762658029411822634
+blogger_orig_url: http://chembl.blogspot.com/2009/03/privileged-scaffold-identification-from.html
+---
+
+<a onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}" href="http://3.bp.blogspot.com/_SlPG9DIz_AA/SbS6VXz7ymI/AAAAAAAAALI/V6Q5olT95Xw/s1600-h/images.jpeg"><img style="display:block; margin:0px auto 10px; text-align:center;cursor:pointer; cursor:hand;width: 121px; height: 121px;" src="http://3.bp.blogspot.com/_SlPG9DIz_AA/SbS6VXz7ymI/AAAAAAAAALI/V6Q5olT95Xw/s200/images.jpeg" border="0" alt=""id="BLOGGER_PHOTO_ID_5311074736908520034" /></a>
+Here is a little use-case of StARlite, I doubt we will ever formally publish it, but hopefully it is quite interesting nonetheless.
+<P>
+A common requirement in hit discovery is the selection of a set of compounds likely to be bioactive against a particular target or target family (for example a protein kinase focussed library, <I>etc</I>), there are many ways of doing this task, and for screening a new target this sort of approach is often very economically cost-effective. Usually there is the concept of a set of active series, or chemotypes for a target family, and this is often expressed as a 'scaffold' - the chemical core - often a rigid part of a molecule with all the surface 'decoration' removed. More particularly, this 'scaffold' is often associated with some synthetic accessibility concepts for use in library synthesis, parallel chemistry and so forth. Anyway, forgetting some of the details and complexities of deciding 'what is a series', 'what is a scaffold', <I>etc.</I> here is an annotated workflow.
+<BL>
+<LI>Identify all scaffolds within StARlite (we use Pipeline pilot for this, but there are many programs that can do this).
+<LI>Build a table of the presence of each scaffold within each molecule (remember some scaffolds will be substructures of others, a molecule can contain several distinct scaffolds, <I>etc.</I>
+<LI>Identify an Active Set within StARlite (it can be those active against a gene family, say rhodopsin-like GPCRs, a particular target, CNS penetrant compounds, compounds with long half-lives, it doesn't really matter). Of course, you also need to assign an activity cutoff (we tend to use 1 micromolar).
+<LI>Assign all molecules in StARlite to either the Active Set (those in 3) or an Inactive Set (all other molecules).
+<LI>Do some simple set manipulations on  the scaffolds preferentially active within the active set. (look for rank or proportion enrichment, <I>etc</I>).
+<LI>Rank the enriched scaffolds by some criteria (we like to use a ligand efficiency proxy (dividing the enrichment ratio by the molecular weight/number of heavy atoms).
+</BL>
+<P>
+In practice, the active and pseudo-inactive sets can be used to build far more sophistacted activity classifiers, pharmacophores, <I>etc.</I>
+<P>
+Let's look at a toy example.
+<P>
+We did a blast query on StARlite using the sequence of human MCH-1 as a query. This pulls out  a list of targets ranked by similarity to MCH-1, we selected a set of similar sequences as our MCH-1-like active set, and extracted all molecules and assays assigned to this set of sequences. We then looked at the scaffold frequency rank within the active set (dark blue) compared to the rank of the scaffold of the entire database (light blue). We then computed the enrichment ratio of the active set to the entire database (Fragment Specificity, in red). A non-enriched scaffold will show a value close to zero, the higher the degree of association, the higher the score. Finally, we 'normalised' the relative enrichment by molecular weight of the scaffold (Fragment Elegance, light green).
+<P>
+<a onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}" href="http://3.bp.blogspot.com/_SlPG9DIz_AA/SbWA54i4u7I/AAAAAAAAALY/TUrFCPf2IpI/s1600-h/scaffolds_png.png"><img style="display:block; margin:0px auto 10px; text-align:center;cursor:pointer; cursor:hand;width: 320px; height: 239px;" src="http://3.bp.blogspot.com/_SlPG9DIz_AA/SbWA54i4u7I/AAAAAAAAALY/TUrFCPf2IpI/s320/scaffolds_png.png" border="0" alt=""id="BLOGGER_PHOTO_ID_5311293067472976818" /></a>
+<P>
+So overall, we identify a set of scaffolds that are biased towards a particular activity class - in this case, scaffolds 6 and 7 (dark blue) are probably the best, whilst 8, although more associated with MCH-1-like activity (a higher red score) are less attractive due to the inherently higher molecular weight (and synthetic access difficulties) of this particular scaffold.

@@ -1,0 +1,57 @@
+---
+layout: post
+title: Using ChEMBL web services via proxy.
+date: '2014-11-05T11:00:00.000Z'
+author: kott
+tags:
+- Web Services
+modified_time: '2014-11-05T22:14:23.068Z'
+thumbnail: http://1.bp.blogspot.com/-7nhCw4WQ43s/VFTVZeWl4MI/AAAAAAAAF1o/dtUEgMhQJvU/s72-c/9785938093_9f492aa1ea.jpg
+blogger_id: tag:blogger.com,1999:blog-2546008714740235720.post-5318777591519368211
+blogger_orig_url: http://chembl.blogspot.com/2014/11/using-chembl-web-services-via-proxy.html
+---
+
+<div dir="ltr" style="text-align: left;" trbidi="on">
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://1.bp.blogspot.com/-7nhCw4WQ43s/VFTVZeWl4MI/AAAAAAAAF1o/dtUEgMhQJvU/s1600/9785938093_9f492aa1ea.jpg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="http://1.bp.blogspot.com/-7nhCw4WQ43s/VFTVZeWl4MI/AAAAAAAAF1o/dtUEgMhQJvU/s1600/9785938093_9f492aa1ea.jpg" height="320" width="203" /></a></div>
+<div class="separator" style="clear: both; text-align: center;">
+<br /></div>
+<br />
+<br />
+It is common practice for organizations and companies to make use of <a href="http://en.wikipedia.org/wiki/Proxy_server">proxy servers</a> to connect to services outside their network. This can cause problems for users of the ChEMBL web services who sit behind a proxy server. So to help those users who have asked, we provide the following quick guide, which demonstrates how to access ChEMBL web services via a proxy.<br />
+<br />
+Most software libraries respect proxy settings from environmental variables. You can set the proxy variable once, normally HTTP_PROXY and then use that variable to set other related proxy environment variables:<br />
+<br />
+<script src="https://gist.github.com/mnowotka/f54f0a02d5c422a3e1db.js"></script><br />
+Or if you have different proxies responsible for different protocols:<br />
+<br />
+<script src="https://gist.github.com/mnowotka/6cd797bbb17be8de16d5.js"></script><br />
+On Windows, this would be:<br />
+<br />
+<script src="https://gist.github.com/mnowotka/68ea42cf8c2b25143260.js"></script><br />
+<br />
+If you are accessing the ChEMBL web services programmatically and you prefer not to clutter your environment, you can consider adding the proxy settings to your scripts. Here are some python based recipes:<br />
+<br />
+<br />
+<h3>
+1. Official ChEMBL client library </h3>
+<br />
+If you are working in a python based environment, we recommend you to use our client library (<a href="https://github.com/chembl/chembl_webresource_client">chembl_webresource_client</a>), for accessing ChEMBL web services. It already offers <a href="http://chembl.blogspot.co.uk/2014/05/a-python-client-for-accessing-chembl.html">many advantages</a> over accessing the ChEMBL web services directly and handling proxies is yet another. All you need to do is configure proxies once and you are done:<br />
+<br />
+<script src="https://gist.github.com/mnowotka/205219cbfc5dea9febf5.js"></script><br />
+<br />
+<h3>
+2. Python requests library</h3>
+<br />
+If you decide to use requests, you have to add 'proxies' parameter to every 'get' and 'post' function call:<br />
+<br />
+<script src="https://gist.github.com/mnowotka/88452b359009f1c1a378.js"></script><br />
+<br />
+<h3>
+3. Python urllib2 library</h3>
+<br />
+Finally, in the lowest level library, 'urllib2' you can set a ProxyHandler and register it to URL opener:<br />
+<br />
+<script src="https://gist.github.com/mnowotka/50a4e3a17691cb1bca43.js"></script><br />
+<br />
+<i>We would like to thank Dr. Christine Rudolph for the idea and providing code snippets.</i></div>

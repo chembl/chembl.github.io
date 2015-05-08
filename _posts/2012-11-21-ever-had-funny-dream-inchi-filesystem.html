@@ -1,0 +1,50 @@
+---
+layout: post
+title: Ever had a funny dream? The InChI filesystem.
+date: '2012-11-21T07:15:00.000Z'
+author: John Overington
+tags:
+- Some Of The Interesting Things You'll See On A Long Distance Flight
+modified_time: '2012-11-21T09:18:15.571Z'
+thumbnail: http://2.bp.blogspot.com/-fKGCjxt-a9c/UKx5Dr3KtmI/AAAAAAAACZk/pzpAZIfv-0A/s72-c/downloading+communism.jpg
+blogger_id: tag:blogger.com,1999:blog-2546008714740235720.post-2588382275971844945
+blogger_orig_url: http://chembl.blogspot.com/2012/11/ever-had-funny-dream-inchi-filesystem.html
+---
+
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://2.bp.blogspot.com/-fKGCjxt-a9c/UKx5Dr3KtmI/AAAAAAAACZk/pzpAZIfv-0A/s1600/downloading+communism.jpg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="320" src="http://2.bp.blogspot.com/-fKGCjxt-a9c/UKx5Dr3KtmI/AAAAAAAACZk/pzpAZIfv-0A/s320/downloading+communism.jpg" width="237" /></a></div>
+<span style="font-family: Helvetica;"><br /></span>
+<span style="font-family: inherit;">I had a dream recently - I occasionally have really technical dreams, where unlike in the real world, I'm smart, I have great insights and I solve 'big' problems - then frustratingly the great insight of the dream disappears and I'm left with a half-formed memory and the complete lack of the insight. Of probably the hundred or so dreams like this I have ever had, a few have actually led to some interesting research, which I think has been useful - never as grand as the impact in my dream, but useful. But I also have dreams about discovering new British mushroom species, fishing for electric eels with capacitors and resistors as lures, so to be clear, most of my dreams are simple nonsense.</span><br />
+<div>
+<br /></div>
+<div>
+<span style="font-family: inherit;">The dream was set in the future, and I was running a group looking after the largest chemical database in the world (clearly a fantasy!!). The database was huge, about 10<sup>20</sup>&nbsp;molecules - the thing we did though was use InChIs for chemical structures but to get over a lot of the storage problems we use the filesystem structure itself to hold the structures and the relations between them. At the tips of the filesystem were just a set of standard files containing descriptors of the molecule - </span><span style="font-family: Courier New, Courier, monospace;">./logP</span><span style="font-family: inherit;">, containing a logP value, alongside a bunch of other useful descriptors. In this system we treated the InChI as the complete filename, with the slash layer separators (</span><span style="font-family: Courier New, Courier, monospace;">/</span><span style="font-family: inherit;">) as directory names, so all the isomers of </span><span style="font-family: Courier New, Courier, monospace;">C3H4F2 </span><span style="font-family: inherit;">were contained as subfiles of that directory on the </span><span style="font-family: Courier New, Courier, monospace;">/InChI=1</span><span style="font-family: inherit;"> root filesystem. So really this is just using the hierarchical structure of the InChI itself in a hierarchical tree form.&nbsp;</span><br />
+<span style="font-family: inherit;"><br /></span>
+<span style="font-family: inherit;">In the database, we used links between files to store relationships (say from all tautomers to a standard InChI), but there were different types of links for isomers and salts, <i>etc</i>. The reason we did this was for space since the very size of the database precluded storing the data in a database, there was never any prospect of storing the data in core memory due to the huge size. This InChI filesystem approach was very efficient and scalable (there was something in the dream as well about having to use ZFS, which can currently scale to 16 Exabytes as a single volume. We'd optimized this though, for the really small&nbsp;</span>block sizes required by the data).<span style="font-family: inherit;">&nbsp;The directory/file dates were used to store history about the date of registration - this was important for patent novelty checking, the querying of the database was based on 'extended' unix filesystem tools, like a pharmacophore enabled 'find'. The duality of the filename as a location on a disk, and a location on the internet, and the ubiquity and beauty of everything in unix being a file also played their role.&nbsp;</span><br />
+<span style="font-family: inherit;"><br /></span>
+<span style="font-family: inherit;">Finally, there was something really really cool for drug discovery that could be done precisely because of this InChI as a filesystem model, and that's the bit that's missing from the recollection of the dream.</span><br />
+<span style="font-family: inherit;"><br /></span>
+What a bummer!<br />
+<span style="font-family: inherit;"><br /></span>
+<span style="font-family: inherit;">Here's the directory containing the data for our good friend aspirin.</span><br />
+<span style="font-family: inherit;"><br /></span>
+<br />
+<div style="text-align: center;">
+<span style="font-family: Courier New, Courier, monospace;">/InChI=1/C9H8O4/c1-6(10)13-8-5-3-2-4-7(8)9(11)12/h2-5H,1H3,(H,11,12)</span></div>
+<span style="font-family: inherit;"><br /></span>
+<span style="font-family: Courier New, Courier, monospace;"></span></div>
+<span style="font-family: inherit;"><br /></span>
+<span style="font-family: inherit;">This blogpost was based closely on a mail I sent to a friend/collaborator (you know who your are). I've also added a few more sentences to increase readability and accessibility for those outside of the InChI field.&nbsp;</span>A few spurious personal references have been removed from the original text (particular people had roles, and to prevent them appearing as apparent fact in google, I've removed them; and anyway, the people may not have enjoyed their dream roles ;) ).<br />
+<span style="font-family: inherit;"><br /></span>
+<span style="font-family: inherit;">I've explained the contents of the dream to a few people now, and the story usually makes people smile (always a good sign), go quiet (an even better sign) and then ask a bunch of questions that try and dismiss it as fantasy (the best sign of all).&nbsp;</span><br />
+<span style="font-family: inherit;"><br /></span>
+<span style="font-family: inherit;">Since that time, we've reduced the core idea to practice -&nbsp;</span><br />
+<br />
+<ul>
+<li><span style="font-family: inherit;">There's a tarfile of a toy InChI filesystem (thanks Gerard) that you can do a surprising amount of chemoinformatics with just </span><span style="font-family: Courier New, Courier, monospace;">ls</span><span style="font-family: inherit;"> and </span><span style="font-family: Courier New, Courier, monospace;">cat</span><span style="font-family: inherit;">.&nbsp;</span></li>
+<li><span style="font-family: inherit;">Some initial work comparing the efficiency and scaling of this filesystem approach to classical prefix and suffix trees (thanks Mich<span style="font-family: inherit;">a</span></span><span style="background-color: white; line-height: 18px; text-align: left;"><span style="font-family: inherit;">ł), but these seem to have scaling problems.</span></span></li>
+<li><span style="background-color: white; font-family: inherit; line-height: 18px; text-align: left;">General cheminformatics InChI related stuff (thanks Francis).&nbsp;</span></li>
+</ul>
+<br />
+<span style="background-color: white; line-height: 18px; text-align: left;"><span style="font-family: inherit;"><br /></span></span>
+<span style="background-color: white; line-height: 18px; text-align: left;"><span style="font-family: inherit;">If you'd like to know more, get in touch <i>via</i> the comments.</span></span>

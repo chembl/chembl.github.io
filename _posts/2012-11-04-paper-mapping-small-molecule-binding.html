@@ -1,0 +1,40 @@
+---
+layout: post
+title: 'Paper: Mapping small molecule binding data to structural domains '
+date: '2012-11-04T06:48:00.000Z'
+author: John Overington
+tags:
+- Books and Papers
+modified_time: '2012-11-05T12:49:21.078Z'
+thumbnail: http://4.bp.blogspot.com/-dnhM2nmRoUY/UJYKytzjZMI/AAAAAAAACTw/AJT1tx_NmBk/s72-c/res-protein-plasminogen.jpg
+blogger_id: tag:blogger.com,1999:blog-2546008714740235720.post-1669600127343892239
+blogger_orig_url: http://chembl.blogspot.com/2012/11/paper-mapping-small-molecule-binding.html
+---
+
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://4.bp.blogspot.com/-dnhM2nmRoUY/UJYKytzjZMI/AAAAAAAACTw/AJT1tx_NmBk/s1600/res-protein-plasminogen.jpg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="http://4.bp.blogspot.com/-dnhM2nmRoUY/UJYKytzjZMI/AAAAAAAACTw/AJT1tx_NmBk/s1600/res-protein-plasminogen.jpg" /></a></div>
+<br />
+We've just <a href="http://www.biomedcentral.com/1471-2105/13/S17/S11/abstract?fmt_view=classic">published a paper </a>on mapping the sites of small molecule binding in complex multidomain proteins (<a href="http://www.biomedcentral.com/content/pdf/1471-2105-13-S17-S11.pdf">pdf</a> here - <b>this link doesn't seem to work at the moment, sorry</b>). The resolution of the mapping is at the level of <a href="http://pfam.sanger.ac.uk/">Pfam</a> domains. We love Pfam, and love it even more that the <a href="http://www.ebi.ac.uk/Information/News/press-releases/press-release-10102012-Bateman.html">Pfam team is moving</a> to the <a href="http://www.ebi.ac.uk/">EBI</a> this week. The motivation for this work is multifold, and it addresses a pretty big problem in chemogenomics.<br />
+<br />
+Firstly the issue of domain frustration - you search a protein containing a series of distinct domains looking for homologues in ChEMBL. If your protein contains a common and uninteresting domain, something like a zinc finger or EGF domain (our interest is for small molecule binding remember, we're not saying that these domains are <i>completely</i> boring, they're just a lot less interesting from a chemical biology/drug discovery perspective) you'll retrieve a whole bunch of sequence related, but small molecule binding unrelated data. It's just the way bioinformatics works. You can be selective in searching with just the sequence of the domain you are interested in, but this only solves half the problem, since there's no guarantee that compounds retrieved will bind at that domain in the retrieved protein.<br />
+<br />
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://4.bp.blogspot.com/-TLjqtrOAIOU/UJYTThXFvgI/AAAAAAAACUQ/ZPZ-yhyicLM/s1600/match.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="278" src="http://4.bp.blogspot.com/-TLjqtrOAIOU/UJYTThXFvgI/AAAAAAAACUQ/ZPZ-yhyicLM/s640/match.png" width="640" /></a></div>
+Secondly the issue of selective signalling - it is now common to see proteins as existing in pathways, and that there are key control nodes that are highly connected to many other proteins, a key question is therefore how signalling remains specific under this everything-is-linked-to-almost-everything-by-interactions setting. Well we think that the annotation of pathways at the domain interaction level is under-appreciated. For example, consider a protein X that interacts with three other proteins Y, W and Z, and that Y and Z interact through domain 1 in X, and W via domain 2. If you have a small molecule that binds to domain 1 in X, you will selectively affect downstream signalling to Z and Y only.<br />
+<br />
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://3.bp.blogspot.com/-EceQu20RH44/UJYcbCzhqiI/AAAAAAAACUw/Ynui_lnBKw4/s1600/network.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="384" src="http://3.bp.blogspot.com/-EceQu20RH44/UJYcbCzhqiI/AAAAAAAACUw/Ynui_lnBKw4/s640/network.png" width="640" /></a></div>
+<br />
+These data will end up in the next version of ChEMBL - but if you want to get hold of any data prior to this, check out the supplementary data for the paper.<br />
+<br />
+Next steps? Well the approach to mapping and scoring the domains could be improved, and the resolution ideally needs to be at a site level within a domain - so that compounds that bind at different structural sites can be differentiated for model development, pharmacophores, etc. It is an undeniable fact that merging compounds that bind at different sites, with different binding determinants will not be able to predict each other. We have made some progress on this latter sub-problem, and more on that soon.<br />
+<br />
+<pre>%T Mapping small molecule binding data to structural domains
+%A F.A. Kruger
+%A R. Rostom
+%A J.P. Overington
+%J BMC Bioinformatics 
+%D 2012
+%V 13
+%O doi:10.1186/1471-2105-13-S17-S11
+</pre>

@@ -1,0 +1,46 @@
+---
+layout: post
+title: ChEMBL Web Service Update 1
+date: '2013-10-02T20:38:00.003+01:00'
+author: Mark Davies
+tags:
+- Web Services
+- Software
+- ChEMBL-tips and Alistair
+modified_time: '2013-10-04T13:58:51.303+01:00'
+thumbnail: http://3.bp.blogspot.com/-SqCMIyvzE0k/Ukx1mW389eI/AAAAAAAADKM/fJlbmys_Aqc/s72-c/1pie.jpg
+blogger_id: tag:blogger.com,1999:blog-2546008714740235720.post-6710995121359403476
+blogger_orig_url: http://chembl.blogspot.com/2013/10/chembl-web-service-update-1.html
+---
+
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://3.bp.blogspot.com/-SqCMIyvzE0k/Ukx1mW389eI/AAAAAAAADKM/fJlbmys_Aqc/s1600/1pie.jpg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="240" src="http://3.bp.blogspot.com/-SqCMIyvzE0k/Ukx1mW389eI/AAAAAAAADKM/fJlbmys_Aqc/s320/1pie.jpg" width="320" /></a></div>
+<div class="separator" style="clear: both; text-align: center;">
+<br /></div>
+Over the last the year we have be doing a lot work designing and building an API layer to the ChEMBL database. The reason for adding this programmatic interface is to simplify many of the daily tasks we carry out on the database. From a technical perspective the API is actually a series Object Relational Mapper (ORM) classes built on top of the ChEMBL database using the <a href="https://www.djangoproject.com/">Python Django web framework</a>. For many of our daily programmatic tasks we use the ORM directly, but we also expose the ORM as a RESTful Interface using <a href="http://django-tastypie.readthedocs.org/en/latest/">Tastypie</a>. <br />
+<br />
+Some examples tools and processes currently using the new API include the <a href="https://twitter.com/ChEMBLBot">ChEMBL twitter bot</a> and the database migration process (creating PostgreSQL and MySQL versions of the ChEMBL Oracle database during the ChEMBL release cycle).  We are now at the stage where we can start to think about updating some of the existing larger services to run off the new API and first of these to make the transition are the ChEMBL Web Services. So, what have we done? Essentially we have rewritten the Web Services using the API (actually we use the ORM in this case) to interact with the ChEMBL data model. We have made this new set of Web Services available under the following base URL:<br />
+<br />
+<div style="text-align: center;">
+https://www.ebi.ac.uk/chemblws2</div>
+<br />
+Those familiar with our current Web Services will notice we have added a ‘2’, to the end. An example call the current live service looks like:<br />
+<br />
+<div style="text-align: center;">
+<a href="https://www.ebi.ac.uk/chemblws/compounds/CHEMBL1.json">https://www.ebi.ac.uk/chemblws/compounds/CHEMBL1.json</a></div>
+<br />
+and the same call to the new Web Services looks like:<br />
+<br />
+<div style="text-align: center;">
+<a href="https://www.ebi.ac.uk/chemblws2/compounds/CHEMBL1.json">https://www.ebi.ac.uk/chemblws2/compounds/CHEMBL1.json</a></div>
+<br />
+To refresh yourself on all methods we currently make available please visit the <a href="https://www.ebi.ac.uk/chembl/ws">Web Service Documentation page</a><br />
+<br />
+The new Web Service base URL will provide you with all the same methods listed on page above and more importantly the format of the results returned by the Web Services will also be the same. Our plan going forward is to run both services for next 4-6 weeks and we ask users of the current ChEMBL Web Services to <b>test the new versions</b> (remember you just need to add a 2) and report back any issues encountered. Assuming we do not hit any major obstacles, after the 4-6 week period <b>we will replace the current live services with the new ChEMBL API based services</b>. <br />
+<br />
+This first Web Service update is technology focused. We want to ensure the new services scale and perform well in the wild and that our end users do not notice a change (well we are hopefully expecting you to see a performance boost). Further down the line we will make some bigger changes to the Web Services, such as reviewing methods, attributes, naming conventions, introduce paging and more. We will obviously consult the community and allow for a period of transition before releasing any such changes. Now is the time to tell us if you have any must have new ws features.<br />
+<br />
+Finally, it is not strictly true that the new Web Services are identical to the current live versions. There are a couple of new features we have built in, such as improved image rendering and JSONP responses. We will blog about these in new features in the next couple of days, but in the meantime please have a look at new ChEMBL Web Services and let us know how you get on.<br />
+<br />
+The ChEMBL Team<br />
+<br />

@@ -1,0 +1,80 @@
+---
+layout: post
+title: ChEMBL RESTful Web Service API Release 1.0.0 - Update
+date: '2012-02-22T19:59:00.002Z'
+author: Shaun
+tags:
+- Web Services
+- Databases
+- Software
+modified_time: '2012-02-22T21:05:35.412Z'
+thumbnail: http://3.bp.blogspot.com/-Suze9T1k0xY/T0VJFjztZaI/AAAAAAAABko/yu25R29CPUo/s72-c/hilarious_doormats_25.jpg
+blogger_id: tag:blogger.com,1999:blog-2546008714740235720.post-8078114516270422561
+blogger_orig_url: http://chembl.blogspot.com/2012/02/chembl-restful-web-service-api-release.html
+---
+
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://3.bp.blogspot.com/-Suze9T1k0xY/T0VJFjztZaI/AAAAAAAABko/yu25R29CPUo/s1600/hilarious_doormats_25.jpg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="240" src="http://3.bp.blogspot.com/-Suze9T1k0xY/T0VJFjztZaI/AAAAAAAABko/yu25R29CPUo/s320/hilarious_doormats_25.jpg" width="320" /></a></div>
+<span style="font-family: inherit;"><span style="background-color: white; font-style: normal; font-variant: normal; font-weight: normal; line-height: 18px; text-align: -webkit-auto;"><br /></span></span><br />
+<span style="font-family: inherit;"><span style="background-color: white; font-style: normal; font-variant: normal; font-weight: normal; line-height: 18px; text-align: -webkit-auto;"><br /></span></span><br />
+<span style="font-family: inherit;"><span style="background-color: white; font-style: normal; font-variant: normal; font-weight: normal; line-height: 18px; text-align: -webkit-auto;">We are pleased to announce that we have updated the ChEMBL RESTful Web Service API (</span><a href="http://en.wikipedia.org/wiki/Api" style="background-color: white; font-style: normal; font-variant: normal; font-weight: bold; line-height: 18px; text-align: -webkit-auto;">application programming interface</a><span style="background-color: white; font-style: normal; font-variant: normal; font-weight: normal; line-height: 18px; text-align: -webkit-auto;">) with some more of the features that you - the ChEMBL users - have requested.&nbsp;</span></span><br />
+<span style="font-family: inherit;"><span style="background-color: white; font-style: normal; font-variant: normal; font-weight: normal; line-height: 18px; text-align: -webkit-auto;"><br /></span></span><br />
+<span style="font-family: inherit;"><span style="background-color: white; font-style: normal; font-variant: normal; font-weight: normal; line-height: 18px; text-align: -webkit-auto;">In particular, we have added support for the:</span></span><br />
+<div style="font-style: normal; font-variant: normal; font-weight: normal; text-align: -webkit-auto;">
+<ul>
+<li style="line-height: normal;"><span style="font-family: inherit; line-height: 18px;">Retrieval of compounds by Canonical SMILES string</span></li>
+<li style="line-height: normal;"><span style="font-family: inherit; line-height: 18px;">Retrieval of compounds containing a particular substructure, as given by a Canonical SMILES string</span></li>
+<li><span style="line-height: 18px;"><span style="font-family: inherit; line-height: normal; text-align: left;">Retrieval of a list of compounds similar, at a given cutoff percentage Tanimoto similarity, to one represented by a given Canonical SMILES string</span></span></li>
+<li style="line-height: normal;"><span style="font-family: inherit; line-height: 18px;">Retrieval of compound images, as given by a compound ChEMBLID</span></li>
+<li style="line-height: normal;"><span style="font-family: inherit; line-height: 18px;">Checking of the API's health status</span></li>
+<li style="line-height: normal;"><span style="font-family: inherit; line-height: 18px;">Inclusion of <a href="http://en.wikipedia.org/wiki/List_of_HTTP_status_codes">standard HTTP response codes</a> in API responses</span></li>
+</ul>
+</div>
+<div style="font-style: normal; font-variant: normal; font-weight: normal; line-height: normal; text-align: -webkit-auto;">
+<span style="background-color: white; font-family: inherit; line-height: 18px;"><br /></span><br />
+<span style="background-color: white; font-family: inherit; line-height: 18px;">Sample urls:</span></div>
+<div style="font-style: normal; font-variant: normal; font-weight: normal; line-height: normal; text-align: -webkit-auto;">
+<span style="background-color: white; font-family: inherit; line-height: 18px;">
+</span></div>
+<div style="text-align: -webkit-auto;">
+<ul style="font-style: normal; font-variant: normal; font-weight: normal; line-height: normal;">
+<li style="font-style: normal; font-variant: normal; line-height: normal;"><span style="font-family: inherit;"><span style="background-color: white; line-height: 18px;">Retrieve a compound image - </span><span style="background-color: white; line-height: 18px;"><span style="background-color: white;"><a href="https://www.ebi.ac.uk/chemblws/compounds/CHEMBL192/image/">https://www.ebi.ac.uk/chemblws/compounds/CHEMBL192/image</a></span></span></span></li>
+</ul>
+<ul style="font-style: normal; font-variant: normal; line-height: normal;">
+<li style="font-style: normal; font-variant: normal; line-height: normal;"><span style="font-family: inherit;"><span style="font-weight: normal;">Retrieve a compound image sized to specific dimensions - </span><a href="https://www.ebi.ac.uk/chemblws/compounds/CHEMBL192/image?dimensions=220">https://www.ebi.ac.uk/chemblws/compounds/CHEMBL192/image?dimensions=220</a></span></li>
+</ul>
+<ul style="font-style: normal; font-variant: normal; line-height: normal;">
+<li style="font-style: normal; font-variant: normal; line-height: normal;"><span style="font-family: inherit;">Retrieve a list of compounds containing a particular substructure - <span style="background-color: white; text-align: left;"><a href="http://www.ebi.ac.uk/chemblws/compounds/substructure/COc1ccc2[C@@H]3[C@H](COc2c1)C(C)(C)OC4=C3C(=O)C(=O)C5=C4OC(C)(C)[C@@H]6COc7cc(OC)ccc7[C@H]56.json">https://www.ebi.ac.uk/chemblws/compounds/substructure/COc1ccc2[C@@H]3[C@H](COc2c1)C(C)(C)OC4=C3C(=O)C(=O)C5=C4OC(C)(C)[C@@H]6COc7cc(OC)ccc7[C@H]56.json</a></span></span></li>
+</ul>
+<ul style="font-style: normal; font-variant: normal; font-weight: normal; line-height: normal;">
+<li style="font-style: normal; font-variant: normal; line-height: normal;"><span style="font-family: inherit;"><span style="text-align: left;">Retrieve a list of compounds similar, at a given cutoff percentage, to one represented by a given SMILES string - </span><span style="text-align: left;"><a href="https://www.ebi.ac.uk/chemblws/compounds/similarity/COc1ccc2[C@@H]3[C@H](COc2c1)C(C)(C)OC4=C3C(=O)C(=O)C5=C4OC(C)(C)[C@@H]6COc7cc(OC)ccc7[C@H]56/70.json">https://www.ebi.ac.uk/chemblws/compounds/similarity/COc1ccc2[C@@H]3[C@H](COc2c1)C(C)(C)OC4=C3C(=O)C(=O)C5=C4OC(C)(C)[C@@H]6COc7cc(OC)ccc7[C@H]56/70.json</a></span></span></li>
+</ul>
+<div style="font-style: normal; font-variant: normal; line-height: normal;">
+<span style="font-family: inherit;"><br /></span><br />
+<span style="font-family: inherit;">In addition to the API changes we have also updated the ChEMBL Java client to take advantage of the new features provided by the API. These updates include:</span></div>
+<div>
+<ul>
+<li><span style="font-family: inherit;">Methods to invoke the additional API endpoints (searching for compounds based on SMILES matches, common substructures and similarity to a given percentage Tanimoto similarity)</span></li>
+<li><span style="font-family: inherit;">Method to determine the health status of the API. Whether it is, in fact, running.</span></li>
+<li><span style="font-family: inherit;">Automated client-side translation of API status codes into developer-friendly exception messages such as TargetNotFoundException, InvalidSmilesException,&nbsp;<i>etc</i>.</span></li>
+</ul>
+</div>
+</div>
+<div style="font-style: normal; font-variant: normal; font-weight: normal; line-height: normal; text-align: -webkit-auto;">
+<span style="background-color: white; font-family: inherit; line-height: 18px;"><br /></span><br />
+<span style="background-color: white; font-family: inherit; line-height: 18px;">The new client can be downloaded from: <a href="https://www.ebi.ac.uk/chembl/extra/chemblrestws/chemblRestClient-1.0.0.jar">https://www.ebi.ac.uk/chembl/extra/chemblrestws/chemblRestClient-1.0.0.jar</a></span><br />
+<br /></div>
+<div style="font-style: normal; font-variant: normal; font-weight: normal; line-height: normal; text-align: -webkit-auto;">
+</div>
+<div style="font-style: normal; font-variant: normal; line-height: normal; text-align: -webkit-auto;">
+<span style="font-family: inherit;"><span style="background-color: white; font-weight: normal; line-height: 18px;"><br /></span></span><br />
+<span style="font-family: inherit;"><span style="background-color: white; font-weight: normal; line-height: 18px;">As always, you're feedback and suggestions for improving the API are most welcome. Please e-mail: </span><a href="mailto:chembl-help@ebi.ac.uk" style="background-color: white; line-height: 18px;">chembl-help@ebi.ac.uk</a><span style="background-color: white; line-height: 18px;">.</span></span></div>
+<div style="font-style: normal; font-variant: normal; line-height: normal; text-align: -webkit-auto;">
+<span style="font-family: inherit; line-height: 18px;">
+</span><br />
+<div style="background-color: white; line-height: 18px;">
+<span style="font-family: inherit;"><br /></span></div>
+<div style="background-color: white; line-height: 18px;">
+<span style="font-family: inherit;">Link: <a href="https://www.ebi.ac.uk/chembldb/index.php/ws">https://www.ebi.ac.uk/chembldb/index.php/ws</a></span><br />
+<br /></div>
+</div>

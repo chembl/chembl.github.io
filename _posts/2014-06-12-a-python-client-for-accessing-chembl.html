@@ -1,0 +1,144 @@
+---
+layout: post
+title: A python client for accessing ChEMBL web services
+date: '2014-06-12T09:25:00.000+01:00'
+author: kott
+tags:
+- Web Services
+- Databases
+modified_time: '2014-06-12T09:47:48.205+01:00'
+blogger_id: tag:blogger.com,1999:blog-2546008714740235720.post-684284776323464960
+blogger_orig_url: http://chembl.blogspot.com/2014/05/a-python-client-for-accessing-chembl.html
+---
+
+<div dir="ltr" style="text-align: left;" trbidi="on">
+<div style="text-align: justify;">
+<b><span style="font-family: Trebuchet MS, sans-serif;">Motivation </span></b><br />
+<span style="font-family: Trebuchet MS, sans-serif;">The <a href="https://www.ebi.ac.uk/chembl/ws">CheMBL Web Services</a> provide simple reliable programmatic access to the data stored in ChEMBL database. RESTful API approaches are quite easy to master in most languages but still&nbsp;require writing a few lines of code. Additionally, it can be a challenging task to write a nontrivial application using REST without any examples. These factors were the motivation for us to write a small client library for accessing web services from Python.</span><br />
+<br /></div>
+</div>
+<div style="text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;"><b>Why Python?</b></span></div>
+<div style="text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;">We choose this language because Python has become extremely popular (and still growing in use) in scientific applications; there are several Open Source chemical toolkits available in this language, and so the wealth of ChEMBL resources and functionality of those toolkits can be easily combined. Moreover, Python is a very web-friendly language and we wanted to show how easy complex resource acquisition can be expressed in Python.</span></div>
+<div style="text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;"><br />
+</span><br />
+<span style="font-family: Trebuchet MS, sans-serif;"><b>Reinventing the wheel?</b></span></div>
+<div style="text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;">There are already some libraries providing access to ChEMBL data via webservices for example <a href="https://pypi.python.org/pypi/bioservices/1.2.5">bioservices</a>. These are great, but sometimes suffer from breaking as we implement required schema or implementation details. With the use of this client you can be sure that any future changes in REST API will be immediately reflected in the client. But this is not the only thing we tried to achieve. </span></div>
+<div style="text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;"><br />
+</span><br />
+<span style="font-family: Trebuchet MS, sans-serif;"><b>Features</b></span></div>
+<div style="text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;">During development of the Python client we had in mind all the best practices for creating such a library. We tried to make is as easy to use and efficient as possible. Key features of this implementation are:</span></div>
+<div style="text-align: justify;">
+<ul>
+<li><span style="font-family: 'Trebuchet MS', sans-serif;">Caching results locally in sqliteDB for faster access</span></li>
+<li><span style="font-family: 'Trebuchet MS', sans-serif;">Bulk data retrieval</span></li>
+<li><span style="font-family: 'Trebuchet MS', sans-serif;">Parallel asynchronous requests to API during bulk retrieval</span></li>
+<li><span style="font-family: 'Trebuchet MS', sans-serif;">Ability to use SMILES containing URL-unsafe characters in exactly same way as safe SMILES </span></li>
+<li><span style="font-family: 'Trebuchet MS', sans-serif;">Lots of syntactic sugar</span></li>
+<li><span style="font-family: 'Trebuchet MS', sans-serif;">Extensive configuration so you can toggle caching, asynchronous requests, change timeouts, point the client to your local web services instance and much more.</span></li>
+</ul>
+</div>
+<div style="text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;">These features guarantee that your code using the ChEMBL REST API will be as fast as possible (if you know of any faster way,&nbsp; drop us a line and we will try to include in the code).</span></div>
+<div style="text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;"><br />
+</span><br />
+<span style="font-family: Trebuchet MS, sans-serif;"><b>Demo code</b></span></div>
+<div style="text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;">OK, so let's see the live code (all examples are included in </span><span style="font-family: Courier New, Courier, monospace;">tests.py</span><span style="font-family: Trebuchet MS, sans-serif;"> file). If you are an ipython notebook fan (like most of us) and prefer reading from notebooks instead of github gists you can <a href="http://nbviewer.ipython.org/github/chembl/mychembl/blob/master/ipython_notebooks/02_myChEMBL_web_services.ipynb" target="_blank">click here</a>:</span></div>
+<div style="text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;"><br />
+</span></div>
+<div style="text-align: justify;">
+<script src="https://gist.github.com/mnowotka/10398852.js"></script><span style="font-family: Trebuchet MS, sans-serif;"><br />
+</span></div>
+<div style="text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;">So many features, just for compounds! Let's see targets:</span><br />
+<br />
+<script src="https://gist.github.com/mnowotka/11210342.js"></script><br /></div>
+<div style="text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;">So far, so good! What about assays?</span><br />
+<br />
+<script src="https://gist.github.com/mnowotka/11211172.js"></script><br />
+<span style="font-family: Trebuchet MS, sans-serif;">Can I get bioactovities as well?</span><br />
+<br />
+<script src="https://gist.github.com/mnowotka/943f65fe337de249f698.js"></script><span style="font-family: Trebuchet MS, sans-serif;">It's completely optional to change any settings in the ChEMBL client. We believe that default values we have chosen are optimal for most reasonable applications. However if you would like to have a play with settings to make our client work with your local webservices instance this is possible:</span><br />
+<br />
+<script src="https://gist.github.com/mnowotka/11214356.js"></script><br />
+<br />
+<span style="font-family: Trebuchet MS, sans-serif;"><b>GET or POST?</b></span><br />
+<br />
+<script src="https://gist.github.com/mnowotka/8760a8a05ebb8ae688bb.js"></script><br />
+<br />
+<b><span style="font-family: Trebuchet MS, sans-serif;"> </span></b><br />
+<b><span style="font-family: Trebuchet MS, sans-serif;">Benchmarks</span></b><br />
+<br />
+<span style="font-family: Trebuchet MS, sans-serif;">We've decided to compare our client with existing bioservices implementation. Before we describe method and results, let's say a few words about installation process. Both packages can be installed from PIP, but bioservices are quite large (1.8MB) and require dependencies not directly related to web retrieval (such as pandas or SOAPpy). On the other hand our client is rather small (&lt;0.5 MB) and require requests, request-cache and grequests.</span><br />
+<br />
+<span style="font-family: Trebuchet MS, sans-serif;">To compare two libraries, we've decided to measure time of retrieval first </span><span style="font-family: Trebuchet MS, sans-serif;"><span class="short_text" id="result_box" lang="en"><span class="hps">thousand</span></span> of compounds with IDs from CHEMBL1 to CHEMBL1000. We've ignored 404 errors. This is how the code looks for our client:</span><br />
+<br />
+<script src="https://gist.github.com/mnowotka/11213695.js"></script><br />
+<span style="font-family: Trebuchet MS, sans-serif;">And for bioservices:</span><br />
+<br />
+<script src="https://gist.github.com/mnowotka/11213720.js"></script><br />
+<span style="font-family: Trebuchet MS, sans-serif;">Both snippets were run 5 times and the average time was computed. </span><span style="font-family: Trebuchet MS, sans-serif;"></span><br />
+<span style="font-family: Trebuchet MS, sans-serif;"><br />
+</span><br />
+<span style="font-family: Trebuchet MS, sans-serif;">Results:</span><br />
+<span style="font-family: Trebuchet MS, sans-serif;">chembl client with cache: 4.5s</span><br />
+<span style="font-family: Trebuchet MS, sans-serif;">chembl client no cache: 6.7s</span><br />
+<span style="font-family: Trebuchet MS, sans-serif;">bioservices: 9m40s</span><br />
+<span style="font-family: Trebuchet MS, sans-serif;"><br />
+</span><br />
+<span style="font-family: Trebuchet MS, sans-serif;">which means, that our client is 86-145 times faster than the bioservices client.<br />
+</span></div>
+<div style="text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;"><br />
+</span><br />
+<span style="font-family: Trebuchet MS, sans-serif;"><b>Installation and source code</b><br />
+</span><br />
+<span style="font-family: Trebuchet MS, sans-serif;"><br />
+</span><br />
+<span style="font-family: Trebuchet MS, sans-serif;">Our client is already available at Python Package Index (<a href="https://pypi.python.org/pypi">PyPI</a>), so in order to install it on your machine machine, you should type:</span></div>
+<div style="text-align: justify;">
+<br />
+<span style="font-family: &quot;Courier New&quot;,Courier,monospace;">sudo pip install chembl_webresource_client</span><br />
+<br />
+<span style="font-family: Trebuchet MS, sans-serif;">or:</span><br />
+<br />
+<span style="font-family: &quot;Courier New&quot;,Courier,monospace;">pip install chembl_webresource_client</span><br />
+<br />
+<span style="font-family: Trebuchet MS, sans-serif;">if you are using <a href="http://www.virtualenv.org/en/latest/">virtualenv</a>.</span><br />
+<span style="font-family: Trebuchet MS, sans-serif;"><br />
+</span> <span style="font-family: Trebuchet MS, sans-serif;">The original source code is open sourced and hosted at github so you can clone it by typing:</span><br />
+<span style="font-family: &quot;Courier New&quot;,Courier,monospace;"><br />
+</span> <span style="font-family: &quot;Courier New&quot;,Courier,monospace;">git clone https://github.com/chembl/chembl_webresource_client.git</span><br />
+<span style="font-family: Trebuchet MS, sans-serif;"><br />
+</span> <span style="font-family: Trebuchet MS, sans-serif;">install latest development version, using following pip command:</span><br />
+<br />
+<div style="text-align: left;">
+<span style="font-family: Trebuchet MS, sans-serif;"><span style="font-size: small;"><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">sudo pip install git+https://github.com/chembl/chembl_webresource_client.git&nbsp;&nbsp;</span></span> </span></div>
+<span style="font-family: Trebuchet MS, sans-serif;">&nbsp; </span><br />
+<span style="font-family: Trebuchet MS, sans-serif;">or just <a href="https://github.com/chembl/chembl_webresource_client">browse it online</a>.</span></div>
+<div style="text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;"><br />
+</span></div>
+<div style="text-align: justify;">
+<b><span style="font-family: Trebuchet MS, sans-serif;"><br />
+</span></b></div>
+<div style="text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;"><b>What about other programming languages?</b></span></div>
+<div style="text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;"></span><br /></div>
+<div style="text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;">Although we don't have plans to release a similar client library for other programming languages, examples highlighting most important API features using Perl and Java are published on <a href="https://www.ebi.ac.uk/chembl/ws">Web Services homepage</a>. And since the Web Services have <a href="https://en.wikipedia.org/wiki/Cross-origin_resource_sharing">CORS</a> and <a href="https://en.wikipedia.org/wiki/JSONP">JSONP</a> support, we will publish JavaScript examples in the form of interactive API browser, so stay tuned!<br />
+</span><br />
+<span style="font-family: Trebuchet MS, sans-serif;"><br /></span>
+<span style="font-family: Trebuchet MS, sans-serif;">Michal</span></div>
+<div style="text-align: justify;">
+<br /></div>

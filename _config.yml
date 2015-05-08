@@ -1,0 +1,13 @@
+# Site settings
+title: ChEMBL blog
+email: your-email@domain.com
+description: > # this means to ignore newlines until "baseurl:"
+  Stories and news from Computational Chemical Biology Group at EMBL-EBI. 
+  We work on computational aspects of drug discovery, and produce the ChEMBL family of data resources
+baseurl: "" # the subpath of your site, e.g. /blog/
+url: "http://yourdomain.com" # the base hostname & protocol for your site
+twitter_username: ChEMBL
+github_username:  chembl
+
+# Build settings
+markdown: kramdown

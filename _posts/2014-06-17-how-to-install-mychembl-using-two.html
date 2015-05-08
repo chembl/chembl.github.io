@@ -1,0 +1,118 @@
+---
+layout: post
+title: How to install myChEMBL using two Vagrant commands
+date: '2014-06-17T13:56:00.000+01:00'
+author: kott
+tags:
+- Virtual Machines
+- myChEMBL
+- Software
+modified_time: '2014-06-23T15:37:25.382+01:00'
+thumbnail: http://1.bp.blogspot.com/-ZaW5Ugj5okc/U6AYeXZ1ntI/AAAAAAAAAYQ/AOb-Zk4_ang/s72-c/Screen+Shot+2014-06-17+at+11.28.32.png
+blogger_id: tag:blogger.com,1999:blog-2546008714740235720.post-1201062374564023590
+blogger_orig_url: http://chembl.blogspot.com/2014/06/how-to-install-mychembl-using-two.html
+---
+
+<h3>
+&nbsp;</h3>
+<h3>
+<span id="goog_188123085"></span><span id="goog_188123086"></span>&nbsp;<div class="separator" style="clear: both; text-align: center;">
+<a href="http://1.bp.blogspot.com/-ZaW5Ugj5okc/U6AYeXZ1ntI/AAAAAAAAAYQ/AOb-Zk4_ang/s1600/Screen+Shot+2014-06-17+at+11.28.32.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="http://1.bp.blogspot.com/-ZaW5Ugj5okc/U6AYeXZ1ntI/AAAAAAAAAYQ/AOb-Zk4_ang/s1600/Screen+Shot+2014-06-17+at+11.28.32.png" height="207" width="320" /></a></div>
+</h3>
+<h3>
+&nbsp;</h3>
+<h3>
+TL;DR</h3>
+<ol>
+<li>install <a href="http://www.vagrantup.com/downloads.html" target="_blank">Vagrant</a> and <a href="https://www.virtualbox.org/wiki/Downloads" target="_blank">VirtualBox</a></li>
+<li>run <b><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">vagrant init chembl/myChEMBL &amp;&amp; </span></b><b><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">vagrant up</span></b></li>
+<li>wait a bit... </li>
+<li>go to <a href="http://127.0.0.1:8000/">http://127.0.0.1:8000/</a></li>
+<li>enjoy!</li>
+</ol>
+<br />
+<h3>
+What have I just done?</h3>
+<br />
+Vagrant is a tool for building and deploying complete development environments and myChEMBL 18 now supports installation via Vagrant. We achieved this by first creating a <a href="https://vagrantcloud.com/chembl/myChEMBL">myChEMBL Vagrant Box</a>, which we then register on the <a href="https://vagrantcloud.com/" target="_blank">Vagrant Cloud</a>. This then allows users to install myChEMBL on there local system using two simple commands*:<br />
+<b><span style="font-family: &quot;Courier New&quot;,Courier,monospace;"><br />
+</span></b> <b><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">vagrant init chembl/myChEMBL<br />
+vagrant up</span></b><br />
+<br />
+<span style="font-size: small;"><i>*assumes you have vagrant installed</i></span><br />
+<br />
+It's that simple! After you type this into your system console, the expected output should be similar to the one below:<br />
+<br />
+<br />
+<br />
+<script src="https://gist.github.com/mnowotka/3ea79b4c5b4da6e1d6ca.js"></script><br />
+<h3>
+What are those two commands doing?</h3>
+<br />
+The first command initializes the current directory to be a Vagrant environment by creating an initial Vagrantfile and prepopulates the config.vm.box setting in the created Vagrantfile. This happens immediately. This command should be executed only once.<br />
+<br />
+The second one, when executed for the first time, downloads myChEMBL box file from the public repository, unpacks it and store downloaded files into a dedicated directory on your machine, so you won't have to download it again. Then, it configures myChEMBL virtual machines and runs it using VirtualBox. The box file is big (7GB) so it will take some time to download and uncompress, but this will happen only once.<br />
+<br />
+<h3>
+OK, so I've executed them successfully, now what?</h3>
+<br />
+Just open your favorite browser and type this URL: <a href="http://127.0.0.1:8000/">http://127.0.0.1:8000/</a>. You should see the <a href="http://chembl.blogspot.co.uk/2014/06/mychembl-launchpadlaunched.html" target="_blank">my ChEMBL LaunchPad</a> (We have seen apache take a little while to fire up, so if you do not see LaunchPad straight away give a couple more minutes).<br />
+<br />
+<h3>
+Can I ssh into the machine?</h3>
+<h3>
+&nbsp; </h3>
+Yes, just type:<br />
+<br />
+<b><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">vagrant ssh</span></b><br />
+<br />
+and you are there. You are logged in as a special 'vagrant' user with root privileges and no password. If you prefer to work as a standard 'chembl' user just type:<br />
+<br />
+<b><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">sudo su - chembl</span></b><br />
+<br />
+<h3>
+Great, now how can I switch the machine off?<br />
+</h3>
+<br />
+Do it by typing:<br />
+<br />
+<b><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">vagrant halt</span></b><br />
+<br />
+You can bring it up anytime using already known command:<br />
+<br />
+<b><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">vagrant up</span></b><br />
+<br />
+which should execute very fast for the second time as everything is already downloaded.<br />
+<br />
+<h3>
+Are there any software dependencies?</h3>
+<br />
+Yes, but not many. In order to use Vagrant you should <a href="http://www.vagrantup.com/downloads.html" target="_blank">install</a> it. Our configuration currently supports only <a href="https://www.virtualbox.org/" target="_blank">VirtualBox</a> as a <a href="http://docs.vagrantup.com/v2/providers/index.html" target="_blank">provider</a> so you should <a href="https://www.virtualbox.org/wiki/Downloads" target="_blank">install</a> it as well.<br />
+<br />
+<h3>
+What advantages does the myChEMBL Vagrant install offer over the standard myChEMBL installation?</h3>
+<ol>
+<li>First of all, you don't have to remember the download URL of where the myChEMBL Vagrant box lives. All you need to know is a box name: 'chembl/myChEMBL'.&nbsp;&nbsp;&nbsp; <br /> </li>
+<li>You don't have to think about any configuring VirtualBox image (e.g. network settings), as all of the configuration is stored in a Vagranfile prepared by us. </li>
+<li>Using command line interface it is easy to deploy myChEMBL on multiple machines automatically. You can run it easily on your headless server.</li>
+<li>The download is smaller, so it will download faster. The box file size is 7.1GB compared to 8.5 GB of standard <a href="ftp://ftp.ebi.ac.uk/pub/databases/chembl/VM/myChEMBL/releases/myChEMBL-18_0/">myChEMBL-18_0-disk1.vmdk</a> file.</li>
+</ol>
+If future, we plan to support more providers, in particular <a href="https://aws.amazon.com/" target="_blank">Amazon Web Services</a> and <a href="http://www.docker.com/">Docker.</a><br />
+We also plan to make <a href="http://docs.vagrantup.com/v2/provisioning/index.html">provisioning</a> more flexible so if needed you will be able to choose what Linux distribution should be used as a base for your myChEMBL (<a href="http://www.redhat.com/products/enterprise-linux/">Red Hat</a> and <a href="https://www.centos.org/">CentOS</a> are the most important distros we would like to support).<br />
+<br />
+<h3>
+Bugs and help</h3>
+<br />
+We've found a couple of minor bugs since the release of myChEMBL 18. They are all fixed now and mychembl vagrant box includes all the fixes. If you happen to find any other issue, related to myChEMBL or specific to our vagrant distribution, please report it to <a href="mailto:mychembl@ebi.ac.uk">mychembl[at]ebi.ac.uk</a>.<br />
+<br />
+You can always check for new updates using following command:<br />
+<br />
+<span style="font-family: &quot;Courier New&quot;,Courier,monospace;"><b>vagrant box outdated</b></span><br />
+<br />
+In case new updated are available you can update the box by running:<br />
+<br />
+<span style="font-family: &quot;Courier New&quot;,Courier,monospace;"><b>vagrant box update</b></span><br />
+<br />
+Just please remember that updating the box means downloading it from remote repository so it will take some time. Also note that this command will not magically update running Vagrant environments. If a Vagrant environment is already running, you'll have to destroy and recreate it to acquire the new updates in the box.<br />
+<br />
+In our next myChEMBL related blog post we will tell you how to install myChEMBL on local VM or 'metal' machine running Ubuntu (Hint: have a look at <a href="https://github.com/chembl/mychembl/blob/master/bootstrap.sh">this file</a>).

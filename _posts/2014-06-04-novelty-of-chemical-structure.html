@@ -1,0 +1,56 @@
+---
+layout: post
+title: Novelty of a chemical structure
+date: '2014-06-04T11:55:00.002+01:00'
+author: John Overington
+tags:
+- Some Of The Interesting Things You'll See On A Long Distance Flight
+modified_time: '2014-06-16T10:01:48.804+01:00'
+thumbnail: http://2.bp.blogspot.com/-lWWmq4OJoNI/U47w-CPWKTI/AAAAAAAADYQ/BWpydh8vEoM/s72-c/ultimateinferiorbeings.jpg
+blogger_id: tag:blogger.com,1999:blog-2546008714740235720.post-3987970916669196816
+blogger_orig_url: http://chembl.blogspot.com/2014/06/novelty-of-chemical-structure.html
+---
+
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://2.bp.blogspot.com/-lWWmq4OJoNI/U47w-CPWKTI/AAAAAAAADYQ/BWpydh8vEoM/s1600/ultimateinferiorbeings.jpg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="http://2.bp.blogspot.com/-lWWmq4OJoNI/U47w-CPWKTI/AAAAAAAADYQ/BWpydh8vEoM/s1600/ultimateinferiorbeings.jpg" height="320" width="213" /></a></div>
+<div>
+<br /></div>
+A brief post of a few thoughts about testing for chemical novelty, especially in the context of patent filing. It's a little bit odd, but interesting.<br />
+<div>
+<br /></div>
+<div>
+The concept of 'chemical novelty' is core to the filing of patent protection on pharmaceuticals, and as part of most patent filings, checks are done but the <b>inventor</b> to ensure that the invention is actually novel. People will search patent databases (historically these were largely commercial, but public resources such as PubChem &amp; SureChEMBL also now contain significant amounts of patent derived data). They will then also need to search non-patent databases, since lots of chemicals are published without patents being filed. There is a good and accessible overview of the field and some databases <a href="http://en.wikibooks.org/wiki/Chemical_Information_Sources/Chemical_Patent_Searches">here</a>.</div>
+<div>
+<br /></div>
+<div>
+These datasources, and even more so the workflows, are heterogeneous, fragmented, and the broader the search the more expensive it becomes. As a general rule, the resources that are built from the patent literature are well designed around the date of disclosure/publication of a chemical structure, public resources a lot less so - if at all. There is actually also another two or three times when this novelty checking is important - firstly during patent examination - where a <b>patent examiner</b> has a short amount of available time to perform novelty checks, and these checks are of course relative to the filing date of the invention; thirdly by <b>lawyers/other scientists</b> who may try and wriggle around the constraints of the patent, trying to invalidate it by showing that the compound wasn't novel after all. Because often there are very large sums of money involved, people can become very determined and creative in looking for such 'prior art'! Publication can be anywhere in the world, so this adds to cost and complexity yet further.</div>
+<div>
+<br /></div>
+<div>
+Imagine now a free public, novelty checker, with 'strong' time-stamping of first 'publication' for all structures, and also great tautomer searching, correct treatment of parents/salts (in the field of patents, salt forms are often central to actual product properties and so are sometimes critically important). Go on, close your eyes and imagine just this, for a moment - feels good doesn't it?</div>
+<div>
+<br /></div>
+<div>
+There are a number of basic problems with implementing such a system, despite the huge cost savings and efficiencies in innovation it would no doubt bring. It would need to be done by a '<a href="http://en.wikipedia.org/wiki/Trusted_third_party">trusted third party</a>' (so no one could pay to retrospectively add a compound with a retrospective publication time), and validated in some way (so the timestamps are 'provable' in some way - there are now <a href="http://en.wikipedia.org/wiki/Proof_of_knowledge">cool informatics approaches</a> to this). It would need to contain all previously 'published' compound structures, and have great internal provenance tracking (so where and when was the original source of this structure). It would also need to be big, probably of the order of a billion or so structures - this alone would make such a system out of reach for the vast majority of organisations. Of course, I am not considering <a href="http://en.wikipedia.org/wiki/Markush_structure">Markush structures</a> in this discussion - good luck with reliably enumerating these from patents, for the moment at least, but eventually you'll need to consider these as well!&nbsp;</div>
+<div>
+<br /></div>
+<div>
+Lurking here also are the GDB databases, the elephant in the room, which in a few years could make the discussion of chemical novelty moot.</div>
+<div>
+<br /></div>
+<div>
+Remember that nice fuzzy feeling you had a few paragraphs back, it's gone, hasn't it? Welcome to the real, painful world!&nbsp;<a href="https://www.ebi.ac.uk/unichem">UniChem</a> has some elements of such a novelty checking system - at least it's possible to establish a snapshot of it's local chemical world at some arbitrary time point in the past, according to it's own reference frame. Since you are only interested in identical structures, it can already do the required searches - no need for Tanimoto, substructures etc for this particular use case. Maybe it needs some work on scalability, maybe it needs from work on Proof of Knowledge, etc.; maybe. But it's an interesting place to start thinking. At some point in the future, there will be the ability for you to run your own local instance of UniChem, with regular feeds of SureChEMBL structures, merged PubChem structures, etc. It's interesting to pose the question, just how much of the exemplified chemical universe be catered with reasonable investment on this problem?</div>
+<div>
+<br /></div>
+<div>
+For me, there's a lot of really interesting and deep technical challenges here, but also the potential to radically change the cost structure of chemical (and specifically drug) invention, freeing more investment for the discovery process itself (yeah, i am an idealist).<br />
+<br />
+Update: Here's a <a href="http://www.computerworld.com/s/article/9239513/Could_the_Bitcoin_network_be_used_as_an_ultrasecure_notary_service_">great article</a> on how this sort of thing can be done right now at <a href="http://www.proofofexistence.com/">www.proofofexistence.com</a></div>
+<div>
+<br /></div>
+<div>
+jpo</div>
+<div>
+<br /></div>
+<div>
+The picture above is of a novel, written by one of my oldest friends (literally!). He writes under a pseudonym but in the interests of attribution, his orchid is 0000-0001-5528-0087. It would make an excellent holiday read.</div>

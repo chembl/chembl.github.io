@@ -1,0 +1,48 @@
+---
+layout: post
+title: Latest activities on the Activities table in ChEMBL_15
+date: '2013-02-15T12:26:00.002Z'
+author: George Papadatos
+tags:
+- ChEMBL Curation Notes
+modified_time: '2013-02-15T13:38:17.132Z'
+blogger_id: tag:blogger.com,1999:blog-2546008714740235720.post-2901703762264220671
+blogger_orig_url: http://chembl.blogspot.com/2013/02/latest-activities-on-activities-table.html
+---
+
+<div dir="ltr" style="text-align: left;" trbidi="on">
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://imgs.xkcd.com/comics/workflow.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="320" src="http://imgs.xkcd.com/comics/workflow.png" width="230" /></a></div>
+<div class="separator" style="clear: both; text-align: center;">
+<span style="font-family: Trebuchet MS, sans-serif; margin-left: 1em; margin-right: 1em;"><a href="http://imgs.xkcd.com/comics/workflow.png" imageanchor="1"><br /></a></span></div>
+<div class="p2" style="text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;">For the recent ChEMBL_15 release, a considerable part of our efforts was focussed on the standardisation and harmonisation of the data in the </span><span style="font-family: Courier New, Courier, monospace;">Activities</span><span style="font-family: Trebuchet MS, sans-serif;"> table. The latter holds all the quantitative and qualitative experimental measurements across compounds, assays and targets; needless to say that without it there's no <a href="https://www.ebi.ac.uk/chembl/" target="_blank">ChEMBL</a>!</span></div>
+<div class="p1" style="text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;"><br /></span></div>
+<div class="p1" style="text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;">This is a summary of what we've incorporated so far:</span></div>
+<div class="p2" style="text-align: justify;">
+<br /></div>
+<div class="p1" style="text-align: justify;">
+<ol>
+<li><span style="font-family: Trebuchet MS, sans-serif;">Flag missing data: Records with null published values and null activity comments were flagged as missing.</span></li>
+<li><span style="font-family: 'Trebuchet MS', sans-serif;">Standardise activity types and units: Conversion of heterogenous published activity type descriptions and units to a standard_type and set of standard_units (e.g., for IC50 convert mM/uM/pM measurements to nM).</span></li>
+<li><span style="font-family: Trebuchet MS, sans-serif;">Flag unusual units: Records with unusual published units for their respective activity types were flagged as 'non standard'. For example, a hypothetical record with IC50 type and units in kg would be flagged!</span></li>
+<li><span style="font-family: Trebuchet MS, sans-serif;">Convert the log values: The records with activity types such as pKi and logIC50 were appropriately converted to their non-log equivalents (by considering the units and sign of course as well). This updated a whopping 25% of the activities table - this means that significantly more data will become more comparable for subsequent analyses.</span></li>
+<li><span style="font-family: Trebuchet MS, sans-serif;">Round values: For records with a standard activity value above 10, the rounding was done to the second decimal place. Otherwise, rounding was performed after the first <b>three</b> significant digits. For example 0.00023666666 would become a more concise 0.000237</span></li>
+<li><span style="font-family: Trebuchet MS, sans-serif;">Check activity ranges: Records with a standard activity value outside the range specified by our expert biological curators,&nbsp;given the standard unit and type,&nbsp;were appropriately flagged.</span></li>
+<li><span style="font-family: Trebuchet MS, sans-serif;">Detect duplicated values: For this one, we were inspired by a recent <span class="s1"><a href="http://pubs.acs.org/doi/abs/10.1021/jm300131x" target="_blank">publication</a>.&nbsp;</span>What we did is we detected and flagged <i>duplicated activity entries</i> and <i>potential transcription errors</i> in activity records that come from publications. The former are records with identical compound, target, activity, type and unit values that were most likely reported as citations of measurements from previous papers, even when these measurements were subsequently rounded. The latter cases consist of&nbsp;otherwise identical entries whose activity values differ by exactly 3 or 6 orders of magnitude indicating a likely error in the units (e.g. uM instead of nM).</span></li>
+</ol>
+</div>
+<div class="p1" style="text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;"><br /></span></div>
+<div class="p1" style="text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;">As a result of our efforts, we added 2 new columns in the </span><span style="font-family: Courier New, Courier, monospace;">Activities</span><span style="font-family: Trebuchet MS, sans-serif;"> table, namely </span><span style="font-family: Courier New, Courier, monospace;">Data_validity_comment</span><span style="font-family: Trebuchet MS, sans-serif;"> and </span><span style="font-family: Courier New, Courier, monospace;">Potential_duplicate</span><span style="font-family: Trebuchet MS, sans-serif;">. The former takes one out of 5 possible values: NULL, 'Potential missing data' (see point 1), 'Non standard unit for type' (see point 3), 'Outside typical range' (see point 6) and&nbsp;'Potential transcription error' (see point 7). The latter column contains a binary (0,1) flag to indicate whether we think the specific activity record is a duplicate, as per point 7 above.</span></div>
+<div class="p1" style="text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;"><br /></span></div>
+<div class="p1" style="text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;">Stay tuned for more posts on the changes/improvements introduced by the new ChEMBL_15 release.&nbsp;Meanwhile, if you have any comments/feedback on the curation process or on the activity types we should prioritise, please <a href="mailto:chembl-help@ebi.ac.uk" target="_blank">let us know</a>!&nbsp;</span></div>
+<div class="p1" style="text-align: justify;">
+<br />
+<span style="font-family: 'Trebuchet MS', sans-serif;">George</span></div>
+</div>

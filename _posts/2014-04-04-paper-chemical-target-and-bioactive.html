@@ -1,0 +1,67 @@
+---
+layout: post
+title: 'Paper: Chemical, Target, and Bioactive Properties of Allosteric Modulation'
+date: '2014-04-04T02:47:00.000+01:00'
+author: Gerard JP van Westen
+tags:
+- QSAR
+- Books and Papers
+- Allosterism
+modified_time: '2014-04-04T02:52:36.719+01:00'
+thumbnail: http://4.bp.blogspot.com/-gMMv8iNCLOk/Uz1mHKQqp_I/AAAAAAAAPgw/Y0W7Q8jni5A/s72-c/concept.png
+blogger_id: tag:blogger.com,1999:blog-2546008714740235720.post-32954672657667144
+blogger_orig_url: http://chembl.blogspot.com/2014/04/paper-chemical-target-and-bioactive.html
+---
+
+<div dir="ltr" style="text-align: left;" trbidi="on">
+<div class="separator" style="clear: both; text-align: center;">
+<br /><a href="http://4.bp.blogspot.com/-gMMv8iNCLOk/Uz1mHKQqp_I/AAAAAAAAPgw/Y0W7Q8jni5A/s1600/concept.png" imageanchor="1" style="display: inline !important; margin-left: 1em; margin-right: 1em;"><img border="0" src="http://4.bp.blogspot.com/-gMMv8iNCLOk/Uz1mHKQqp_I/AAAAAAAAPgw/Y0W7Q8jni5A/s1600/concept.png" height="225" width="640" /></a></div>
+<div class="" style="clear: both; text-align: left;">
+We have just had a paper accepted in <a href="http://www.ploscompbiol.org/">PLoS Computational Biology</a> on the work we've done on allosteric modulators (first mentioned on the blog&nbsp;<a href="http://chembl.blogspot.co.uk/2012/07/allosterism-allosterically-regulated.html">here</a>). &nbsp;The work is based on the mining of allosteric bioactivity points from ChEMBL_14. The data set of allosteric and non-allosteric interactions is available on our FTP site (<a href="ftp://ftp.ebi.ac.uk/pub/databases/chembl/Allosterism/">here</a>). This blogpost will just highlight some sections of the paper, but we would like to refer the interested reader to the full paper (<a href="http://www.ploscompbiol.org/article/info:doi/10.1371/journal.pcbi.1003559">here</a>).&nbsp;</div>
+<div class="separator" style="clear: both; text-align: left;">
+<br /></div>
+<div class="separator" style="clear: both; text-align: left;">
+<b>Dataset</b></div>
+<div class="separator" style="clear: both; text-align: left;">
+The dataset contains ChEMBL annotated and cleaned data divided in both an 'allosteric' set and a 'non-allosteric' (or background) set. Abstracts and titles mentioning allosteric keywords were pulled and from the resulting papers we extracted the primary target and all bioactivities on this primary target. From the remainder of the papers we also retrieved the primary target and all bioactivities on this primary target in a similar manner.&nbsp;</div>
+<div class="separator" style="clear: both; text-align: left;">
+<br /></div>
+<div class="separator" style="clear: both; text-align: left;">
+<b>Targets</b></div>
+<div class="separator" style="clear: both; text-align: left;">
+When we observed the target distribution in both sets, we saw differences (see below ; also touched upon in the previous post). Targets that are known to be amenable to allosteric modulation are indeed well represented in our allosteric set (e.g. Class C GPCRs). However there are also some interesting observations that we did not expect (please see the paper for further details).&nbsp;</div>
+<div class="separator" style="clear: both; text-align: left;">
+<br /></div>
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://4.bp.blogspot.com/-6vIQAf78rts/UybXTltXHlI/AAAAAAAAPXY/bPZpMnktE3I/s1600/Figure_3.tif" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="http://4.bp.blogspot.com/-6vIQAf78rts/UybXTltXHlI/AAAAAAAAPXY/bPZpMnktE3I/s1600/Figure_3.tif" height="197" width="400" /></a></div>
+<div class="separator" style="clear: both; text-align: left;">
+<br /></div>
+<br />
+<b>Chemistry</b><br />
+Obviously, as we are the ChEMBL group, we are interested in potential chemical differences between the allosteric and background set. Interestingly, the allosteric modulators appear to form a subset of the background set, rather than that they are distinct from the background set. We have calculated a large number of descriptors and compared the sets (median values, but also histograms; all available on the FTP). We observe that allosteric modulator molecules tend to be smaller, more lipophilic and more rigid. Although there is understandably a large variance over the diverse targets included in the set. Shown here is the rigidity index calculated over the full sets (L0), but when the target selection becomes more concise, the differences become more distinct.<br />
+<br />
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://4.bp.blogspot.com/-H72dt4uNf2E/UybbzkFKz3I/AAAAAAAAPXk/PYplW6v-t1I/s1600/Screen+Shot+2014-03-17+at+11.26.07.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="http://4.bp.blogspot.com/-H72dt4uNf2E/UybbzkFKz3I/AAAAAAAAPXk/PYplW6v-t1I/s1600/Screen+Shot+2014-03-17+at+11.26.07.png" height="207" width="400" /></a></div>
+<br />
+<br />
+<b>Bioactivity</b><br />
+Likewise we observe differences between our allosteric subset and the background set with regard to bioactivity. While 'allosteric modulation' is a very diverse concept, in which the specific manner wherein the protein is influenced by the small molecule differs per protein - ligand pair, we do observe some general differences. From our data it appears that allosteric modulators bind with a lower affinity (on average) but similar ligand efficiency (on average) when compared to our background set. In the paper we provide a more extensive discussion on this observation and we would again refer the reader given the limited space here.<br />
+<br />
+<b>Classification models</b><br />
+Built on the dataset we have created allosteric classifier models that can predict if an interaction is likely allosteric or not. We have tried this on the full dataset, but also on lower levels (restricting the data to e.g. Class A GPCRs). We find that we can train predictive models that gain in quality if we have a more concise dataset (eliminating some of the inter-target variation). In the paper we provide case studies on HIV Reverse Transcriptase, the adenosine receptors (family), and protein Kinase B. Here the model performance for class A GPCRs (full L2 tgt class) is shown. Note that rigidity, number of sp3 carbons, Polar Solvent Accessible Surface (normalized), and rotatable bonds fraction are most important for model fit.<br />
+<br />
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://4.bp.blogspot.com/-cu80-s25430/UybhftwUuAI/AAAAAAAAPX8/ufq-yWD_aCw/s1600/Screen+Shot+2014-03-17+at+11.44.22.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="http://4.bp.blogspot.com/-cu80-s25430/UybhftwUuAI/AAAAAAAAPX8/ufq-yWD_aCw/s1600/Screen+Shot+2014-03-17+at+11.44.22.png" height="296" width="640" /></a></div>
+<span id="goog_1052254332"></span><span id="goog_1052254333"></span><br />
+All data is ChEMBL and hence can be freely downloaded and used. Please let us know if you find any errors or misclassifications as we will correct them (crowd curation).<br />
+<br />
+Anna, jpo, and Gerard<br />
+<br />
+%T Chemical, Target, and Bioactive Properties of Allosteric Modulation<br />
+%A G.J.P. van Westen<br />
+%A A. Gaulton<br />
+%A J.P. Overington<br />
+%J PLoS. Comput. Biol.<br />
+%D 2014<br />
+%V 10<br />
+%O doi:<span style="white-space: pre-wrap;">10.1371/journal.pcbi.1003559</span></div>

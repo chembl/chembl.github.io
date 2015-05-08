@@ -1,0 +1,75 @@
+---
+layout: post
+title: ChEMBL RESTful Web Service API Release 1.0.5
+date: '2012-09-10T21:46:00.000+01:00'
+author: Shaun
+tags: 
+modified_time: '2012-09-10T21:46:48.001+01:00'
+thumbnail: http://1.bp.blogspot.com/-1xWG07Sbd6M/UE5RnnGhKXI/AAAAAAAACE0/yQPxNxTzGyU/s72-c/AnOoPQDCEAE-_f11.jpg
+blogger_id: tag:blogger.com,1999:blog-2546008714740235720.post-7324253841767841586
+blogger_orig_url: http://chembl.blogspot.com/2012/09/chembl-restful-web-service-api-release.html
+---
+
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://1.bp.blogspot.com/-1xWG07Sbd6M/UE5RnnGhKXI/AAAAAAAACE0/yQPxNxTzGyU/s1600/AnOoPQDCEAE-_f11.jpg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="320" src="http://1.bp.blogspot.com/-1xWG07Sbd6M/UE5RnnGhKXI/AAAAAAAACE0/yQPxNxTzGyU/s320/AnOoPQDCEAE-_f11.jpg" width="260" /></a></div>
+<span style="font-family: inherit;"><span style="background-color: white; font-style: normal; font-variant: normal; font-weight: normal; line-height: 18px; text-align: -webkit-auto;"><br /></span></span>
+<span style="font-family: inherit;"><span style="background-color: white; font-style: normal; font-variant: normal; font-weight: normal; line-height: 18px; text-align: -webkit-auto;">We are pleased to announce that we have updated the ChEMBL RESTful Web Service API (</span><a href="http://en.wikipedia.org/wiki/Api" style="background-color: white; font-style: normal; font-variant: normal; font-weight: bold; line-height: 18px; text-align: -webkit-auto;">application programming interface</a><span style="background-color: white; font-style: normal; font-variant: normal; font-weight: normal; line-height: 18px; text-align: -webkit-auto;">) with some more of the features that you - the ChEMBL users - have requested.&nbsp;</span></span><br />
+<span style="font-family: inherit;"><span style="background-color: white; font-style: normal; font-variant: normal; font-weight: normal; line-height: 18px; text-align: -webkit-auto;"><br /></span></span>
+<span style="font-family: inherit;"><span style="background-color: white; font-style: normal; font-variant: normal; font-weight: normal; line-height: 18px; text-align: -webkit-auto;">In particular, we have added support for the:</span></span><br />
+<div style="font-style: normal; font-variant: normal; font-weight: normal; text-align: -webkit-auto;">
+<ul>
+<li style="line-height: normal;"><span style="font-family: inherit; line-height: 18px;">Retrieval of compounds by Canonical SMILES string using HTTP POST *.</span></li>
+<li style="line-height: normal;"><span style="font-family: inherit; line-height: 18px;">Retrieval of compounds containing a particular substructure, as given by a Canonical SMILES string using HTTP POST *.</span></li>
+<li><span style="line-height: 18px;"><span style="font-family: inherit; line-height: normal; text-align: left;">Retrieval
+ of a list of compounds similar, at a given cutoff percentage Tanimoto 
+similarity, to one represented by a given Canonical SMILES string using HTTP POST *.</span></span></li>
+<li style="line-height: normal;"><span style="font-family: inherit; line-height: 18px;">Retrieval of larger compound images, as given by a compound ChEMBLID. The retrieved image can be easily re-sized using the 'dimensions' attribute of the endpoint. See the example URLs below.</span></li>
+<li style="line-height: normal;"><span style="font-family: inherit; line-height: 18px;">Inclusion of a 'synonyms' property on ChEMBL compound resources. This property will be set for compounds for which there are synonyms available.</span></li>
+</ul>
+</div>
+<div style="font-style: normal; font-variant: normal; font-weight: normal; line-height: normal; text-align: -webkit-auto;">
+<span style="background-color: white; font-family: inherit; line-height: 18px;"><br /></span>
+<span style="background-color: white; font-family: inherit; line-height: 18px;">Sample urls:</span></div>
+<div style="font-style: normal; font-variant: normal; font-weight: normal; line-height: normal; text-align: -webkit-auto;">
+<span style="background-color: white; font-family: inherit; line-height: 18px;">
+</span></div>
+<div style="text-align: -webkit-auto;">
+<ul style="font-style: normal; font-variant: normal; font-weight: normal; line-height: normal;">
+<li style="font-style: normal; font-variant: normal; line-height: normal;"><span style="font-family: inherit;"><span style="background-color: white; line-height: 18px;">Retrieve a compound image - </span><span style="background-color: white; line-height: 18px;"><span style="background-color: white;"><a href="https://www.ebi.ac.uk/chemblws/compounds/CHEMBL192/image/">https://www.ebi.ac.uk/chemblws/compounds/CHEMBL192/image</a></span></span></span></li>
+</ul>
+<ul style="font-style: normal; font-variant: normal; line-height: normal;">
+<li style="font-style: normal; font-variant: normal; line-height: normal;"><span style="font-family: inherit;"><span style="font-weight: normal;">Retrieve a compound image sized to specific dimensions - </span><a href="https://www.ebi.ac.uk/chemblws/compounds/CHEMBL192/image?dimensions=220">https://www.ebi.ac.uk/chemblws/compounds/CHEMBL192/image?dimensions=220</a></span></li>
+</ul>
+<br />
+<div style="font-style: normal; font-variant: normal; line-height: normal;">
+<span style="font-family: inherit;"><br /></span>
+<span style="font-family: inherit;">In
+ addition to the API changes we have also updated the ChEMBL Java client
+ to take advantage of the new features provided by the API. These 
+updates include:</span></div>
+<div>
+<ul>
+<li><span style="font-family: inherit;">Methods to invoke the additional HTTP POST API endpoints 
+(searching for compounds based on SMILES matches, common substructures 
+and similarity to a given percentage Tanimoto similarity). Examples of the new client methods in use are available on the Example.java class on the <a href="https://www.ebi.ac.uk/chembldb/index.php/ws">API documentation page</a>. </span></li>
+</ul>
+</div>
+</div>
+<div style="font-style: normal; font-variant: normal; font-weight: normal; line-height: normal; text-align: -webkit-auto;">
+<span style="background-color: white; font-family: inherit; line-height: 18px;"><br /></span>
+<span style="background-color: white; font-family: inherit; line-height: 18px;">The new client can be downloaded from: <a href="https://www.ebi.ac.uk/chembl/extra/chemblrestws/chemblRestClient-1.0.5.jar">https://www.ebi.ac.uk/chembl/extra/chemblrestws/chemblRestClient-1.0.5.jar</a></span><br />
+<br /></div>
+<div style="font-style: normal; font-variant: normal; line-height: normal; text-align: -webkit-auto;">
+<span style="font-family: inherit;"><span style="background-color: white; font-weight: normal; line-height: 18px;"><br /></span></span>
+<span style="font-family: inherit;"><span style="background-color: white; font-weight: normal; line-height: 18px;">As always, you're feedback and suggestions for improving the API are most welcome. Please e-mail: </span><a href="mailto:chembl-help@ebi.ac.uk" style="background-color: white; line-height: 18px;">chembl-help@ebi.ac.uk</a><span style="background-color: white; line-height: 18px;">.</span></span></div>
+<span style="font-family: inherit; line-height: 18px;">
+</span>
+<br />
+<div style="background-color: white; line-height: 18px;">
+<span style="font-family: inherit;"><br /></span></div>
+<span style="font-family: inherit;">Link: <a href="https://www.ebi.ac.uk/chembldb/index.php/ws">https://www.ebi.ac.uk/chembldb/index.php/ws</a></span><br />
+<br />
+*&nbsp; These additions are in response to a bug in sending SMILES data via the URL - some SMILES instances, such as those containing triple bonds, make use of characters which are reserved characters in the <a href="http://www.rfc-editor.org/rfc/rfc1738.txt">specification for Uniform Resource Locators (URLs)</a>.
+ For API requests involving SMILES, API user's can choose to either URL encode their SMILES input before submitting 
+the request to the HTTP GET endpoint or use the new HTTP POST endpoint 
+and send the SMILES data in the body of the HTTP request rather than in the URL.<span style="font-family: inherit;"> </span>

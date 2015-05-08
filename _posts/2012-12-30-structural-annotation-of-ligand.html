@@ -1,0 +1,42 @@
+---
+layout: post
+title: Structural Annotation of Ligand Environments
+date: '2012-12-30T10:23:00.000Z'
+author: John Overington
+tags:
+- Research Projects
+modified_time: '2012-12-30T10:57:16.273Z'
+thumbnail: http://2.bp.blogspot.com/-mT-FZ0II4ZM/UOAS5H2WAQI/AAAAAAAACiM/oUGhev3NWYo/s72-c/Proten_ligand_binding.PNG
+blogger_id: tag:blogger.com,1999:blog-2546008714740235720.post-3983361497852795613
+blogger_orig_url: http://chembl.blogspot.com/2012/12/structural-annotation-of-ligand.html
+---
+
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://2.bp.blogspot.com/-mT-FZ0II4ZM/UOAS5H2WAQI/AAAAAAAACiM/oUGhev3NWYo/s1600/Proten_ligand_binding.PNG" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="239" src="http://2.bp.blogspot.com/-mT-FZ0II4ZM/UOAS5H2WAQI/AAAAAAAACiM/oUGhev3NWYo/s320/Proten_ligand_binding.PNG" width="320" /></a></div>
+<br />
+Some time ago, I developed a program called <a href="http://www.ncbi.nlm.nih.gov/pubmed/9730927">joy</a> - it's purpose was to map onto a protein sequence the local physical environment of a residue, but the main aim was to build some environment specific substitution tables for residues that were useful in structure validation, distant fold detection, and so forth. Finally it led to the generation of a database of curated (at least initially) protein structure/sequence alignments (<a href="http://onlinelibrary.wiley.com/doi/10.1002/pro.5560071126/abstract">HOMSTRAD</a>&nbsp;- the paper for this has been cited 415 times now, so at least a few people use this). Some of these alignments were used as early seed profiles for <a href="http://www.ebi.ac.uk/pfam">pfam</a>, so for me it's been pretty satisfying to see these things taken up up the community. Several students and postdocs in the <a href="http://www-cryst.bioc.cam.ac.uk/groups/blundell/">Blundell</a> group extended and maintained this initial approach. Once you get used to looking at joy annotated structures and alignments it really is a great way of identifying structurally important residues - I use it for the regular <a href="http://chembl.blogspot.co.uk/search/label/GPCRs">GPCR posts</a> on the ChEMBL-og for example.<br />
+<br />
+Anyway, enough of living in the past - for it is almost a Brand New Year, and we want new stuff!<br />
+<br />
+So, I was thinking this morning over coffee about what would be the ligand equivalent of this environmental annotation from a 'Ligand's Eye View' - and it's pretty simple I think, but likely to lead to some maybe interesting things - I also think the idea has enough legs to be a suitable project for a PhD project - and since I'm taking on a student next year (my last one at EMBL - how time flies!) I think this will be one of the ideas floated amongst the applicants.....<br />
+<br />
+Joy stored just a couple of very simple robust descriptors of residue environment - 1) Solvent Accessibility 2) hydrogen bonding (donor and acceptors) and 3) Secondary structure. Of these the first two have straightforward analogies for a small molecule, at an atom level, and also explained most of the variance in residue conservation. The other big advantage is that this sort of approach can be used on a single example - you don't need an active ensembl (or set of evolutionally related sequences) to build some predictive models.<br />
+<br />
+So the basic idea is to....<br />
+<br />
+<br />
+<ol>
+<li>Build an explicit hydrogen form of all small molecule ligand complexes in <a href="http://www.ebi.ac.uk/pdbe">PDBe</a>. This is not trivial - there's tautomers, ionisation states (and pH of crystallisation), <i>etc</i>. as complicating factors required to do a good job. The right way to do this will be InChIs (as opposed to the normal, for us, Standard InChIs) - this in itself will form the basis of a good set of training data for evidence-backed tautomer identification/prediction.</li>
+<li>Write the code to annotate the atomic/fragment environments, and adopt a standard to allow interchange of this data, probably in a molfile type format (or maybe as a custom stylee layer in InChI itself). There's some Fortran for this already, but it's probably time to embrace something more modern, like Ada, or some other newfangled language ;)</li>
+<li>Incorporate this atomic/fragmental environment into fingerprint approaches (either a simple mask filter, or weights, depending on the class/number of interactions an atom, bond-path makes - since these are likely to be the structural features (in the image above the bits of the orange blob in contact with the blue blob).</li>
+<li>Train the method on the extensive sets of ligands in <a href="http://www.ebi.ac.uk/chembl">ChEMBL</a> - and as a first use case develop an approach to take a protein-ligand 3-D complex - perceive the SAR 'sensitive' and 'relaxed' positions around a ligand and do some virtual screening.</li>
+<li>Build some fingerprint profiles for targets, based on this (hopefully) enhanced view of the sort of features required for a specific target site (as sublimed into the interaction fingerprints of some clusters of complementary ligands in the first instance).</li>
+<li>Put some fancy stuff into something like LigPlot - or a program like this, depending on licensing....</li>
+<li>There's some other stuff that's pretty obvious to those who work in the field once you've got this data.....</li>
+</ol>
+<br />
+<br />
+Success for me would be to have a method to address the <a href="http://pipeline.corante.com/archives/2011/04/20/return_of_the_magic_methyl_group.php">magic methyl problem</a>. If we start on this project, we'll keep you posted.<br />
+<br />
+jpo<br />
+<br />

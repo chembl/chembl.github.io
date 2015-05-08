@@ -1,0 +1,43 @@
+---
+layout: post
+title: 'StARlite: Compounds, Targets and Publications over time'
+date: '2008-12-18T16:52:00.018Z'
+author: John Overington
+tags:
+- Databases
+modified_time: '2008-12-23T09:12:17.626Z'
+thumbnail: http://3.bp.blogspot.com/_SlPG9DIz_AA/SVCrbfIPKNI/AAAAAAAAADY/SgHI0i6b9uY/s72-c/starlight.jpg
+blogger_id: tag:blogger.com,1999:blog-2546008714740235720.post-3529944448760753276
+blogger_orig_url: http://chembl.blogspot.com/2008/12/growth-of-starlite-over-time.html
+---
+
+<a onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}" href="http://3.bp.blogspot.com/_SlPG9DIz_AA/SVCrbfIPKNI/AAAAAAAAADY/SgHI0i6b9uY/s1600-h/starlight.jpg"><img style="display:block; margin:0px auto 10px; text-align:center;cursor:pointer; cursor:hand;width: 200px; height: 160px;" src="http://3.bp.blogspot.com/_SlPG9DIz_AA/SVCrbfIPKNI/AAAAAAAAADY/SgHI0i6b9uY/s200/starlight.jpg" border="0" alt=""id="BLOGGER_PHOTO_ID_5282910851606456530" /></a>
+<P>
+Given that <A HREF="http://chembl.blogspot.com/2008/12/celebrate-good-times-come-on.html">StARlite lives</A>, I should update my general slides, put together some new views, and so on. And so here are a couple of views on the publication rate of compounds. We started to abstract data from 'core' journals published in 1980 and onwards, and then added ten additional journals from 2007 onwards, hence the spike. Click images below for a usable view.
+<P>
+Firstly, compound records per year. 
+<a onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}" href="http://4.bp.blogspot.com/_SlPG9DIz_AA/SUqH1x6o1GI/AAAAAAAAACg/ZdIoQiq4-wI/s1600-h/CompRecord_growth.png"><img style="display:block; margin:0px auto 10px; text-align:center;cursor:pointer; cursor:hand;width: 200px; height: 122px;" src="http://4.bp.blogspot.com/_SlPG9DIz_AA/SUqH1x6o1GI/AAAAAAAAACg/ZdIoQiq4-wI/s200/CompRecord_growth.png" border="0" alt=""id="BLOGGER_PHOTO_ID_5281182871047427170" /></a>
+<P>
+The SQL for this is trivial....
+<P>
+<CODE>
+select year, count(distinct act.record_id ) as comp_record
+from docs d,
+activities act
+where act.doc_id = d.doc_id
+group by year;
+</CODE>
+<P>
+Secondly, cumulative number of compound records.
+<a onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}" href="http://3.bp.blogspot.com/_SlPG9DIz_AA/SUqJBURR4JI/AAAAAAAAACw/i0XiSD-ONvY/s1600-h/CompRecord_growth2.png"><img style="display:block; margin:0px auto 10px; text-align:center;cursor:pointer; cursor:hand;width: 200px; height: 122px;" src="http://3.bp.blogspot.com/_SlPG9DIz_AA/SUqJBURR4JI/AAAAAAAAACw/i0XiSD-ONvY/s200/CompRecord_growth2.png" border="0" alt=""id="BLOGGER_PHOTO_ID_5281184168759386258" /></a>
+
+<P>
+Thirdly, targets per year. However, note that this is not new targets per year, just the number of distinct targets that were published within a given year.
+<a onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}" href="http://4.bp.blogspot.com/_SlPG9DIz_AA/SUtxfmVcvVI/AAAAAAAAAC4/jVusF-FgDl4/s1600-h/targets+per+year.png"><img style="display:block; margin:0px auto 10px; text-align:center;cursor:pointer; cursor:hand;width: 200px; height: 122px;" src="http://4.bp.blogspot.com/_SlPG9DIz_AA/SUtxfmVcvVI/AAAAAAAAAC4/jVusF-FgDl4/s200/targets+per+year.png" border="0" alt=""id="BLOGGER_PHOTO_ID_5281439775702433106" /></a>
+
+<P>
+Fourthly, cumulative targets covered over time. This of course, is unique targets.
+<a onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}" href="http://3.bp.blogspot.com/_SlPG9DIz_AA/SUuZiMKlW_I/AAAAAAAAADA/SahEWuHt0a4/s1600-h/TargetGrowth.png"><img style="display:block; margin:0px auto 10px; text-align:center;cursor:pointer; cursor:hand;width: 200px; height: 122px;" src="http://3.bp.blogspot.com/_SlPG9DIz_AA/SUuZiMKlW_I/AAAAAAAAADA/SahEWuHt0a4/s200/TargetGrowth.png" border="0" alt=""id="BLOGGER_PHOTO_ID_5281483800682257394" /></a>
+<P>
+Finally, the papers abstracted per year.
+<a onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}" href="http://2.bp.blogspot.com/_SlPG9DIz_AA/SUqIyNNdr7I/AAAAAAAAACo/QbXR-_nxNto/s1600-h/Paper_growth.png"><img style="display:block; margin:0px auto 10px; text-align:center;cursor:pointer; cursor:hand;width: 200px; height: 122px;" src="http://2.bp.blogspot.com/_SlPG9DIz_AA/SUqIyNNdr7I/AAAAAAAAACo/QbXR-_nxNto/s200/Paper_growth.png" border="0" alt=""id="BLOGGER_PHOTO_ID_5281183909166297010" /></a>

@@ -1,0 +1,47 @@
+---
+layout: post
+title: Public Popular Chemistry Databases and Licensing
+date: '2012-07-06T08:05:00.003+01:00'
+author: John Overington
+tags:
+- Databases
+- Licensing
+modified_time: '2012-07-06T10:18:37.550+01:00'
+thumbnail: http://2.bp.blogspot.com/-KmOBXHutoLM/T_aKIUjbK3I/AAAAAAAAB9s/9xg4yOv6n1A/s72-c/IMG_1569.JPG
+blogger_id: tag:blogger.com,1999:blog-2546008714740235720.post-8260816488486177869
+blogger_orig_url: http://chembl.blogspot.com/2012/07/public-popular-chemistry-databases-and.html
+---
+
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://2.bp.blogspot.com/-KmOBXHutoLM/T_aKIUjbK3I/AAAAAAAAB9s/9xg4yOv6n1A/s1600/IMG_1569.JPG" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="239" src="http://2.bp.blogspot.com/-KmOBXHutoLM/T_aKIUjbK3I/AAAAAAAAB9s/9xg4yOv6n1A/s320/IMG_1569.JPG" width="320" /></a></div>
+<br />
+Licensing of data, and copyright is a complex thing, and always gets people hot under the collar! Some time ago, following consultation with our funders, we settled on a CC-BY-SA license for ChEMBL - this does a couple of things, but primarily it places an explicit license on the data so it is clear what you can do with it. There is a lot of hot air and active discussion over how 'public' and 'open' particular licenses are, but the <a href="http://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA 3.0</a> license made sense to us (for reference, this license is also used by the world's premier open resource <a href="http://www.wikipedia.org/">wikipedia</a>&nbsp;- here is <a href="http://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License">their license</a>)<br />
+<br />
+This license we apply to each release of the database, it makes the data freely available and usable. It requires attribution, so that users of derivative works know where the data comes from, can identify the funders and producers of the work - which we think is fair and appropriate, and finally it applies 'share-alike', so that if you distribute the ChEMBL data further you shouldn't restrict the rights of your users to further give away, use, remix, <i>etc</i>. the data. To be clear though, it does not preclude commercial use of the data.<br />
+<br />
+The Share Alike clause is the thing that people usually get excited by, but this is meant to ensure that if you distribute the data to others you make sure that you also give those you distribute it to the same right to redistribute. If you have a significant problem with this, then don't redistribute any data you get under a SA license; if you find it difficult to keep track of the provenance of data entering your systems, should you really be building stuff to distribute anyway? ;)<br />
+<br />
+Chemistry is a relatively odd world compared to bioinformatics, in that users are generally worried about inadvertent disclosure of their ideas and queries - the basis of the concern is that running a search over the Internet, over an open network, can amount to disclosure and 'publication', and could in theory void a patent through prior art disclosure. As you are probably aware, it is easy to monitor and record traffic over public networks, recovering passwords, etc. Secondly, there is a general suspicion over what happens to recording usage on the servers - do the providers of the web service mine the queries? sell them on? and other sort of paranoid stuff. Well it is not as paranoid as you may think, maybe, since several large internet sites explicitly state in the Terms and Conditions that your query becomes their intellectual property. Sloppy programming, in particular with advertiser sites, can disclose a whole bunch of query data to advertisers.<br />
+<br />
+One of the ways of dealing with the former issue, is to provide access over the <a href="http://en.wikipedia.org/wiki/HTTP_Secure">https: protocol</a>, this encrypts the traffic between your client browser and the server, and also prevents impersonation of the server by another machine (to most reasonable intents and purposes this is still true). The same secure http: protocol can be applied to make programmatic web services secure too.<br />
+<br />
+There are a number of large 'free'/Open chemical databases at the moment, and we drew up a little table the other day comparing the license and access. It's not complete, probably contains some errors, so if anything is wrong, please let me know. If there are other Open resources to add, put something in the comments, and I'll add it to the table.<br />
+<br />
+<u>Update </u>- thanks to Richard of the RSC, I've corrected some ambiguities in the original table.<br />
+<br />
+<table>
+<tbody>
+<tr><td><b>Resource</b></td><td><b>Url (http: protocol form)</b></td><td><b>License</b></td><td><b>Download</b></td><td><b>https:</b></td><td></td></tr>
+<tr><td>ChEMBL</td><td><a href="http://www.ebi.ac.uk/chembl">http://www.ebi.ac.uk/chembl</a></td><td>CC-BY-SA</td><td>yes</td><td>yes<br />
+<br /></td></tr>
+<tr><td>BindingDB</td><td><a href="http://www.bindingdb.org/">http://www.bindingdb.org/</a></td><td>CC-BY-SA</td><td>yes</td><td>no<br />
+<br /></td><td></td></tr>
+<tr><td>PubChem</td><td><a href="http://pubchem.ncbi.nlm.nih.gov/">http://pubchem.ncbi.nlm.nih.gov/</a></td><td>No clear license statement</td><td>yes</td><td>yes<br />
+<br /></td></tr>
+<tr><td>ZINC</td><td><a href="http://zinc.docking.org/">http://zinc.docking.org/</a></td><td>No redistribution of significant subsets without permission</td><td>yes</td><td>yes, but certificate expired<br />
+<br /></td></tr>
+<tr><td>ChemSpider</td><td><a href="http://www.chemspider.com/">http://www.chemspider.com/</a></td><td>No download, and limited to a total 5,000 data entries stored locally. API access free to academic users, others by agreement.</td><td>no</td><td>yes, but broken</td></tr>
+</tbody>
+</table>
+<div>
+<br /></div>

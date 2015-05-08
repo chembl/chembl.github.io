@@ -1,0 +1,83 @@
+---
+layout: post
+title: PPI Library - Part 3
+date: '2012-05-03T18:25:00.002+01:00'
+author: John Overington
+tags:
+- PPIs
+modified_time: '2012-05-06T19:02:37.707+01:00'
+thumbnail: http://4.bp.blogspot.com/-QQfYk3CO2Ek/T6K8dt1coUI/AAAAAAAABxo/l8cf5eBO_Uw/s72-c/389279_394051543950977_100000384045353_1209296_1527850205_n.jpg
+blogger_id: tag:blogger.com,1999:blog-2546008714740235720.post-1731695552016993938
+blogger_orig_url: http://chembl.blogspot.com/2012/05/ppi-library-part-3.html
+---
+
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://4.bp.blogspot.com/-QQfYk3CO2Ek/T6K8dt1coUI/AAAAAAAABxo/l8cf5eBO_Uw/s1600/389279_394051543950977_100000384045353_1209296_1527850205_n.jpg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="320" src="http://4.bp.blogspot.com/-QQfYk3CO2Ek/T6K8dt1coUI/AAAAAAAABxo/l8cf5eBO_Uw/s320/389279_394051543950977_100000384045353_1209296_1527850205_n.jpg" width="240" /></a></div>
+<div class="separator" style="clear: both; text-align: center;">
+<br /></div>
+<br />
+<div style="font: 12.0px Helvetica; margin: 0.0px 0.0px 0.0px 0.0px;">
+<span style="letter-spacing: 0px;"><span class="Apple-style-span" style="font-family: inherit; font-size: small;">It turns out that scientists and the rest of the world interpret 'PPIs' as very different acronyms - as the amount of spam comment filtering for Payment Protection Insurance I’ve had to delete shows. Anyway, life got in the way of science for a few weeks for me ( :( ), but some more of the PPI work is described here.&nbsp;</span></span></div>
+<div style="font: 12.0px Helvetica; margin: 0.0px 0.0px 0.0px 0.0px;">
+<span style="letter-spacing: 0px;"><span class="Apple-style-span" style="font-family: inherit; font-size: small;"><br /></span></span></div>
+<div style="font: 12.0px Helvetica; margin: 0.0px 0.0px 0.0px 0.0px;">
+<span class="Apple-style-span" style="font-family: inherit; font-size: small;"><span style="letter-spacing: 0px;">A very simple algorithm was applied to build a library of experimental peptide conformers. &nbsp;</span>Firstly every tetra-peptide from a protein structure was extracted; one of these peptides was then taken as a seed for a conformational cluster, and subsequent tetra-peptides were fitted to this fragment.&nbsp;If the RMSD for the main-chain atoms was lower that a cutoff parameter, the original 'seed' fragment was taken as representative of that cluster. If the RMSD was greater than the cutoff, then a new cluster was established, and any subsequent tetra-peptides were fitted to both cluster representatives, and so forth. As more unique peptide conformers are seen (defined according to the RSMD cutoff) the number of clusters increases. Of course, the population of each column is stored - some conformers are really common (alpha-helix and beta-strand fragments) and others are rare/experimental errors.&nbsp;</span></div>
+<div style="font: 12.0px Helvetica; margin: 0.0px 0.0px 0.0px 0.0px;">
+<span class="Apple-style-span" style="font-size: small;"><br /></span><br />
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://1.bp.blogspot.com/-5zWmwbiLNzY/T6Y31Mnh4pI/AAAAAAAAByA/vyur3F6S8f4/s1600/peptide+fits.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="165" src="http://1.bp.blogspot.com/-5zWmwbiLNzY/T6Y31Mnh4pI/AAAAAAAAByA/vyur3F6S8f4/s400/peptide+fits.png" width="400" /></a></div>
+<span class="Apple-style-span" style="font-size: small;"><br /></span></div>
+<div style="font: 12.0px Helvetica; margin: 0.0px 0.0px 0.0px 0.0px;">
+<span class="Apple-style-span" style="font-family: inherit; font-size: small;">At a large cutoff parameter, all tetra-peptides would cluster in the same set as the initial seed, and at a sufficiently small cutoff, then every tetra-peptide would be unique.<span style="letter-spacing: 0px;"></span></span></div>
+<div style="font: 12.0px Helvetica; margin: 0.0px 0.0px 0.0px 0.0px; min-height: 14.0px;">
+<span class="Apple-style-span" style="font-size: small;"><span style="font-family: inherit; letter-spacing: 0px;"></span></span></div>
+<span class="Apple-style-span" style="font-family: inherit; font-size: small;">
+</span><br />
+<div style="font: 12.0px Helvetica; margin: 0.0px 0.0px 0.0px 0.0px;">
+<span class="Apple-style-span" style="font-size: small;"><span style="letter-spacing: 0px;"><span class="Apple-style-span" style="font-family: inherit; font-size: small;">When applied to <a href="http://www.ebi.ac.uk/pdbe-srv/view/entry/2ptn/summary.html">2ptn</a> (bovine trypsin, for deeply routed reasons my favorite PDB entry ever, and contain most features of globular proteins, secondary and super-secondary structure, turns, <i>etc</i>.) the following number of representative clusters were found, shown as a function of the RMSD cutoff. One way of thinking of this approach, is that the library can be though of containing every possible peptide conformation, at a given error/variation/resolution. So, it’s a sort of variable ‘resolution’ library. For 2ptn, you can see that the library complexity takes off below about 0.7 Angstrom RMSD. There is the asymptote at around 220, since this is about the number of residues in 2ptn.&nbsp;</span></span></span></div>
+<span class="Apple-style-span" style="font-size: small;">
+</span><br />
+<div style="font: 12.0px Helvetica; margin: 0.0px 0.0px 0.0px 0.0px;">
+<span class="Apple-style-span" style="font-size: small;"><span style="letter-spacing: 0px;"><br /></span></span><br />
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://3.bp.blogspot.com/-vc95WiwaQEY/T6Y3Z5aRTZI/AAAAAAAABx4/nvDRnhU5iDs/s1600/2ptn+peptides.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="272" src="http://3.bp.blogspot.com/-vc95WiwaQEY/T6Y3Z5aRTZI/AAAAAAAABx4/nvDRnhU5iDs/s400/2ptn+peptides.png" width="400" /></a></div>
+<span class="Apple-style-span" style="font-size: small;"><span style="letter-spacing: 0px;"><br /></span></span></div>
+<span class="Apple-style-span" style="font-size: small;">
+</span><br />
+<div class="separator" style="clear: both; text-align: center;">
+<span class="Apple-style-span" style="font-size: small;"><span style="letter-spacing: 0px; margin-left: 1em; margin-right: 1em;"></span></span></div>
+<span class="Apple-style-span" style="font-size: small;">
+</span><br />
+<div style="font: 12.0px Helvetica; margin: 0.0px 0.0px 0.0px 0.0px;">
+</div>
+<span class="Apple-style-span" style="font-size: small;">
+</span><br />
+<div style="font: 12.0px Helvetica; margin: 0.0px 0.0px 0.0px 0.0px; min-height: 14.0px;">
+<span class="Apple-style-span" style="font-size: small;"><span style="letter-spacing: 0px;"></span></span></div>
+<span class="Apple-style-span" style="font-size: small;">
+<div style="font: 12.0px Helvetica; margin: 0.0px 0.0px 0.0px 0.0px;">
+<span style="letter-spacing: 0px;"><span class="Apple-style-span" style="font-family: inherit; font-size: small;">There are a few tricks that need handling in the code, primarily in the treatment of peptides that span chain breaks in the protein structure - for this analysis, the four residues needed to be covalently contiguous (<i>i.e.</i> No internal chain breaks).</span></span></div>
+<div style="font: 12.0px Helvetica; margin: 0.0px 0.0px 0.0px 0.0px; min-height: 14.0px;">
+<span class="Apple-style-span" style="font-size: small;"><span style="font-family: inherit; letter-spacing: 0px;"></span></span></div>
+<div style="font: 12.0px Helvetica; margin: 0.0px 0.0px 0.0px 0.0px;">
+<span style="letter-spacing: 0px;"><span class="Apple-style-span" style="font-family: inherit; font-size: small;">So, we now have a way of building a representative library of peptide conformers that we can think about suing as scaffolds for mimicking in our PPI library (as well as the mainchain donor/acceptor positions, we also have the C-alpha to C-beta vectors).</span></span></div>
+<div style="font: 12.0px Helvetica; margin: 0.0px 0.0px 0.0px 0.0px;">
+<span style="letter-spacing: 0px;"><span class="Apple-style-span" style="font-family: inherit; font-size: small;"><br /></span></span></div>
+<div style="font: 12.0px Helvetica; margin: 0.0px 0.0px 0.0px 0.0px;">
+<span style="letter-spacing: 0px;"><span class="Apple-style-span" style="font-family: inherit; font-size: small;">The next step is to extend this approach to a larger, more representative library of protein structures, let's use a validated (but ancient) paper for this.</span></span><br />
+<span style="letter-spacing: 0px;"><span class="Apple-style-span" style="font-size: small;"><br /></span></span></div>
+<div style="font: 12.0px Helvetica; margin: 0.0px 0.0px 0.0px 0.0px;">
+<pre><span class="Apple-style-span" style="font-size: small;">%A U. Hobohm
+%A C. Sander
+%T Enlarged representative set of protein structures
+%J Protein Science
+%V 3
+%P 522-524
+%D 1994</span>
+</pre>
+<span class="Apple-style-span" style="font-size: small;"><br /></span></div>
+<div style="font: 12.0px Helvetica; margin: 0.0px 0.0px 0.0px 0.0px;">
+<span class="Apple-style-span" style="font-size: small;"><u>Trivia</u>: The photo above is of one of my sons, on mayoral voting day 2012, in a very wet London. You are never too young to learn about politics!</span><br />
+<span class="Apple-style-span" style="font-size: small;"><br /></span><br />
+<span class="Apple-style-span" style="font-size: small;"><u>Update</u>: Sorry the figures got barfed by the blogger software with a bad url, and got lost, so I've replaced them.</span></div>
+</span>

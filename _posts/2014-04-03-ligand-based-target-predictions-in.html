@@ -1,0 +1,101 @@
+---
+layout: post
+title: Ligand-based target predictions in ChEMBL
+date: '2014-04-03T13:09:00.000+01:00'
+author: George Papadatos
+tags:
+- chemogenomics
+- machine learning
+modified_time: '2014-04-21T19:11:41.298+01:00'
+thumbnail: http://1.bp.blogspot.com/-zPzJAKHTSiM/UzvShKMYqLI/AAAAAAAAAS8/7B8FTMDSNHE/s72-c/crystal_ball_dude_lg.jpg
+blogger_id: tag:blogger.com,1999:blog-2546008714740235720.post-82602604878052501
+blogger_orig_url: http://chembl.blogspot.com/2014/04/ligand-based-target-predictions-in.html
+---
+
+<div dir="ltr" style="text-align: left;" trbidi="on">
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://1.bp.blogspot.com/-zPzJAKHTSiM/UzvShKMYqLI/AAAAAAAAAS8/7B8FTMDSNHE/s1600/crystal_ball_dude_lg.jpg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><span style="font-family: Trebuchet MS, sans-serif;"><img border="0" src="http://1.bp.blogspot.com/-zPzJAKHTSiM/UzvShKMYqLI/AAAAAAAAAS8/7B8FTMDSNHE/s1600/crystal_ball_dude_lg.jpg" height="400" width="315" /></span></a></div>
+<div class="separator" style="clear: both; text-align: center;">
+<span style="font-family: Trebuchet MS, sans-serif;"><br /></span></div>
+<div class="separator" style="clear: both; text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;"><br /></span></div>
+<div class="separator" style="clear: both; text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;">In case you haven't noticed, <a href="https://www.ebi.ac.uk/chembl" target="_blank">ChEMBL_18</a> has arrived. As usual, it brings new additions, improvements and enhancements both on the data/annotation, as well as on the interface. One of the new features is the <i>target predictions </i>for small molecule drugs. If you go to the compound report card for such a drug, say <a href="https://www.ebi.ac.uk/chembl/compound/inspect/CHEMBL941" target="_blank">imatinib</a>&nbsp;or <a href="https://www.ebi.ac.uk/chembl/compound/inspect/CHEMBL2105717" target="_blank">cabozantinib</a>, and scroll down towards the bottom of the page, you'll see two tables with predicted single-protein targets, corresponding to the two models that we used for the predictions.&nbsp;</span></div>
+<div class="separator" style="clear: both; text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;"><br /></span></div>
+<div class="separator" style="clear: both; text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;"><br /></span></div>
+<div class="separator" style="clear: both; text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;"><b>&nbsp;- So what are these models and how were they generated?&nbsp;</b></span></div>
+<div class="separator" style="clear: both; text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;"><br /></span></div>
+<div class="separator" style="clear: both; text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;">They belong to the family of the so-called ligand-based target prediction methods. That means that the models are trained using ligand information only. Specifically, the model learns what substructural features (encoded as fingerprints) of ligands correlate with activity against a certain target and assign a score to each of these features. Given a new molecule with a new set of features, the model sums the individual feature scores for all the targets and comes up with a sorted list of likely targets with the highest scores. Ligand-based target prediction methods have been quite popular over the last years as they have been proved useful for target-deconvolution and mode-of-action prediction of phenotypic hits / orphan actives. See <a href="http://www.ploscompbiol.org/article/info%3Adoi%2F10.1371%2Fjournal.pcbi.1003253" target="_blank">here</a> for an example of such an approach and <a href="http://www.sciencedirect.com/science/article/pii/S1874391911002028" target="_blank">here</a> for a comprehensive review.</span></div>
+<div class="separator" style="clear: both; text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;"><br /></span></div>
+<div class="separator" style="clear: both; text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;"><br /></span></div>
+<div class="separator" style="clear: both; text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;"><b>&nbsp;- OK, and how where they generated?</b></span></div>
+<div class="separator" style="clear: both; text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;"><br /></span></div>
+<div class="separator" style="clear: both; text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;">As usual, it all started with a carefully selected subset of ChEMBL_18 data containing pairs of compounds and single-protein targets. We used two activity cut-offs, namely 1uM and a more relaxed 10uM, which correspond to two models trained on bioactivity data against <b>1028</b> and <b>1244</b> targets respectively. <a href="http://www.knime.org/" target="_blank">KNIME</a> and <a href="http://pandas.pydata.org/" target="_blank">pandas</a> were used for the data pre-processing. Morgan fingerprints (radius=2) were calculated using <a href="http://rdkit.org/" target="_blank">RDKit</a> and then used to train a <a href="http://scikit-learn.org/stable/modules/naive_bayes.html#multinomial-naive-bayes" target="_blank">multinomial Naive Bayesian</a> <a href="http://scikit-learn.org/stable/modules/generated/sklearn.multiclass.OneVsRestClassifier.html" target="_blank">multi-category</a> <a href="http://scikit-learn.org/stable/" target="_blank">scikit-learn</a> model. These models then were used to predict targets for the small molecule drugs as mentioned above.&nbsp;</span></div>
+<div class="separator" style="clear: both; text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;"><br /></span></div>
+<div class="separator" style="clear: both; text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;"><br /></span></div>
+<div class="separator" style="clear: both; text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;"><b>&nbsp;- Any validation?&nbsp;</b></span></div>
+<div class="separator" style="clear: both; text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;"><br /></span></div>
+<div class="separator" style="clear: both; text-align: justify;">
+<span style="font-family: 'Trebuchet MS', sans-serif;">Besides more trivial property predictions such as logP/logD, this is the first time ChEMBL hosts non experimental/measured data - so this is a big deal and we wanted to try and do this right. First of all, we did a 5-fold stratified cross-validation. But how do you assess a model with a many-to-many relationship between items (compounds) and categories (targets)? For each compound in each of the 5 20% test sets, we got the top 10 ranked predictions. We then checked whether these predictions agree with the known targets for that compound. Ideally, the known target should be correctly predicted at the 1st position of the ranked list, otherwise at the 2nd position, the 3rd and so on. By aggregating over all compounds of all test sets, you get this pie chart:</span></div>
+<div class="separator" style="clear: both; text-align: justify;">
+<span style="font-family: 'Trebuchet MS', sans-serif;"><br /></span></div>
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://4.bp.blogspot.com/-a2SWKY8ftCc/Uz1J_HzQ1VI/AAAAAAAAATw/49bh2K5qpxs/s1600/pie2.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="http://4.bp.blogspot.com/-a2SWKY8ftCc/Uz1J_HzQ1VI/AAAAAAAAATw/49bh2K5qpxs/s1600/pie2.png" height="448" width="640" /></a></div>
+<div class="separator" style="clear: both; text-align: justify;">
+<span style="font-family: 'Trebuchet MS', sans-serif;"><br /></span></div>
+<div style="text-align: center;">
+<span style="font-family: 'Trebuchet MS', sans-serif;"></span></div>
+<span style="font-family: 'Trebuchet MS', sans-serif; text-align: justify;">This means that a known target is correctly predicted by the model at the </span><i style="font-family: 'Trebuchet MS', sans-serif; text-align: justify;">first</i><span style="font-family: 'Trebuchet MS', sans-serif; text-align: justify;"> attempt (Position 1 in the list of predicted targets) in ~69% of the cases. Actually, only 9% of compounds in the test sets had completely mis-predicted known targets within the top 10 predictions list (Found above 10).&nbsp;</span><br />
+<div class="separator" style="clear: both; text-align: justify;">
+<span style="font-family: 'Trebuchet MS', sans-serif;"><br /></span></div>
+<div class="separator" style="clear: both; text-align: justify;">
+<span style="font-family: 'Trebuchet MS', sans-serif;">This is related to <i>precision</i> but what about <i>recall </i>of know targets? here's another chart:</span></div>
+<div class="separator" style="clear: both; text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;"><br /></span></div>
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://2.bp.blogspot.com/-okrV4qisg_c/Uz04dzaoGDI/AAAAAAAAATU/Aww_0PToBps/s1600/bar1.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="http://2.bp.blogspot.com/-okrV4qisg_c/Uz04dzaoGDI/AAAAAAAAATU/Aww_0PToBps/s1600/bar1.png" height="385" width="640" /></a></div>
+<div class="separator" style="clear: both; text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;"><br /></span></div>
+<div class="separator" style="clear: both; text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;"><br /></span></div>
+<div class="separator" style="clear: both; text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;">This means that,&nbsp;<i>on</i> <i>average,&nbsp;</i>by considering the top 10 most likely target predictions (&lt;1% of the target pool), the model can correctly predict around ~89% of a compound's known single protein targets.&nbsp;</span></div>
+<div class="separator" style="clear: both; text-align: justify;">
+<span style="font-family: 'Trebuchet MS', sans-serif;"><br /></span></div>
+<div class="separator" style="clear: both; text-align: justify;">
+<span style="font-family: 'Trebuchet MS', sans-serif;">Finally, we compared the new open source approach (right) to an established one generated with a commercial workflow environment software (left) using the same data and very similar descriptors:</span></div>
+<div class="separator" style="clear: both; text-align: justify;">
+<span style="font-family: 'Trebuchet MS', sans-serif;"><br /></span></div>
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://4.bp.blogspot.com/-eU12PCw1q3I/Uz05ncUwyTI/AAAAAAAAATg/wtEXuanHjMU/s1600/all.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="http://4.bp.blogspot.com/-eU12PCw1q3I/Uz05ncUwyTI/AAAAAAAAATg/wtEXuanHjMU/s1600/all.png" height="278" width="640" /></a></div>
+<div class="separator" style="clear: both; text-align: justify;">
+<span style="font-family: 'Trebuchet MS', sans-serif;"><br /></span></div>
+<div class="separator" style="clear: both; text-align: justify;">
+<span style="font-family: 'Trebuchet MS', sans-serif;">If you manage to ignore for a moment the slightly different colour coding, you'll see that their predictive performance is pretty much equivalent.</span></div>
+<div class="separator" style="clear: both; text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;"><br /></span></div>
+<div class="separator" style="clear: both; text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;"><b>&nbsp;- It all sounds good, but can I get predictions for my own compounds?</b></span></div>
+<div class="separator" style="clear: both; text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;"><br /></span></div>
+<div class="separator" style="clear: both; text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;">We could provide the models and examples in <a href="http://ipython.org/notebook.html" target="_blank">IPython Notebook</a> on how to use these on another blog post that will follow soon. There are also plans for a publicly available target prediction web service, something like SMILES to predicted targets. Actually, if you would be interested in this, or if you have any feedback or suggestions for the target prediction functionality, <a href="mailto:georgep@ebi.ac.uk" target="_blank">let us know</a>.&nbsp;</span></div>
+<div class="separator" style="clear: both; text-align: justify;">
+<br /></div>
+<div class="separator" style="clear: both; text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;">George</span></div>
+</div>

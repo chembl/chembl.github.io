@@ -1,0 +1,51 @@
+---
+layout: post
+title: Research Code Distribution Across the Literature
+date: '2014-07-14T09:19:00.000+01:00'
+author: John Overington
+tags:
+- Some Of The Interesting Things You'll See On A Long Distance Flight
+modified_time: '2014-08-01T09:24:44.980+01:00'
+thumbnail: http://3.bp.blogspot.com/-0Vpk7SYkvSQ/U8ORDavA1kI/AAAAAAAADZg/zbJedf1zUpo/s72-c/Frankie+Says+Chembl.tiff
+blogger_id: tag:blogger.com,1999:blog-2546008714740235720.post-56944179899452715
+blogger_orig_url: http://chembl.blogspot.com/2014/07/research-code-distribution-across.html
+---
+
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://3.bp.blogspot.com/-0Vpk7SYkvSQ/U8ORDavA1kI/AAAAAAAADZg/zbJedf1zUpo/s1600/Frankie+Says+Chembl.tiff" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="http://3.bp.blogspot.com/-0Vpk7SYkvSQ/U8ORDavA1kI/AAAAAAAADZg/zbJedf1zUpo/s1600/Frankie+Says+Chembl.tiff" height="311" width="320" /></a></div>
+<span style="letter-spacing: 0px;"><span style="font-family: inherit;">As you will see from many previous blog posts, we like compound research codes (alternatively known as company codes). These are often the first and primal identifier for a compound in the literatures, and reports of activity often pre-date disclosure of structure. They are of key importance in having view of state-of-the-art for progress against a target, <i>etc</i>, and are often the only way to search for bioactivity across a broad set of literature sources. They also have many other applications, such as competitive intelligence, investor/analyst data mining, <i>etc</i>.</span></span><br />
+<div style="min-height: 13px;">
+<span style="font-family: inherit;"><span style="letter-spacing: 0.0px;"></span><br /></span></div>
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://1.bp.blogspot.com/-GNTrGyM-7K0/U8ORJFj-LUI/AAAAAAAADZo/3ICXo6MHRWw/s1600/figure+for+blog.tiff" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="http://1.bp.blogspot.com/-GNTrGyM-7K0/U8ORJFj-LUI/AAAAAAAADZo/3ICXo6MHRWw/s1600/figure+for+blog.tiff" height="458" width="640" /></a></div>
+<div style="min-height: 13px;">
+<span style="font-family: inherit;"><br /></span></div>
+<div style="min-height: 13px;">
+<span style="font-family: inherit;"><br /></span></div>
+<span style="letter-spacing: 0.0px;"><span style="font-family: inherit;">Above is a plot of the frequency of occurrence in full text of 808,378 Open Access <a href="http://europepmc.org/">EuropePMC</a> articles for GSK codes across EuropePMC - I’ve canonicalised them to account for differences in punctuation (“GSK-123456”, “GSK123456” and “GSK 123456”). If you do a google search for the most common ones, you will easily see the importance of these compounds across drug discovery and pharmacology. For example GSK-1521498 is a mu opioid receptor antagonist, with (as of today) 158,000 hits in google).</span></span><br />
+<div style="min-height: 13px;">
+<span style="font-family: inherit;"><span style="letter-spacing: 0.0px;"></span><br /></span></div>
+<span style="font-family: inherit;"><span style="letter-spacing: 0px;">I chose GSK codes for a few reasons 1) because they are a large, ethical research company, with a commitment to publication of research 2) that they are local to us here in Hinxton, and it’s easy to ask questions of our local friends 3) GSK don’t switch early company codes to development stage codes, or use a duality of names, which complicate simple analysis - a nice example here is for the recently approved kinase inhibitor Alectinib, which goes under the following codes: RG-7853, CH-5424802, AF-802 and Ro-5424802. In fact there are some complexities - for&nbsp;</span></span>example<span style="font-family: inherit;"><span style="letter-spacing: 0px;">&nbsp;in the <a href="http://www.gsk.com/investors/product-pipeline.html">GSK pipeline web-page</a>, they don't themselves use the GSK prefix, just integers; but here, in this context, it is implicit they will be GSK codes.&nbsp;</span></span><br />
+<span style="letter-spacing: 0.0px;"><span style="font-family: inherit;"><br /></span></span>
+<span style="letter-spacing: 0.0px;"><span style="font-family: inherit;">Oh, I also stripped salt/batch codes (so GSK-123456A became GSK-123456). </span></span><span style="font-family: inherit; letter-spacing: 0px;">There are quite a few out of range values (too small, or unbelievably big) and then there are various ‘mutations’ that occur; either in writing the manuscript, or in typesetting, </span><i style="font-family: inherit; letter-spacing: 0px;">etc</i><span style="font-family: inherit; letter-spacing: 0px;">. Examples here are that there are 4 occurrences of GSK-112012 which is a small typo from the far more frequent (221 times) GSK-1120212, and it is easy to see how a simple transposition error could have caused this. To be clear, there will be a GSK-112012, it’s a valid name, but the likelihood is that references to this in the literature, without being supported by other evidence, are in fact about GSK-1120212. Interestingly, the occurrence rate of these mutants is about 10% of all unique GSK numbers (and this is a lower estimate - my first pass attempt at finding these relied on the first few digits being correct, edit-distance based clustering would be the place to start here of course). However, there do seem to be some more common transcription errors as one would expect for strings containing mostly numbers (so GSK-123456 -&gt; GSK-12346 is a lot more likely to happen than becoming GSK-123q56). It’s likely to be the case that a set of 'real world' typos can readily be built to build modified ‘edit distances’ useful in cleaning up data. With such a high potential error rate, this could become critical in real-world use. Interestingly, these errors then propagate from paper to paper as they are copied from one source to another.</span><br />
+<div style="min-height: 13px;">
+<span style="font-family: inherit;"><span style="letter-spacing: 0.0px;"></span><br /></span></div>
+<span style="font-family: inherit;"><span style="letter-spacing: 0px;">Below is the frequency distribution of each cleaned up GSK- code, it shows the classic log-normal/power law distribution - with some compounds, very likely the most interesting, with most data. They are also likely to be the most progressed towards becoming a real drug. The long tail is there too,&nbsp;</span></span>and<span style="font-family: inherit;"><span style="letter-spacing: 0px;">&nbsp;one would expect that this long tail is more likely to be full of errors than the commonly&nbsp;</span></span>referred<span style="font-family: inherit;"><span style="letter-spacing: 0px;">&nbsp;to compounds.</span></span><br />
+<span style="letter-spacing: 0.0px;"><span style="font-family: inherit;"><br /></span></span>
+<br />
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://3.bp.blogspot.com/-9Lvt4AC4ZjI/U8ORTn2sjlI/AAAAAAAADZw/_1-nnQ8Fkes/s1600/GSK+numbers+ranked+frequency.tiff" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="http://3.bp.blogspot.com/-9Lvt4AC4ZjI/U8ORTn2sjlI/AAAAAAAADZw/_1-nnQ8Fkes/s1600/GSK+numbers+ranked+frequency.tiff" height="314" width="640" /></a></div>
+<br />
+<span style="letter-spacing: 0.0px;"><span style="font-family: inherit;">And here is a frequency scatterplot. Many compounds are mentioned only once in the literature. This dual-domain (1- order in time, not linear though! from ordinal number in the research code, and 2- frequency of mentions in the literature) ’frequency spectrum’ is really interesting and useful, as future posts will outline. There is also another time-domain at work here - the time of disclosure/publication.</span></span><br />
+<span style="letter-spacing: 0.0px;"><span style="font-family: inherit;"><br /></span></span>
+<br />
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://1.bp.blogspot.com/-5hZ3QujC9Pk/U8ORlshZqYI/AAAAAAAADZ4/WRdi_YjUQlo/s1600/GSK+scatter+plot.tiff" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="http://1.bp.blogspot.com/-5hZ3QujC9Pk/U8ORlshZqYI/AAAAAAAADZ4/WRdi_YjUQlo/s1600/GSK+scatter+plot.tiff" height="218" width="640" /></a></div>
+<br />
+<span style="letter-spacing: 0px;"><span style="font-family: inherit;">This initial analysis is just for EuropePMC full text content, but of course a similar analysis can be done across ChEMBL, SureChEMBL (for patents), the internet (in both search engine index, and with more complexity and difficulty across the dark-web). Of course, this can be combined with the list of research codes, and tracking across company mergers that is part of ChEMBL as well.&nbsp;</span></span><br />
+<span style="letter-spacing: 0px;"><span style="font-family: inherit;"><br /></span></span>
+<span style="letter-spacing: 0px;"><span style="font-family: inherit;">Toodle-pip for now!</span></span><br />
+<span style="letter-spacing: 0px;"><span style="font-family: inherit;"><br /></span></span>
+<span style="letter-spacing: 0px;"><span style="font-family: inherit;">jpo and Jee-Hyub Kim (McEntyre group)</span></span><br />
+<div>
+<span style="letter-spacing: 0.0px;"><br /></span></div>

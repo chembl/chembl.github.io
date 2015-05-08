@@ -1,0 +1,115 @@
+---
+layout: post
+title: How do you find ChEMBL-like papers in PubMed?
+date: '2013-03-22T10:05:00.002Z'
+author: Gerard JP van Westen
+tags:
+- Fun and Games
+- Workflow tools
+- Some Of The Interesting Things You'll See On A Long Distance Flight
+modified_time: '2013-03-24T10:43:22.318Z'
+thumbnail: http://2.bp.blogspot.com/-e6rETcMeBWk/UUrfFFleV1I/AAAAAAAAGlk/yc0obsrSRPs/s72-c/2012_1.png
+blogger_id: tag:blogger.com,1999:blog-2546008714740235720.post-2407331902994242166
+blogger_orig_url: http://chembl.blogspot.com/2013/03/how-do-you-find-chembl-like-papers-in.html
+---
+
+<div dir="ltr" style="text-align: left;" trbidi="on">
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://2.bp.blogspot.com/-e6rETcMeBWk/UUrfFFleV1I/AAAAAAAAGlk/yc0obsrSRPs/s1600/2012_1.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><span style="font-family: Trebuchet MS, sans-serif;"><img border="0" height="198" src="http://2.bp.blogspot.com/-e6rETcMeBWk/UUrfFFleV1I/AAAAAAAAGlk/yc0obsrSRPs/s320/2012_1.png" width="320" /></span></a></div>
+<br />
+<span style="font-family: Trebuchet MS, sans-serif;"></span><br />
+<div style="text-align: justify;">
+<i><b><span style="font-family: inherit;">If only....</span></b></i></div>
+<span style="font-family: inherit;"> </span><br />
+<div style="text-align: justify;">
+<span style="font-family: inherit;">Here at <a href="http://www.ebi.ac.uk/">ChEMBL Towers</a>, we appreciate the delight that comes with computationally solving problems, in particular those that would otherwise be a tedious manual task - the world would be perfect if we could somehow automate and expand the search for med chem SAR literature to be included in ChEMBL by some sort of classification mechanism that distinguishes between 'ChEMBL-like papers' &nbsp;and 'other literature' ...</span></div>
+<div style="text-align: justify;">
+<span style="font-family: inherit;"><br />
+</span></div>
+<div style="text-align: justify;">
+<span style="font-family: inherit;">As it turns out, this type of classification problem is already addressed in other fields and is generally known as <i>text mining</i>. It should come as no surprise that text mining was the internal trend of the month - last month. Text mining has a lot of potential for us in ChEMBL. Possible application areas include: patent text-mining, drug repurposing, and even assay auto extraction and curation. Text mining techniques have previously been applied for in many fields, including sentiment analysis, social media mining <i>etc</i>.</span></div>
+<div style="text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;"><br />
+</span></div>
+<div style="text-align: justify;">
+<b><i><span style="font-family: inherit;">Why not?...</span></i></b></div>
+<div style="text-align: justify;">
+<span style="font-family: inherit;">However, in order to tune the text mining song to our needs we decided to input some tricks from cheminformatics. The&nbsp;initial&nbsp;goal of our&nbsp;exercise&nbsp;was to create a reliable classification measure to separate 'interesting' ChEMBL papers from the rest. To this end we started with the full set of paper abstracts that are included in ChEMBL_15 (about 45,000 papers), this was our set of actives (chembl-like). In order to discriminate against another type of papers we also compiled a random subset (again about 45,000) retrieved from MedLine, this was our set of inactives (background). To capture this information we applied the Bag-of-Words (BoW) method which was constructed from both abstracts and titles.</span></div>
+<div style="text-align: justify;">
+<span style="font-family: inherit;"><br /></span></div>
+<div style="text-align: justify;">
+<span style="font-family: inherit;"><i>1.</i>&nbsp;From the abstracts and titles punctuation&nbsp;and non-alphanumeric characters were removed</span></div>
+<div style="text-align: justify;">
+<span style="font-family: inherit;"><i>2.</i>&nbsp;The abstracts and titles&nbsp;were split on spaces and all words were placed in an array</span></div>
+<div style="text-align: justify;">
+<span style="font-family: inherit;"><i>3.</i>&nbsp;From this array uni-grams, bi-grams and tri-grams were created (eg. 'SAR', 'structure-activity relationship' or 'series was synthesized' ). </span></div>
+<div style="text-align: justify;">
+<span style="font-family: inherit;"><i>4.</i>&nbsp;From the n-grams stopwords were removed if they formed the majority of the n-gram.</span></div>
+<div style="text-align: justify;">
+<span style="font-family: inherit;"><br /></span></div>
+<div style="text-align: justify;">
+<span style="font-family: inherit;">Now the sets looked like this graphically if we create a nice word cloud (ChEMBL on the left and medline on the right, previously posted by JPO - since he steals all our good stuff, and pretends it is his).</span></div>
+<div class="separator" style="clear: both; text-align: center;">
+</div>
+<div class="separator" style="clear: both; text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;"><br />
+</span></div>
+<div class="separator" style="clear: both; text-align: justify;">
+<a href="http://4.bp.blogspot.com/-KdcizJiUkcM/UUrkVcUE4TI/AAAAAAAAGmI/hHOsIaDEZCw/s1600/combined.tif" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><span style="font-family: Trebuchet MS, sans-serif;"><img border="0" height="153" src="http://4.bp.blogspot.com/-KdcizJiUkcM/UUrkVcUE4TI/AAAAAAAAGmI/hHOsIaDEZCw/s640/combined.tif" width="640" /></span></a></div>
+<div class="separator" style="clear: both; text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;"><br />
+</span></div>
+<div style="text-align: justify;">
+<span style="font-family: inherit;">As this method quickly leads to a very large collection of possibly not so relevant words we decided to perform Bayesian feature selection. Hence the <a href="http://en.wikipedia.org/wiki/N-grams">n-grams</a> were placed in a large array and a Bayesian classifier was used to select 128 relevant n-grams (...yes we also tried 64, 256, 768, 999 or all...) that were relevant to model the classes. Keeping to chemoinformatics traditions the selected n-grams were converted into a counts-string which was used as a descriptor for each paper (...yes, we also tried bits... ).</span></div>
+<div style="text-align: justify;">
+<span style="font-family: inherit;"><br />
+</span></div>
+<div style="text-align: justify;">
+<span style="font-family: inherit;">Subsequently, the collections of bitstrings were fed into a random forest (RF) classifier (shown in our hands to outperform a Bayesian method) that was used to train a classifier. We used both out-of-bag validation and external validation (50 % training - 50 % validation). Now the nice thing about doing this with RFs is that you can see what features (in this case words) are important to distinguish ('W__' and '__' can be ignored, you'll note that we need to do some stemming too!). It seems 'compounds' is essential...</span><br />
+<span style="font-family: Trebuchet MS, sans-serif;"><br /></span>
+<br />
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://1.bp.blogspot.com/-XPo9ExXB6MU/UUwoiyIS6ZI/AAAAAAAAGnA/Pd4ElscDf40/s1600/prop_imp.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="640" src="http://1.bp.blogspot.com/-XPo9ExXB6MU/UUwoiyIS6ZI/AAAAAAAAGnA/Pd4ElscDf40/s640/prop_imp.png" width="640" /></a></div>
+<br />
+<span style="font-family: inherit;">As it turns out that this type of classifier performs rather well on the very homogenous set that makes up ChEMBL. Our models consistently achieved a sensitivity of 0.91 an specificity of about 0.94 with MCC about 0.85.</span></div>
+<div style="text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;"><br />
+</span></div>
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://2.bp.blogspot.com/-j-H407HqkAs/UUr1nGzMY_I/AAAAAAAAGmc/AwNjD5TB1oQ/s1600/validation50-50.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><span style="font-family: Trebuchet MS, sans-serif;"><img border="0" height="297" src="http://2.bp.blogspot.com/-j-H407HqkAs/UUr1nGzMY_I/AAAAAAAAGmc/AwNjD5TB1oQ/s400/validation50-50.png" width="400" /></span></a></div>
+<div style="text-align: justify;">
+<br />
+<b><i><span style="font-family: inherit;">So let's make it more interesting...</span></i></b></div>
+<div style="text-align: justify;">
+<span style="font-family: inherit;">So now that we have this method we can try some interesting exercises. We decided to train a model on ChEMBL-10 and use that to try and predict if the papers included <i>exclusively</i> in release 15 would be correctly classified, and in fact it did, but with a little lower accuracy (Sensitivity 0.81, specificity 0.94 and MCC 0.76). So this would mean that, while the method works, these models are not perfect.</span></div>
+<div style="text-align: justify;">
+<span style="font-family: inherit;"><br />
+</span></div>
+<div style="text-align: justify;">
+<span style="font-family: inherit;">However, we have previously decided to abstract from a relatively small set of SAR data rich journals, and have maintained this selection over time, so this result is no big deal. The real proof of concept however is a validation on completely different papers. Those that our not part of the normal ChEMBL body but might still contain interesting information to be abstracted. Here we used a set of papers (556) that have been included in BindingDB but are not in ChEMBL. The goal is to see what fraction of papers is actually retrieved by our text mining model. In total 513 of the 550 are actually flagged as ChEMBL-like (corresponding to a sensitivity of about 0.92). </span></div>
+<div style="text-align: justify;">
+<span style="font-family: inherit;"><br />
+</span></div>
+<div style="text-align: justify;">
+<span style="font-family: inherit;">However, the results should still be taken with caution, as the majority of the ChEMBL papers are from J. Med. Chem. (A) and Bioorg. Med. Chem. Lett. (B). These display a different profile than for&nbsp;instance&nbsp;the papers from J. Nat. Prod. (C,&nbsp;see below for the 10 top words for each of these). Still the term 'compounds' appears in all (and was also essential in our model further up). But this also points to opportunities to develop similar pipelines, sitting off PubMed updates looking for Natural Product bioactivity containing literature.</span></div>
+<div style="text-align: justify;">
+<br /></div>
+<div class="separator" style="clear: both; text-align: justify;">
+<a href="http://3.bp.blogspot.com/-dTNrw_Oe9sg/UUr28WT1RYI/AAAAAAAAGmk/GJK0Kq8R7Bg/s1600/journals.tif" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><span style="font-family: Trebuchet MS, sans-serif;"><img border="0" height="99" src="http://3.bp.blogspot.com/-dTNrw_Oe9sg/UUr28WT1RYI/AAAAAAAAGmk/GJK0Kq8R7Bg/s640/journals.tif" width="640" /></span></a></div>
+<div style="text-align: justify;">
+<br /></div>
+<div style="text-align: justify;">
+<b><i><span style="font-family: inherit;">In conclusion...</span></i></b></div>
+<div style="text-align: justify;">
+<span style="font-family: inherit;">In summary, we are very happy with this approach to document classification as it significantly increases our productivity. Currently this a approach is applied in our in house curation interface (more on this in the future, but it is cool), an ongoing project of Rita Santos (more on this later, but it is cool), and the identification of&nbsp;protein-family-like (e.g. GPCR-related) publications.</span></div>
+<div style="text-align: justify;">
+<span style="font-family: inherit;"><br />
+</span></div>
+<div style="text-align: justify;">
+<span style="font-family: inherit;">If you think this is interesting work please get in touch! We would be more than happy to share the PP protocols / KNIME workflows developed in house and more of our experiences doing this exercise. </span></div>
+<div style="text-align: justify;">
+<span style="font-family: inherit;"><br />
+</span></div>
+<div style="text-align: justify;">
+<span style="font-family: inherit;">Gerard &amp; George</span></div>
+</div>

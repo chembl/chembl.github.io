@@ -1,0 +1,52 @@
+---
+layout: post
+title: Document Similarity in ChEMBL - 1
+date: '2013-09-25T12:35:00.000+01:00'
+author: George Papadatos
+tags:
+- Programming
+- Chembl Releases
+- Interfaces
+- Databases
+modified_time: '2013-09-26T16:36:18.602+01:00'
+thumbnail: http://4.bp.blogspot.com/-_nlxGF3M1wI/UkGWVgTeJZI/AAAAAAAAAOs/41WP8SaqsVc/s72-c/graph.png
+blogger_id: tag:blogger.com,1999:blog-2546008714740235720.post-1454769533448884441
+blogger_orig_url: http://chembl.blogspot.com/2013/09/document-similarity-in-chembl.html
+---
+
+<div dir="ltr" style="text-align: left;" trbidi="on">
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://4.bp.blogspot.com/-_nlxGF3M1wI/UkGWVgTeJZI/AAAAAAAAAOs/41WP8SaqsVc/s1600/graph.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><span style="font-family: Trebuchet MS, sans-serif;"><img border="0" height="371" src="http://4.bp.blogspot.com/-_nlxGF3M1wI/UkGWVgTeJZI/AAAAAAAAAOs/41WP8SaqsVc/s640/graph.png" width="640" /></span></a></div>
+<div style="text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;"><br /></span></div>
+<div style="text-align: justify;">
+<span style="font-family: inherit;">Many of you will have noticed a new section on the <a href="https://www.ebi.ac.uk/chembl/" target="_blank">ChEMBL</a> interface, specifically at the Document Report Card page, called <i>Related Documents</i>. It consists of a table listing the links for up to 5 other ChEMBL documents (<i>i.e.</i> publications aka papers) that are scored to be the most similar to the one featured in the report card. Here's an <a href="https://www.ebi.ac.uk/chembl/doc/inspect/CHEMBL1156931" target="_blank">example</a>.&nbsp;</span></div>
+<div style="text-align: justify;">
+<span style="font-family: inherit;"><br /></span></div>
+<div style="text-align: justify;">
+<span style="font-family: inherit;">How does this work? There are examples of related documents sections online, <i>e.g.</i> in PubMed or in various journal publishers' websites. Document 'related-ness' or similarity can be assessed by comparing <a href="http://www.nlm.nih.gov/mesh/" target="_blank">MeSH</a> keywords or by clustering documents using TF-IDF weighted term vectors. Fortunately, ChEMBL puts a lot of effort in manually extracting and curating the compounds and biological targets from publications, so why not using these as descriptors to assess document similarity instead - as far as we know this is the first time this approach has been implemented?</span></div>
+<div style="text-align: justify;">
+<span style="font-family: inherit;"><br /></span></div>
+<div style="text-align: justify;">
+<span style="font-family: inherit;">So, here's how it works:</span></div>
+<div style="text-align: justify;">
+<span style="font-family: inherit;"><br /></span></div>
+<div style="text-align: justify;">
+<span style="font-family: inherit;">Firstly, for each document in ChEMBL, its list of references is retrieved using the excellent EuropePMC <a href="http://europepmc.org/RestfulWebService" target="_blank">web services</a>. By considering documents as nodes which are connected with an edge if one paper cites the other, a directed graph structure emerges. By doing this for all ~50K documents in ChEMBL, you get the massive graph illustrated above in Cytoscape. As a bonus, by measuring the in- and out- degree of the nodes, one could check which are the most cited papers in ChEMBL - but that's the topic of another blog post. This graph could be further annotated with protein target families, authors and institutions, as it has been elegantly done <a href="http://tech.knime.org/book/network-examples/author-network" target="_blank">here</a>.</span></div>
+<div style="text-align: justify;">
+<span style="font-family: inherit;"><br /></span></div>
+<div style="text-align: justify;">
+<span style="font-family: inherit;">Moving on, once a relationship between two documents is established, we need a way to quantify their similarity. As hinted above, we used the normalised overlap of compounds and targets reported in the two documents. This is done using the classic <a href="http://en.wikipedia.org/wiki/Tanimoto_coefficient#Tanimoto_coefficient_.28extended_Jaccard_coefficient.29" target="_blank">Tanimoto coefficient</a>, so if doc A reports compounds (1,2,3) and doc B reports compounds (3,4,5), their compound Tanimoto similarity T is 1/5 or 0.2. Exactly the same applies for the target-based document similarity. The composite score we use to rank docs in the Related Documents section is simply the maximum of the two individual ones.</span></div>
+<div style="text-align: justify;">
+<span style="font-family: inherit;"><br /></span></div>
+<div style="text-align: justify;">
+<span style="font-family: inherit;">What does all that mean in practice? It means that 2 papers are listed as similar if they their reported compounds or biological targets overlap significantly (and one cites the other). For example, papers with follow-up experiments on the same candidate drug will be deemed similar, e.g. this <a href="https://www.ebi.ac.uk/chembl/doc/inspect/CHEMBL1255500" target="_blank">one</a>. The same will apply to two papers that involve kinase panel screening assays. A desirable side-effect is that by following the links, the tenacious user may traverse the whole graph displayed above!&nbsp;</span></div>
+<div style="text-align: justify;">
+<span style="font-family: inherit;"><br /></span></div>
+<div style="text-align: justify;">
+<span style="font-family: inherit;"><br /></span></div>
+<div style="text-align: justify;">
+<span style="font-family: inherit;">George &amp; Mark&nbsp;</span></div>
+<div style="text-align: justify;">
+<br /></div>
+</div>

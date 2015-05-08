@@ -1,0 +1,51 @@
+---
+layout: post
+title: An overview and invitation to contribute to ChEMBL curation with PPDMs
+date: '2014-11-04T13:12:00.001Z'
+author: felix
+tags: 
+modified_time: '2014-11-04T13:15:06.011Z'
+thumbnail: http://1.bp.blogspot.com/-10ZbXNf9gWE/VFfQ5-CwP-I/AAAAAAAAAsk/H95Zf3tXAoQ/s72-c/dom_poisoning.png
+blogger_id: tag:blogger.com,1999:blog-2546008714740235720.post-5148291614401099983
+blogger_orig_url: http://chembl.blogspot.com/2014/11/an-overview-and-invitation-to-join.html
+---
+
+PPDMs has been in the making for more than a year and is a follow-up on a <a href="http://www.biomedcentral.com/1471-2105/13/S17/S11">conference paper</a> we published in 2012. As in 2012, our objective is to map small molecule binding sites to protein domains, the structural units that form recurring building blocks in the evolution of proteins. An <a href="http://bioinformatics.oxfordjournals.org/content/early/2014/10/26/bioinformatics.btu711.abstract">application note</a> describing PPDMs is just out in <i>Bioinformatics</i>. <br />
+<br />
+<b>Mapping small molecule binding to protein domains</b><br />
+<br />
+The mapping facilitates the functional interpretation of small molecule-protein interactions - if you understand which domain in a protein is targeted, you are in a better position to anticipate the downstream effect.&nbsp; Mapping small molecule binding to protein domains also provides a technical advantage to machine-learning approaches that incorporate protein sequence information as a descriptor to predict small molecule bioactivity. Reducing the sequence descriptor to the part that mediates small molecule binding increases the informative content of the descriptor. This is best exemplified by the domain-poisoning problem, illustrated below.<br />
+<table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody>
+<tr><td style="text-align: center;"><a href="http://1.bp.blogspot.com/-10ZbXNf9gWE/VFfQ5-CwP-I/AAAAAAAAAsk/H95Zf3tXAoQ/s1600/dom_poisoning.png" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" src="http://1.bp.blogspot.com/-10ZbXNf9gWE/VFfQ5-CwP-I/AAAAAAAAAsk/H95Zf3tXAoQ/s1600/dom_poisoning.png" height="221" width="400" /></a></td></tr>
+<tr><td class="tr-caption" style="text-align: center;">Result of a hypothetical query using as input the rat Tyrosine-protein phosphatase Syp (P35235) - and one of the hits, retrieved from a BLAST query against the ChEMBL target dictionary - the rat Tyrosine-protein kinase SYK (Q64725). The significant e-value for this query results from high scoring alignments of the SH2 domains. At the same time, the overlap between small molecules binding both proteins is expected to be low.</td></tr>
+</tbody></table>
+<br />
+<b>A simple heuristic</b><br />
+<br />
+For individual experiments, it is often quite trivial to decide which domain was targeted. For example, medicinal chemists know whether their compound is a kinase inhibitor or one of <a href="http://pubs.rsc.org/en/Content/ArticleLanding/2013/CS/c3cs35449k#!divAbstract">a handful</a> of SH2 inhibitors. This knowledge, while easily gleaned by the expert, is implicit and cannot be accessed programmatically. Hence we were motivated to implement a solution that could achieve this across as many measured bioactivities as possible.<br />
+<br />
+Our initial implementation of mapping small molecules to protein domains consisted of a simple heuristic: Identify domains with known small molecule interaction and use these domains as a look-up when mapping measured bioactivities to protein domains. This process is illustrated in the figure below.<br />
+<br />
+<table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody>
+<tr><td style="text-align: center;"><a href="http://3.bp.blogspot.com/-16oJUmATGfE/VFfQVvvvn8I/AAAAAAAAAsc/Ec9Mj0ZA7k8/s1600/ppdms_flow.png" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" src="http://3.bp.blogspot.com/-16oJUmATGfE/VFfQVvvvn8I/AAAAAAAAAsc/Ec9Mj0ZA7k8/s1600/ppdms_flow.png" height="180" width="400" /></a></td></tr>
+<tr><td class="tr-caption" style="text-align: center;">A catalogue of validated domains was extracted from assays against single-domain proteins (step 1, 2) and projected onto measured bioactivities in ChEMBL (step 3). Three possible outcomes are: i) A successful mapping if exactly one of the Pfam-A domain models from the catalogue matches the sequence; ii) No mapping if none of the Pfam-A domain models from the catalogue match the sequence; iii) A conflicting mapping if multiple domain models from the catalogue match the sequence.</td></tr>
+</tbody></table>
+Despite its simplicity, this method works surprisingly well, owing to the fact that protein domains that are relevant to drug discovery are prioritised in Pfam-A model curation. Another factor that contributes here is the conservative route taken by many drug discovery projects that focus on targets that are in well characterised protein families. However, as illustrated by the cases labelled ii) and iii), some constellations are not covered by the simple heuristic. <br />
+<b><br />A public platform to review and improve mappings</b><br />
+<br />
+Measured activities in ChEMBL falling into category iii) from the illustration above amount to only a fraction of the total but often reflect interesting biology. DHFR-TS for example is a multi-functional enzyme combining both a DHFR and Thymidylate_synt domain that occurs in the group of <a href="http://en.wikipedia.org/wiki/Bikont">bikonts</a>, which includes <i>Trypanosoma</i> and <i>Plasmodium</i>. In humans (and all metazoa), these domains occur as separate enzymes. <br />
+<table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody>
+<tr><td style="text-align: center;"><a href="http://2.bp.blogspot.com/-Oi_vB77hL00/VFfP6zgN45I/AAAAAAAAAsU/az_Gj05JeKs/s1600/dhfr_ts.png" style="margin-left: auto; margin-right: auto;"><img border="0" src="http://2.bp.blogspot.com/-Oi_vB77hL00/VFfP6zgN45I/AAAAAAAAAsU/az_Gj05JeKs/s1600/dhfr_ts.png" height="123" width="320" /></a></td></tr>
+<tr><td class="tr-caption" style="text-align: center;">Small molecule inhibitors exist for both domains, DHFR (yellow, with Pyrimethamine) and Thymidylate synthase (blue, with Deoxyuridine monophosphate).</td></tr>
+</tbody></table>
+We built <a href="https://www.ebi.ac.uk/chembl/research/ppdms/pfam_maps/">PPDMs</a> as a platform to resolve such cases. PPDMs aggregates information that supports manual mapping assignments based on medicinal chemistry knowledge. New mappings can be&nbsp; committed to the PPDMs logs and then transferred to the ChEMBL database in future releases. <br />
+<br />
+The <a href="https://www.ebi.ac.uk/chembl/research/ppdms/pfam_maps/conflicts/">Conflicts</a> section on the website summarises conflicts (cases that correspond to category iii as discussed above) that were encountered when the mapping was applied to measured activities in the ChEMBL database and offers an interface to resolve them. <br />
+<br />
+The <a href="https://www.ebi.ac.uk/chembl/research/ppdms/pfam_maps/evidence/">Evidence</a> section provides the full catalogue of domains for which we found evidence of small molecule binding. Evidence for the majority of domains in this list is provided in the form of measured bioactivities in ChEMBL, while in a few cases we provide a reference to the literature. These are cases where well-known domains occur exclusively in multi-domain architectures, such as 7tm_2 and 7tm_3. The catalogue can be downloaded in full from this section.<br />
+<br />
+PPDMs also provides <a href="https://www.ebi.ac.uk/chembl/research/ppdms/pfam_maps/logs/portal/">logs</a> of individual assignments - these can be queried by date, user and comments left when the assignment was made. A log of all assigned mappings can be downloaded from this section. Another way to review assigned mappings is through the <a href="https://www.ebi.ac.uk/chembl/research/ppdms/pfam_maps/resolved/">Resolved</a> section, where assignments are grouped by domain architecture.<br />
+<br />
+We invite everyone with an interest in the matter to sign up with PPDMs, whether it's simply for playing around, resolving remaining conflicts, or reviewing existing assignments.&nbsp; Please <a href="http://www.ebi.ac.uk/about/people/felix-kruger">get in touch</a> and we'll sort out a login for you!<br />
+<br />
+felix

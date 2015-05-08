@@ -1,0 +1,38 @@
+---
+layout: post
+title: Rainbow tables for InChI keys - are they of any practical use?
+date: '2012-10-23T09:10:00.001+01:00'
+author: John Overington
+tags:
+- Some Of The Interesting Things You'll See On A Long Distance Flight
+modified_time: '2012-10-23T14:40:45.731+01:00'
+thumbnail: http://4.bp.blogspot.com/-GInIE7mx7Fg/UIZEAURcc5I/AAAAAAAACM8/PFqq2q3JXRY/s72-c/UnicornRainbow.jpg
+blogger_id: tag:blogger.com,1999:blog-2546008714740235720.post-3317899479096111850
+blogger_orig_url: http://chembl.blogspot.com/2012/10/rainbow-tables-for-inchi-keys-are-they.html
+---
+
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://4.bp.blogspot.com/-GInIE7mx7Fg/UIZEAURcc5I/AAAAAAAACM8/PFqq2q3JXRY/s1600/UnicornRainbow.jpg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="320" src="http://4.bp.blogspot.com/-GInIE7mx7Fg/UIZEAURcc5I/AAAAAAAACM8/PFqq2q3JXRY/s320/UnicornRainbow.jpg" width="276" /></a></div>
+<br />
+I love computer security stuff - 'love' in the sense of really interested with no real competence. If I could have a parallel professional life, it would be as a forensic accountant &nbsp;- now that would be exciting ;)<br />
+<br />
+Here's an example of a Standard InChI to Standard InChI key transform, for the natural product morphine. The InChI key is a hash of the long InChI with a whole host of usability benefits.<br />
+<br />
+<pre>InChI=1S/C17H19NO3/c1-18-7-6-17-10-3-5-13(20)16(17)21-15-12(19)4-2-9(14(15)17)8-11(10)18/h2-5,10-11,13,16,19-20H,6-8H2,1H3/t10-,11+,13-,16-,17-/m0/s1 -&gt; BQJCRHHNABKAKU-KBQPJGBKSA-N</pre>
+<br />
+Anyway, one thing I recently started to think about is the Standard InChI to InChI key hash. This is widely viewed as a one-way function in that it is not possible to reconstruct the chemical structure from the hash - outside of a simple dictionary-based attack (so if you have a database of 2-D structures with precalculated keys, it's trivial to do the reverse lookup). The InChI key algorithm was not designed as a cryptographic hash, but it does a good job of condensing the long meta-character stuffed InChI into a short web friendly ASCII string with good collision properties - yes, there are some known duplicate hashes for different molecules, but they are believed to be rare; and if you can't handle these cases in systems you build, perhaps you should try a different job ;)<br />
+<br />
+However, converting an InChI key back into a real structure is an important task, and there are many public and private services to do this - all essentially based on an extant dictionary lookup - of course these cover the majority of current common use cases, but not some of the more crazy innovative cases where you want to deliberately explore/search novel chemical space.<br />
+<br />
+So, what does the world of password cracking teach us about this problem? Well, one cool thing is the development of <a href="http://en.wikipedia.org/wiki/Rainbow_tables">Rainbow Tables</a> - essentially very large tables of precomputed hashes for a given password space. So it seems to me, that in principle, you could exhaustively enumerate molecules (given composition and chemical stability common sense constraints) then build an InChI rainbow table to perform arbitrary lookups (within the original constraints). The size of the possible password and chemical spaces are sort of comparable, and already the password cracking community have applied GPU processing, highly optimised code, and you could also think of adding crowdsourcing as the way of generating additional computing resource to get the job done.<br />
+<br />
+An example of the sort of software that handles this sort of thing in the password cracking space is <a href="http://project-rainbowcrack.com/">RainbowCrack</a>.<br />
+<br />
+Something like GDB-13 (and higher) would be a great place to start for the initial seed structures, applying some frequent med-chem transforms to these using an simple empirical rule-base is also another interesting way to extend these towards more medchem friendly/optimised chemotypes. Imagine what we could do when we get to GDB-25 or so!<br />
+<br />
+Once you had this InChI Rainbow table you would have an unmatchable InChI resolver. Extension of this concept to include salts (not literal as in chemistry, but literal as in password strengthening) open up some interesting opportunities for secure, blind data sharing based around a salted-InChI key - but that is for another day, over dinner, when I've had some Merlot.....<br />
+<br />
+If anyone is interested in an internship on this sort of thing, using our large (~22K node) farm, and large storage (~15 PB) infrastructure here, get in touch.<br />
+<br />
+<br />
+As a final aside, the 'parent compound', 'salt form' of compound pair has a lot of similarities to the salting used in password strengthening, the odd thing is that the salt complexity in chemicals is relatively small (chloride, sodium, malate, <i>etc</i>), so the salt complexity is only a few bits (8 bits would be 255 salts) compared to the 48 to 128 bit salts of typical passwords. So an interesting subproblem is the generation of salted-hashed-forms of anions/cations. This is quite funny if you think about it - really it is!

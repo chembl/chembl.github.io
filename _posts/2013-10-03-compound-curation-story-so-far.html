@@ -1,0 +1,85 @@
+---
+layout: post
+title: Compound Curation - The story so far...
+date: '2013-10-03T12:43:00.000+01:00'
+author: Louisa
+tags:
+- ChEMBL Curation Notes
+- Compound Clean Up
+modified_time: '2013-10-05T12:10:01.490+01:00'
+thumbnail: http://3.bp.blogspot.com/-fAW8yQiA2uM/Uk2otu9VpjI/AAAAAAAAAK8/lHMvD9H_JUk/s72-c/bbc.jpg
+blogger_id: tag:blogger.com,1999:blog-2546008714740235720.post-6290855555507225083
+blogger_orig_url: http://chembl.blogspot.com/2013/10/compound-curation-story-so-far.html
+---
+
+<div class="separator" style="clear: both; text-align: center;">
+</div>
+<br />
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://3.bp.blogspot.com/-fAW8yQiA2uM/Uk2otu9VpjI/AAAAAAAAAK8/lHMvD9H_JUk/s1600/bbc.jpg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="192" src="http://3.bp.blogspot.com/-fAW8yQiA2uM/Uk2otu9VpjI/AAAAAAAAAK8/lHMvD9H_JUk/s320/bbc.jpg" width="320" /></a></div>
+<br />
+<div class="MsoNormal" style="text-align: justify; text-justify: inter-ideograph;">
+<span lang="EN-US">As chemical curator for ChEMBL, I spend a lot of time
+processing, checking and standardising the compounds in the database. I
+use various pieces of software for this, but mostly it’s&nbsp;<a href="http://accelrys.com/products/pipeline-pilot/" target="_blank">Pipeline Pilot</a>. For
+those of you who don’t know, Pipeline Pilot is Accelrys’s graphical scientific
+workflow authoring application, that allows passing hundreds of thousands
+of compounds through various components to make sure they meet our standards to
+be loaded into ChEMBL.<o:p></o:p></span></div>
+<div class="MsoNormal" style="text-align: justify; text-justify: inter-ideograph;">
+<br /></div>
+<div class="MsoNormal" style="text-align: justify; text-justify: inter-ideograph;">
+<span lang="EN-US">However, it’s always incredibly useful to utilise other available software in a complementary manner to see if anything
+may have been missed, could be done in a different way or just to see what alternative results
+you can get. One such open source software package is <a href="http://www.ggasoftware.com/opensource/indigo" target="_blank">Indigo</a>, created by <a href="http://www.ggasoftware.com/" target="_blank">GGA Software Services</a>. On of the web
+application developers was passing all of the ChEMBL compounds through
+the standard Indigo loader, <i>via</i> a Python script, during the course of his work, and found that there
+were about 9,000 compounds (0.7% of the current database) that failed to be loaded. The list of exceptions was then examined to see where the errors had come from. An important learning here is that different tool kits will throw different exceptions, since these structures were all happy within the PP environment.<o:p></o:p></span></div>
+<div class="MsoNormal" style="text-align: justify; text-justify: inter-ideograph;">
+<br /></div>
+<div class="MsoNormal" style="text-align: justify; text-justify: inter-ideograph;">
+<span lang="EN-US">The reasons
+they had failed were as follows:<o:p></o:p></span></div>
+<div class="MsoNormal" style="text-align: justify; text-justify: inter-ideograph;">
+<br /></div>
+<div class="MsoNormal" style="text-align: justify; text-justify: inter-ideograph;">
+<span lang="EN-US">1. The presence of a wiggly (query) bond<o:p></o:p></span></div>
+<div class="MsoNormal" style="text-align: justify; text-justify: inter-ideograph;">
+<span lang="EN-US">2. Two stereo bonds connected to one chiral centre<o:p></o:p></span></div>
+<div class="MsoNormal" style="margin-left: 36.0pt; text-align: justify; text-justify: inter-ideograph;">
+<span lang="EN-US">This was split into two sections: <o:p></o:p></span></div>
+<div class="MsoNormal" style="margin-left: 36.0pt; text-align: justify; text-justify: inter-ideograph;">
+<span lang="EN-US">Firstly, where the two bonds effectively
+canceled each other out and no stereochemistry was recorded at that centre.<o:p></o:p></span></div>
+<div class="MsoNormal" style="margin-left: 36.0pt; text-align: justify; text-justify: inter-ideograph;">
+<span lang="EN-US">Secondly, where the stereochemistry was present
+at that centre but having the two stereo bonds is against <a href="http://pac.iupac.org/publications/pac/pdf/2006/pdf/7810x1897.pdf" target="_blank">IUPAC drawing standards</a>.<o:p></o:p></span></div>
+<div class="MsoNormal" style="text-align: justify; text-justify: inter-ideograph;">
+<span lang="EN-US">3. Presence of a stereo bond when there’s no chiral centre<o:p></o:p></span></div>
+<div class="MsoNormal" style="text-align: justify; text-justify: inter-ideograph;">
+<br /></div>
+<div class="MsoNormal" style="text-align: justify; text-justify: inter-ideograph;">
+<span lang="EN-US">Some examples of typical scenarios are shown below:<o:p></o:p></span></div>
+<div class="MsoNormal" style="text-align: justify; text-justify: inter-ideograph;">
+<span lang="EN-US"><br /></span></div>
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://1.bp.blogspot.com/-zZ0MXzuvlIM/Uk1OBnobTFI/AAAAAAAAAKs/mryUTos86qw/s1600/compounds.jpg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="202" src="http://1.bp.blogspot.com/-zZ0MXzuvlIM/Uk1OBnobTFI/AAAAAAAAAKs/mryUTos86qw/s640/compounds.jpg" width="640" /></a></div>
+<div class="MsoNormal" style="text-align: justify; text-justify: inter-ideograph;">
+<br /></div>
+<div class="MsoNormal" style="text-align: justify; text-justify: inter-ideograph;">
+<span lang="EN-US">From this Indigo check, I was able to extract and fix these compounds, a lot of which won’t have new standard InChIs, just updated molfiles (i.e. they will keep their CHEMBL ID). For most of these compounds, to confirm the changes that I was going to make, I went back to the original published literature. It is interesting to note that the majority of compounds with the two stereo bonds on a single chiral centre had been extracted exactly as they had been drawn in the paper.&nbsp;<o:p></o:p></span></div>
+<div class="MsoNormal" style="text-align: justify; text-justify: inter-ideograph;">
+<br /></div>
+<div class="MsoNormal" style="text-align: justify; text-justify: inter-ideograph;">
+<span lang="EN-US">These changes will be visible in ChEMBL_18 and I am aiming to
+incorporate this Indigo loader into our standard compound cleanup and loading protocol. This will probably be implemented under the Indigo toolkit extension that is found in <a href="http://www.knime.org/" target="_blank">Knime</a>.<o:p></o:p></span></div>
+<div class="MsoNormal" style="text-align: justify; text-justify: inter-ideograph;">
+<br /></div>
+<div class="MsoNormal" style="text-align: justify; text-justify: inter-ideograph;">
+<span lang="EN-US">Any questions or queries about what I have done, please feel free to
+email:&nbsp;</span><a href="mailto:Chembl-help@ebi.ac.uk">Chembl-help@ebi.ac.uk</a></div>
+<div class="MsoNormal" style="text-align: justify; text-justify: inter-ideograph;">
+<span lang="EN-US"><a href="mailto:Chembl-help@ebi.ac.uk"><br /></a></span>
+Louisa</div>
+<div class="MsoNormal" style="text-align: justify; text-justify: inter-ideograph;">
+<br /></div>

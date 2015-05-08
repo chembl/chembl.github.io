@@ -1,0 +1,269 @@
+---
+layout: post
+title: Drug and Targets
+date: '2012-07-13T09:13:00.002+01:00'
+author: John Overington
+tags:
+- Databases
+- Some Of The Interesting Things You'll See On A Long Distance Flight
+modified_time: '2012-07-15T06:23:35.715+01:00'
+thumbnail: http://4.bp.blogspot.com/-h0H1rCSCiso/T__XZOXd0kI/AAAAAAAAB_M/nbcCuetlB4c/s72-c/2hmi_mode1.gif
+blogger_id: tag:blogger.com,1999:blog-2546008714740235720.post-121286501442424976
+blogger_orig_url: http://chembl.blogspot.com/2012/07/drug-and-targets.html
+---
+
+<br />
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://4.bp.blogspot.com/-h0H1rCSCiso/T__XZOXd0kI/AAAAAAAAB_M/nbcCuetlB4c/s1600/2hmi_mode1.gif" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="240" src="http://4.bp.blogspot.com/-h0H1rCSCiso/T__XZOXd0kI/AAAAAAAAB_M/nbcCuetlB4c/s320/2hmi_mode1.gif" width="320" /></a></div>
+<div class="MsoNormal">
+<br /></div>
+<div class="MsoNormal">
+<br /></div>
+<div class="MsoNormal">
+‘<b style="mso-bidi-font-weight: normal;">HIV reverse
+transcriptase is the target of aciclovir</b>’ – easy to say and it’s sort of
+correct - it’s the sort of statement that in the vernacular of drug discovery,
+most people would accept without the blink of an eye. This sentence strikes at
+the core of the concept of a <i style="mso-bidi-font-style: normal;">target</i>
+(HIV reverse transcriptase) for a <i style="mso-bidi-font-style: normal;">drug</i>
+(aciclovir). However, there is much detail under this simple statement that
+captures some of the complexities of the representation and storage of
+bioactivity data.<o:p></o:p></div>
+<div class="MsoNormal">
+<br /></div>
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://2.bp.blogspot.com/-Jvdlba2BfBw/T__YV4W3hkI/AAAAAAAAB_U/tRgca2Ytc2E/s1600/220px-Aciclovir_standard.svg.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="http://2.bp.blogspot.com/-Jvdlba2BfBw/T__YV4W3hkI/AAAAAAAAB_U/tRgca2Ytc2E/s1600/220px-Aciclovir_standard.svg.png" /></a></div>
+<div class="MsoNormal">
+<o:p><br /></o:p></div>
+<div class="MsoNormal">
+<o:p><br /></o:p></div>
+<div class="MsoNormal">
+<a href="http://en.wikipedia.org/wiki/Aciclovir">Aciclovir</a> is an inhibitor of HIV replication, so it is
+targeted to the virus itself – and indeed this can be a useful way of
+thinking about the mechanism and effect of aciclovir (and all other
+antiretroviral drugs). We know a lot about HIV-replication and infection, of
+which the reverse transcriptase function is an essential part, shared across all retroviruses, and is the process that aciclovir
+blocks. Due to the intense research on this devastating pathogen, we know a lot
+of detail about HIV (there was a striking paper on Nature on this a few years
+ago) and this ‘systems-level’ information can also be represented in terms of a
+network/pathway, in a resource like Reactome. Being able to tag this pathway
+with a drug is a useful thing to do as well – but we are typically interested
+in the more molecular and biochemical aspects of how a drug works – the
+molecular basis of it’s action.<o:p></o:p></div>
+<div class="MsoNormal">
+<br /></div>
+<div class="MsoNormal">
+Firstly – HIV is a name of a family of viruses, HIV-1 and
+HIV-2 being the major forms, each of these can be further classified into subtypes/strains, e.g. HIV-1<sub>A</sub>, and within each of these strains, it’s appropriate to
+think of an infected person as containing a constantly changing ensemble of
+sub-strains. The entire family is related in sequence, but the key point is
+that the sequences differ - between HIV-1 and HIV-2 the differences are
+relatively substantial, and between the particular pool of viruses within a
+patient they are typically minor differences. So how should you store the
+organism/target (and an associated particular sequence) for this case?<o:p></o:p></div>
+<div class="MsoNormal">
+<br /></div>
+<div class="MsoNormal">
+A comfort here is that it, in most cases, doesn’t really
+matter – any sequence of a native HIV-1 virus is basically OK, since aciclovir
+will <i style="mso-bidi-font-style: normal;">probably</i> usefully inhibit these,
+and the affinity/potency differences will be negligible. In fact, aciclovir is
+active as an inhibitor against both the HIV-1 and HIV-2 viruses. A big, big
+exception though is for strains of virus that have been under selective
+pressure following treatment with aciclovir – clinically resistant sequences
+are rapidly selected, and here the most frequent sequence in an infected
+individual will have significantly lower binding affinity for aciclovir.
+Usually these differences are near the drug-binding site, but not always. So
+for cases like this, it makes sense to try and store the sequence of the
+resistant strain – but of course each drug will have it’s own ensemble of
+resistant strains, and so it becomes complex. However, in order to understand
+selectivity profiles and risks, the management of these differences is crucial
+– as it is for intra-human sequence variation.<o:p></o:p></div>
+<div class="MsoNormal">
+<br /></div>
+<div class="MsoNormal">
+So, HIV-1 is a virus, it has a genome, and some sequences,
+there are a number of genes within HIV-1 – XXXX of them, and the major ones are
+env, gag, and pol (there are also a bunch of others including, tat, rev, vpr,
+vif, nef, vpu and tev). These genes were named after the envelope,
+group-specific antigen, and polymerase functions early in the study of HIV-1.
+It turns out that the reverse transcriptase (RT) is part of the pol gene, and
+the pol gene also encodes the integrase and proteinase (both also the ‘targets’
+of clinically successful drugs). The key word here is ‘part of’. <o:p></o:p></div>
+<div class="MsoNormal">
+<br /></div>
+<div class="MsoNormal">
+RT is part of the pol gene – it requires cleavage from the
+precursor polyprotein to become catalytically active (and to be inhibited by
+aciclovir). The cleavage from the polyprotein is performed by a specific
+proteinase encoded in the HIV-1 genome (called PR) – this proteolytic activity
+is essential, and there are a class of drugs targeted against HIV-1 PR. So the
+gene sequence itself doesn’t contain all the information to capture the
+functional activity of RT – you need to know the sequence of the mature
+protein.<o:p></o:p></div>
+<div class="MsoNormal">
+<br /></div>
+<div class="MsoNormal">
+It’s a little bit more complex than that though – the
+functional RT is actually an obligate dimer of two RT sequences – and a little
+more complicated than that yet, it isn’t a homo-dimer (two identical chains)
+but a heterodimer made up of two different length chains called p81 and p73
+(the numbers refer to the approximate sizes of the proteins from early gel
+experiments).<o:p></o:p></div>
+<div class="MsoNormal">
+<br /></div>
+<div class="MsoNormal">
+So, we’re getting there, slowly. <b style="mso-bidi-font-weight: normal;">‘The p51/p66 RT heterodimer of HIV-1<sub>A</sub> is the target of aciclovir’</b>
+is better.<o:p></o:p></div>
+<div class="MsoNormal">
+<br /></div>
+<div class="MsoNormal">
+Of course, in an ideal database, we’d need to be able to
+store this target information in a usable form, that can then be generalised to
+new systems. This isn’t just some nerdery, this detailed representation is
+essential for things like docking, understanding the consequences of mutations,
+etc.<o:p></o:p></div>
+<div class="MsoNormal">
+<br /></div>
+<div class="MsoNormal">
+We know the 3-D structure of the mature dimeric form of
+HIV-1 RT and it is in fact composed of a series of distinct structural domains,
+and ligand binding is often associated with binding to a specific domain within
+these multidomain sequences. So storing the ligand binding domain(s) is a
+useful thing too, if you want to be able to generalise the observations across
+new data.<o:p></o:p></div>
+<div class="MsoNormal">
+<br /></div>
+<div class="MsoNormal">
+Enough of the target for now!<o:p></o:p></div>
+<div class="MsoNormal">
+<br /></div>
+<div class="MsoNormal">
+Now, let's think about the drug for a moment – aciclovir –
+an old drug, rescued from it’s original application as a potential anti-cancer
+to an anti-viral. Is aciclovir an inhibitor of this functional heterodimer?<o:p></o:p></div>
+<div class="MsoNormal">
+<br /></div>
+<div class="MsoNormal">
+No. It isn’t.<o:p></o:p></div>
+<div class="MsoNormal">
+<br /></div>
+<div class="MsoNormal">
+What is an inhibitor though is an active metabolite of
+aciclovir – specifically the triphosphate form. Aciclovir is an example of a
+prodrug – inactive (against it’s efficacy target) in the dosed form, and
+requiring specific metabolic events to occur before it is active against it’s
+target.<o:p></o:p></div>
+<div class="MsoNormal">
+<br /></div>
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://2.bp.blogspot.com/-GeX62qGMgco/T__YiSD_kUI/AAAAAAAAB_c/Rf2DuBDtTs8/s1600/Unknown.jpeg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="http://2.bp.blogspot.com/-GeX62qGMgco/T__YiSD_kUI/AAAAAAAAB_c/Rf2DuBDtTs8/s1600/Unknown.jpeg" /></a></div>
+<div class="MsoNormal">
+<o:p><br /></o:p></div>
+<div class="MsoNormal">
+<o:p><br /></o:p></div>
+<div class="MsoNormal">
+<b style="mso-bidi-font-weight: normal;">‘The p51/p66 RT
+heterodimer of HIV-1<sub>A</sub> is the target of active metabolite of aciclovir’</b> is
+getting there.<o:p></o:p></div>
+<div class="MsoNormal">
+<br /></div>
+<div class="MsoNormal">
+More nerdery you cry – well no. If you wanted to discover
+computationally that aciclovir was useful as a drug for HIV – you’d need to
+know (or store) the active triphosphate form (there are also come intermediate
+forms on the way to the triphosphate that should probably be considered too).
+Of course, the body also ‘sees’ the originally dosed aciclovir, so you may want
+to store that to, dock it to host proteins for side effects, etc.</div>
+<div class="MsoNormal">
+<o:p></o:p></div>
+<div class="MsoNormal">
+<br /></div>
+<div class="MsoNormal">
+At this stage we’ve probably got a detailed enough
+representation of the drug-target complex to allow us to do some reliable and
+useful things with the data.<o:p></o:p></div>
+<div class="MsoNormal">
+<br /></div>
+<div class="MsoNormal">
+It is worth going to a higher level of detail though, since
+it illustrates another important point.<o:p></o:p></div>
+<div class="MsoNormal">
+<br /></div>
+<div class="MsoNormal">
+Aciclovir triphosphate binds in a specific binding site of
+HIV-1 RT, at the catalytic site – this is definitively known from enzymatic and
+structural studies, since aciclovir is a nucleoside analogue, this site is
+known as the nucleoside site. Sequence changes around this nucleoside site can
+rapidly be selected for to give rise to resistant variants. Knowing where the
+drug aciclovir binds can aid both sequence/resistance analysis studies, 3-D
+modelling, and also help in docking experiments, since it’s possible to focus
+studies on a known functional site.<o:p></o:p></div>
+<div class="MsoNormal">
+<br /></div>
+<div class="MsoNormal">
+There’s a second class of drug, NNRTIs – non-nucleoside
+reverse transcriptase inhibitors. Prototypical of these is efiravenz. These are
+very different in chemical structure to nucleoside analogues, and in fact bind
+at a different site – an ‘allosteric’ site, that isn’t formed until the ligand
+binds. Resistance can a does arise for this class of inhibitor too, but because
+the drug binds at a different site, a different constellation of residues is
+involved in resistance. &nbsp;Interestingly,
+this site doesn’t exist at all in the closely related HIV-2 enzyme, and so
+NNRTIs are essentially inactive against HIV-2.<o:p></o:p></div>
+<div class="MsoNormal">
+<br /></div>
+<div class="MsoNormal">
+So this site is allosteric – what does this mean – well
+since the structure of the protein varies during ligand binding – it is
+important to keep track of these different possible conformational states –
+essential if one wants to do docking, etc.&nbsp;
+At the tip of this target taxonomy we have to think about a particular
+conformational substrate of a protein.<o:p></o:p></div>
+<div class="MsoNormal">
+<br /></div>
+<div class="MsoNormal">
+So there are two target sites in HIV RT, the nucleoside and
+the NNRTI site, so perhaps we should state….<o:p></o:p></div>
+<div class="MsoNormal">
+<br /></div>
+<div class="MsoNormal">
+<b style="mso-bidi-font-weight: normal;">‘The nucleoside
+binding site of p51/p66 RT heterodimer of HIV-1<sub>A</sub> is the target of active
+metabolite of aciclovir’<o:p></o:p></b><br />
+<b style="mso-bidi-font-weight: normal;"><br /></b><br />
+<b style="mso-bidi-font-weight: normal;"><br /></b><br />
+Another away to think about this is as a hierarchy<br />
+<br />
+Aciclovir triphosphate is a....<br />
+<ul>
+<li>Retrovirus replication inhibitor</li>
+<li>HIV replication inhibitor</li>
+<li>HIV-1<sub>A</sub> replication inhibitor</li>
+<li>Reverse Transcriptase Inhibitor</li>
+<li>p55/p61 RT inhibitor</li>
+<li>nucleoside site binder</li>
+</ul>
+</div>
+<div class="MsoNormal">
+<br /></div>
+<div class="MsoNormal">
+Imagine for a second that ‘HIV-3’ is sequenced, and we need
+a new drug quickly – we can sequence the genome pretty quickly and cheaply
+nowadays, but hopefully the complexity above will show that the transformation
+from the gene sequence to a useful object to be analysed as a target is a
+complex one, requiring a lot of tacit knowledge of the particular system.<o:p></o:p></div>
+<div class="MsoNormal">
+<br /></div>
+<div class="MsoNormal">
+Don’t worry, not everything is as complicated as this
+example, and it is one of my favourites, since there are so many twists and
+turns in this particular case. But you must, you simply must, now be wondering
+how we currently do, and in the future will, cope with this sort of thing in
+ChEMBL. Well – that will be the subject of a future post!<o:p></o:p></div>
+<div class="MsoNormal">
+<br /></div>
+<div class="MsoNormal">
+If there’s interest, I can add references and some
+background links to this post – let me know if you’d be interested in the
+comments.<o:p></o:p></div>

@@ -1,0 +1,51 @@
+---
+layout: post
+title: Drug Side Effect Prediction and Validation
+date: '2012-06-12T11:01:00.000+01:00'
+author: John Overington
+tags:
+- Books and Papers
+modified_time: '2012-06-12T11:15:28.151+01:00'
+thumbnail: http://2.bp.blogspot.com/-HPdVigpnvzo/T9cNf9Yc-5I/AAAAAAAAB4M/OZe0CyzTX0I/s72-c/whatworks.jpg
+blogger_id: tag:blogger.com,1999:blog-2546008714740235720.post-8591218859800656161
+blogger_orig_url: http://chembl.blogspot.com/2012/06/drug-side-effect-prediction-and.html
+---
+
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://2.bp.blogspot.com/-HPdVigpnvzo/T9cNf9Yc-5I/AAAAAAAAB4M/OZe0CyzTX0I/s1600/whatworks.jpg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="320" src="http://2.bp.blogspot.com/-HPdVigpnvzo/T9cNf9Yc-5I/AAAAAAAAB4M/OZe0CyzTX0I/s320/whatworks.jpg" width="260" /></a></div>
+<br />
+There's a <a href="http://www.nature.com/nature/journal/vaop/ncurrent/full/nature11159.html">paper just published in Nature</a> getting a lot of coverage on the internet at the moment from Novartis/UCSF, and for good reason - but as the cartoon above states, it will probably have less impact than news on Justin Bieber's new haircut, or the latest handbags from Christian Lacroix. It uses the SEA target prediction method, trained using <a href="http://www.ebi.ac.uk/chembl">ChEMBL</a> bioactivity data in order to predict new targets (and then by association side effects) for existing drugs. These are then experimentally tested, and the results confirmed in a number of cases - this experimental validation is clearly complex and expensive, so it is great news that<i> in silico</i> methods can start to generate realistic and testable hypotheses for adverse drug reactions (there are also positive side effects too, and these are pretty interesting to look for using these methods as well).<br />
+<br />
+The use of SEA as the target prediction method was inevitable given the authors involved, but following up on some presentations at this springs National ACS meeting in San Diego. There would also seem to be clear benefits in including other methods into linking a compound to a target - nearest neighbour using simple Tanimoto measures, and naive Bayes/ECFPP type approaches. The advantage of the SEA approach is that it seems to generalise better (sorry I can't remember who gave the talk on this), and so probably can make more comprehensive/complete predictions, and be less tied to the training data (in this case ChEMBL) - however as databases grow, these predictions will get a lot better. There will also be big improvements possible if other data adopts the same basic data model as ChEMBL (or something like the services in <a href="http://www.openphacts.org/">OpenPHACTS</a>), so methods can pool across different data sources, including proprietary in-house data.<br />
+<br />
+There are probably papers being written right now about a tournament/consensus multi-method approach to target prediction using an ensemble of the above methods. (If such a paper uses random forests, and I get asked to review it, it will be carefully stored in /dev/null) ;)<br />
+<br />
+So some things I think are useful improvements to this sort of approach.<br />
+<br />
+1) Inclusion of the functional assays from ChEMBL in predictions (i.e. don't tie oneself to a simple molecular target assay). The big problem here though is that although pooling of target bioassay data is straightforward - pooling/clustering of functional data is not.<br />
+2) Where do you set affinity thresholds, and how do the affinities related to the pharmacodyamics of the side-effects. My view is that there will be some interesting analyses of ChEMBL that maybe, just maybe, allow one to address this issue. Remember, we know quite a lot about the exposure of the human body, to &nbsp;a given drug at a given dose level...<br />
+3) Consideration of (active) metabolites. It's pretty straightforward now to predict structures of likely metabolites (not at a quantitative level though) and this may be useful in drugs that are extensively metabolised <i>in vivo</i>.<br />
+<br />
+Anyway, finish off with some eye-candy, a picture from the paper (hopefully allowed under fair use!).<br />
+<br />
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://4.bp.blogspot.com/-V_yxYU_Ma_A/T9cR0H2SIMI/AAAAAAAAB4c/P0Zp9Ec_K6U/s1600/side-effects.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="156" src="http://4.bp.blogspot.com/-V_yxYU_Ma_A/T9cR0H2SIMI/AAAAAAAAB4c/P0Zp9Ec_K6U/s320/side-effects.png" width="320" /></a></div>
+<br />
+And here's a reference to the paper, in good old Bell AT&amp;T labs <a href="http://en.wikipedia.org/wiki/Refer_(software)">refer</a> format - Mendeley-Schmendeley as my mother used to say when I was a boy.<br />
+<pre></pre>
+<pre>%T Large-scale prediction and testing of drug activity on side-effect targets
+%A E. Lounkine
+%A M.J. Keiser
+%A S. Whitebread
+%A D. Mikhailov
+%A J. Hamon
+%A J.L. Jenkins
+%A P. Lavan
+%A E. Weber
+%A A.K. Doak
+%A S. Côté
+%A B.K. Shoichet
+%A L. Urban
+%J Nature
+%D 2012
+%O doi:10.1038/nature11159</pre>

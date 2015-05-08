@@ -1,0 +1,54 @@
+---
+layout: post
+title: Compound Sets and Availability
+date: '2013-08-02T02:34:00.000+01:00'
+author: John Overington
+tags:
+- Databases
+modified_time: '2013-08-02T02:34:01.828+01:00'
+thumbnail: http://3.bp.blogspot.com/-jA7GuwowgCA/UfsJ9DSWzyI/AAAAAAAADFg/U9B8qdmeWiw/s72-c/ice-cream-post.jpg
+blogger_id: tag:blogger.com,1999:blog-2546008714740235720.post-8145022985357300606
+blogger_orig_url: http://chembl.blogspot.com/2013/08/compound-sets-and-availability.html
+---
+
+<br />
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://3.bp.blogspot.com/-jA7GuwowgCA/UfsJ9DSWzyI/AAAAAAAADFg/U9B8qdmeWiw/s1600/ice-cream-post.jpg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="250" src="http://3.bp.blogspot.com/-jA7GuwowgCA/UfsJ9DSWzyI/AAAAAAAADFg/U9B8qdmeWiw/s400/ice-cream-post.jpg" width="400" /></a></div>
+<br />
+<span style="letter-spacing: 0px;"><span style="font-family: inherit;">Chemical databases come in many different types and flavours, and given that we now have <a href="http://www.ebi.ac.uk/unichem">UniChem</a> up and running, and it is being actively used by at least some of you, our minds have turned a little to describing these ‘flavours’ and ‘resolutions’. One of the key things a user is interested in is how easy is it to get hold of a compound, since this is usually a key filter applied to actually doing anything with the results of a database search. The cost implications of needing to commission synthesis, or potentially try and develop new synthetic methodology to a compound are substantial, and there is a substantial literature on the computational assessment of synthetic accessibility (<i>q.v.</i>).</span></span><br />
+<div style="min-height: 14px;">
+<span style="font-family: inherit;"><span style="letter-spacing: 0.0px;"></span><br /></span></div>
+<span style="letter-spacing: 0.0px;"><span style="font-family: inherit;">So, here is a simple five state classification that reflects the typical availability of a compounds in a chemical collection.</span></span><br />
+<ol>
+<li style="margin: 0px;"><span style="letter-spacing: 0.0px;"><span style="font-family: inherit;">A compound has been previously been synthesized and is readily available from chemical vendors.</span></span></li>
+<li style="margin: 0px;"><span style="letter-spacing: 0.0px;"><span style="font-family: inherit;">A compound has been previously synthesized but would require resynthesis.</span></span></li>
+<li style="margin: 0px;"><span style="letter-spacing: 0.0px;"><span style="font-family: inherit;">A compound has not been previously synthesized, but close analogues have and the compound is likely to be readily synthesizable. This class of molecule is often associated with the phrase ‘virtual library’.</span></span></li>
+<li style="margin: 0px;"><span style="letter-spacing: 0.0px;"><span style="font-family: inherit;">A compound has not been previously synthesized, and effort would be required to think about synthetic access to the compound.</span></span></li>
+<li style="margin: 0px;">A compound is theoretically possible with respect to valence rules, but is so unstable that it is unlikely that it ever can be isolated in pure form and then experiments in a biofluid carried out.</li>
+</ol>
+<div style="min-height: 14px;">
+<span style="font-family: inherit; letter-spacing: 0px;">Of course, all these classifications are interesting, but you can do a lot more, a </span><i style="font-family: inherit; letter-spacing: 0px;">lot quicker and cheaper</i><span style="font-family: inherit; letter-spacing: 0px;"> if a compound is in set 1.</span></div>
+<div style="min-height: 14px;">
+<span style="font-family: inherit;"><span style="letter-spacing: 0.0px;"></span><br /></span></div>
+<span style="letter-spacing: 0.0px;"><span style="font-family: inherit;">As an estimate of the likely difference in cost between these different classes, I personally, would rate the cost differences, relative to set 1, as twenty fold for set 2, forty fold for set 3, and two hundred fold for set 4 - but these are just my estimates, and there will be a big variance in these costs dependent of the exact compound, its class, etc. Others will have better or different estimates of the average cost differences between the sets (comments welcome!).</span></span><br />
+<div style="min-height: 14px;">
+<span style="font-family: inherit;"><span style="letter-spacing: 0.0px;"></span><br /></span></div>
+<span style="letter-spacing: 0.0px;"><span style="font-family: inherit;">Because of the way that people have assembled chemical databases, entire primary databases tend to cluster in a similar way - for example <a href="http://www.ebi.ac.uk/chembl">ChEMBL</a> is mostly 2), <a href="http://www.drugbank.ca/">DrugBank</a> is mostly 1) and <a href="http://www.gdb.unibe.ch/gdb/home.html">GDB-17</a> is mostly 4). Directly from the above definition, every compound with a known bioactivity has to have been synthesized, and so ChEMBL will always be a 2) in this classification. Of course, some compounds in ChEMBL are readily available, but it is a clear minority.</span></span><br />
+<div style="min-height: 14px;">
+<span style="font-family: inherit;"><span style="letter-spacing: 0.0px;"></span><br /></span></div>
+<span style="letter-spacing: 0.0px;"><span style="font-family: inherit;">When people build federated chemical databases (those with little unique primary content, but primarily add value by bringing lots of feeder databases together; for example <a href="http://pubchem.ncbi.nlm.nih.gov/">PubChem</a> and <a href="http://www.chemspider.com/">ChemSpider</a>) the picture gets a little more complicated at a database level, since they are often blends of synthesized and ‘virtual’ compound sets. But the same need to indicate the availability/provenance of a structure is useful, and federated databases need to store the original primary database (which may or may not itself be available outside of the federated database).&nbsp;</span></span><br />
+<div style="min-height: 14px;">
+<span style="font-family: inherit;"><span style="letter-spacing: 0.0px;"></span><br /></span></div>
+<span style="letter-spacing: 0.0px;"><span style="font-family: inherit;">So, a couple of thoughts:</span></span><br />
+<br />
+<ul>
+<li><span style="font-family: inherit; letter-spacing: 0px;">Is this classification useful to apply to the contents of UniChem?&nbsp;</span></li>
+<li><span style="font-family: inherit; letter-spacing: 0px;">Is the following classification of the UniChem component databases useful and valid?</span></li>
+</ul>
+<span style="font-family: inherit; letter-spacing: 0px;"><ol>
+<li><span style="font-family: inherit; letter-spacing: 0px;">DrugBank, PDBe, IUPHAR, KEGG, ChEBI, Array_Express, NIH_NCC</span></li>
+<li><span style="font-family: inherit; letter-spacing: 0px;">ChEMBL, ZINC, eMolecules</span></li>
+<li><span style="font-family: inherit; letter-spacing: 0px;">IBM, Patents, SureChem (we don’t currently have GDB in UniChem, but if it was it would be in this set.</span></li>
+</ol>
+</span><br />
+<span style="letter-spacing: 0px;"><span style="font-family: inherit;">See <a href="http://www.ebi.ac.uk/unichem">UniChem</a> itself for more details of what is behind these set names.</span></span>

@@ -1,0 +1,62 @@
+---
+layout: post
+title: Django model describing ChEMBL database.
+date: '2014-10-27T16:43:00.000Z'
+author: kott
+tags:
+- Web Services
+- Databases
+modified_time: '2014-11-05T15:54:42.987Z'
+thumbnail: http://2.bp.blogspot.com/-uw0bJhySwXo/VE51-cINFPI/AAAAAAAAF0o/pEOt4pA9KDw/s72-c/django_poster_03.jpg
+blogger_id: tag:blogger.com,1999:blog-2546008714740235720.post-1641316800035378037
+blogger_orig_url: http://chembl.blogspot.com/2014/10/django-model-describing-chembl-database.html
+---
+
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://2.bp.blogspot.com/-uw0bJhySwXo/VE51-cINFPI/AAAAAAAAF0o/pEOt4pA9KDw/s1600/django_poster_03.jpg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="http://2.bp.blogspot.com/-uw0bJhySwXo/VE51-cINFPI/AAAAAAAAF0o/pEOt4pA9KDw/s1600/django_poster_03.jpg" height="320" width="236" /></a></div>
+<br />
+<br />
+<hr />
+<br />
+<b>TL;DR:</b> We have just open sourced our Django ORM Model, which describes the ChEMBL relational database schema. This means you no longer need to write another line of SQL code to interact with ChEMBL database. We think it is pretty cool and we are using it in the ChEMBL group to make our lives easier. Read on to find out more....<br />
+<br />
+<hr />
+<br />
+It is never a good idea to use SQL code directly in python. Let's see some basic examples explaining why:<br />
+<br />
+<script src="https://gist.github.com/mnowotka/d3a8ab87082d6868b8e8.js"></script><br />
+Can you see what is wrong with the code above? SQL keyword `JOIN` was misspelled as 'JION'. But it's hard to find it quickly because most of code highlighters will apply Python syntax rules and ignore contents of strings. In our case the string is very important as it contains SQL statement.<br />
+<br />
+The problem above can be easily solved using some simple Python SQL wrapper, such as <a href="https://code.google.com/p/edendb/">edendb</a>. This wrapper will provide set of functions to perform database operations for example 'select', 'insert', 'delete':<br />
+<br />
+<script src="https://gist.github.com/mnowotka/de84cb3aaf0bd25d8a6b.js"></script><br />
+Now it's harder to make a typo in any of SQL keywords because they are exposed to python so IDE should warn you about mistake.<br />
+<br />
+OK, time for something harder, can you find what's wrong here, assuming that this query is executed against chembl_19 schema:<br />
+<br />
+<script src="https://gist.github.com/mnowotka/d866c65667400211e01c.js"></script><br />
+Well, there are two errors: first of all `molecule_synonyms` table does not have a `synonims` column. The proper name is `synonyms`. Secondly, there is table name typo&nbsp; `molecule_synonyms`.<br />
+<br />
+This kind of error is even harder to find because we are dealing with python and SQL code that is syntactically correct. The problem is semantic and in order to find it we need to have a good understanding of the underlying data model, in this case the chembl_19 schema. But the ChEMBL database schema is fairly complicated (341 columns spread over 52 tables), are we really supposed to know it all by heart? Let's leave this rhetorical question and proceed to third example: how to query for compounds containing the substructure represented by 'O=C(Oc1ccccc1C(=O)O)C' SMILES:<br />
+<br />
+For Oracle this would be:<br />
+<br />
+<script src="https://gist.github.com/mnowotka/87209751a594c43f0030.js"></script><br />
+And for Postgres:<br />
+<br />
+<script src="https://gist.github.com/mnowotka/ed95191dd656fd6a30b8.js"></script><br />
+As you can see both queries are different, reasons for these differences are:<br />
+<ol>
+<li>Differences in Oracle and Postgres dialects</li>
+<li>Different chemical cartridges (Accelrys Direct and RDKit)</li>
+<li>Different names of auxiliary tables containing binary molecule objects</li>
+</ol>
+These queries are also more complicated than the previous examples as they require more table joins and they make calls to the chemical cartridge-specific functions.<br />
+<br />
+The example substructure search queries described above are similar to those used by the ChEMBL web services, which are available on EBI servers (Oracle backend) and in the <a href="http://chembl.blogspot.co.uk/2014/10/mychembl-19-released.html">myChEMBL VM</a> (PostgreSQL backend). Still, the web services work without any change to their code. How?<br />
+<br />
+All of the problems highlighted in this blogpost can be solved by the use of a technique known as Object Relational Mapping (ORM). ORM converts every table from database (for example 'molecule_dictionary') into Python class (MoleculeDictionary). Now it's easy to create a list of all available classes in Python module (by using 'dir' function) and check all available fields in class which corresponds to columns from SQL tables. This makes database programming easier and less error prone. The ORM also allows the code to work in a database agnostic manner and explains how we use the same codebase with Oracle and PostgreSQL backends.<br />
+<br />
+If this blogpost has convinced you to give the ORM approach a try, please take a look at our ChEMBL example also included in myChEMBL:<br />
+<br />
+<iframe frameborder="0" height="8500" src="https://mnowotka.github.io/notebooks/08_myChEMBL_Django_ORM.ipynb.html" width="100%"></iframe> 

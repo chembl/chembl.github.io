@@ -1,0 +1,167 @@
+---
+layout: post
+title: Unpacking a GPU computation server...Leviathan unleashed
+date: '2014-03-18T07:52:00.003Z'
+author: Gerard JP van Westen
+tags:
+- Some Of The Interesting Things You'll See On A Long Distance Flight
+modified_time: '2014-04-22T11:07:10.192+01:00'
+thumbnail: http://1.bp.blogspot.com/-CuXrks-rBd4/Uybs25cRlYI/AAAAAAAAPYM/IYmb1D8LDno/s72-c/tesla-k20-series.jpg
+blogger_id: tag:blogger.com,1999:blog-2546008714740235720.post-3110669010388004902
+blogger_orig_url: http://chembl.blogspot.com/2014/03/unpacking-gpu-computation.html
+---
+
+<div dir="ltr" style="text-align: left;" trbidi="on">
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://1.bp.blogspot.com/-CuXrks-rBd4/Uybs25cRlYI/AAAAAAAAPYM/IYmb1D8LDno/s1600/tesla-k20-series.jpg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="http://1.bp.blogspot.com/-CuXrks-rBd4/Uybs25cRlYI/AAAAAAAAPYM/IYmb1D8LDno/s1600/tesla-k20-series.jpg" height="263" width="320" /></a></div>
+<br />
+<b>What / why?</b><br />
+As you might know, EMBL-EBI has a very powerful cluster. Yet some time ago we were running into some limitations and were pondering on how great it would be if we had the ability to run more concurrent threads in a single machine (avoiding the bottleneck that inevitably appears on the network for some jobs).<br />
+<br />
+It turns out there is an answer, namely in the form of a GPU (graphics processing unit). This is the same type of chip that creates 3D graphics for games in your home PC / laptop. While the capabilities of individual calculation cores are relatively limited on GPUs compared to CPUs, they can have a massive amount of them in order to generate 3D environments at the speeds of 60 frames per second. Schematically it looks like this (CPU left, GPU right):<br />
+<br />
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://3.bp.blogspot.com/-1XTqTthwHGQ/UybyRaSUT-I/AAAAAAAAPYc/KaaP4am0Mlo/s1600/Screen+Shot+2014-03-17+at+12.59.43.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="http://3.bp.blogspot.com/-1XTqTthwHGQ/UybyRaSUT-I/AAAAAAAAPYc/KaaP4am0Mlo/s1600/Screen+Shot+2014-03-17+at+12.59.43.png" height="205" width="400" /></a></div>
+<div class="separator" style="clear: both; text-align: center;">
+<br /></div>
+<div class="separator" style="clear: both; text-align: left;">
+As you can see, the CPU can handle 8 threads concurrently, whereas the GPU can handle 2880 (<a href="http://www.youtube.com/watch?v=-P28LKWTzrI&amp;noredirect=1">see also this great youtube video by the myth busters</a>). We have all kinds of ideas of calculations we want to run on the GPUs (that have shown to work well in MD), but now first ... the geek tradition that is unboxing!</div>
+<div class="separator" style="clear: both; text-align: left;">
+<br /></div>
+<div class="separator" style="clear: both; text-align: left;">
+<b>Nvidia&nbsp;</b></div>
+<div class="separator" style="clear: both; text-align: left;">
+The guys at Nvidia were very generous and provided us with 5 GPUs (thanks to Mark Berger and Timothy Lanfaer). Tim was also very quick with technical questions concerning the hardware specs needed and software troubleshooting. Thanks again!</div>
+<div class="separator" style="clear: both; text-align: left;">
+<br /></div>
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://4.bp.blogspot.com/-oAGeUyUwNzk/UydQUJ0bn3I/AAAAAAAAPZQ/QaE5MCn9HB8/s1600/DSC02602.JPG" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="http://4.bp.blogspot.com/-oAGeUyUwNzk/UydQUJ0bn3I/AAAAAAAAPZQ/QaE5MCn9HB8/s1600/DSC02602.JPG" height="300" width="400" /></a></div>
+<div class="separator" style="clear: both; text-align: left;">
+<br /></div>
+<div class="separator" style="clear: both; text-align: left;">
+<br /></div>
+<div class="separator" style="clear: both; text-align: left;">
+<b>Unpacking</b></div>
+<div class="separator" style="clear: both; text-align: left;">
+At the EMBL-EBI people typically work with laptops or thin clients, and the cluster consists of blades so there was no place to put our GPUs. Yet, after a quick investigation we had a list of hardware we wanted and a big box was delivered two weeks ago !</div>
+<div class="separator" style="clear: both; text-align: left;">
+<br /></div>
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://3.bp.blogspot.com/-1els0bqCVE0/UydYuUJCtKI/AAAAAAAAPaM/bXK1i9KWV4w/s1600/IMG_20140228_092549.jpg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="http://3.bp.blogspot.com/-1els0bqCVE0/UydYuUJCtKI/AAAAAAAAPaM/bXK1i9KWV4w/s1600/IMG_20140228_092549.jpg" height="240" width="320" /></a></div>
+<div class="separator" style="clear: both; text-align: left;">
+<br /></div>
+<div class="separator" style="clear: both; text-align: left;">
+<br /></div>
+<div class="separator" style="clear: both; text-align: left;">
+Time to unpack...</div>
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://1.bp.blogspot.com/-pU68J-_xQzI/UydRlgLrOvI/AAAAAAAAPZc/KUkK1-bR0C8/s1600/DSC02604.JPG" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="http://1.bp.blogspot.com/-pU68J-_xQzI/UydRlgLrOvI/AAAAAAAAPZc/KUkK1-bR0C8/s1600/DSC02604.JPG" height="300" width="400" /></a></div>
+<div class="separator" style="clear: both; text-align: left;">
+<br /></div>
+<div class="separator" style="clear: both; text-align: left;">
+<br /></div>
+<div class="separator" style="clear: both; text-align: left;">
+So after opening and removing the hardware, we had a tower / 4u rackmountable chasis</div>
+<div class="separator" style="clear: both; text-align: left;">
+<br /></div>
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://3.bp.blogspot.com/-0yaDMNg35M0/UydT30vLY7I/AAAAAAAAPZo/PhY0Nh3L1fU/s1600/DSC02607.JPG" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="http://3.bp.blogspot.com/-0yaDMNg35M0/UydT30vLY7I/AAAAAAAAPZo/PhY0Nh3L1fU/s1600/DSC02607.JPG" height="300" width="400" /></a></div>
+<div class="separator" style="clear: both; text-align: left;">
+<br /></div>
+<div class="separator" style="clear: both; text-align: left;">
+<br /></div>
+<div class="separator" style="clear: both; text-align: left;">
+<br /></div>
+<div class="separator" style="clear: both; text-align: left;">
+Next up, placement of the GPUs inside the chassis:</div>
+<div class="separator" style="clear: both; text-align: left;">
+<br /></div>
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://1.bp.blogspot.com/-dwYyKPzUoKg/UydVHHu6Q9I/AAAAAAAAPZ0/izkv_eRr1tw/s1600/DSC02609.JPG" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="http://1.bp.blogspot.com/-dwYyKPzUoKg/UydVHHu6Q9I/AAAAAAAAPZ0/izkv_eRr1tw/s1600/DSC02609.JPG" height="300" width="400" /></a></div>
+<div class="separator" style="clear: both; text-align: left;">
+<br /></div>
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://3.bp.blogspot.com/-FMR804cshRk/UydoCCUV8CI/AAAAAAAAPa0/sO6XESNtwdc/s1600/DSC02621.JPG" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="http://3.bp.blogspot.com/-FMR804cshRk/UydoCCUV8CI/AAAAAAAAPa0/sO6XESNtwdc/s1600/DSC02621.JPG" height="300" width="400" /></a></div>
+<div class="separator" style="clear: both; text-align: center;">
+<br /></div>
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://4.bp.blogspot.com/-uqLt7vGr0o0/Uydq_hcCtUI/AAAAAAAAPbA/Etm1k4CTpSc/s1600/DSC02618.JPG" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="http://4.bp.blogspot.com/-uqLt7vGr0o0/Uydq_hcCtUI/AAAAAAAAPbA/Etm1k4CTpSc/s1600/DSC02618.JPG" height="300" width="400" /></a></div>
+<div class="separator" style="clear: both; text-align: left;">
+<br /></div>
+<div class="separator" style="clear: both; text-align: left;">
+Some tinkering was in order:</div>
+<div class="separator" style="clear: both; text-align: left;">
+<br /></div>
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://1.bp.blogspot.com/-qpgHiebnwC8/Uydie8Qc_tI/AAAAAAAAPac/R9apkKFcy6o/s1600/DSC02612.JPG" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="http://1.bp.blogspot.com/-qpgHiebnwC8/Uydie8Qc_tI/AAAAAAAAPac/R9apkKFcy6o/s1600/DSC02612.JPG" height="300" width="400" /></a></div>
+<div class="separator" style="clear: both; text-align: left;">
+<br /></div>
+<div class="separator" style="clear: both; text-align: left;">
+And finally we could boot and install the OS. We choose Ubuntu 12.04 LTS because of the stability, and availability many packages (with source code).&nbsp;</div>
+<div class="separator" style="clear: both; text-align: left;">
+<br /></div>
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://2.bp.blogspot.com/-u3y7EITeJPg/UydsDxQ-wWI/AAAAAAAAPbM/BS4UwmZTy5k/s1600/DSC02625.JPG" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="http://2.bp.blogspot.com/-u3y7EITeJPg/UydsDxQ-wWI/AAAAAAAAPbM/BS4UwmZTy5k/s1600/DSC02625.JPG" height="300" width="400" /></a></div>
+<div class="separator" style="clear: both; text-align: left;">
+<br /></div>
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://1.bp.blogspot.com/-XiqmKhSoT6o/UydklN86GrI/AAAAAAAAPao/dE0R46okh_o/s1600/DSC02624.JPG" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="http://1.bp.blogspot.com/-XiqmKhSoT6o/UydklN86GrI/AAAAAAAAPao/dE0R46okh_o/s1600/DSC02624.JPG" height="300" width="400" /></a></div>
+<div class="separator" style="clear: both; text-align: left;">
+<br /></div>
+<div class="separator" style="clear: both; text-align: left;">
+<br /></div>
+<div class="separator" style="clear: both; text-align: left;">
+<b>Leviathan?</b></div>
+<div class="separator" style="clear: both; text-align: left;">
+Just one question remains, why 'Leviathan'?&nbsp;</div>
+<div class="separator" style="clear: both; text-align: left;">
+<br /></div>
+<div class="separator" style="clear: both; text-align: left;">
+Given the availability of python based cuda packages, we will probably start there. Hence our server we be a very powerful incarnation of python, and what's more awe-inspiring than the Leviathan?</div>
+<div class="separator" style="clear: both; text-align: left;">
+<br /></div>
+<div class="separator" style="clear: both; text-align: left;">
+<b>CUDA running</b></div>
+<div class="separator" style="clear: both; text-align: left;">
+After some trouble getting the drivers to work (we use Ubuntu 12.04 LTS), Michal got everything up and running!</div>
+<div class="separator" style="clear: both; text-align: left;">
+<br /></div>
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://1.bp.blogspot.com/-RoqdmOI2BRM/UycLjYtKoJI/AAAAAAAAPY4/ou6AoGf4pkY/s1600/Screen+Shot+2014-03-17+at+14.34.26.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="http://1.bp.blogspot.com/-RoqdmOI2BRM/UycLjYtKoJI/AAAAAAAAPY4/ou6AoGf4pkY/s1600/Screen+Shot+2014-03-17+at+14.34.26.png" height="208" width="400" /></a></div>
+<div class="separator" style="clear: both; text-align: left;">
+<br /></div>
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://4.bp.blogspot.com/-8OIqaOnq3ws/UycLeZkptNI/AAAAAAAAPYw/ryR1rVaU1tw/s1600/Screen+Shot+2014-03-17+at+14.35.05.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="http://4.bp.blogspot.com/-8OIqaOnq3ws/UycLeZkptNI/AAAAAAAAPYw/ryR1rVaU1tw/s1600/Screen+Shot+2014-03-17+at+14.35.05.png" height="293" width="400" /></a></div>
+<div class="separator" style="clear: both; text-align: center;">
+<br /></div>
+<div class="separator" style="clear: both; text-align: center;">
+<span id="goog_552583"></span></div>
+<div class="separator" style="clear: both; text-align: left;">
+<b>Potential projects</b></div>
+<div class="separator" style="clear: both; text-align: left;">
+Some of the projects we will be starting with are CUDA based random forests, similarity matrix calculations, and compound clustering. If you have a good idea and would like to collaborate and co-publish, please contact us <i>via</i> email!</div>
+<div class="separator" style="clear: both; text-align: left;">
+<br /></div>
+<div class="separator" style="clear: both; text-align: left;">
+<b>Specs</b></div>
+<div class="separator" style="clear: both; text-align: left;">
+The server contains the following hardware:</div>
+<div class="separator" style="clear: both;">
+Case:<span class="Apple-tab-span" style="white-space: pre;"> </span>Supermicro GPU tower/4U server&nbsp;</div>
+<div class="separator" style="clear: both;">
+PSU:<span class="Apple-tab-span" style="white-space: pre;"> </span>1,620W Redundant PSU</div>
+<div class="separator" style="clear: both;">
+CPUs:<span class="Apple-tab-span" style="white-space: pre;"> 2*</span>Intel Xeon E5-2603 1.8GHz 4core&nbsp;</div>
+<div class="separator" style="clear: both;">
+RAM:&nbsp;<span class="Apple-tab-span" style="white-space: pre;"> </span>8*8GB Reg ECC DDR3 1600MHz&nbsp;</div>
+<div class="separator" style="clear: both;">
+Disk:<span class="Apple-tab-span" style="white-space: pre;"> 1*</span>2TB 3.5” SATA HDD</div>
+<div>
+GPUs:<span class="Apple-tab-span" style="white-space: pre;"> </span>1*Tesla K40; 2*Tesla K20 (one extra to be added later)</div>
+<div class="separator" style="clear: both; text-align: left;">
+<br /></div>
+<div class="separator" style="clear: both; text-align: left;">
+Michal &amp; Gerard</div>
+<div class="separator" style="clear: both; text-align: left;">
+<br /></div>
+</div>

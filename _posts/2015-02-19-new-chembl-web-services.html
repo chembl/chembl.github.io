@@ -1,0 +1,173 @@
+---
+layout: post
+title: 'New ChEMBL Web Services '
+date: '2015-02-19T14:37:00.000Z'
+author: kott
+tags:
+- Web Services
+modified_time: '2015-03-31T22:29:15.465+01:00'
+thumbnail: http://4.bp.blogspot.com/-DzAXz9gOwus/VNoyQMlcRYI/AAAAAAAAF4Q/aSacAHXYEF8/s72-c/good_better_best.jpg
+blogger_id: tag:blogger.com,1999:blog-2546008714740235720.post-1904940392499252199
+blogger_orig_url: http://chembl.blogspot.com/2015/02/new-chembl-web-services.html
+---
+
+<br />
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://4.bp.blogspot.com/-DzAXz9gOwus/VNoyQMlcRYI/AAAAAAAAF4Q/aSacAHXYEF8/s1600/good_better_best.jpg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="http://4.bp.blogspot.com/-DzAXz9gOwus/VNoyQMlcRYI/AAAAAAAAF4Q/aSacAHXYEF8/s1600/good_better_best.jpg" height="137" width="320" /></a></div>
+<br />
+<br />
+Following on from our recent <a href="http://chembl.blogspot.co.uk/2015/02/chembl-20-released.html">ChEMBL 20 release</a> we are pleased to announce an updated version of the <a href="https://www.ebi.ac.uk/chembl/ws">ChEMBL web services</a>. First things first, some of the most important bits of information:<br />
+<ul>
+<li>You can explore new resources using online documentation available here: <a href="https://www.ebi.ac.uk/chembl/api/data/docs">https://www.ebi.ac.uk/chembl/api/data/docs</a> </li>
+<li>The code is Apache 2.0 licensed and available on GitHub: <a href="https://github.com/chembl/chembl_webservices_2">https://github.com/chembl/chembl_webservices_2</a></li>
+<li>The basic URL for accessing web services is https://www.ebi.ac.uk/chembl/api/data/ so in order to retrieve some information about molecules, you would construct following URL: <a href="https://www.ebi.ac.uk/chembl/api/data/molecule">https://www.ebi.ac.uk/chembl/api/data/molecule</a></li>
+<li>The 'old' web services are still available, so any applications and code relying on these services will continue to work. We do encourage you to review and migrate any code which uses these services to the updated versions described in this blog post. </li>
+</ul>
+<h3>
+&nbsp;</h3>
+<h3>
+And now some short Q&amp;A session:</h3>
+<h3>
+&nbsp;</h3>
+<b>Q: But you already have web services available here: https://www.ebi.ac.uk/chemblws/ and they are sooo great, so why release something new?</b><br />
+<br />
+<b>A: </b>With each new ChEMBL release more and more tables are being added to the underlying database schema, which have not been reflected in the web services for a long time. Additionally we had many suggestions from our users, which we have tried to address where possible. So in order expose more data and provide new functionality, it made sense to release the new and improved ChEMBL web services. The table below summaries the most important differences between old and updated ChEMBL web services:&nbsp; <br />
+<br id="docs-internal-guid-90976c71-73c9-456d-972d-9b585b8c3b0b" />
+<div dir="ltr" style="margin-left: 0pt;">
+<table style="border-collapse: collapse; border: none; width: 602px;"><colgroup><col width="*"></col><col width="*"></col><col width="*"></col></colgroup><tbody>
+<tr style="height: 0px;"><td style="border-bottom: solid #000000 1px; border-left: solid #000000 1px; border-right: solid #000000 1px; border-top: solid #000000 1px; padding: 2px 2px 2px 2px; vertical-align: middle;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: Arial; font-size: 13px; font-style: normal; font-variant: normal; font-weight: bold; text-decoration: none; vertical-align: baseline;">Feature</span></div>
+</td><td style="border-bottom: solid #000000 1px; border-left: solid #000000 1px; border-right: solid #000000 1px; border-top: solid #000000 1px; padding: 2px 2px 2px 2px; vertical-align: middle;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: Arial; font-size: 13px; font-style: normal; font-variant: normal; font-weight: bold; text-decoration: none; vertical-align: baseline;">Original ChEMBL Web Services</span></div>
+</td><td style="border-bottom: solid #000000 1px; border-left: solid #000000 1px; border-right: solid #000000 1px; border-top: solid #000000 1px; padding: 2px 2px 2px 2px; vertical-align: middle;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: Arial; font-size: 13px; font-style: normal; font-variant: normal; font-weight: bold; text-decoration: none; vertical-align: baseline;">Updated ChEMBL Web Services</span></div>
+</td></tr>
+<tr style="height: 0px;"><td style="border-bottom: solid #000000 1px; border-left: solid #000000 1px; border-right: solid #000000 1px; border-top: solid #000000 1px; padding: 2px 2px 2px 2px; vertical-align: middle;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: Arial; font-size: 13px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Base URL</span></div>
+</td><td style="border-bottom: solid #000000 1px; border-left: solid #000000 1px; border-right: solid #000000 1px; border-top: solid #000000 1px; padding: 2px 2px 2px 2px; vertical-align: middle;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: Arial; font-size: 13px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">https://www.ebi.ac.uk/chemblws</span></div>
+</td><td style="border-bottom: solid #000000 1px; border-left: solid #000000 1px; border-right: solid #000000 1px; border-top: solid #000000 1px; padding: 2px 2px 2px 2px; vertical-align: middle;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: Arial; font-size: 13px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">https://www.ebi.ac.uk/chembl/api/data</span></div>
+</td></tr>
+<tr style="height: 0px;"><td style="border-bottom: solid #000000 1px; border-left: solid #000000 1px; border-right: solid #000000 1px; border-top: solid #000000 1px; padding: 2px 2px 2px 2px; vertical-align: middle;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: Arial; font-size: 13px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Number of resources</span></div>
+</td><td style="border-bottom: solid #000000 1px; border-left: solid #000000 1px; border-right: solid #000000 1px; border-top: solid #000000 1px; padding: 2px 2px 2px 2px; vertical-align: middle;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: Arial; font-size: 13px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">5</span></div>
+</td><td style="border-bottom: solid #000000 1px; border-left: solid #000000 1px; border-right: solid #000000 1px; border-top: solid #000000 1px; padding: 2px 2px 2px 2px; vertical-align: middle;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: Arial; font-size: 13px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">17</span></div>
+</td></tr>
+<tr style="height: 0px;"><td style="border-bottom: solid #000000 1px; border-left: solid #000000 1px; border-right: solid #000000 1px; border-top: solid #000000 1px; padding: 2px 2px 2px 2px; vertical-align: middle;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: Arial; font-size: 13px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Pagination</span></div>
+</td><td style="border-bottom: solid #000000 1px; border-left: solid #000000 1px; border-right: solid #000000 1px; border-top: solid #000000 1px; padding: 2px 2px 2px 2px; vertical-align: middle;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: Arial; font-size: 13px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">No</span></div>
+</td><td style="border-bottom: solid #000000 1px; border-left: solid #000000 1px; border-right: solid #000000 1px; border-top: solid #000000 1px; padding: 2px 2px 2px 2px; vertical-align: middle;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: Arial; font-size: 13px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Yes</span></div>
+</td></tr>
+<tr style="height: 0px;"><td style="border-bottom: solid #000000 1px; border-left: solid #000000 1px; border-right: solid #000000 1px; border-top: solid #000000 1px; padding: 2px 2px 2px 2px; vertical-align: middle;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: Arial; font-size: 13px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Filtering</span></div>
+</td><td style="border-bottom: solid #000000 1px; border-left: solid #000000 1px; border-right: solid #000000 1px; border-top: solid #000000 1px; padding: 2px 2px 2px 2px; vertical-align: middle;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: Arial; font-size: 13px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">No</span></div>
+</td><td style="border-bottom: solid #000000 1px; border-left: solid #000000 1px; border-right: solid #000000 1px; border-top: solid #000000 1px; padding: 2px 2px 2px 2px; vertical-align: middle;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: Arial; font-size: 13px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Yes</span></div>
+</td></tr>
+<tr style="height: 0px;"><td style="border-bottom: solid #000000 1px; border-left: solid #000000 1px; border-right: solid #000000 1px; border-top: solid #000000 1px; padding: 2px 2px 2px 2px; vertical-align: middle;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: Arial; font-size: 13px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Ordering</span></div>
+</td><td style="border-bottom: solid #000000 1px; border-left: solid #000000 1px; border-right: solid #000000 1px; border-top: solid #000000 1px; padding: 2px 2px 2px 2px; vertical-align: middle;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: Arial; font-size: 13px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">No</span></div>
+</td><td style="border-bottom: solid #000000 1px; border-left: solid #000000 1px; border-right: solid #000000 1px; border-top: solid #000000 1px; padding: 2px 2px 2px 2px; vertical-align: middle;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: Arial; font-size: 13px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Yes</span></div>
+</td></tr>
+<tr style="height: 0px;"><td style="border-bottom: solid #000000 1px; border-left: solid #000000 1px; border-right: solid #000000 1px; border-top: solid #000000 1px; padding: 2px 2px 2px 2px; vertical-align: middle;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: Arial; font-size: 13px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Raster Images</span></div>
+</td><td style="border-bottom: solid #000000 1px; border-left: solid #000000 1px; border-right: solid #000000 1px; border-top: solid #000000 1px; padding: 2px 2px 2px 2px; vertical-align: middle;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: Arial; font-size: 13px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Yes</span></div>
+</td><td style="border-bottom: solid #000000 1px; border-left: solid #000000 1px; border-right: solid #000000 1px; border-top: solid #000000 1px; padding: 2px 2px 2px 2px; vertical-align: middle;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: Arial; font-size: 13px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Yes</span></div>
+</td></tr>
+<tr style="height: 0px;"><td style="border-bottom: solid #000000 1px; border-left: solid #000000 1px; border-right: solid #000000 1px; border-top: solid #000000 1px; padding: 2px 2px 2px 2px; vertical-align: middle;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: Arial; font-size: 13px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Vector Images</span></div>
+</td><td style="border-bottom: solid #000000 1px; border-left: solid #000000 1px; border-right: solid #000000 1px; border-top: solid #000000 1px; padding: 2px 2px 2px 2px; vertical-align: middle;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: Arial; font-size: 13px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">No</span></div>
+</td><td style="border-bottom: solid #000000 1px; border-left: solid #000000 1px; border-right: solid #000000 1px; border-top: solid #000000 1px; padding: 2px 2px 2px 2px; vertical-align: middle;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: Arial; font-size: 13px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Yes</span></div>
+</td></tr>
+<tr style="height: 0px;"><td style="border-bottom: solid #000000 1px; border-left: solid #000000 1px; border-right: solid #000000 1px; border-top: solid #000000 1px; padding: 2px 2px 2px 2px; vertical-align: middle;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: Arial; font-size: 13px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;"><a href="https://en.wikipedia.org/wiki/JSONP">JSONP</a> support</span></div>
+</td><td style="border-bottom: solid #000000 1px; border-left: solid #000000 1px; border-right: solid #000000 1px; border-top: solid #000000 1px; padding: 2px 2px 2px 2px; vertical-align: middle;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: Arial; font-size: 13px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Yes</span></div>
+</td><td style="border-bottom: solid #000000 1px; border-left: solid #000000 1px; border-right: solid #000000 1px; border-top: solid #000000 1px; padding: 2px 2px 2px 2px; vertical-align: middle;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: Arial; font-size: 13px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Yes</span></div>
+</td></tr>
+<tr style="height: 0px;"><td style="border-bottom: solid #000000 1px; border-left: solid #000000 1px; border-right: solid #000000 1px; border-top: solid #000000 1px; padding: 2px 2px 2px 2px; vertical-align: middle;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: Arial; font-size: 13px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;"><a href="https://en.wikipedia.org/wiki/Cross-origin_resource_sharing">CORS</a> support</span></div>
+</td><td style="border-bottom: solid #000000 1px; border-left: solid #000000 1px; border-right: solid #000000 1px; border-top: solid #000000 1px; padding: 2px 2px 2px 2px; vertical-align: middle;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: Arial; font-size: 13px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Yes</span></div>
+</td><td style="border-bottom: solid #000000 1px; border-left: solid #000000 1px; border-right: solid #000000 1px; border-top: solid #000000 1px; padding: 2px 2px 2px 2px; vertical-align: middle;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: Arial; font-size: 13px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Yes</span></div>
+</td></tr>
+<tr style="height: 0px;"><td style="border-bottom: solid #000000 1px; border-left: solid #000000 1px; border-right: solid #000000 1px; border-top: solid #000000 1px; padding: 2px 2px 2px 2px; vertical-align: middle;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: Arial; font-size: 13px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Online Documentation</span></div>
+</td><td style="border-bottom: solid #000000 1px; border-left: solid #000000 1px; border-right: solid #000000 1px; border-top: solid #000000 1px; padding: 2px 2px 2px 2px; vertical-align: middle;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="color: magenta;"><a href="https://www.ebi.ac.uk/chemblws/docs"><span style="background-color: transparent; font-family: Arial; font-size: 13px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Yes</span></a></span></div>
+</td><td style="border-bottom: solid #000000 1px; border-left: solid #000000 1px; border-right: solid #000000 1px; border-top: solid #000000 1px; padding: 2px 2px 2px 2px; vertical-align: middle;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="color: magenta;"><a href="https://www.ebi.ac.uk/chembl/api/data/docs"><span style="background-color: transparent; font-family: Arial; font-size: 13px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Yes</span></a></span></div>
+</td></tr>
+<tr style="height: 0px;"><td style="border-bottom: solid #000000 1px; border-left: solid #000000 1px; border-right: solid #000000 1px; border-top: solid #000000 1px; padding: 2px 2px 2px 2px; vertical-align: middle;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: Arial; font-size: 13px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Python client library</span></div>
+</td><td style="border-bottom: solid #000000 1px; border-left: solid #000000 1px; border-right: solid #000000 1px; border-top: solid #000000 1px; padding: 2px 2px 2px 2px; vertical-align: middle;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: Arial; font-size: 13px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Yes</span></div>
+</td><td style="border-bottom: solid #000000 1px; border-left: solid #000000 1px; border-right: solid #000000 1px; border-top: solid #000000 1px; padding: 2px 2px 2px 2px; vertical-align: middle;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: Arial; font-size: 13px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Yes</span></div>
+</td></tr>
+<tr style="height: 0px;"><td style="border-bottom: solid #000000 1px; border-left: solid #000000 1px; border-right: solid #000000 1px; border-top: solid #000000 1px; padding: 2px 2px 2px 2px; vertical-align: middle;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: Arial; font-size: 13px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Available REST verbs</span></div>
+</td><td style="border-bottom: solid #000000 1px; border-left: solid #000000 1px; border-right: solid #000000 1px; border-top: solid #000000 1px; padding: 2px 2px 2px 2px; vertical-align: middle;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: Arial; font-size: 13px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">GET, POST</span></div>
+</td><td style="border-bottom: solid #000000 1px; border-left: solid #000000 1px; border-right: solid #000000 1px; border-top: solid #000000 1px; padding: 2px 2px 2px 2px; vertical-align: middle;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: Arial; font-size: 13px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">GET, POST</span></div>
+</td></tr>
+<tr style="height: 0px;"><td style="border-bottom: solid #000000 1px; border-left: solid #000000 1px; border-right: solid #000000 1px; border-top: solid #000000 1px; padding: 2px 2px 2px 2px; vertical-align: middle;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: Arial; font-size: 13px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Support for SMILES in GET</span></div>
+</td><td style="border-bottom: solid #000000 1px; border-left: solid #000000 1px; border-right: solid #000000 1px; border-top: solid #000000 1px; padding: 2px 2px 2px 2px; vertical-align: middle;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: Arial; font-size: 13px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Partial</span></div>
+</td><td style="border-bottom: solid #000000 1px; border-left: solid #000000 1px; border-right: solid #000000 1px; border-top: solid #000000 1px; padding: 2px 2px 2px 2px; vertical-align: middle;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: Arial; font-size: 13px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Full</span></div>
+</td></tr>
+</tbody></table>
+</div>
+<br />
+As you see, the most important difference are the number of new resources, for example we now&nbsp; include 'activity', 'cell_line', 'document' and many more. Existing resources (e.g. molecule, target, assay) have also been updated to include many new important attributes.<br />
+<br />
+Another useful feature is filtering, you can now for example retrieve all molecules with a molecule weight less than 300 Da and preferred name ending with 'nib' using following URL:<br />
+<a href="https://www.ebi.ac.uk/chembl/api/data/molecule?molecule_properties__mw_freebase__lte=300&amp;pref_name__iendswith=nib">https://www.ebi.ac.uk/chembl/api/data/molecule?molecule_properties__mw_freebase__lte=300&amp;pref_name__iendswith=nib</a>. You can apply filtering to every resource and filter by most of the fields belonging to given resource so for example targets that contain 'kinase' in pref_name would be: <a href="https://www.ebi.ac.uk/chembl/api/data/target?pref_name__contains=kinase">https://www.ebi.ac.uk/chembl/api/data/target?pref_name__contains=kinase</a>. Don't worry if you do not follow the filtering query language, there will be a separate blog post on this topic.<br />
+<br />
+<span class="short_text" id="result_box" lang="en"><span class="hps">Another</span> new (and much requested) <span class="hps">feature is the ability to easily retrieve multiple records from a resource. There are currently many ways to do this (filtering is one of them), but a more intuitive way is to get multiple records in bulk via the list of IDs. This is now possible, for example to retrieve ChEMBL molecules </span></span><span class="short_text" id="result_box" lang="en"><span class="hps"><span class="short_text" id="result_box" lang="en"><span class="hps">CHEMBL900, CHEMBL1096643 and CHEMBL1490</span></span>, you can use: <a href="https://www.ebi.ac.uk/chembl/api/data/molecule/set/CHEMBL900;CHEMBL1096643;CHEMBL1490">https://www.ebi.ac.uk/chembl/api/data/molecule/set/CHEMBL900;CHEMBL1096643;CHEMBL1490</a>.</span></span><br />
+<span class="short_text" id="result_box" lang="en"><span class="hps"><br />
+</span></span> <b><span class="short_text" id="result_box" lang="en"><span class="hps">Q: Are the updated ChEMBL web services compatible with the old ones?</span></span></b><br />
+<span class="short_text" id="result_box" lang="en"><span class="hps"><b>A:</b> No. The URLs patterns and </span></span><span class="short_text" id="result_box" lang="en"><span class="hps"><span class="short_text" id="result_box" lang="en"><span class="hps">responses returned by the web services</span></span> have changed, so they are not compatible. We recommend you review any code which currently consumes the old services and look to migrated to the updated version described here. </span></span><br />
+<span class="short_text" id="result_box" lang="en"><span class="hps"><br />
+</span></span> <b><span class="short_text" id="result_box" lang="en"><span class="hps">Q: But I have a lot of code that depends on the old web services! Will it break?</span></span></b><br />
+<span class="short_text" id="result_box" lang="en"><span class="hps"><b>A: </b>No. The old web services are still accessible and have been updated to serve data from ChEMBL 20 release. We will continue to support the old web services, but as part of </span></span><span class="short_text" id="result_box" lang="en"><span class="hps">our deprecation plan, we probably aim to stop supporting them by the end of the year. Please remember that the old code will always be available on <a href="https://github.com/chembl/chembl_webservices">GitHub</a> and PyPI, so it is possible to create your own instance. </span></span><br />
+<br />
+<span class="short_text" id="result_box" lang="en"><span class="hps">
+</span></span> <b><span class="short_text" id="result_box" lang="en"><span class="hps">Q: How can I retrieve large data sets in the updated ChEMBL web services</span></span></b><b><span class="short_text" id="result_box" lang="en"><span class="hps">?</span></span></b><br />
+<span class="short_text" id="result_box" lang="en"><span class="hps"><b>A:</b> </span></span><span class="short_text" id="result_box" lang="en"><span class="hps">You can now retrieve all entities of a given resource, for example </span></span><span class="short_text" id="result_box" lang="en"><span class="hps"><a href="https://www.ebi.ac.uk/chembl/api/data/molecule?molecule_properties__mw_freebase__lte=300&amp;pref_name__iendswith=nib">https://www.ebi.ac.uk/chembl/api/data/molecule</a> returns all molecules in ChEMBL. This is achieved by returning the data in 'pages'. In order to implement paging, data is now wrapped in an envelope</span></span><span class="short_text" id="result_box" lang="en"><span class="hps"><span class="short_text" id="result_box" lang="en"><span class="hps">(<span style="font-family: &quot;Courier New&quot;,Courier,monospace;">&lt;response&gt;</span> tag for XML output and outermost dictionary for JSON)</span></span>. Inside the envelope you can find collection of objects ('molecules' for molecule resource) and meta information looking like this:</span></span><br />
+<br />
+<br />
+<script src="https://gist.github.com/mnowotka/0851cf11c9897cae1bed.js"></script><br />
+<span class="short_text" id="result_box" lang="en"><span class="hps">Meta data provides information about current page: limit (how many objects can be on the page) and offset (serial number of the first object), as well as links to the previous and next page and total object count. Using the meta data it is now possible to loop through the large result set.</span></span><br />
+<span class="short_text" id="result_box" lang="en"><span class="hps"><br />
+</span></span> <b><span class="short_text" id="result_box" lang="en"><span class="hps">Q: Speaking about your python client library: will it include the old or the new version? Will it be backwards compatible?</span></span></b><br />
+<span class="short_text" id="result_box" lang="en"><span class="hps"><b>A:</b> Yes, </span></span><span class="short_text" id="result_box" lang="en"><span class="hps"><span class="short_text" id="result_box" lang="en"><span class="hps">version&nbsp; 0.8.x of the </span></span>chembl_webresource_client package includes support for the updated web services. In order to access them, use following line of code:</span></span><br />
+<span class="short_text" id="result_box" lang="en"><span class="hps"><br />
+</span></span> <script src="https://gist.github.com/mnowotka/e0eab812c152dff9a2ca.js"></script><br />
+<span class="short_text" id="result_box" lang="en"><span class="hps">If you list attributes of new_client object you will find that it contains all resources. The usage will be covered in separate blog post. We plan to drop support for the old services in version 0.9.x of the library, so the new_client will become default client.</span></span><br />
+<span class="short_text" id="result_box" lang="en"><span class="hps"><br />
+</span></span> <b><span class="short_text" id="result_box" lang="en"><span class="hps">Q: You claim that new web services supports GET and POST methods but online documentation lists only GET endpoints. I actually tried POST and I'm getting 405 Method now allowed error.</span></span></b><br />
+<span class="short_text" id="result_box" lang="en"><span class="hps"><b>A:</b> In the REST context GET, POST, PUT and DELETE are verbs meaning RETRIEVE, CREATE, UPDATE and DELETE accordingly. Because our web services are read-only we should only allow GET method. But GET has one very big limitation: all parameters (like identifiers, filtering, paging, ordering info) are appended to URL. All web servers (and some browsers) impose limits on URL length. In Apache, this limitation is 4000 characters by default. This means that if you want to get data about some (very) big molecule using SMILES as the identifier, it may happen that the resulting URL will be too long.</span></span><br />
+<span class="short_text" id="result_box" lang="en"><span class="hps"><br />
+</span></span> <span class="short_text" id="result_box" lang="en"><span class="hps">On the other hand, POST doesn't have this limitation as parameters are included in request body, not in URL. This is why we allow POST to retrieve data. But to be consistent with REST standard you have to let us now: 'OK, in this request I want to GET some data but I'm using POST just to pass more parameters'. In order to use it, just add header </span></span><span class="short_text" id="result_box" lang="en"><span class="hps"><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">X-HTTP-Method-Override:GET</span> to your POST request and you won't see 405 error anymore.</span></span><br />
+<br />
+<span class="short_text" id="result_box" lang="en"><span class="hps">We hope you find the update useful and if you experience any problems or have any questions please <a href="mailto:chembl-help@ebi.ac.uk">get in touch</a>.</span></span><br />
+<br />
+<span class="short_text" id="result_box" lang="en"><span class="hps">The ChEMBL Team </span></span>

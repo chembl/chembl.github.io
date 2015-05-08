@@ -1,0 +1,62 @@
+---
+layout: post
+title: RDKit and Raphael.js
+date: '2013-11-12T13:11:00.000Z'
+author: kott
+tags:
+- RDKit
+- Software
+modified_time: '2014-04-22T12:56:25.976+01:00'
+blogger_id: tag:blogger.com,1999:blog-2546008714740235720.post-5468029499170145191
+blogger_orig_url: http://chembl.blogspot.com/2013/11/rdkit-and-raphaeljs.html
+---
+
+<div class="separator" style="clear: both; text-align: center;">
+<a href="https://www.arvixe.com/images/landing_pages/raphaeljs_hosting.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="200" src="https://www.arvixe.com/images/landing_pages/raphaeljs_hosting.png" width="200" /></a></div>
+<br />
+<br />
+The ChEMBL group had the honour of hosting the second <a href="https://www.eventbrite.co.uk/e/2nd-rdkit-users-group-meeting-tickets-6321079519">RDKit UGM</a>. It was a great way to catch up with the RDKit community, find out about what they are working and learn about new features the toolkit offers. We gave two talks during the meeting, so if you want to know how Clippy can make interacting with different chemical formats on your desktop easier, go <a href="https://github.com/rdkit/UGM_2013/blob/master/Presentations/Papadatos_Clippy_RDKit_UGM2.pdf?raw=true">here</a>, and if you want to learn about wrapping RDKit up in a RESTful Web Service a.k.a. Beaker (to be described in future blog post), go <a href="https://github.com/rdkit/UGM_2013/blob/master/Presentations/Nowotka_ChEMBL%20beaker.pdf?raw=true">here</a>. Many discussions about new features RDKit could offer were had throughout the meeting and one which caught my attention was support for plotting compound images on <a href="https://en.wikipedia.org/wiki/Canvas_element">HTML5 Canvas</a>.<br />
+<br />
+Unable to participate in a hackathon held on the final day, I set about hosting my own small hackathon during the weekend (only 1 attendee). The result of this weekend coding effect was a <a href="https://github.com/rdkit/rdkit/pull/124">pull request</a> made against <a href="https://github.com/rdkit/rdkit">RDKit github repo</a>, introducing the new class called <a href="https://github.com/mnowotka/rdkit/blob/8c2446c01dc814c7267d2fb4d74badf6cb1665f2/rdkit/Chem/Draw/jsonCanvas.py">JSONCanvas</a>.<br />
+<br />
+<b>Technical Details</b><br />
+<br />
+As a general rule of the past, the model for generating image relies on 
+the server to sending a binary representation of the compound (e.g. 
+.png, .jpeg) to the client. With advances in browser technologies, it is
+ now feasible to rely on the client to generate the graphical 
+representation of the compound as it now has access to many methods, 
+which allows it to handle <span class="" id="result_box" lang="en"><span class="hps">geometrical primitives.</span></span><span class="" id="result_box" lang="en"><span class="hps"> It can decide if those primitives should be rendered as SVG, VML or even HTML5 Canvas (check out&nbsp; <a href="http://kineticjs.com/">Kinetic.js</a> for HTML5 canvas rendering, as it knows how to <a href="http://www.html5canvastutorials.com/kineticjs/html5-canvas-kineticjs-circle-tutorial/">draw some core shapes</a> on canvas).&nbsp;</span></span><br />
+<span class="" id="result_box" lang="en"><span class="hps"><br /></span></span>
+My solution uses <a href="http://raphaeljs.com/">Raphael.js</a> - a JavaScript library for drawing vector graphics in the browser. For displaying the graphic is uses <a href="https://en.wikipedia.org/wiki/Scalable_Vector_Graphics">SVG</a> on browsers that support this format. On older browsers it will fail over to <a href="https://en.wikipedia.org/wiki/Vector_Markup_Language">VML</a>. In the library documentation we can find a very interesting method called <a href="http://raphaeljs.com/reference.html#Paper.add">Paper.add()</a>. This method accepts <a href="https://en.wikipedia.org/wiki/JSON">JSON</a> containing an array of geometrical objects (such as circle, rectangle, path) to be displayed and returns a handle for manipulating (moving, rotating, scaling) the object as a whole. This means that if we could create a JSON object, which uses shapes to represent a chemical compound, we could draw it or manipulate the compound directly. The new  JSONCanvas class produces the previously described JSON object for any* given RDKit compound.<br />
+<br />
+<i>(*I am sure we might find a couple of exceptions)</i><br />
+<i><span class="" id="result_box" lang="en"><span class="hps"></span></span></i><span class="" id="result_box" lang="en"><span class="hps"><br />
+</span></span> <b><span class="" id="result_box" lang="en"><span class="hps">But why?</span></span></b><br />
+<span class="" id="result_box" lang="en"><span class="hps"><br />
+</span></span> <span class="" id="result_box" lang="en"><span class="hps">1. Cost - reduced server processing required to raster image and often third-party drawing libraries are also required.</span></span><br />
+<span class="" id="result_box" lang="en"><span class="hps"><br />
+</span></span> <span class="" id="result_box" lang="en"><span class="hps">2. Bandwidth - reduced bandwidth required to transfer JSON representation of compounds. Also, as it&nbsp; is text-based you can employ further compression (by configuring your server to send <a href="https://en.wikipedia.org/wiki/Gzip">gziped </a>JSON which most modern browsers understand) or using <a href="http://www.jamesward.com/2010/07/07/amf-js-a-pure-javascript-amf-implementation/">AMF</a>.</span></span><br />
+<span class="" id="result_box" lang="en"><span class="hps"><br />
+</span></span> <span class="" id="result_box" lang="en"><span class="hps">3. Accuracy - improved scaling quality made possible with vector graphics. </span></span><br />
+<span class="" id="result_box" lang="en"><span class="hps"><br />
+</span></span> <span class="" id="result_box" lang="en"><span class="hps">4. Interactivity - compounds rendered using JSON on the client side can handle standard events such as click, hover, etc. Complex operations (animating, sorting, dragging,...), can also be applied to these objects.</span></span><br />
+<br />
+<b>Usage</b><br />
+<br />
+As an example usage of this technique please look at our <a href="https://www.ebi.ac.uk/chembl/extra/vsg/">chemical game</a>. To give you some idea of scale and performance the game loads 1000 compounds when page first loads. If you want to see raw example please explore source of my <a href="http://mnowotka.github.io/demo/">demo page</a>. Other examples can involve:<br />
+<br />
+1.&nbsp; Online compound cloud (similar to <a href="https://en.wikipedia.org/wiki/Tag_cloud">tag cloud</a> but with compound images instead of words). Such a cloud can be used to visualise compound similarity.<br />
+<br />
+2. Compound stream - substructure search can sometimes return very large number of results. Such results can be represented as pseudo-infinite stream of compounds - only small portion of results is presented on the screen but scrolling down causes more results to be rendered when older one are discarded.<br />
+<br />
+<b>How can I use it?</b><br />
+<br />
+1. You can download my <a href="https://github.com/mnowotka/rdkit">fork </a>or RDKit containing all relevant changes.<br />
+<br />
+2. Today Greg Landrum, RDKit creator made his own <a href="https://github.com/rdkit/rdkit/tree/JSONCanvas_Nov2013">branch </a>containing modified version of the original pull request, so hopefully this is on it's way to be accepted in master branch in future.<br />
+<br />
+As a group we are happy to participate in such a great open source library!<br />
+<br />
+--<br />
+Michał

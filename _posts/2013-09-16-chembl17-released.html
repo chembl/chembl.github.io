@@ -1,0 +1,74 @@
+---
+layout: post
+title: ChEMBL_17 Released
+date: '2013-09-16T18:28:00.001+01:00'
+author: Anna
+tags:
+- Chembl Releases
+- Interfaces
+- Databases
+modified_time: '2013-09-16T18:40:33.759+01:00'
+thumbnail: http://2.bp.blogspot.com/-IZ_ISznT4-Y/UjcQbsRyU8I/AAAAAAAAABE/io3e9aLdS7w/s72-c/ChEMBL_chemptation.jpg
+blogger_id: tag:blogger.com,1999:blog-2546008714740235720.post-3797217981949137869
+blogger_orig_url: http://chembl.blogspot.com/2013/09/chembl17-released.html
+---
+
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://2.bp.blogspot.com/-IZ_ISznT4-Y/UjcQbsRyU8I/AAAAAAAAABE/io3e9aLdS7w/s1600/ChEMBL_chemptation.jpg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="308" src="http://2.bp.blogspot.com/-IZ_ISznT4-Y/UjcQbsRyU8I/AAAAAAAAABE/io3e9aLdS7w/s320/ChEMBL_chemptation.jpg" width="320" /></a></div>
+We are pleased to announce the release of ChEMBL_17. This version of the database, prepared on 29th August 2013 contains:<br />
+<br />
+<ul>
+<li>1,519,640 compound records</li>
+<li>1,324,941 compounds&nbsp;(of which 1,318,187 have mol files)</li>
+<li>12,077,491 activities</li>
+<li>734,201 assays</li>
+<li>9,356 targets</li>
+<li>51,277 documents</li>
+</ul>
+<br />
+You can download the data from the <a href="ftp://ftp.ebi.ac.uk/pub/databases/chembl/ChEMBLdb/latest/">ChEMBL FTP site</a>. For more information please read the <a href="ftp://ftp.ebi.ac.uk/pub/databases/chembl/ChEMBLdb/releases/chembl_17/chembl_17_release_notes.txt">release notes</a>.<br />
+<br />
+<b>Data changes since the last release:</b><br />
+<br />
+<i>Drug mechanism of action</i><br />
+<br />
+For all FDA-approved drugs, information regarding the mechanism of action and associated efficacy targets has been curated from primary sources, such as literature and drug prescribing information. Targets have only been included for a drug if a) the drug is believed to interact directly with the target and b) there is evidence that this interaction contributes towards the efficacy of that drug in the indication(s) for which it is approved.<br />
+<br />
+<i>Metal-containing compounds</i><br />
+<br />
+Structures for around 3200 metal-containing compounds have been removed from the database (though the bioactivity and other information for these compounds is retained). For more information, please see the previous blog posts:&nbsp;<a href="http://chembl.blogspot.co.uk/2013/08/removal-of-metal-containing-compounds.html">http://chembl.blogspot.co.uk/2013/08/removal-of-metal-containing-compounds.html</a><br />
+<br />
+<i>New data sets</i><br />
+<br />
+Several new deposited/extracted data sets have also been included in the latest release: two deposited data sets from GlaxoSmithKine for Ghrelin receptor agonists and Motilin receptor agonists, a data set of the results of screening the MMV Malaria Box compound collection for activity against Schistosoma mansoni, two data sets screening the GSK PKIS compound collection for inhibition of luciferase activity, and finally pathology data from the Open TG-GATES project.<br />
+<br />
+<b>Interface changes since the last release:</b><br />
+<br />
+<i>Browse Drug Targets tab</i><br />
+<br />
+A new tab has been created to show the new mechanism of action information for FDA approved drugs together with the references from which the information was obtained, and links to the relevant drug/target report card pages.<br />
+<br />
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://4.bp.blogspot.com/-fJJVZ56q9nM/UjcVbfV99CI/AAAAAAAAABQ/61Ub8UWIJ28/s1600/target_view.tiff" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="428" src="http://4.bp.blogspot.com/-fJJVZ56q9nM/UjcVbfV99CI/AAAAAAAAABQ/61Ub8UWIJ28/s640/target_view.tiff" width="640" /></a></div>
+<br />
+<br />
+<i>Document Report Card</i><br />
+<br />
+A new table has been added to the document report card, showing other ChEMBL documents that are related to the current document. Pair-wise document similarity is assessed by two components. The first component is defined by whether a document cites or is referenced by the other. The second component is defined by the amount of overlap between the compounds and biological targets reported in the two respective documents. This overlap is quantified by the Tanimoto coefficient. Documents with the highest Tanimoto similarity scores to the query document are listed in this section. For example, the following page shows 5 additional ChEMBL documents that are deemed similar to the paper currently being viewed.<br />
+<br />
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://3.bp.blogspot.com/-W-GXvmh2URo/UjcVhqb1VYI/AAAAAAAAABY/5wYN2tGZdk8/s1600/related_docs.tiff" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="400" src="http://3.bp.blogspot.com/-W-GXvmh2URo/UjcVhqb1VYI/AAAAAAAAABY/5wYN2tGZdk8/s400/related_docs.tiff" width="395" /></a></div>
+<br />
+<b>Database changes since the last release:</b><br />
+<br />
+A number of new tables have been added to store the drug mechanism of action information (please see release notes and schema documentation for full details). In addition, a number of minor changes have been made to existing tables:<br />
+<br />
+The PROTEIN_FAMILY_CLASSIFICATION table has been deprecated and replaced by a new hierarchical version: PROTEIN_CLASSIFICATION.<br />
+<br />
+The MOLREGNO field has been removed from the ATC_CLASSIFICATION table and moved to a new mapping table: MOLECULE_ATC_CLASSIFICATION.<br />
+<br />
+The MOLFORMULA field has been moved from the COMPOUND_STRUCTURES table to the COMPOUND_PROPERTIES table (and renamed).<br />
+<br />
+<br />
+The ChEMBL Team<br />
+<br />

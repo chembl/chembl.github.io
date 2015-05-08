@@ -1,0 +1,81 @@
+---
+layout: post
+title: ChEMBL Using Highcharts
+date: '2010-06-11T11:05:00.016+01:00'
+author: Mark Davies
+tags:
+- Interfaces
+modified_time: '2010-06-11T16:27:29.222+01:00'
+thumbnail: http://3.bp.blogspot.com/_0oOfcfaSM3Q/TBILWEJydZI/AAAAAAAAADA/gLn_51GxqlM/s72-c/Picture+2.png
+blogger_id: tag:blogger.com,1999:blog-2546008714740235720.post-8255962297190011707
+blogger_orig_url: http://chembl.blogspot.com/2010/06/chembl-using-highcharts.html
+---
+
+<a onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}" href="http://3.bp.blogspot.com/_0oOfcfaSM3Q/TBIN0eclz0I/AAAAAAAAADI/yZvRgjK1eAk/s1600/Picture+3.png">
+</a>
+<a onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}" href="http://3.bp.blogspot.com/_0oOfcfaSM3Q/TBILWEJydZI/AAAAAAAAADA/gLn_51GxqlM/s1600/Picture+2.png"><img style="display: block; margin: 0px auto 10px; text-align: center; cursor: pointer; width: 155px; height: 134px;" src="http://3.bp.blogspot.com/_0oOfcfaSM3Q/TBILWEJydZI/AAAAAAAAADA/gLn_51GxqlM/s320/Picture+2.png" alt="" id="BLOGGER_PHOTO_ID_5481456170163139986" border="0" /></a>
+
+
+We have released and update to the <a href="http://www.ebi.ac.uk/chembldb/index.php">ChEMBLdb Interface</a>, the most significant of all the changes is the inclusion of the <a href="http://www.highcharts.com/">Highcharts</a> javascript charting library. If you are not familiar with this library have a look at the <a href="http://www.highcharts.com/demo/">demo</a> page to get an idea of its capabilities. In the ChEMBLdb interface we used the library to update the Target Browser page and introduced a scatter plot view for compound result sets.
+
+
+<br/>
+<br/>
+
+
+<span style="font-weight: bold;font-size:130%;" >Target Browser Update</span>
+
+
+<br/>
+<br/>
+
+The new <a href="http://www.ebi.ac.uk/chembldb/index.php/target/family">target browser</a> can seen below:
+
+<br/>
+<br/>
+
+
+
+<a onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}" href="http://2.bp.blogspot.com/_0oOfcfaSM3Q/TBJSNrdTSKI/AAAAAAAAADo/SAjODsLSZYQ/s1600/Picture+3.png"><img style="display: block; margin: 0px auto 10px; text-align: center; cursor: pointer; width: 400px; height: 212px;" src="http://2.bp.blogspot.com/_0oOfcfaSM3Q/TBJSNrdTSKI/AAAAAAAAADo/SAjODsLSZYQ/s400/Picture+3.png" alt="" id="BLOGGER_PHOTO_ID_5481534091420715170" border="0" /></a>
+<a onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}" href="http://3.bp.blogspot.com/_0oOfcfaSM3Q/TBIN0eclz0I/AAAAAAAAADI/yZvRgjK1eAk/s1600/Picture+3.png">
+
+<br/>
+
+
+</a><span style="font-weight: bold;font-size:130%;" >Scatter Plot View</span>
+
+<br/>
+<br/>
+
+
+
+For <a href="http://www.ebi.ac.uk/chembldb/index.php/compound">compound searches</a> returning less than 1000 compounds users can switch from a tabular view to a chart view:
+
+<br/>
+<br/>
+
+
+
+<a onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}" href="http://4.bp.blogspot.com/_0oOfcfaSM3Q/TBJSdrCB28I/AAAAAAAAADw/n9NCZRVO1to/s1600/Picture+7.png"><img style="display: block; margin: 0px auto 10px; text-align: center; cursor: pointer; width: 400px; height: 235px;" src="http://4.bp.blogspot.com/_0oOfcfaSM3Q/TBJSdrCB28I/AAAAAAAAADw/n9NCZRVO1to/s400/Picture+7.png" alt="" id="BLOGGER_PHOTO_ID_5481534366184233922" border="0" /></a><a onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}" href="http://1.bp.blogspot.com/_0oOfcfaSM3Q/TBIPUUYjImI/AAAAAAAAADY/ITqSLiZpwSE/s1600/Picture+7.png">
+</a>
+Chart features include:
+<ul><li> Properties plotted on each axis can be updated, defaults to MW vs ALogP</li><li>Compound colouring can updated, defaults number of Rule of Five violations</li><li>Axis sliders can be used to 'zoom-in' to specific areas on the chart</li><li>Clicking on a point in the scatter plot displays an image of the compound
+</li></ul>
+
+
+The axis sliders can be used to filter an initial compound result set. The filtered data set can then be downloaded,  filtered further, switched to the tabular view or reset.
+
+<br/>
+<br/>
+
+
+
+<a onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}" href="http://1.bp.blogspot.com/_0oOfcfaSM3Q/TBJSi3vVEEI/AAAAAAAAAD4/DOW72ZXsxAg/s1600/Picture+8.png"><img style="display: block; margin: 0px auto 10px; text-align: center; cursor: pointer; width: 400px; height: 226px;" src="http://1.bp.blogspot.com/_0oOfcfaSM3Q/TBJSi3vVEEI/AAAAAAAAAD4/DOW72ZXsxAg/s400/Picture+8.png" alt="" id="BLOGGER_PHOTO_ID_5481534455494807618" border="0" /></a><a onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}" href="http://3.bp.blogspot.com/_0oOfcfaSM3Q/TBIRKmLkcZI/AAAAAAAAADg/8NDsVAAf9Mg/s1600/Picture+8.png">
+</a>
+
+
+<br/>
+
+
+
+We hope you like this addition to the interface and expect to see more Highcharts data visualisations soon.

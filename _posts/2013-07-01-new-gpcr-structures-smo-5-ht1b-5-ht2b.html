@@ -1,0 +1,145 @@
+---
+layout: post
+title: 'New GPCR structures: SMO, 5-HT1B, 5-HT2B'
+date: '2013-07-01T15:33:00.001+01:00'
+author: David Westergaard
+tags:
+- SARfari
+- GPCRs
+modified_time: '2013-07-20T23:21:39.768+01:00'
+thumbnail: http://4.bp.blogspot.com/-ADzgI_s9NKc/Uc3bHbLiC8I/AAAAAAAAAA4/xPUTM8Y_EGY/s72-c/Screen+Shot+2013-06-27+at+09.29.08.png
+blogger_id: tag:blogger.com,1999:blog-2546008714740235720.post-6351857998757103620
+blogger_orig_url: http://chembl.blogspot.com/2013/07/new-gpcr-structures-smo-5-ht1b-5-ht2b.html
+---
+
+Since the <a href="http://chembl.blogspot.co.uk/2012/12/gpcr-structure-human-par1-receptor.html">last GPCR structure post</a> of jpo, three novel GPCR receptors have had their structure solved. <br />
+<br />
+1) 5-hydroxytryptamine receptor 1B, 5-HT1B, in complex with the agonist Ergotamine(<a href="http://www.pdb.org/pdb/explore/explore.do?structureId=4iar">4iaq</a>) (1)<br />
+2) 5-hydroxytryptamine receptor 1B, 5-HT2B, in complex with Dihydroergotamine and Ergotamine (<a href="http://www.pdb.org/pdb/explore/explore.do?structureId=4ib4">4ib4</a>, <a href="http://www.pdb.org/pdb/explore/explore.do?structureId=4iar">4iar</a>) (1)<br />
+3) The first class F receptor, the Smoothed Homolog (2), in complex with an agonizing anti-tumor agent, LY2940680 (<a href="http://www.pdb.org/pdb/explore/explore.do?structureId=4jkv">4jkv</a>)<br />
+<br />
+The latter gave me quite a headache since its sequence identify with class A GPCRs is &lt;10, and it is missing some of the very conserved motifs. Trying to align it with pure sequence alignment is next to impossible. Luckely I could make use of 3D-Coffee, heavily overweighting the pairwise structural alignment produced by TMalign and sap. Mind you, the alignment could probably be optimized manually, but it is quite encouraging to see an automated mechanism doing such a good job. Oh, did I mention, you'll be able to inspect all of these alignments yourself in the upcoming version of the GPCR SARfari? <br />
+<br />
+1. 4iaq (red) - Human 5-hydroxytryptamine receptor 1B<br />
+2. 4ib4A (red) - Human 5-hydroxytryptamine receptor 2B<br />
+3. 4jkvA (orange) - Human Smoothened Homolog<br />
+4. 3vw7 (pink) - Human Proteinase-activated receptor 1<br />
+5. 1f88A (yellow) - Bos taurus Rhodopsin<br />
+6. 2rh1 (green) - Human Beta-2 adrenergic receptor<br />
+7. 4djhA (violet) - Human Kappa-type opioid receptor<br />
+8. 4ej4 (blue) - Mus musculus Delta-type opioid receptor <br />
+<div class="separator" style="clear: both; text-align: center;"><br />
+</div><a href="http://4.bp.blogspot.com/-ADzgI_s9NKc/Uc3bHbLiC8I/AAAAAAAAAA4/xPUTM8Y_EGY/s481/Screen+Shot+2013-06-27+at+09.29.08.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="319" src="http://4.bp.blogspot.com/-ADzgI_s9NKc/Uc3bHbLiC8I/AAAAAAAAAA4/xPUTM8Y_EGY/s320/Screen+Shot+2013-06-27+at+09.29.08.png" width="320" /></a><br />
+<br />
+Despite being so structurally different, there is a good conservation in the 3D structure - See figure 1.  The superimposing was done using mnyfit, a program jpo wrote (3) sometime back when he was still a young lad pursuing a PhD degree. Oh, and a(nother) small teaser, that screenshot comes from the updated version of the GPCR SARfari I'm working on, where you can interact with the superimposed structures, showing ligands, binding sites etc.<br />
+<br />
+<br />
+It seems the <a href="http://gpcr.scripps.edu/tracking_status.htm">next major one</a> will be the first class B, <a href="http://www.uniprot.org/uniprot/P47871">the Glucagon receptor</a>. Hopefully this won't break my code and set back my work a few weeks. <br />
+<br />
+<br />
+<pre>10        20        30        40        50  
+4iaq   (  38 )                              y-i<span style="color: maroon;">y<u>Q</u>d<u>s</u></span>is<span style="color: red;">lpw<u>k</u>vllvmllal</span>-<span style="color: red;">i</span>
+4lb4A  (  48 )                                  e<b>e</b>-q-<i>g</i><b>n</b>k<span style="color: red;">l</span>-<span style="color: red;">hwAallilm</span>v
+4jkvA  ( 190 )    sg<u>q</u>ÇevP<span style="color: blue;">Lv<u>r</u></span><b>T</b>d<b>n</b><span style="color: maroon;">pkS</span><span style="color: blue;"><u>w</u></span><span style="color: blue;">y</span><i>e</i>d<span style="color: blue;">ve<i>G</i>ÇGI</span>-<u>q</u>çq<b>N</b>pLF<b>t</b><span style="color: red;">ea<b>e</b><u>H</u>qdM<u>hsy</u>Iaa</span>-<span style="color: red;">f</span>
+3vw7   (  91 )                               <b>d</b><span style="color: red;">asg<u>Y</u>L</span><u>t</u><b>s</b><span style="color: red;">swL<u>t</u></span>l<span style="color: red;">fVP<u>s</u>vY<u>t</u>g</span>-<span style="color: red;">V</span>
+1f88A  (   1 )     m<u>n</u>G<span style="color: blue;"><b><u>t</u></b></span><span style="color: blue;">e</span>gpnf<span style="color: blue;">yV</span>Pf<u>s<b>n</b></u>kt<i>g</i>vVrsPfea-p<u>Q</u><span style="color: maroon;">y<b><u>y</u></b>L</span><i>a</i>e<span style="color: red;">pwqF<u>s</u>mlAa<u>y</u>Mfl</span>-<span style="color: red;">l</span>
+2rh1   (  29 )                                      de<span style="color: red;">vwvvgmgivm<u>s</u>l</span>-<span style="color: red;">i</span>
+4djhA  (  55 )                                      <b>s</b>p<span style="color: red;">aipvii<u>t</u>av<u>ys</u>v</span>-<span style="color: red;">v</span>
+4ej4   (  41 )                                  r<span style="color: red;">sa<u>s</u>slalaiai<u>t</u>alY<u>s</u>a</span>-<span style="color: red;">v</span>
+                                                      aaaaaaaaaaaa a
+
+                           60        70        80        90        100 
+4iaq   (  60 )    <span style="color: red;"><u>t</u></span><span style="color: red;">la<u>Tt</u>l<u>sN</u>afVia<u>t</u>Vyr</span><u>t</u>-rkL<u>h</u>t<span style="color: red;">pa<u>n</u>yLia<u>s</u>LAv<u>TD</u>llV<u>S</u>il</span>V<span style="color: red;">Mpi</span>---
+4lb4A  (  65 )    <span style="color: red;">iip<u>T</u>igG<u>Nt</u>lVilAV<u>s</u>l</span><b>e</b>-<span style="color: maroon;">kkL</span><u>q</u>y<span style="color: red;">at<u>n</u>yFlmsLAvA<u>D</u>llVGlf</span>V<span style="color: red;">Mpi</span>---
+4jkvA  ( 238 )    <span style="color: red;">Gav<u>T</u>gl<u>cT</u>lf<u>T</u>la<u>T</u>Fva</span>d<span style="color: red;">wrn<u>s</u></span>nrypaV<span style="color: red;">ILfyV<u>N</u>a<b><u>C</u></b>ffvg<u>S</u>iGWl</span><span style="color: maroon;">a<u>Q</u>f</span>md
+3vw7   ( 113 )    <span style="color: red;">fvv<u>S</u>lpl<u>N</u>imaivvFilk</span>-<span style="color: maroon;">mkv</span><i>k</i>k<span style="color: red;">PAVVyMlhLA<u>t</u>A<u>D</u>vlFV</span><u>s</u>v-<span style="color: red;">Lpf</span>---
+1f88A  (  48 )    <span style="color: red;">imlGfpi<u>N</u>fl<u>T</u>lyV<u>T</u>vq</span><b><u>H</u></b>-k<u>k</u>L<u>r</u><b>t</b><span style="color: red;">pLNyILlnLAvA<u>D</u>lfMVfg</span>G<span style="color: red;">F<u>tT</u></span>---
+2rh1   (  44 )    <span style="color: red;">vlaIvfg<u>N</u>vlVi<u>t</u>AIak</span>f-<span style="color: maroon;">erL</span><u>q</u><b>t</b><span style="color: red;">vt<u>n</u>yFI<u>t</u>sLA<u>c</u>A<u>D</u>lvMGla</span>V<span style="color: red;">Vpf</span>---
+4djhA  (  70 )    <span style="color: red;">fvvGlvg<u>Ns</u>lV<b>m</b>fVIir</span>y-<span style="color: maroon;">tkm</span><u>k</u><b>t</b><span style="color: red;">aTniYIfNLAlA<u>D</u>alV<u>T</u></span><u>tT</u>-<span style="color: red;"><b>M</b></span><span style="color: red;">pf</span>---
+4ej4   (  60 )    <span style="color: red;"><u>c</u></span><span style="color: red;">avGllg<u>N</u>vlv<b>m</b>fgIvr</span>y-tkLk<b>t</b><span style="color: red;">ATniYIfNLAlA<u>D</u>alA<b><u>T</u></b><u>s</u></span><u>t</u>-<span style="color: red;">Lpf</span>---
+                  aaaaaaaaaaaaaaaaa       aaaaaaaaaaaaaaaaaa  aaa   
+
+                           110       120       130       140       150 
+4iaq   ( 106 )    ----------<span style="color: red;">S<u>t</u>m<b><u>y</u></b><u>t</u>v</span>-<span style="color: red;"><b><u>t</u></b></span><i>g</i>-r<u>W</u>tl<span style="color: red;"><i>g</i></span><span style="color: red;">qvvÇ<u>d</u>f<u>W</u>l<u>ss</u>DIt<u>CCT</u>A<u>S</u>I<u>wH</u>L<u>C</u>vi</span>
+4lb4A  ( 111 )    ----------<span style="color: red;">a</span>L<span style="color: red;">ltim</span>-feam<u>W</u>plplv<span style="color: red;">lÇpa<u>w</u>LflDVlf<u>ST</u>A<u>S</u>I<u>wH</u>L<u>C</u>aI</span>
+4jkvA  ( 288 )    <i>g</i><span style="color: red;">arreIV</span>ç<u>R</u>a<b>d</b><i>g</i>TM<u>R</u>l-<i>g</i><b>E</b>-pTs<i>n</i><b>e</b>tl<span style="color: red;">sÇviiFviV<u>Yy</u>AlMAGvvWFvvL</span>
+3vw7   ( 158 )    ----------<span style="color: red;">kis<b>Y</b>yf</span><u>s</u><i>gS</i>-<b>d</b><u>W</u>qf<i>g</i><span style="color: red;">selÇ<u>r</u>fV<u>t</u>AaFY<u>cn</u>MYA<u>S</u>IlLM<u>t</u>vI</span>
+1f88A  (  94 )    ----------<span style="color: red;"><u>T</u></span><span style="color: red;">ly<u>TS</u>l</span>-<span style="color: red;"><u>h</u></span><i>G</i>-yFvf<span style="color: red;"><i>g</i></span><span style="color: red;">ptGÇ<u>n</u>l<b>E</b>GffA<u>T</u>LGG<u>E</u>IaL<u>wS</u>LvvL</span>
+2rh1   (  90 )    ----------<span style="color: red;">gaahil</span>-<span style="color: red;">m</span><i>k</i>-m<u>W</u>tf<span style="color: red;"><i>g</i></span><span style="color: red;"><u>n</u></span><span style="color: red;">fwçef<u>WTS</u>iDVl<u>C</u>V<u>T</u>A<u>S</u>I<u>eT</u>L<b><u>c</u></b>vI</span>
+4djhA  ( 115 )    ----------<span style="color: red;">q<u>s</u>tvyl</span>-<span style="color: red;">m</span><i>n</i>-s<u>W</u>pf<span style="color: red;"><i>g</i></span><span style="color: red;"><b>d</b></span><span style="color: red;">vlÇ<u>k</u>iVl<u>s</u>iDyy<u>N</u>Mf<u>TS</u>If<u>T</u>L<u>t</u>mM</span>
+4ej4   ( 105 )    ----------<span style="color: red;">q<u>s</u>akyl</span>-<span style="color: red;">m</span><i>e</i>-<b><u>t</u></b><u>W</u>pf<i>g</i><span style="color: red;"><b>e</b></span><span style="color: red;">llÇ<u>k</u>aVl<u>S</u>idYyNMF<u>TS</u>If<u>T</u>L<u>t</u>mM</span>
+                            aaaaaa         aaaaaaaaaaaaaaaaaaaaaaaaa
+
+                           160       170       180       190       200 
+4iaq   ( 144 )    <span style="color: red;">Aldrywaitdavey<u>s</u>ak</span>r<b><u>t</u></b><span style="color: red;">pkraavmialvwvf<b><u>S</u></b>i<u>s</u>I<u>S</u></span>l-pPf-fw-r--
+4lb4A  ( 150 )    <span style="color: red;"><u>s</u></span><span style="color: red;">vdryiaIk</span>kpi<i>q</i>an<span style="color: red;">qyn<u>s</u>ra<u>t</u>Afiki<u>t</u>vVwli<b><u>S</u></b>igiA</span>i-<span style="color: red;">pVpi<u>k</u></span><i>g</i>-i--
+4jkvA  ( 336 )    <span style="color: red;"><u>T</u></span><span style="color: red;">yA<u>W</u>H<u>Ts</u>Fkalg</span>ttyqpg<i>k</i>-t--<u>s</u>yf<span style="color: red;">hll<u>T</u>w<u>s</u>lPfvl<u>T</u>v</span>-<span style="color: red;">aIlav</span><i>a</i>q<span style="color: blue;">V<b><u>D</u></b>G</span>
+3vw7   ( 197 )    <span style="color: red;">SiDrflAVv</span>yp<i>m</i>-----rt<span style="color: red;">lgrA<u>s</u>f<u>tC</u>laiwalAiagVv</span>-<span style="color: red;">pLl</span>l<u>k</u><b>e</b>-<u>Q</u><span style="color: blue;">ti</span>
+1f88A  ( 132 )    <span style="color: red;">aie<u>R</u>yvvv</span><u>c</u><i>k</i>p<i>m</i>sn-frfg<span style="color: red;">en<b>h</b>Aimgvaf<u>T</u>wvmAlaCA</span>a-<span style="color: maroon;">pPl</span>v<i>g</i><u>w</u><i>S</i><u>r</u>--
+2rh1   ( 128 )    <span style="color: red;">Avd<u>r</u>yfAI<u>t</u></span><b>s</b>pfk<i>y</i>q<b>S</b>ll<b>t</b><span style="color: red;"><u>k</u></span><span style="color: red;">n<u>k</u>Arviilmvwiv<b><u>S</u></b>gl<u>tS</u>flpIq</span>m<i>h</i>wyr-a
+4djhA  ( 153 )    <span style="color: red;"><u>S</u></span><span style="color: red;">vdRyia</span>Vc<u>h</u>pvkaldf<span style="color: red;">r<u>t</u>plkAkii<u>n</u>i<u>c</u>Iwll<u>Sss</u>vGi</span>-<span style="color: red;"><u>s</u></span><span style="color: red;">Aivl</span><span style="color: blue;">G</span>-<span style="color: blue;">Gtk</span>
+4ej4   ( 143 )    <span style="color: red;"><u>S</u></span><span style="color: red;">vDRyiavc</span>h<span style="color: red;">pvkaldf</span><u>r</u>t<span style="color: red;">pakAkli<u>n</u>i<u>c</u>IwvlA<u>s</u>gvGv</span>-<span style="color: red;">pimvm</span><span style="color: blue;">A</span>-<span style="color: blue;">vtq</span>
+                  aaaaaaaaa          aaaaaaaaaaaaaaaaaaa  aaa       
+
+                           210       220       230       240       250 
+4iaq   ( 189 )    ------qa------s-eÇvv---n--------tdh<span style="color: red;">il<u>yt</u>vy<u>S</u>TvgA</span>F<span style="color: red;"><u>y</u></span><span style="color: red;">fP</span>
+4lb4A  ( 196 )    ------et-np-nni-<u>t</u>ÇvL---<b>t</b>-------<span style="color: red;"><u>k</u></span><span style="color: red;">e<u>r</u>FgdfMlfg<u>S</u>laA</span>F<span style="color: red;">f<u>t</u>P</span>
+4jkvA  ( 384 )    -<span style="color: blue;"><b>D</b></span><b>s</b>V---------<u>S</u><i>G</i>-<span style="color: blue;">IÇF</span>-----------<span style="color: blue;">V</span><i>G</i>Ykn<span style="color: red;">yryRagf</span>V<span style="color: red;">lapIglV</span>
+3vw7   ( 245 )    <span style="color: blue;">qv</span>p<i>g</i>l<i>g</i>-------<span style="color: blue;">it</span>-<span style="color: blue;"><u>T</u></span><span style="color: blue;">ç</span><i>h</i>d<i>v</i>lse<u>t</u>----Lle<span style="color: red;"><i>g</i></span><span style="color: red;">yyayyf<u>s</u>af<u>S</u>avfFfvp</span>
+1f88A  ( 178 )    ------<span style="color: blue;"><u>Y</u></span><span style="color: blue;">I</span>-<span style="color: blue;">P<b>E</b></span>-<i>G</i>M<u><i>Q</i></u><u>C</u><span style="color: blue;">SÇGI</span>---<b>D</b>Y-YTp<i>h</i>ee<u>t</u><i>n</i><span style="color: red;"><u>N</u></span><span style="color: red;">esFVi<u>y</u>Mfvv</span><u>H</u>f<span style="color: red;">iiP</span>
+2rh1   ( 177 )    -th<span style="color: red;">qe</span>-<span style="color: red;">Ai<u>n</u>Ç<b><u>y</u></b>a</span>eet-çÇdf---f---------T<b><u>n</u></b><span style="color: red;">qayaias<u>S</u>iv<u>S</u></span>F<span style="color: red;"><b><u>y</u></b></span><span style="color: red;">vp</span>
+4djhA  ( 201 )    <span style="color: blue;">v</span>r<i>e</i>dv-------dv<span style="color: blue;">i</span>-<span style="color: blue;">eÇsl</span>---<u>q</u>Fpd-<i>d</i>d<span style="color: red;">y<u>s</u>wwdlfmki<u>c</u>Vfif</span>Af<span style="color: red;">viP</span>
+4ej4   ( 191 )    <span style="color: blue;">pr</span>d<i>g</i>---------<span style="color: blue;">av</span>-<span style="color: blue;">vÇml</span>---qf-p-sp<span style="color: red;">swywd<u>t</u>v<u>t</u>ki<u>c</u>vflf</span>Af<span style="color: red;">vvP</span>
+                                                     aaaaaaaaaa  aaa
+
+                           260       270       280       290       300 
+4iaq   ( 221 )    <span style="color: red;">tllLial<u>y</u>grIyvear<u>s</u></span>--r--------------il<span style="color: red;">ma</span>----<span style="color: red;">arerka<u>T</u>k</span>
+4lb4A  ( 230 )    <span style="color: red;">lai<b>M</b>iv<u>t</u>yfl<u>t</u>ihALqkk</span>---a---------------q--<span style="color: red;">ti<u>sn</u>eqra<u>s</u>k</span>
+4jkvA  ( 412 )    <span style="color: red;">livGgyfLirGvm<u>t</u>lfsI<u>k</u>s<u>n</u></span>----hp<i>g</i>lL<b><u>s</u></b>ekaa---<span style="color: red;">ski<u>n</u>e<u>t</u>Ml<u>r</u>Lgi</span>
+3vw7   ( 283 )    <span style="color: red;">lii<u>St</u>v<b><u>C</u></b>yv<u>s</u>Iirc</span>l<u>ss</u>--s-a------------------a<i>n</i><span style="color: red;">rsk<u>k</u>s<u>r</u>Al</span>
+1f88A  ( 216 )    <span style="color: red;">livIff<u>c</u>ygq</span>Lvftvkea---<i>A</i>aS-------------<i>a</i>-<b><u>t</u></b>tqk<span style="color: red;">aek<b><u>e</u></b>v<u>T</u>r</span>
+2rh1   ( 212 )    <span style="color: red;">lviMvfv<u>Ys</u>rVfqeakr</span>--<span style="color: red;">q</span>--------------l--k--<i>f</i><u>c</u>l<span style="color: red;">keH<u>k</u>aLk</span>
+4djhA  ( 239 )    <span style="color: red;">vliIiv<b><u>c</u></b><b>y</b><u>t</u>lMil<u>r</u>lksv</span>---<span style="color: red;">r</span>-<span style="color: red;">ll</span><u>s</u>--------g---<u>r</u>ek<b>d</b><span style="color: red;">rnlrri<u>t</u>r</span>
+4ej4   ( 226 )    <span style="color: red;">ilii<u>t</u>v<u>c<b>y</b></u>gl<b>M</b>ll</span>rlr<i>s</i>v---r-----------------ekdrs<i>l</i>r<span style="color: red;">riTr</span>
+                  aaaaaaaaaaaaaa                             aaaaaaa
+
+                           310       320       330       340       350 
+4iaq   ( 315 )    <span style="color: red;">tLgiIlgaF</span>-<span style="color: red;">iv<u>C</u>WlpFFii<u>S</u>lv</span>mpi------------------------
+4lb4A  ( 325 )    <span style="color: red;">vlgivFflF</span>-<span style="color: red;">llm<u>Wc</u>pFFi<u>tN</u>i<u>t</u>Lvl</span>-çd--sç---------------<b>n</b><span style="color: red;"><u>q</u></span>
+4jkvA  ( 455 )    <span style="color: red;">fGflAfgfv</span>-<span style="color: red;">li<u>T</u>f<u>s<b>c</b></u>HfyDff<u>nQ</u>ae</span>-<span style="color: red;"><u>W<b>e</b></u></span>--<span style="color: red;"><u>rS</u></span><span style="color: red;">Fr<u>d</u>yVlç<b><u>q</u></b>a</span>nçeik<b><u>n</u></b><u>r</u>-
+3vw7   ( 313 )    <span style="color: red;">fL<u>S</u>aaVf<u>c</u>IFii</span><b><u>C</u></b>F<span style="color: red;">gp<u>TN</u>vlLiaH<b>Y</b><u>s</u></span>fl-sht-------------st--<b><u>t</u></b>
+1f88A  ( 253 )    <span style="color: red;">MV</span>i<span style="color: red;">iMviaF</span>-<span style="color: red;">li<b><u>C</u></b>WlpYAgvAfyIf<u>t</u></span>-h<u>q</u>--<i>g</i>s---------------d-
+2rh1   ( 274 )    <span style="color: red;"><u>t</u></span><span style="color: red;">lgiIMg<u>t</u>F</span>-<span style="color: red;"><u>t</u></span><span style="color: red;">l<u>c</u>WlpFFiVNiv<b><u>h</u></b>vi</span>-qd---<i>n</i>---------------l-
+4djhA  ( 275 )    <span style="color: red;">LVlvVVavF</span>-<span style="color: red;">vv<u>c</u>W<u>t</u>pIHifilveal</span>-gs---------------------
+4ej4   ( 262 )    <span style="color: red;">MVlvVvgaF</span>-<span style="color: red;">vv<u>CW</u>apI<u>H</u>ifVivw<u>t</u>l</span>-vd--<i>i</i><u>n</u>-----------<i>r</i>rd-<span style="color: red;">p</span>-
+                  aaaaaaaaa aaaaaaaaaaaaaaaa                        
+
+                           360       370       380       390       400 
+4iaq   ( 347 )    --h<span style="color: red;">laifdff<u>T</u>wlGYlNSliNPiiY<u>t</u>m<u>s</u></span><b>n</b><span style="color: red;"><u>e</u></span><span style="color: red;">dFkqafhkli</span>-<i>r</i>fk      
+4lb4A  ( 356 )    <span style="color: red;">ttl<u>q</u>mlLeifvWiGYv<u>S</u>SGvNPlvy<u>T</u></span>lf<b>n</b><span style="color: red;">ktF<u>rd</u>AfgrY</span>i-<u>t<i>c</i></u><b>n</b><i>yr</i>    
+4jkvA  ( 513 )    -P<b>s</b><span style="color: red;">llv<u>E</u>kiNLfAmFg<u>t</u>GiaM</span><span style="color: maroon;"><u>St</u></span><span style="color: maroon;">wv</span><u>w</u><b>t</b><span style="color: red;">ka<u>t</u>lliwrr</span>-------<span style="color: red;">t</span>w<u><i>c</i></u>    
+3vw7   ( 347 )    <span style="color: red;">eaAYfaYLl<u>c</u>vCv<u>S</u></span><u>S</u>i<span style="color: red;"><u>SCc</u></span><span style="color: red;">i<u>D</u>plI<b>y</b>yy</span>A<u>s</u>se<i>c</i>                  
+1f88A  ( 283 )    -fg<span style="color: red;">PifM<b><u>t</u></b>ipAFfA</span><span style="color: maroon;">K<u>tS</u>A</span>v<span style="color: red;">yNPviYimm</span><b>n</b><span style="color: red;">k<u>q</u>F<u>rn<b>C</b></u>mv<u>tt</u>l</span>-<u>c</u><i>cg</i>knpstt
+2rh1   ( 303 )    -ir<span style="color: red;">kevyillNwiGYv</span><span style="color: maroon;">N<u>S</u>g</span>f<span style="color: red;">Npli</span><span style="color: maroon;">Y<u>c</u></span>-<span style="color: maroon;"><u>r</u></span><b>s</b><span style="color: red;">pdf<u>r</u>iAf<u>q</u>el</span>l-<i>c</i>--------
+4djhA  ( 307 )    -a<i>a</i><span style="color: red;">lssyyf<u>c</u>IalGy<u>t</u>NS<u>s</u>lNPilYafl</span><b>d</b><span style="color: red;">enFkrcfr<u>d</u>fc</span>f--p      
+4ej4   ( 295 )    -<span style="color: red;">lvvaalhl<u>c</u>ialGYaN<u>Ss</u>lNpvlYafl</span><b>D</b><span style="color: red;">enf<u>k</u></span>r<u>c</u>               
+                     aaaaaaaaaaaaaaaaaaaaaaa   aaaaaaa              
+
+                           410 
+4iaq                          
+4lb4A                         
+4jkvA                         
+3vw7                          
+1f88A  ( 337 )    vskt<i>et</i>sqvapa
+2rh1   ( 342 )    ------l     
+4djhA                         
+4ej4                          
+                              
+
+</pre><br />
+(1) Chong Wang et al., Science 3 May 2013: 340 (6132), 610-614<br />
+(2) Chong Wang et al., Nature 16 May 2013: 497, 338–343<br />
+(3) Kenji Mizuguch et al., Protein Science Nov 1998: 7 (11), 2469-2471<br />
+<br />
+<br />
+Updated: Somehow the HTML didn't render properly.

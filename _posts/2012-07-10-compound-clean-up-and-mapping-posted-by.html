@@ -1,0 +1,27 @@
+---
+layout: post
+title: Compound Clean Up and Mapping (Posted by Louisa)
+date: '2012-07-10T17:22:00.001+01:00'
+author: Louisa
+tags:
+- ChEMBL Curation Notes
+modified_time: '2012-07-10T17:57:08.062+01:00'
+thumbnail: http://1.bp.blogspot.com/-gvNWJ8xVaTw/T_w14F3IX3I/AAAAAAAAAFM/Yp11mp6ucV8/s72-c/BunsenBurner_.gif
+blogger_id: tag:blogger.com,1999:blog-2546008714740235720.post-7635694022297930676
+blogger_orig_url: http://chembl.blogspot.com/2012/07/compound-clean-up-and-mapping-posted-by.html
+---
+
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://1.bp.blogspot.com/-gvNWJ8xVaTw/T_w14F3IX3I/AAAAAAAAAFM/Yp11mp6ucV8/s1600/BunsenBurner_.gif" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="320" src="http://1.bp.blogspot.com/-gvNWJ8xVaTw/T_w14F3IX3I/AAAAAAAAAFM/Yp11mp6ucV8/s320/BunsenBurner_.gif" width="288" /></a></div>
+<br />
+This new blog post has been created due to popular demand and user requests. I hope that this is useful for you.<br />
+<br />
+After being manually extracted from the primary literature, a compound can be only loaded into the ChEMBL database after it has been run through our in-house clean-up protocol. This protocol utilises <a href="http://accelrys.com/" target="_blank">Accelrys</a>'s <a href="http://accelrys.com/products/pipeline-pilot/" target="_blank">Pipeline Pilot</a> software and has evolved a lot over the past three years. The clean-up protocol is used to prevent any structures from being loaded that could be incorrect, not properly charged or contain bad valences. We also use it to map the structures to already existing compounds in ChEMBL.<br />
+<br />
+Historically, the clean-up protocol was very simple with just a few components to squeeze out any unwanted structures. Initially, we were mostly concerned about having uneven charges (e.g. charged counter ion but neutral parent) or quaternary nitrogen-containing compounds without a counter ion at all. Over the past 14 releases, the clean-up has become more sophisticated and now takes into account <a href="http://accelrys.com/products/pipeline-pilot/" target="_blank">steroid</a> backbone <a href="http://en.wikipedia.org/wiki/Stereochemistry" target="_blank">stereochemistry</a>, <a href="http://en.wikipedia.org/wiki/Inorganic_compound" target="_blank">inorganic</a> salts and bad valences, amongst other things. A lot of the additions and adjustments have come from stumbling across little subsets of compounds that we hadn't thought of looking for before, and then warranted a consistent cleanup. This work has also led to the development of a series of business rules applied to consistently represent a functional group (for example, nitro groups).<br />
+<br />
+Once the new compounds have been cleaned up, they need to be checked to see if they already exist in the database. Initially, this was done by mapping to the standard <a href="http://en.wikipedia.org/wiki/InChI" target="_blank">InChI</a>, &nbsp;but it was soon realised that not all papers display the correct structure, if any structure at all, or it may not be extracted from the publication exactly as shown. This was causing duplicate compounds to be loaded into ChEMBL. Therefore, it was decided that a better initial mapping would be to use the extracted compound name and compare it to the many stored compound names in the database. This reduced a lot the duplicate entries. Once the new compounds have been mapped on the name, the remaining compounds are then mapped on their standard InChI. For those that don't match either a name or an InChI, I create a text file of their names and cast an eye over them to see if there are any that can still be mapped. I have been able to catch a couple of odd ones now and again <i>via</i> this last check, so it's definitely worth doing.<br />
+<br />
+The compound clean-up is always a 'work in progress' and open to new suggestions for filtering out any compound or group of compounds that could do with further checking. If anyone would like to know more about the clean-up protocol or to send us some suggestions, please email chembl-help@ebi.ac.uk<br />
+<br />
+<br />

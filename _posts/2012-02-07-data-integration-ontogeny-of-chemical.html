@@ -1,0 +1,35 @@
+---
+layout: post
+title: Data Integration - The Ontogeny of Chemical Data
+date: '2012-02-07T09:26:00.003Z'
+author: John Overington
+tags:
+- Databases
+modified_time: '2012-02-09T09:46:57.394Z'
+thumbnail: http://3.bp.blogspot.com/-TqMYZcXb564/TzDkY5GjCfI/AAAAAAAABhI/mWPhqZ8K6E0/s72-c/primary+and+secondary.png
+blogger_id: tag:blogger.com,1999:blog-2546008714740235720.post-8210339820495194882
+blogger_orig_url: http://chembl.blogspot.com/2012/02/data-integration-ontogeny-of-chemical.html
+---
+
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://3.bp.blogspot.com/-TqMYZcXb564/TzDkY5GjCfI/AAAAAAAABhI/mWPhqZ8K6E0/s1600/primary+and+secondary.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="169" src="http://3.bp.blogspot.com/-TqMYZcXb564/TzDkY5GjCfI/AAAAAAAABhI/mWPhqZ8K6E0/s320/primary+and+secondary.png" width="320" /></a></div>
+<br />
+It is great to be able to perform confederated queries across data sources, really great. The greatness of this leads to the development of common representational and access standards (things like <a href="http://www.nature.com/nrd/journal/v10/n9/full/nrd3503.html">MIABE</a>, <a href="http://www.inchi-trust.org/">InChI</a>, and <a href="http://www.psidev.info/index.php?q=node/31">PSIQUIC</a>, as examples that we are involved in ourselves). This ability to take data out of silos and share has arguably been one of the defining elements of science in the last ten years, and the generalisation of this data sharing and representation <i>via</i> semantic web technologies may become one of the defining features of the next decade. One of the issues though is that of data&nbsp;<a href="http://en.wikipedia.org/wiki/Provenance">provenance</a>, and primacy, and this is an issue that we have started to think about, and plan for in our own data integration efforts.<br />
+<br />
+Data enters the 'system' somewhere in a 'database'; and these bundles are then 'licensed' to the community. The licenses may be silent, ambiguous, as clear-as-a-bell, shockingly unacceptable, or whatever - and there is a clear need for standardisation of licenses, or at the very least the requirement that license terms are freely available on the resource web site.<br />
+<br />
+There are arguably two basic types of chemical databases at the moment - <b>primary</b> and <b>secondary</b> - primary databases are the first point of entry of that on the internet, or to the user community, and the groups responsible for these typically focus on data novelty (providing something that others don't) and also typically care about curation and indexing of the data. The current funding system does a pretty good job minimising overlap between funded primary databases. Primary data can be a one-off effort, a passive archive, or regularly updated with new content and curated; and there are many other nuances to consider. These primary databases tend to have a theme - spectroscopic data, or bioactivity data, or synthesis, <i>etc</i>., and be relatively small. Together they are the substrate for the secondary databases. There are arguably (again this is all just top of the head thinking) two types of integration that people typically do - '<b>vertical</b>' and '<b>horizontal</b>' - by 'vertical' I mean bundling all the chemical objects together, or bundling all the non-redundant proteins together, or bundling all protein structures and protein models together, and by 'horizontal' I mean integrating across different object classes, e.g. protein structures and small molecule ligands, or genes and protein structures,&nbsp;<i>etc</i>. The 'vertical secondary' databases typically add little new data, but confederate primary data content, reduce redundancy, provide cross-references, <i>etc</i>. but they often add significant value in terms of new descriptors, services, etc. It is also often a lot easier to curate data when integrated across other resources. Secondary databases may be physical (in that copies are made of the primary databases and all loaded together) or virtual (they query the primary resources through an API).<br />
+<br />
+Secondary (vertical) databases do a great job of integration across these disparate resources, allowing queries across unlinked primary databases, and this is a required task for the more challenging horizontal integration. This horizontal data integration is probably where the majority of impact and insights from data are going to come from - for example there are great opportunities to integrate drug pharmacokinetic and pharmacodynamic data with human genetic variation data, to look for opportunities to deliver currently oral drugs topically, or to mine patent/marketing exclusivity expiries and look for arbitrage opportunities between diseases/healthcare systems, for the more entrepreneurial.<br />
+<br />
+So some examples of primary and secondary chemistry databases - we like to think of ChEMBL as a primary database (more specifically the literature and deposited data, this makes up the majority of the data we have). We think of ChemSpider as a secondary database, and some databases like PubChem are arguably a mix of primary (for the NIH bioactivity data) and secondary (for compound catalogues and from other databases).<br />
+<br />
+Is this view of chemical databases useful at all? Maybe not. But it maybe poses a couple of questions.<br />
+<ul>
+<li>What are the optimal mechanisms for curation and error correction of data? Is it performed at the secondary or primary levels?</li>
+<li>What are the primary and secondary resources - is it worth providing tracking of data provenance ? Should there be a standard format for the manifest of secondary resources?&nbsp;</li>
+<li>Secondary resources need to have effective update and correction capabilities driven by updates in their underlying primary resources (this is quite a poor area at the moment it seems - loaded once, a few years ago, doesn't mean that a secondary resource contains the best view of the primary data)?</li>
+<li>How is licensing addressed in secondary resources? - I've found quite a few examples of where I can't download a dataset from it's primary website, yet it is contained in a secondary resource, nominally freely available.</li>
+<li>Where should funding focus go - to standardising access and indexing of primary resources, or into consolidating data into secondary resources.</li>
+</ul>
+We have a couple of spreadsheets of various chemical database resources, licenses, a classification as primary/secondary, <i>etc</i>. - restricted of course to the sort of things we are interested in ;). If there's interest (post a comment to this post, or mail me), we have a web meeting to present this preliminary work. Some of these things are related to the activities of the <a href="http://www.openphacts.eu/">Open PHACTS</a>, project, so it will be interesting to see how they are addressing some of these.

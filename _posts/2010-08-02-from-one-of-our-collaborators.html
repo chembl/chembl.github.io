@@ -1,0 +1,71 @@
+---
+layout: post
+title: From One Of Our Collaborators - MoSS+ChEMBL with Bioclipse
+date: '2010-08-02T07:57:00.000+01:00'
+author: Egon Willighagen
+tags:
+- QSAR
+modified_time: '2014-04-06T19:06:12.956+01:00'
+blogger_id: tag:blogger.com,1999:blog-2546008714740235720.post-6866569050280498963
+blogger_orig_url: http://chembl.blogspot.com/2010/08/from-one-of-our-collaborators.html
+---
+
+“<i>Pharmaceutical Knowledge Retrieval through Reasoning of chEMBL RDF</i>” is
+the title of my master thesis, a twenty-week research project performed at the
+<a href="http://www.farmbio.uu.se/research.php">Department of Pharmaceutical
+Bioscience</a> at <a href="http://ww.uu.se/">Uppsala University</a> (Prof.
+Wikberg, supervised by <a href="http://chem-bla-ics.blogspot.com/">Egon
+Willighagen</a>). The project aims at using the ChEMBL data with a technology
+that might be new to some: by using <a href="http://semanticweb.org/wiki/Main_Page">semantic web</a> technologies. The
+life sciences workbench <a href="http://www.bioclipse.net/">Bioclipse</a>
+(doi:<a href="http://dx.doi.org/10.1186/1471-2105-10-397">10.1186/1471-2105-10-397</a>)
+has support for several semantic web tools, including <a href="http://www.w3.org/RDF/">RDF</a>, and was used to establish such a
+connection.<br />
+<br />
+Two aspects were looked at in this study. Firstly, we developed the search
+functionality for ChEMBL data to use RDF. For this, we took advantage of the <a href="http://rdf.farmbio.uu.se/chembl/snorql/">RDF-ized ChEMBL knowledgebase</a> (using
+the data from ChEMBL 02). Secondly, we developed a use case where compounds
+derived from ChEMBL are analyzed with the substructure mining software <a href="http://www.borgelt.net/moss.html">MoSS</a> (see the <a href="http://wiki.bioclipse.net/index.php?title=MoSS_in_Bioclipse">Bioclipse
+Wiki</a>). Here, we search for common and discriminative substructures within or
+between kinase families. 
+ 
+<br />
+<div class="separator" style="clear: both; text-align: center;">
+<a href="https://docs.google.com/File?id=dc2ps37c_50gxncn3fv_b" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="400" src="https://docs.google.com/File?id=dc2ps37c_50gxncn3fv_b" width="347" /></a></div>
+Within the context of these two aspects, we developed an application using both
+the <a href="http://en.wikipedia.org/wiki/JavaScript">JavaScript</a> and the
+Wizard functionality in Bioclipse. The above shown wizard shows how various
+searches for compound-protein interaction can be formulated. Results are shown
+in the "Results table". The user can then select which data he wants to save, by
+moving it to the lower table which lists the data that will be saved by this
+wizard.<br />
+<br />
+A second, more application-targeted Wizard was developed that primarily
+concentrates on retrieving compounds that bind proteins in a certain kinase
+family with a given activity type (see below). A histogram can be opened to
+visualize the distribution of activities. Lower and upper bound values can be
+selected, for focus, for example, only on that active compounds. A second,
+identical wizard page is provided to select a second dataset. This allows the
+user to set up a between-family data set. The saved data can then be used in the
+MoSS application to find the common and discriminative substructures (not
+shown). 
+ 
+<br />
+<br />
+<div class="separator" style="clear: both; text-align: center;">
+<a href="https://docs.google.com/File?id=dc2ps37c_49d5rr9kg5_b" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="326" src="https://docs.google.com/File?id=dc2ps37c_49d5rr9kg5_b" width="400" /></a></div>
+<div class="separator" style="clear: both; text-align: center;">
+<br /></div>
+Benefits of this approach focus on the data interoperability: the RDF
+technologies are used as uniform and Open Standard access to the ChEMBL data.
+Using this approach, implementing new search queries is very easy, and does not
+require one to know anything about the database schema; a common controlled
+vocabulary (ontology) hides those implementation details. Community standards
+for such vocabularies are under development, and will integrating the ChEMBL
+data with other databases and other applications.<br />
+<br />
+Does this sounds interesting to you, or do like to give us feedback? Please send
+a note to <a href="mailto:annzi.andersson+chembl@gmail.com/">annzi.andersson+chembl@gmail.com
+</a>. Further details are provided in <a href="http://annziproject.blogspot.com/">my blog</a>!<br />
+<br />
+&nbsp;Sincerely, Annsofie Andersson.

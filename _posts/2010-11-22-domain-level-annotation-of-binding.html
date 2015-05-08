@@ -1,0 +1,21 @@
+---
+layout: post
+title: Domain-level annotation of binding-sites for ligands within ChEMBL
+date: '2010-11-22T11:24:00.006Z'
+author: John Overington
+tags:
+- Databases
+modified_time: '2010-11-30T10:32:11.249Z'
+thumbnail: http://3.bp.blogspot.com/_SlPG9DIz_AA/TOpSmKvcozI/AAAAAAAAA7g/i3ooq_L7efk/s72-c/domain-name-space.gif
+blogger_id: tag:blogger.com,1999:blog-2546008714740235720.post-4799321582839961477
+blogger_orig_url: http://chembl.blogspot.com/2010/11/domain-level-annotation-of-binding.html
+---
+
+<div class="separator" style="clear: both; text-align: center;"><a href="http://3.bp.blogspot.com/_SlPG9DIz_AA/TOpSmKvcozI/AAAAAAAAA7g/i3ooq_L7efk/s1600/domain-name-space.gif" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="250" src="http://3.bp.blogspot.com/_SlPG9DIz_AA/TOpSmKvcozI/AAAAAAAAA7g/i3ooq_L7efk/s320/domain-name-space.gif" width="320" /></a></div>One big problem of simple sequence searching with tools like <a href="http://blast.ncbi.nlm.nih.gov/Blast.cgi">blast</a>&nbsp;with ChEMBL is the problem of the introduction of contextually incorrect target relationships due to matching of irrelevant domains. For example, imagine a protein, <b>X</b>, that contains two domains of types <i>A</i> and <i>B</i>, and a second protein, <b>Y</b>, which contains also two domain types, <i>B</i> and <i>C</i>. If the ligand is known to bind to domain type <i>A</i>, there is no ligand-binding relationship between <b>X</b> and <b>Y</b>; however, if the ligand binds at domain type <i>B</i> in <b>X</b>, then there is a relevant relationship between <b>X</b> and <b>Y</b>. This may sound like an rare example, but it is surprisingly common (and extremely annoying), since the majority of eukaryotic proteins are multi-domain, and the presence of certain domains, such as an EGF-like domain (Pfam:<a href="http://pfam.sanger.ac.uk/family/PF00008">pf00009</a>) can greatly complicate the analysis of sequence searches. What is really needed is a reliable mapping (or more generally a probabilistic score) of the ligand-binding domains within a particular protein.<br />
+<br />
+Enough of all these <b>X</b>s and <b>Y</b>s!&nbsp;Here is a real example, for three interesting proteins, <a href="http://en.wikipedia.org/wiki/AXL_receptor_tyrosine_kinase">Axl</a>, <a href="http://en.wikipedia.org/wiki/Lck">Lck</a> and <a href="http://en.wikipedia.org/wiki/SOCS3">SOCS3</a>. As you can see, protein kinase domain inhibitors are only 'transferable' between Axl and Lck, while SH2 binders are only 'transferable' between Lck and SOCS3.<br />
+<br />
+<div class="separator" style="clear: both; text-align: center;"><a href="http://3.bp.blogspot.com/_SlPG9DIz_AA/TOuYWxCfERI/AAAAAAAAA7o/6uC8tYQ7ryg/s1600/example_domain.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="135" src="http://3.bp.blogspot.com/_SlPG9DIz_AA/TOuYWxCfERI/AAAAAAAAA7o/6uC8tYQ7ryg/s400/example_domain.png" width="400" /></a></div><br />
+<br />
+<div class="separator" style="clear: both; text-align: center;"><a href="http://4.bp.blogspot.com/_SlPG9DIz_AA/TOpSqM66xbI/AAAAAAAAA7k/Fzd6IB119yk/s1600/bsFreqs.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="320" src="http://4.bp.blogspot.com/_SlPG9DIz_AA/TOpSqM66xbI/AAAAAAAAA7k/Fzd6IB119yk/s320/bsFreqs.png" width="295" /></a></div><br />
+Here is a graph (as a pie chart) of the <a href="http://www.pfam.org/">Pfam</a> domains for the ligand binding regions of all the protein targets in the current (Chembl_08) target dictionary. The annotation, was performed by a simple classifier heuristic, and we are validating the accuracy of this approach at the moment, but it appears to be largely correct. Once we're happy with the results, we'll add the ligand-binding-domain data to the target dictionary.

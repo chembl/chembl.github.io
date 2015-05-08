@@ -1,0 +1,55 @@
+---
+layout: post
+title: 'Finding key compounds in med. chemistry patents: The open way'
+date: '2014-11-10T13:34:00.000Z'
+author: George Papadatos
+tags:
+- Patents
+- RDKit
+- SureChEMBL
+modified_time: '2014-11-10T14:44:38.606Z'
+blogger_id: tag:blogger.com,1999:blog-2546008714740235720.post-5105260123746137507
+blogger_orig_url: http://chembl.blogspot.com/2014/11/finding-key-compounds-in-med-chemistry.html
+---
+
+<div dir="ltr" style="text-align: left;" trbidi="on">
+<div style="text-align: justify;">
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://imgs.xkcd.com/comics/future_self.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="http://imgs.xkcd.com/comics/future_self.png" height="400" width="241" /></a></div>
+<span style="font-family: 'Trebuchet MS', sans-serif;"><br />
+</span> <span style="font-family: 'Trebuchet MS', sans-serif;">A couple of us attended the <a href="https://github.com/rdkit/UGM_2014" target="_blank">3rd RDKit UGM</a>, hosted by Merck in Darmstadt this year. It was an excellent opportunity to catch up with RDKit developments and applications and meet up with other loyal "RDKitters".</span></div>
+<div style="text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;"><br />
+</span></div>
+<div style="text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;">I presented a talk-torial there and went through an IPython Notebook, which some of you may find useful. It uses patent chemistry data extracted from <a href="http://www.surechembl.org/" target="_blank">SureChEMBL</a> and after a series of filtering steps, it follows a few "traditional" chemoinformatics approaches with a set of claimed compounds. My ultimate aim was to identify "key compounds" in patents using compound information alone, inspired by papers such as <a href="http://pubs.acs.org/doi/abs/10.1021/ci7002686" target="_blank">this</a> and <a href="http://pubs.acs.org/doi/abs/10.1021/ci3001293" target="_blank">this</a>. The crucial difference is that these authors used commercial data and software, where in this implementation everything is free and open. At the same time, I wanted to show off what the combination of pandas, scikit-learn, mpld3, Beaker, RDKit, IPython Notebook and SureChEMBL can do nowadays (hint: a lot).&nbsp;</span></div>
+<div style="text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;"><br />
+</span></div>
+<div style="text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;">So, <a href="http://nbviewer.ipython.org/github/rdkit/UGM_2014/blob/master/Notebooks/Vardenafil.ipynb" target="_blank">here</a> is the Notebook and <a href="https://github.com/rdkit/UGM_2014/blob/master/Presentations/Papadatos_SureChEMBL.pdf?raw=true" target="_blank">here</a> are the associated slides which give a bit of background and context.&nbsp;</span></div>
+<div style="text-align: justify;">
+<br /></div>
+<div style="text-align: justify;">
+<span style="font-family: 'Trebuchet MS', sans-serif;">Obviously, the logic and steps can be reimplemented with other toolkits or workflow tools, such as <a href="http://www.knime.org/" target="_blank">KNIME</a>.&nbsp;</span></div>
+<div style="text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;"><br />
+</span></div>
+<div style="text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;"><br />
+</span></div>
+<div style="text-align: justify;">
+<span style="font-family: 'Trebuchet MS', sans-serif;">George</span><br />
+<span style="font-family: 'Trebuchet MS', sans-serif;"><br />
+</span></div>
+<div style="text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;"><br />
+</span></div>
+<div style="text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;"><br />
+</span></div>
+<div>
+<div style="text-align: justify;">
+</div>
+</div>
+<iframe frameborder="1" height="500" src="https://madgpap.github.io/Vardenafil.html" width="100%"> </iframe><br /></div>

@@ -1,0 +1,97 @@
+---
+layout: post
+title: Integration of a filtered set of PubChem Bioassay data into ChEMBL.
+date: '2011-09-07T13:54:00.005+01:00'
+author: Jon Chambers
+tags:
+- Databases
+modified_time: '2011-09-08T09:26:36.293+01:00'
+thumbnail: http://4.bp.blogspot.com/-V7ynJYCKpfI/Tmd9wbWZv5I/AAAAAAAAAAQ/4SCfYPFjISY/s72-c/far-side-cat-fud.jpg
+blogger_id: tag:blogger.com,1999:blog-2546008714740235720.post-5683953252605106598
+blogger_orig_url: http://chembl.blogspot.com/2011/09/integration-of-filtered-set-of-pubchem.html
+---
+
+<a href="http://4.bp.blogspot.com/-V7ynJYCKpfI/Tmd9wbWZv5I/AAAAAAAAAAQ/4SCfYPFjISY/s1600/far-side-cat-fud.jpg"><img alt="" border="0" id="BLOGGER_PHOTO_ID_5649622528488488850" src="http://4.bp.blogspot.com/-V7ynJYCKpfI/Tmd9wbWZv5I/AAAAAAAAAAQ/4SCfYPFjISY/s400/far-side-cat-fud.jpg" style="cursor: hand; cursor: pointer; display: block; height: 400px; margin: 0px auto 10px; text-align: center; width: 329px;" /></a>
+<br />
+<div class="MsoNormal">
+<span class="Apple-style-span" style="font-family: inherit; font-size: small;">A sub-set of the PubChem Bioassay data has been integrated into ChEMBL.
+</span><br />
+<span class="Apple-style-span" style="font-family: inherit; font-size: small;"><br /></span></div>
+<div class="MsoNormal">
+</div>
+<div class="MsoNormal">
+</div>
+<div class="MsoNormal">
+<b><span class="Apple-style-span" style="font-family: inherit; font-size: small;">How is this sub-set defined ?</span></b></div>
+<div class="MsoNormal">
+</div>
+<div class="MsoNormal">
+</div>
+<div class="MsoNormal">
+<span class="Apple-style-span" style="font-family: inherit; font-size: small;">In PubChem, depositors may assign multiple result types to an assay. However, if an assay is deposited as a ‘confirmatory’ assay (defined as an assay where a range of SID concentrations have been tested, with a view to determining a measurement of potency), then one of the result types must be marked up as an ‘Active Concentration’ (AC) result type. Panel assays may contain many ‘AC’ result types, one per panel member. The AC result type is the calculated potency measurement from the data, and is typically an IC50, EC50, AC50, GI50 or Ki. In addition, the PubChem deposition process requires that each SID in an assay must be assigned a single ‘Activity Summary’, from a controlled vocabulary which includes ‘inactive’, ‘active’ and ‘inconclusive’.
+</span><br />
+<span class="Apple-style-span" style="font-family: inherit; font-size: small;"><br /></span></div>
+<div class="MsoNormal">
+</div>
+<div class="MsoNormal">
+</div>
+<div class="MsoNormal">
+<span class="Apple-style-span" style="font-family: inherit; font-size: small;">Only assays containing ‘AC’ result types have been integrated into ChEMBL, and from these assays, only activity data and SIDs associated with ‘AC’ result types have been integrated. The ‘Activity Summary’ field in PubChem associated with each integrated activity is also captured and shown in the ‘Activity Comment’ field in ChEMBL. Panel assays are divided into separate assays in ChEMBL, one ChEMBL assay for each panel member.</span><br />
+<span class="Apple-style-span" style="font-family: inherit; font-size: small;"><br /></span></div>
+<div class="MsoNormal">
+</div>
+<div class="MsoNormal">
+<b><span class="Apple-style-span" style="font-family: inherit; font-size: small;">
+</span></b></div>
+<div class="MsoNormal">
+<b><span class="Apple-style-span" style="font-family: inherit; font-size: small;">How are structures normalized ?</span></b></div>
+<div class="MsoNormal">
+</div>
+<div class="MsoNormal">
+</div>
+<div class="MsoNormal">
+<span class="Apple-style-span" style="font-family: inherit; font-size: small;">An automatic ‘standardization’ of SID structures downloaded from PubChem is carried out prior to integration (using in house protocols). Standard inchis are generated from the standardized mol files, and used to normalize with existing ChEMBL structures. SIDs matching exactly on standard inchi to existing ChEMBL structures are assigned to the existing CHEMBLID (and the mol file already associated with the existing ChEMBL structure is used to represent the searchable structure for this CHEMBLID). Where no match to a standard inchi is achieved, the incoming SID is assigned to a new CHEMBLID, and the standardized mol file for the SID is used to represent the searchable structure.  A very small number of SIDs (&lt;0.1%) with standardized mol files that fail to produce valid standard inchis, or to load into a oracle symyx cartridge without errors, are each assigned a new CHEMBLID, and associated with a ‘null’ structure (ie: no mol file is associated with this new CHEMBLID). </span><br />
+<span class="Apple-style-span" style="font-family: inherit; font-size: small;"><br /></span></div>
+<div class="MsoNormal">
+</div>
+<div class="MsoNormal">
+<b><span class="Apple-style-span" style="font-family: inherit; font-size: small;">
+</span></b></div>
+<div class="MsoNormal">
+<b><span class="Apple-style-span" style="font-family: inherit; font-size: small;">How frequently is the integrated data updated ?</span></b></div>
+<div class="MsoNormal">
+</div>
+<div class="MsoNormal">
+</div>
+<div class="MsoNormal">
+<span class="Apple-style-span" style="font-family: inherit; font-size: small;">Updates are carried out every ChEMBL release cycle. </span><br />
+<span class="Apple-style-span" style="font-family: inherit; font-size: small;"><br /></span></div>
+<div class="MsoNormal">
+</div>
+<div class="MsoNormal">
+<b><span class="Apple-style-span" style="font-family: inherit; font-size: small;">
+</span></b></div>
+<div class="MsoNormal">
+<b><span class="Apple-style-span" style="font-family: inherit; font-size: small;">How are targets mapped ?</span></b></div>
+<div class="MsoNormal">
+</div>
+<div class="MsoNormal">
+</div>
+<div class="MsoNormal">
+<span class="Apple-style-span" style="font-family: inherit; font-size: small;">Mappings to ChEMBL targets for each integrated PubChem assay has been automated for the initial load. However, manual review of these mappings by expert curators may result in ongoing changes. </span><br />
+<span class="Apple-style-span" style="font-family: inherit; font-size: small;"><br /></span></div>
+<div class="MsoNormal">
+</div>
+<div class="MsoNormal">
+<b><span class="Apple-style-span" style="font-family: inherit; font-size: small;">
+</span></b></div>
+<div class="MsoNormal">
+<b><span class="Apple-style-span" style="font-family: inherit; font-size: small;">How do I filter my query results to exclude or include various data sources ?</span></b></div>
+<div class="MsoNormal">
+</div>
+<div class="MsoNormal">
+</div>
+<div class="MsoNormal">
+<span class="Apple-style-span" style="font-family: inherit; font-size: small;">Users who prefer to exclude the integrated PubChem data (or any other integrated external data set) from their ChEMBL web-interface searches can do so by clicking ‘Activity Source Filter’ next to the main ChEMBL search bar, and deselecting the sources not required in future searches. Note, however, that these deselections persist between browser sessions. Users querying ChEMBL database dumps directly using SQL, and wishing to achieve this same filtering, should inspect the ‘source’ table, and the foreign keys to this table in the ‘assays’ and ‘compound_records’ tables. </span></div>
+<div class="MsoNormal">
+</div>

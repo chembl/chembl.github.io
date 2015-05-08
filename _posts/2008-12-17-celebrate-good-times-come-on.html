@@ -1,0 +1,32 @@
+---
+layout: post
+title: Celebrate good times, Come on!
+date: '2008-12-17T23:15:00.021Z'
+author: John Overington
+tags:
+- Kool-And-The-Gang
+- Databases
+modified_time: '2008-12-24T08:58:35.971Z'
+thumbnail: http://2.bp.blogspot.com/_SlPG9DIz_AA/SUmKl3ebWUI/AAAAAAAAACE/5Q_Jgdfw53k/s72-c/fireworks.jpg
+blogger_id: tag:blogger.com,1999:blog-2546008714740235720.post-7595086225145385772
+blogger_orig_url: http://chembl.blogspot.com/2008/12/celebrate-good-times-come-on.html
+---
+
+<a onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}" href="http://2.bp.blogspot.com/_SlPG9DIz_AA/SUmKl3ebWUI/AAAAAAAAACE/5Q_Jgdfw53k/s1600-h/fireworks.jpg"><img style="display:block; margin:0px auto 10px; text-align:center;cursor:pointer; cursor:hand;width: 200px; height: 160px;" src="http://2.bp.blogspot.com/_SlPG9DIz_AA/SUmKl3ebWUI/AAAAAAAAACE/5Q_Jgdfw53k/s320/fireworks.jpg" border="0" alt=""id="BLOGGER_PHOTO_ID_5280904421219981634" /></a>
+Well, we have a fully functioning Starlite (release 31) up and running on RoyalOak (our internal development database server), with preliminary testing all looking good. Current configuration is with the Symyx MDL Direct cartridge 5.2 under Oracle 11.1.0.6. RoyalOak is a SPARC Enterprise 5220 with 64GB RAM and 64 cores, so this should be sufficient ;). We'll do some further tests over the next few days, but it is very good to be properly up and running again, and also have rolled forward a few versions of the cartridge and Oracle. We'll also get some exports knocked out, reimport, etc; just to make sure. In addition, Kinase SARfari is up and working with the chemical content live.
+<P>
+Here are some summary counts from StARlite release 31.
+<P>
+<BL>
+<LI>Number of compound records: 521,237
+<LI>Number of unique compounds: 440,055
+<LI>Number of assay data points: 1,936,969
+<LI>Number of papers: 26,299
+<LI>Number of targets: 5,439
+<LI>Number of protein targets: 3,512
+<LI>Number of human protein targets: 1,644
+<LI>Tablespace size: 8GB (actual used, 20GB tablespace recommended)
+<P>
+There are also an additional 19,719 compound records, which will be loaded into StARlite 34 (probably the next viable release). As a brief note of explanation on the numbers, the unique compound number is lower than the compound record number due to 1) some compounds (assay standards, competitor compounds, drugs, <I>etc.</I>) are reported in multiple publications, and 2) stripping of salts, <I>etc.</I>.
+<P>
+Despite this excellent progress "back at the ranch", I on the other hand, have cancelled a trip out to New Mexico, as bad weather disrupts flights.

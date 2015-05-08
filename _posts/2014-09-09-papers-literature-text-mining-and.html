@@ -1,0 +1,77 @@
+---
+layout: post
+title: 'Papers: Literature text mining and extensions to UniChem'
+date: '2014-09-09T09:06:00.003+01:00'
+author: John Overington
+tags:
+- Books and Papers
+- UniChem
+modified_time: '2014-09-09T22:31:11.528+01:00'
+thumbnail: http://2.bp.blogspot.com/-j-Ysylu5_Zk/VA60BfqqN-I/AAAAAAAADfU/OJm1faglicg/s72-c/logo.gif
+blogger_id: tag:blogger.com,1999:blog-2546008714740235720.post-5829631876482492316
+blogger_orig_url: http://chembl.blogspot.com/2014/09/papers-literature-text-mining-and.html
+---
+
+<div dir="ltr" style="text-align: left;" trbidi="on">
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://2.bp.blogspot.com/-j-Ysylu5_Zk/VA60BfqqN-I/AAAAAAAADfU/OJm1faglicg/s1600/logo.gif" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="http://2.bp.blogspot.com/-j-Ysylu5_Zk/VA60BfqqN-I/AAAAAAAADfU/OJm1faglicg/s1600/logo.gif" /></a></div>
+<br />
+<div style="text-align: left;">
+<span style="background-color: #eeeeee;">Two new papers from the group have just been published, both in <a href="http://www.jcheminf.com/">Journal of Chemoinformatics</a> - and of course both Open Access.</span></div>
+<div style="text-align: left;">
+<span style="background-color: #eeeeee;"><br /></span></div>
+<div style="text-align: left;">
+<span style="background-color: #eeeeee;">The <a href="http://www.jcheminf.com/content/6/1/43">first</a> deals with some extensions to UniChem to allow far more flexible searches. The abstract is:</span></div>
+<div style="text-align: left;">
+<span style="background-color: #eeeeee;"><br /></span></div>
+<div style="text-align: justify;">
+<span style="background-color: #eeeeee; font-family: Verdana, sans-serif; font-size: x-small; line-height: 17.6000003814697px;">UniChem is a low-maintenance, fast and freely available compound identifier mapping service, recently made available on the Internet. Until now, the criterion of molecular equivalence within UniChem has been on the basis of complete identity between Standard InChIs. However, a limitation of this approach is that stereoisomers, isotopes and salts of otherwise identical molecules are not considered as related. Here, we describe how we have exploited the layered structural representation of the Standard InChI to create new functionality within UniChem that integrates these related molecular forms. The service, called ‘Connectivity Search’ allows molecules to be first matched on the basis of complete identity between the connectivity layer of their corresponding Standard InChIs, and the remaining layers then compared to highlight stereochemical and isotopic differences. Parsing of Standard InChI sub-layers permits mixtures and salts to also be included in this integration process. Implementation of these enhancements required simple modifications to the schema, loader and web application, but none of which have changed the original UniChem functionality or services. The scope of queries may be varied using a variety of easily configurable options, and the output is annotated to assist the user to filter, sort and understand the difference between query and retrieved structures. A RESTful web service output may be easily processed programmatically to allow developers to present the data in whatever form they believe their users will require, or to define their own level of molecular equivalence for their resource, albeit within the constraint of identical connectivity.</span></div>
+<div style="text-align: left;">
+<span style="background-color: #eeeeee;"><span style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 11px; line-height: 17.6000003814697px;"><br /></span>
+</span></div>
+<span style="line-height: 17.600000381469727px;"><span style="background-color: #eeeeee; font-family: inherit;">The <a href="http://www.jcheminf.com/content/6/1/40">second</a> deals with using text mining approaches to find papers that look like they could be abstracted into ChEMBL - that is they contain keywords enriched in medicinal chemistry and compound structure&nbsp;concepts. The abstract for this paper is:</span></span><br />
+<br />
+<div style="text-align: left;">
+<span style="background-color: #eeeeee;"><span style="font-family: Verdana, Arial, Helvetica, sans-serif;"><span style="font-size: 11px; line-height: 17.600000381469727px;"><br /></span></span>
+</span></div>
+<div style="border: 0px; clear: both; line-height: 17.6000003814697px; margin-bottom: 1em; outline: 0px; overflow: visible; padding: 0px; text-align: left; vertical-align: baseline;">
+<div style="text-align: justify;">
+<span style="background-color: #eeeeee; font-family: Verdana, sans-serif; font-size: x-small;">The large increase in the number of scientific publications has fuelled a need for semi- and fully automated text mining approaches in order to assist in the triage process, both for individual scientists and also for larger-scale data extraction and curation into public databases. Here, we introduce a document classifier, which is able to successfully distinguish between publications that are ‘ChEMBL-like’ (i.e. related to small molecule drug discovery and likely to contain quantitative bioactivity data) and those that are not. The unprecedented size of the medicinal chemistry literature collection, coupled with the advantage of manual curation and mapping to chemistry and biology make the ChEMBL corpus a unique resource for text mining.</span></div>
+</div>
+<div style="border: 0px; clear: both; line-height: 17.6000003814697px; margin-bottom: 1em; outline: 0px; overflow: visible; padding: 0px; text-align: left; vertical-align: baseline;">
+<div style="text-align: justify;">
+<span style="background-color: #eeeeee; font-family: Verdana, sans-serif; font-size: x-small;">The method has been implemented as a data protocol/workflow for both Pipeline Pilot (version 8.5) and KNIME (version 2.9) respectively. Both workflows and models are freely available at:&nbsp;<a href="ftp://ftp.ebi.ac.uk/pub/databases/chembl/text-mining" style="border: 0px; color: #4a85b9; font-style: inherit; margin: 0px; outline: 0px; padding: 0px; vertical-align: baseline;">ftp://ftp.ebi.ac.uk/pub/databases/chembl/text-mining</a>. These can be readily modified to include additional keyword constraints to further focus searches.</span></div>
+</div>
+<div style="border: 0px; clear: both; line-height: 17.6000003814697px; margin-bottom: 1em; outline: 0px; overflow: visible; padding: 0px; text-align: left; vertical-align: baseline;">
+<div style="text-align: justify;">
+<span style="background-color: #eeeeee; font-family: Verdana, sans-serif; font-size: x-small;">Large-scale machine learning document classification was shown to be very robust and flexible for this particular application, as illustrated in four distinct text-mining-based use cases. The models are readily available on two data workflow platforms, which we believe will allow the majority of the scientific community to apply them to their own data.</span></div>
+</div>
+<div style="text-align: justify;">
+<br /></div>
+<pre>%T UniChem: extension of InChI-based compound mapping to salt, connectivity and stereochemistry layers
+%A J Chambers
+%A M Davies
+%A A Gaulton
+%A G Papadatos
+%A A Hersey
+%A JP Overington
+%J Journal of Cheminformatics 
+%D 2014
+%V 6:43  
+%O doi:10.1186/s13321-014-0043-5
+%O http://www.jcheminf.com/content/6/1/43
+
+%T A document classifier for medicinal chemistry publications trained on the ChEMBL corpus
+%A G Papadatos
+%A GJP van Westen
+%A S Croset
+%A R Santos
+%A S Trubian
+%A JP Overington
+%J Journal of Cheminformatics 
+%D 2014
+%V 6:40  
+%O doi:10.1186/s13321-014-0040-8
+%O http://www.jcheminf.com/content/6/1/40
+</pre>
+</div>

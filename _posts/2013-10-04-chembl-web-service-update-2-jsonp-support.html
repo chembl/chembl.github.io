@@ -1,0 +1,53 @@
+---
+layout: post
+title: 'ChEMBL Web Service Update 2: JSONP Support'
+date: '2013-10-04T13:40:00.000+01:00'
+author: Mark Davies
+tags:
+- Web Services
+- Software
+- ChEMBL-tips and Alistair
+modified_time: '2014-01-16T11:37:07.602Z'
+thumbnail: http://2.bp.blogspot.com/-DVfFN-xNfaw/Uk62SCojggI/AAAAAAAAAPk/8RCZmMXKBgA/s72-c/2-pies-300x225.jpg
+blogger_id: tag:blogger.com,1999:blog-2546008714740235720.post-1350569917638755461
+blogger_orig_url: http://chembl.blogspot.com/2013/10/chembl-web-service-update-2-jsonp-support.html
+---
+
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://2.bp.blogspot.com/-DVfFN-xNfaw/Uk62SCojggI/AAAAAAAAAPk/8RCZmMXKBgA/s1600/2-pies-300x225.jpg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="http://2.bp.blogspot.com/-DVfFN-xNfaw/Uk62SCojggI/AAAAAAAAAPk/8RCZmMXKBgA/s1600/2-pies-300x225.jpg" /></a></div>
+<br />
+We <a href="http://chembl.blogspot.co.uk/2013/10/chembl-web-service-update-1.html">posted earlier in the week</a> about some behind the scenes changes we had made to our Web Services. Having read that post (if you missed the post and use our Web Services please take a look), you will know we setup a temporary base URL to allow users to test the new ChEMBL API powered services. The base URL is:<br />
+<br />
+<div style="text-align: center;">
+<div style="text-align: left;">
+<span style="font-family: Courier New, Courier, monospace;">https://www.ebi.ac.uk/chemblws2</span></div>
+</div>
+<div style="text-align: center;">
+<br /></div>
+<div style="text-align: left;">
+We have made it straightforward for users to test the new services as all <a href="https://www.ebi.ac.uk/chembl/ws">current methods</a> are available using the new base URL. As well as maintaining existing functionality, we have also been able to add a couple of new features, the first of which is <a href="http://en.wikipedia.org/wiki/JSONP">JSONP</a> support. Those familiar with web application development will be familiar with the issue of requesting data from a domain different from that of the domain the web application is running. This type of data requested is prevented by the web browser, due to the enforcement of the same-origin policy. This is an important security concept, but there are times when it being able pull data in from a trusted source enhances the functionality of the web application and makes the life of the developer much easier. Adding JSONP support to the ChEMBL Web Services allows users to now pull ChEMBL data into their web pages with minimal effort. So how do you add JSONP support? Simple, you add an extra argument to the to Web Service call which provides the name of a callback function, which is then used to wrap the regular JSON response.</div>
+<div style="text-align: left;">
+<br /></div>
+<div style="text-align: left;">
+Currently you can request a JSON response with the following URL: </div>
+<div style="text-align: left;">
+<br /></div>
+<div style="text-align: center;">
+<div style="text-align: left;">
+<a href="https://www.ebi.ac.uk/chemblws2/compounds/CHEMBL941.json"><span style="font-family: Courier New, Courier, monospace;">https://www.ebi.ac.uk/chemblws2/compounds/CHEMBL941.json</span></a></div>
+</div>
+<br />
+To create a JSONP response you add the callback argument parameter (Note, you do not need to include .json and the callback argument can be any value):<br />
+<br />
+<div style="text-align: center;">
+<div style="text-align: left;">
+<a href="https://www.ebi.ac.uk/chemblws2/compounds/CHEMBL941?callback=chembldata"><span style="font-family: Courier New, Courier, monospace;">https://www.ebi.ac.uk/chemblws2/compounds/CHEMBL941?callback=chembldata</span></a></div>
+</div>
+<div style="text-align: center;">
+<br /></div>
+<div style="text-align: left;">
+We hope you find this useful and if you have any questions get in touch.</div>
+<div style="text-align: left;">
+<br /></div>
+<div style="text-align: left;">
+The ChEMBL Team</div>

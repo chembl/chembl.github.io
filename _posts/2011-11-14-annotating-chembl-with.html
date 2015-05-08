@@ -1,0 +1,33 @@
+---
+layout: post
+title: Annotating ChEMBL With Disease/Indication Data
+date: '2011-11-14T09:54:00.001Z'
+author: John Overington
+tags:
+- Some Of The Interesting Things You'll See On A Long Distance Flight
+modified_time: '2011-11-14T10:44:23.998Z'
+thumbnail: http://3.bp.blogspot.com/-Qn2BhgXAIMw/TsDqP75zLII/AAAAAAAABZU/o6yPfGWXzT4/s72-c/139416_Natural_classification.jpg
+blogger_id: tag:blogger.com,1999:blog-2546008714740235720.post-1739666020116850956
+blogger_orig_url: http://chembl.blogspot.com/2011/11/annotating-chembl-with.html
+---
+
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://3.bp.blogspot.com/-Qn2BhgXAIMw/TsDqP75zLII/AAAAAAAABZU/o6yPfGWXzT4/s1600/139416_Natural_classification.jpg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="229" src="http://3.bp.blogspot.com/-Qn2BhgXAIMw/TsDqP75zLII/AAAAAAAABZU/o6yPfGWXzT4/s320/139416_Natural_classification.jpg" width="320" /></a></div>
+<br />
+A surprisingly difficult thing to do is to perform a search of ChEMBL for potential anti-cancer compounds - an obvious place to start is by building &nbsp;a list of genes involved in cancer, and then pulling back all data against these genes, applying activity filters, <i>etc</i>. Alternatively you could think of searching for keywords like 'xenograft' in the assay descriptions, since these are likely to be linked quite strongly for anticancer indications. However, it is a big pain to do, far harder than it should be, but the good news is that we starting to think about fixing this, a little. A surprising number of gotcha's get in the way of doing this - for example a target clearly linked to cancer could be an anti-target in a cardiovascular project, <i>etc</i>.<br />
+<br />
+The data in ChEMBL is largely centred around 'depositions from projects' in this case the project can be the assembled data in a publication, which was either part of, or an entire 'project' in the authors lab(s), or are depositions that aren't from the literature, for example the GSK malaria HTS dataset. Each of these projects had an intent - they were making compounds to cure gout, or malaria, etc. Capturing this 'intent' data is the key thing to try and do. It is often pretty simple to do just from the title of the paper, for example.<br />
+<br />
+<pre>New Serotonin 5-HT1A Receptor Agonists with Neuroprotective Effect against Ischemic Cell Damage
+</pre>
+<pre></pre>
+<br />
+as a title gives a pretty clear clue that the intent was to discover compounds useful for the treatment of stroke. That particular paper is <a href="http://pubs.acs.org/doi/full/10.1021/jm2007886">here</a>.<br />
+<br />
+So how successful is the simple approach of looking for the disease area of a project from the titles of papers - it turns out it is pretty good, largely due to the frequent use of canonically constructed titles for the literature - "<i>X</i> for the treatment of <i>Y</i>" where <i>X</i> is a compound-related term and <i>Y</i> is a disease related term.<br />
+<br />
+So it sounds like a simple problem, take the titles, tag them up with disease terms and away you go. However, this is where it gets complicated - there is not a good taxonomy/ontology for diseases, at least one that maps back into discovery space well. You can seem to get quite a way with a list of synonyms for various diseases, but the world needs a common public dictionary/vocabulary for disease terms. To balance this lack of a fantastic existing standard, there is the <a href="http://www.whocc.no/atc_ddd_methodology/purpose_of_the_atc_ddd_system/">ATC classification</a> for drugs, it is a little inconsistent in the way it mixes chemotypes, pathways and targets, but it is stable, accepted and robust - and all new approved drugs will be placed into this taxonomy, so let's see what ATC style tagging can achieve.<br />
+<br />
+What we are specifically trying is to take neglected diseases (defined here as tuberculosis, helminth infections, schistosomiasis, trypanosomiasis, HIV/AIDS and malaria), and manually tag up the assays in ChEMBL with the corresponding ATC codes, at the 'depth' supported by the title - for example if malaria compounds are artemisinin-based, then it can be placed at a deeper level (<a href="http://www.whocc.no/atc_ddd_index/?code=P01BE">P01BE</a>) than just a malaria targeted approach (<a href="http://www.whocc.no/atc_ddd_index/?code=P01B">P01B</a>). Of course, it's then possible to do cool things that group data across the span of the ATC classification.<br />
+<br />
+We'll let you know how we get on!

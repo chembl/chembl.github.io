@@ -1,0 +1,51 @@
+---
+layout: post
+title: Recovering useful data from images of graphs
+date: '2013-03-03T16:11:00.000Z'
+author: John Overington
+tags:
+- Information Extraction
+- Crowdsourcing
+- Pharmacogenomics
+modified_time: '2013-03-03T16:42:20.048Z'
+thumbnail: http://4.bp.blogspot.com/-cxfkpg3nNlE/UTNwT6i4XCI/AAAAAAAAC4s/Po2VUod9TP8/s72-c/silden_PK.png
+blogger_id: tag:blogger.com,1999:blog-2546008714740235720.post-5733837181451854110
+blogger_orig_url: http://chembl.blogspot.com/2013/03/recovering-useful-data-from-images-of.html
+---
+
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://4.bp.blogspot.com/-cxfkpg3nNlE/UTNwT6i4XCI/AAAAAAAAC4s/Po2VUod9TP8/s1600/silden_PK.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="307" src="http://4.bp.blogspot.com/-cxfkpg3nNlE/UTNwT6i4XCI/AAAAAAAAC4s/Po2VUod9TP8/s640/silden_PK.png" width="640" /></a></div>
+Lots of data is only ever reported as graphs, and for human readers, this is a pretty sensible thing to do - we're pretty good at pattern matching, and making sense of what we see. But to reuse data, to fit it to a different interpretative model, or compare it, and even to compare two plots, we need the underlying data. We're particularly interested in PK data at the moment, and one of these cases where data is only usual available as an image is for drug plasma concentration time-course data.<br />
+<br />
+So, it turns out it's pretty quick to build a data table from time-course data like this, and then play around with fitting new functions to the data, <i>etc</i>. Above is the curve for a typical drug - the time taken (for me, you may be quicker or slower than this) from opening the publication to a data set is about 7 minutes. So this is about six curves an hour (with some YouTube kitten video time thrown in to relax the eyes) and so about 50 a working day - so in a month it would be possible for one person to capture the published time-course data for all approved oral drugs. That's pretty cool, don't you think? Which means, four people would be able to do this in a week, and twenty people do this task in a day.<br />
+<br />
+Here's the digitised data from the graph above. First column is time in hours, and second is plasma concentration in ng.ml<sup>-1</sup>. The data relates to a 100 mg single dose of&nbsp;<span style="font-family: inherit;"><span style="background-color: white; text-align: left;">DEIYFTQMQPDXOT-UHFFFAOYSA-N.</span>&nbsp;</span><br />
+<br />
+<span style="font-family: Courier New, Courier, monospace;">0.0 &nbsp; &nbsp;0.0</span><br />
+<span style="font-family: Courier New, Courier, monospace;">0.36 &nbsp;56.7</span><br />
+<span style="font-family: Courier New, Courier, monospace;">0.60 327.0</span><br />
+<span style="font-family: Courier New, Courier, monospace;">1.1 &nbsp;445.0</span><br />
+<span style="font-family: Courier New, Courier, monospace;">1.6 &nbsp;413.0</span><br />
+<span style="font-family: Courier New, Courier, monospace;">2.0 &nbsp;355.0</span><br />
+<span style="font-family: Courier New, Courier, monospace;">3.0 &nbsp;250.0</span><br />
+<span style="font-family: Courier New, Courier, monospace;">4.0 &nbsp;178.0</span><br />
+<span style="font-family: Courier New, Courier, monospace;">6.0 &nbsp; 80.6</span><br />
+<span style="font-family: Courier New, Courier, monospace;">8.0 &nbsp; 50.8</span><br />
+<span style="font-family: Courier New, Courier, monospace;">10.0 &nbsp;35.9</span><br />
+<span style="font-family: Courier New, Courier, monospace;">12.0 &nbsp;22.8</span><br />
+<span style="font-family: Courier New, Courier, monospace;">18.0 &nbsp;12.3</span><br />
+<span style="font-family: Courier New, Courier, monospace;">24.0 &nbsp; 9.3</span><br />
+<br />
+Of course, there is a big problem with single <i>vs</i> multiple dosing, dose accumulation, population variance, confidence intervals. There's also some errors in the digitizing process, but there are ways to estimate what these are, and probably they are smaller than the variance in the underlying data in this case.<br />
+<br />
+Would anyone want to help me with this task -&nbsp;we can pool the datasets and no doubt find one or two useful things for publications (<i>e.g.</i> what is the distribution of C<sub>max</sub> for once a day dosed drugs (in uM)). All the data would need to end up in the public domain of course......<br />
+<br />
+Yay crowdsourcing!<br />
+<br />
+jpo<br />
+<br />
+<u>Update</u> - with the data above, it's now possible to feed it to sites like the excellent <a href="http://sbpkpd.org/">http://sbpkpd.org</a> and explore fit against a number of canonical models.<br />
+<br />
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://1.bp.blogspot.com/-GPdevKf0q8U/UTN9TgjgqlI/AAAAAAAAC48/3Je1omjbREo/s1600/sild-fit.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="284" src="http://1.bp.blogspot.com/-GPdevKf0q8U/UTN9TgjgqlI/AAAAAAAAC48/3Je1omjbREo/s320/sild-fit.png" width="320" /></a></div>
+<br />

@@ -1,0 +1,58 @@
+---
+layout: post
+title: The Ontogeny and Evolution of Compound Names
+date: '2013-02-03T08:46:00.002Z'
+author: John Overington
+tags:
+- Research Codes
+- INNS and USANS
+- Databases
+- Some Of The Interesting Things You'll See On A Long Distance Flight
+modified_time: '2013-02-04T09:27:44.062Z'
+thumbnail: http://3.bp.blogspot.com/-Vkxq5yJHmBE/UQ4juHQHGVI/AAAAAAAACys/ThIadyqDv0s/s72-c/AscentOfMan.jpg
+blogger_id: tag:blogger.com,1999:blog-2546008714740235720.post-5209838343727643048
+blogger_orig_url: http://chembl.blogspot.com/2013/02/chemical-names-are-just-like-variables.html
+---
+
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://3.bp.blogspot.com/-Vkxq5yJHmBE/UQ4juHQHGVI/AAAAAAAACys/ThIadyqDv0s/s1600/AscentOfMan.jpg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="103" src="http://3.bp.blogspot.com/-Vkxq5yJHmBE/UQ4juHQHGVI/AAAAAAAACys/ThIadyqDv0s/s320/AscentOfMan.jpg" width="320" /></a></div>
+<br />
+Here's a post prompted by a wipe board discussion with a visitor the other day - they asked if I had ever written this down, and so here it is.<br />
+<br />
+The naming of compounds is one of the most enabling and frustrating aspects of chemoinformatics - and getting a handle on compound naming conventions is one of the big gotcha's for people entering the field from bioinformatics, where things are frankly a lot simpler (yes, I know it's not easy there - but it's a lot easier than in bioinformatics).<br />
+<br />
+It's interesting to view the naming of compounds in a timeline manner, and for those of you with a software bent, in the context of variable names....<br />
+<br />
+I describe here a prototypical typical system - electronic lab-books and so forth will of course change the details. When a chemist makes a compound they know the 2-D structure (or they will work it out once they purify the product) and it has a <b>lab-book reference</b>. This could be something like <b>2341/23/4 </b>(which could encode that the particular compound is labelled as compound 4 on page 23 of a lab book numbered 2341), once the compound is purified and registered in a compound database at an institute it will typically get a <b>research code</b> - something like <b>EBI-7821-1</b> - there is usually some convention here to the naming - EBI means it was made at the European Bioinformatics Institute (this is a made up example, we don't make compounds!), and it is the 7,821th compound made, and then the -1 means that it is batch 1 - since when we make it again, it is likely to have a different purity, contaminants, and potentially differing biological activity. These are all private names, the world doesn't see any of these.<br />
+<br />
+Then a chemist writes up the work, and publishes it in a journal - for brevity (and other reasons) compounds are typically published with a <b>paper identifier</b> like <b>12d</b> within a particular paper - it is just a tag within a particular paper, with the scope of the name limited to a particular publication - just like a local variable in a software function. There will be many other completely unrelated compounds spread across the literature - this type of name is not useful for integration purposes.<br />
+<br />
+If you write a patent on the compound, it will typically be named with it's IUPAC name, and/or with a <b>patent identifier </b>number - e.g. <b>example 27</b>, again a local variable within a patent. There will be no relationship between the patent local name and the publication identifier. These are public names.<br />
+<br />
+So why don't people more generally use IUPAC names - well they are often long, difficult to say and pronounce without sounding like a fool, difficult to remember, difficult to type, and there are often many valid alternate IUPAC names for a particular compound - so they are usually avoided completely when talking about a compound. CAS numbers are a further alternative, the issue there is that a private organisation holds the naming rights, they are not public, there are tights restrictions on how many you can store, and using them is very expensive.<br />
+<br />
+So far we have gone from a lab book reference (private), to a research code (private), to a local identifier (public) in a paper/patent, and for all of these we have a 2-D structure.<br />
+<br />
+If the compound is sufficiently interesting and more people use it, and it is published in other publications, there comes a point when the research code is published and the therefore becomes public. Occasionally this happens on first publication, but it's pretty unusual.<br />
+<br />
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://4.bp.blogspot.com/-XpDW7r5iwEo/UQ4s3pxIPxI/AAAAAAAACzU/PYxCBZtHbjM/s1600/drug+names.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="432" src="http://4.bp.blogspot.com/-XpDW7r5iwEo/UQ4s3pxIPxI/AAAAAAAACzU/PYxCBZtHbjM/s640/drug+names.png" width="640" /></a></div>
+<br />
+<br />
+More usual though is that a research code will appear in the literature with some interesting biological properties - something like EBI-9437, which imagine - makes stem cells differentiate into competent beta cells. The batch is not usually reported (and referees would rightly be sniffy about batch specific effects, and by the stage that people report these results the synthesis, purification and assay variability will be sorted out). It is probably the case that the structure of EBI-9437 is already published, in a patent usually - it's just that you don't know what particular compound out of many hundreds that it actually is. So for some of the most interesting recent compounds we know their research code (and usually where they come from from the syntax of the name) but not the structure. Many people outside the organization that made EBI-9437 would like to know the structure.<br />
+<br />
+At some point, usually at a big meeting or in a high profile publication, the structure of EBI-9437 will be shown to the world. At this point, it can be mapped back to all the previous names (on the basis of 2D structure).<br />
+<br />
+If the compound is commercially interesting, it could be licensed to another company, who often want to make it clear to the world that they control the compound, or to imply that it came from their own labs, so they may rename it. So in this case imagine our EBI-9437 becomes <b>WTF-433932</b>, after the rights to the compound are acquired by WTF Discovery Inc.<br />
+<br />
+Many compounds stop here in terms of their progression of names - they may be too toxic for wide use, they may just not be enough money to develop them further, or they may have just been tried in the wrong assay. For the 'luckier' compounds they will typically progress to full clinical development, still using their research codes, and typically scientific documents submitted to regulators (as part of and IND or review package) use Research Codes - many of these documents are in the public domain.<br />
+<br />
+When a compound gets to this stage, compound vendors offer for the compound for sale, often assigning their own catalog numbers, these are easily confused with research codes, and it is an unfortunate feature that these are starting to contaminate both public chemical databases, and to some extent the literature; with this variable scope view these are really just local variables applicable over a particular compound suppliers catalog.<br />
+<br />
+For those that look good in development, and there is the potential that the compound will be used in a product, a formal non-proprietary name is assigned - nowadays there are two major names <b>USAN</b>, and <b>INN</b>&nbsp;(both of these are public) - I've discussed these in the past, both the plusses and the minuses in their respective systems, so I won't discuss them here further - do a search on the blog for some more pointers if you are interested. In our case, for the fictional WTF-433932, imagine it's a tyrosine kinase inhibitor and gets assigned the name <b>faybelitinib</b>. At this point, further discussion and publications on the compounds should use these public USAN names. This is a great help, it is a single unambiguous name for a compound, but typically comes quite late in the lifecycle of a compound - and to get more information on the properties of a compound with a USAN name, you need to know the 2D structure, Research Code, patent ids, paper ids, <i>etc</i>. It is interesting that with the development of their own independent pharmaceutical discovery and development capabilities, nations such as China are assigning their own non-proprietary names, following stem conventions<i>. These are not currently easily accessible though.</i><br />
+<br />
+Finally, a compound will get a <b>Trade or Brand Name, </b>this is often geographically local in scope (so a drug will have different names in different markets <i>e.g. </i>Glivec and Gleevec, or different names in the same geographical market for different diseases <i>e.g.</i> Revatio and Viagra). So, for scientific reasons these are not reliable useful names, and should, in general be avoided.<br />
+<br />
+So what we have is a hierarchy of names on increasing scope and consistency as a compound progresses from round-bottomed flask to patient. Because of the conditional and temporal assignments of these names of ever increasing scope and formality, the tracking to previous names is an essential task. Suffice it to say that <b>Research Codes are where the action is</b>.<br />
+<br />
+jpo

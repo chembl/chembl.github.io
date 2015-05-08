@@ -1,0 +1,93 @@
+---
+layout: post
+title: SureChEMBL - Chemical Structure Information in Patents
+date: '2013-12-11T04:49:00.003Z'
+author: John Overington
+tags:
+- Patents
+- Databases
+- SureChEMBL
+modified_time: '2013-12-11T20:57:39.208Z'
+thumbnail: http://1.bp.blogspot.com/-vqVSDl7cQW8/Uqf9prOPuKI/AAAAAAAADRM/XuDtLrVsZYM/s72-c/ChEMBL+SureChEMBL+Changes+Everything.tiff
+blogger_id: tag:blogger.com,1999:blog-2546008714740235720.post-846307655328232898
+blogger_orig_url: http://chembl.blogspot.com/2013/12/surechembl-chemical-structure.html
+---
+
+<div class="separator" style="clear: both; text-align: center;">
+</div>
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://1.bp.blogspot.com/-vqVSDl7cQW8/Uqf9prOPuKI/AAAAAAAADRM/XuDtLrVsZYM/s1600/ChEMBL+SureChEMBL+Changes+Everything.tiff" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="430" src="http://1.bp.blogspot.com/-vqVSDl7cQW8/Uqf9prOPuKI/AAAAAAAADRM/XuDtLrVsZYM/s640/ChEMBL+SureChEMBL+Changes+Everything.tiff" width="640" /></a></div>
+<br />
+<a href="http://www.ebi.ac.uk/about/news/press-releases/SureChEMBL">Today we have announced</a> that we are taking over the running of the SureChem system from <a href="http://www.digital-science.com/">Digital Science</a>. We have renamed this SureChEMBL to reflect the history and provenance of the technology and engineering, but also to align it with it's new home and future, we like the name, and hope you do. We are delighted that this has happened - Nicko and the team at Digital Science have been great, and the more we have dug in to how it works, the more we have appreciated the design and vision that they had.<br />
+<br />
+If there is one consistent piece of feedback we get about ChEMBL it is in encouraging us to add patent data to what we do. So now we have, but because the data from patents is different in detail from that reported in the published literature, we will keep the databases separate, but closely integrated.<br />
+<br />
+For those of you that are already SureChem users you will be familiar with the functionality and how it works; but for those that weren't SureChEMBL takes feeds of full text patents, identifies chemical objects from either the in-line text or from images and adds 2-D chemical structures. This is then loaded into a database and is searchable by chemical structure, so you can do substructure, similarity searching and so forth - all the good things you'd expect from a chemical database. This chemical search functionality is unavailable from the public, published patent documents, and is really essential for anyone seriously using the patent literature. Oh, and the system does this live, so as patents are published, they are processed and added to the system - the delay between publication and structures being available in SureChEMBL is about a day when converted from text, and a few days when converted from image sources.<br />
+<br />
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://2.bp.blogspot.com/-0l_yyZvovrg/UqfqXAsXv0I/AAAAAAAADQ0/sijGkHisMUs/s1600/SureChEMBL+overview.tiff" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="456" src="http://2.bp.blogspot.com/-0l_yyZvovrg/UqfqXAsXv0I/AAAAAAAADQ0/sijGkHisMUs/s640/SureChEMBL+overview.tiff" width="640" /></a></div>
+<br />
+<br />
+SureChEMBL is hosted on the cloud - it's quite a complicated AWS solution, and it will take a few months for us to assume complete control of all the various parts, and, importantly keep things running smoothly behind the scenes, so the continuous access to fresh patent data is maintained.<br />
+<br />
+SureChEMBL uses a number of third part software products in its operation, and arranging the licenses and permissions has been complex, and is still ongoing. The 3rd party software and data feeds used in SureChEMBL include:<br />
+<br />
+<u>Name to structure</u>:&nbsp;<span style="font-family: inherit; text-indent: -0.38in;">ChemAxon,&nbsp;</span><span style="font-family: inherit; text-indent: -0.38in;">ACD/Labs,&nbsp;</span><span style="font-family: inherit; text-indent: -0.38in;">Perkin
+Elmer,&nbsp;</span><span style="font-family: inherit; text-indent: -0.38in;">OpenEye,&nbsp;</span><span style="font-family: inherit; text-indent: -0.38in;">OPSIN, NextMove</span><br />
+<div style="direction: ltr; margin-bottom: 0pt; margin-left: .38in; margin-top: 6.48pt; mso-line-break-override: none; punctuation-wrap: hanging; text-align: left; text-indent: -.38in; unicode-bidi: embed; word-break: normal;">
+<span style="font-family: inherit; text-indent: -0.38in;"><u>Chemical cartridge:&nbsp;</u></span><span style="font-family: inherit; text-indent: -0.38in;">ChemAxon</span></div>
+<div style="direction: ltr; margin-bottom: 0pt; margin-left: .38in; margin-top: 6.48pt; mso-line-break-override: none; punctuation-wrap: hanging; text-align: left; text-indent: -.38in; unicode-bidi: embed; word-break: normal;">
+<u>Image to structure</u>:&nbsp;<span style="font-family: inherit; text-indent: -0.38in;">Key
+Module</span></div>
+<div style="direction: ltr; margin-bottom: 0pt; margin-left: .38in; margin-top: 6.48pt; mso-line-break-override: none; punctuation-wrap: hanging; text-align: left; text-indent: -.38in; unicode-bidi: embed; word-break: normal;">
+<span style="font-family: inherit; text-indent: -0.38in;"><u>Patent data:&nbsp;</u></span><span style="font-family: inherit; text-indent: -0.38in;">FairView</span><span style="font-family: inherit; text-indent: -0.38in;"> (IFI
+Claims) – processed patents,&nbsp;</span><span style="font-family: inherit; text-indent: -0.38in;">TwinDolphin</span><span style="font-family: inherit; text-indent: -0.38in;"> –
+patent PDFs</span></div>
+<br />
+These guys have all been a pleasure to work with so far, and SureChEMBL is a great showcase of their respective technologies and data:<br />
+<br />
+We will host the system at the primary urls <a href="http://www.ebi.ac.uk/surechembl">http://www.ebi.ac.uk/surechembl</a> and also at <a href="http://www.surechembl.org/">http://www.surechembl.org</a> - at the moment , these redirect to www.surechem.org, but as we switch things over they will point to servers provisioned by our team, so please start using these new urls for future access, although the original urls will continue to work into the future. <br />
+<br />
+One of the more complicated things to transfer is the user accounts system - we can't simply transfer them over - and so have a plan to mail batches of users once a new sign-on system is in place in order to invite them to sign up to the new user account system. If you are not currently a registered user, please sign up with the current system, and we'll invite you to transfer over to our sign-on system once things are ready.<br />
+<br />
+The EMBL-EBI has a broad range of life-science chemistry resources, and we integrate across chemistry related content using a chemical structure integration system call UniChem. In overview the EMBL-EBI chemistry resources include the following.<br />
+<br />
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://1.bp.blogspot.com/--2XUIy_Ey4A/UqjRZbgDRQI/AAAAAAAADRc/9WBt5T2jAEM/s1600/EBi+resources.tiff" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="470" src="http://1.bp.blogspot.com/--2XUIy_Ey4A/UqjRZbgDRQI/AAAAAAAADRc/9WBt5T2jAEM/s640/EBi+resources.tiff" width="640" /></a></div>
+<br />
+<div class="separator" style="clear: both; text-align: center;">
+</div>
+<br />
+The future? - well the future is exciting, and we have lots of ideas to actively develop the SureChEMBL system. To be clear though, doing this will rely on us getting funding, and we're working hard on this. Some of the ideas we have for SureChEMBL include:<br />
+<ul>
+<li><span style="font-family: inherit; text-indent: -0.31in;">Put SureChEMBL chemical content into UniChem</span></li>
+<li><span style="font-family: inherit; text-indent: -0.31in;">Add </span><span style="font-family: inherit; text-indent: -0.31in;">sequence
+</span><span style="font-family: inherit; text-indent: -0.31in;">searching</span></li>
+<li><span style="font-family: inherit; text-indent: -0.31in;">Add
+disease </span><span style="font-family: inherit; text-indent: -0.31in;">term,
+animal model, </span><span style="font-family: inherit; text-indent: -0.31in;"><i>etc.</i></span><span style="font-family: inherit; text-indent: -0.31in;">
+indexing</span></li>
+<li><span style="font-family: inherit; text-indent: -0.31in;">Development
+of community KNIME nodes</span></li>
+<li><span style="font-family: inherit; text-indent: -0.31in;">Add
+links to/from Europe </span><span style="font-family: inherit; text-indent: -0.31in;">PMC</span></li>
+<li><span style="font-family: inherit; text-indent: -0.31in;">Ligand
+Ensemble-based mapping of ChEMBL literature to patents</span></li>
+<li><span style="font-family: inherit; text-indent: -0.31in;">Refactor
+interface for EMBL look and feel</span></li>
+<li><span style="font-family: inherit; text-indent: -0.31in;">Extend
+image extraction retrospectively from 2006 using&nbsp;</span><span style="font-family: inherit; text-indent: -0.25in;">spot
+priced compute from AWS</span></li>
+<li><span style="font-family: inherit; text-indent: -0.31in;">Provide
+</span><span style="font-family: inherit; text-indent: -0.31in;">weekly/monthly
+feed of patent structures to PubChem</span></li>
+<li><span style="font-family: inherit; text-indent: -0.31in;">A</span><span style="font-family: inherit; text-indent: -0.31in;">dd </span><span style="font-family: inherit; text-indent: -0.31in;">chemical
+</span><span style="font-family: inherit; text-indent: -0.31in;">structure
+tagging </span><span style="font-family: inherit; text-indent: -0.31in;">&amp;
+search to full text content of Europe </span><span style="font-family: inherit; text-indent: -0.31in;">PMC</span></li>
+</ul>
+But one of the first things we plan to do is index genes and targets (in collaboration with local SME&nbsp;<a href="http://scibite.com/">SciBite</a>) and provide an RDF form of the data and REST web services as part of the <a href="http://www.openphacts.org/">IMI OpenPHACTS</a> project.<br />
+<br />
+In the new year, we will run a webinar on SureChEMBL (which we will announce here), but in the mean-time we're very happy to take questions on the SureChEMBL support email address surechembl-help (at) ebi.ac.uk.<br />
+<br />
+jpo

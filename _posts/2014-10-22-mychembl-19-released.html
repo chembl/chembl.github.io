@@ -1,0 +1,109 @@
+---
+layout: post
+title: myChEMBL 19 Released
+date: '2014-10-22T16:20:00.000+01:00'
+author: Mark Davies
+tags:
+- Virtual Machines
+- myChEMBL
+modified_time: '2014-10-28T10:18:24.999Z'
+thumbnail: http://1.bp.blogspot.com/-AaMZOGmGyHM/VD-oiypJ6dI/AAAAAAAAAdY/3W1dlBzg6U0/s72-c/Screen%2BShot%2B2014-10-16%2Bat%2B12.13.41.png
+blogger_id: tag:blogger.com,1999:blog-2546008714740235720.post-718921060758883183
+blogger_orig_url: http://chembl.blogspot.com/2014/10/mychembl-19-released.html
+---
+
+<div dir="ltr" style="text-align: left;" trbidi="on">
+<div style="text-align: justify;">
+<br /></div>
+<div style="text-align: justify;">
+<br /></div>
+<div class="separator" style="clear: both; text-align: justify;">
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<a href="http://1.bp.blogspot.com/-AaMZOGmGyHM/VD-oiypJ6dI/AAAAAAAAAdY/3W1dlBzg6U0/s1600/Screen%2BShot%2B2014-10-16%2Bat%2B12.13.41.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="http://1.bp.blogspot.com/-AaMZOGmGyHM/VD-oiypJ6dI/AAAAAAAAAdY/3W1dlBzg6U0/s1600/Screen%2BShot%2B2014-10-16%2Bat%2B12.13.41.png" height="225" width="400" /></a></div>
+<div class="separator" style="clear: both; text-align: justify;">
+We are very pleased to announce that the latest myChEMBL release, based on the<a href="http://chembl.blogspot.co.uk/2014/07/chembl19-released-now-with-crop.html" target="_blank"> ChEMBL 19 database</a>,&nbsp; is now available to <a href="ftp://ftp.ebi.ac.uk/pub/databases/chembl/VM/myChEMBL/releases/myChEMBL-19_0/">download</a>. In addition to the extra data, you will also find a number a great new features. So what's new then?</div>
+<h3 style="text-align: justify;">
+More core chemoinformatics tools</h3>
+<div style="text-align: justify;">
+We have included <a href="http://cactus.nci.nih.gov/osra/">OSRA</a> (Optical Structure Recognition), which is useful for extracting compound structures from images. OSRA can be accessed from the command line or by very convenient web interface, provided by Beaker (described below). We've also added <a href="http://openbabel.org/wiki/Main_Page">OpenBabel</a> - another great open source cheminformatics toolkit. This means you can now experiment with both RDKit and OpenBabel and use whichever you prefer.</div>
+<div style="text-align: justify;">
+<br /></div>
+<h3 style="text-align: justify;">
+ChEMBL Beaker</h3>
+<div style="text-align: justify;">
+myChEMBL now ships with a local instance the<a href="https://github.com/mnowotka/chembl_beaker"> ChEMBL Beaker</a> service. For those not familiar with Beaker, the service provides users with an array of chemoinformatics utilities via a RESTful API. Under the hood, Beaker is using RDKit and OSRA to carry out its methods. With the addition of Beaker in myChEMBL, users can now carry out the following tasks in secure local environment:</div>
+<ul>
+<li style="text-align: justify;">Convert chemical structure bewteen multiple formats</li>
+<li style="text-align: justify;">Extract compound information from images and pdfs</li>
+<li style="text-align: justify;">Generate compound images in raster (png) and vector (svg) forms</li>
+<li style="text-align: justify;">Generate HTML5 ready representation of compound structure</li>
+<li style="text-align: justify;">Generate compound fingerprints</li>
+<li style="text-align: justify;">Generate compound descriptors</li>
+<li style="text-align: justify;">Identify Maximum Common Substructure</li>
+<li style="text-align: justify;">Compound standardisation</li>
+<li style="text-align: justify;">Lots of more calculations </li>
+</ul>
+<h3 style="text-align: justify;">
+&nbsp;</h3>
+<h3 style="text-align: justify;">
+New IPython notebooks</h3>
+<div style="text-align: justify;">
+We have written a number of new IPyhthon notebooks, which focus on a range of cheminformatics and bioinformatic topics. The topics covered by the new notebooks include:</div>
+<ul>
+<li style="text-align: justify;">Introduction on how to use ChEMBL Beaker</li>
+<li style="text-align: justify;">Using the <a href="https://www.djangoproject.com/">Django</a> ORM to query the ChEMBL database</li>
+<li style="text-align: justify;">Introduction to BLAST and creation of a simple Druggability Score</li>
+<li style="text-align: justify;">Introduction to machine learning</li>
+<li style="text-align: justify;">Analysis of <a href="https://www.surechembl.org/">SureChEMBL</a> data, focused on identifying the MCS core identified in a patent&nbsp; </li>
+<li style="text-align: justify;">Extraction and analysis of ChEMBL ADME data&nbsp; </li>
+</ul>
+<div style="text-align: justify;">
+<br /></div>
+<div style="text-align: justify;">
+We have also updated the underlying Ubuntu VM to <a href="http://releases.ubuntu.com/14.04/">14.04 LTS</a>, which also required us to make a number of changes the myChEMBL installation. To see how these changes and new additions have effected a <a href="http://chembl.blogspot.co.uk/2014/06/mychembl-on-bare-metal.html">bare metal installation</a> of myChEMBL, head over the <a href="https://github.com/chembl/mychembl">myChEMBL github repository</a>.</div>
+<h3 style="text-align: justify;">
+&nbsp;</h3>
+<h3 style="text-align: justify;">
+Installation</h3>
+<div style="text-align: justify;">
+There are 2 different ways we recommend for installing myChEMBL:</div>
+<ol>
+<li style="text-align: justify;">Follow the instructions in the <a href="ftp://ftp.ebi.ac.uk/pub/databases/chembl/VM/myChEMBL/releases/myChEMBL-19_0/INSTALL">INSTALL</a> file on the ftpsite. This will import the myChEMBL VM into VirtualBox</li>
+<li style="text-align: justify;">Use Vagrant to install myChEMBL. See this<a href="http://chembl.blogspot.co.uk/2014/06/how-to-install-mychembl-using-two.html"> earlier blogpost </a>for more details, but the command to run is:<b><span style="font-family: &quot;Courier New&quot;,Courier,monospace;"></span></b></li>
+</ol>
+<div style="text-align: center;">
+<div style="text-align: justify;">
+<b><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">vagrant init chembl/myChEMBL &amp;&amp; </span></b><b><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">vagrant up</span></b></div>
+<div style="text-align: justify;">
+<br /></div>
+<div style="text-align: left;">
+<div style="text-align: justify;">
+<span style="font-family: inherit;">&nbsp;&nbsp; <span style="color: red;">If you already have myChEMBL_18 installed via Vagrant, instead of running '<span style="font-family: &quot;Courier New&quot;,Courier,monospace;">vagrant box update</span>', we strongly recommend running:</span>&nbsp;</span></div>
+</div>
+<div style="text-align: left;">
+<div style="text-align: justify;">
+<br /></div>
+</div>
+<div style="text-align: center;">
+<div style="text-align: justify;">
+<b><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">vagrant box remove chembl/myChEMBL </span></b></div>
+</div>
+<div style="text-align: justify;">
+<b><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">vagrant init chembl/myChEMBL &amp;&amp; </span></b><b><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">vagrant up</span></b></div>
+<div style="text-align: justify;">
+<br /></div>
+</div>
+<h3>
+</h3>
+<h3 style="text-align: justify;">
+Future plans</h3>
+<div style="text-align: justify;">
+The myChEMBL resource is an evolving system and we are always looking to add new open source projects, tools and notebooks. We would be really interested to hear from users about what they would like to see in future myChEMBL releases, so please <a href="mailto:mychembl@ebi.ac.uk">get in touch</a> if you have any suggestions. (Just so you know, we already have a couple of ideas for myChEMBL 20).</div>
+<div style="text-align: justify;">
+<br /></div>
+<div style="text-align: justify;">
+We hope you find this myChEMBL update useful and if you spot any issues or have any questions <a href="mailto:mychembl@ebi.ac.uk">let us know</a>.</div>
+<div style="text-align: justify;">
+<br /></div>
+<div style="text-align: justify;">
+The myChEMBL Team</div>
+</div>

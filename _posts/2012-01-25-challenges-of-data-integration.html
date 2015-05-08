@@ -1,0 +1,54 @@
+---
+layout: post
+title: Challenges of data integration
+date: '2012-01-25T08:57:00.000Z'
+author: John Overington
+tags:
+- Some Of The Interesting Things You'll See On A Long Distance Flight
+modified_time: '2012-01-25T22:29:03.342Z'
+thumbnail: http://2.bp.blogspot.com/-AJ5wsB6rffU/Tx-72YDs28I/AAAAAAAABfs/pnaSxD58OHU/s72-c/PastedGraphic-3.png
+blogger_id: tag:blogger.com,1999:blog-2546008714740235720.post-7146304028908433183
+blogger_orig_url: http://chembl.blogspot.com/2012/01/challenges-of-data-integration.html
+---
+
+Here is an example of why data integration across resources is hard - and hard at multiple levels. It's presented as an example of where things can trip up the unwary.....
+
+In 1999, the structure of <a href="http://en.wikipedia.org/wiki/Carbonic_anhydrase">carbonic anhydrases II and IV</a> complexed to the approved drug brinzolamide were <a href="http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2143946/pdf/9541386.pdf/?tool=EBI">published</a>. These structures gave insight into how the drugs bind their targets, and also selectivity. The coordinate set we''re specifically interested in here is <a href="http://www.ebi.ac.uk/pdbe-srv/view/entry/1a42/summary">1a42</a>. 3-D complexes of ligands with proteins are of incredible importance in many areas, not least in docking method/scoring function development.<br />
+<br />
+In the original paper the structure is drawn as....<br />
+<br />
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://2.bp.blogspot.com/-AJ5wsB6rffU/Tx-72YDs28I/AAAAAAAABfs/pnaSxD58OHU/s1600/PastedGraphic-3.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="142" src="http://2.bp.blogspot.com/-AJ5wsB6rffU/Tx-72YDs28I/AAAAAAAABfs/pnaSxD58OHU/s320/PastedGraphic-3.png" width="320" /></a></div>
+<div class="separator" style="clear: both; text-align: center;">
+<br /></div>
+<div class="separator" style="clear: both; text-align: left;">
+which is correct, and the same as found in wikipedia (<a href="http://en.wikipedia.org/wiki/Brinzolamide">Brinzolamide</a>) and ChEMBL (<a href="https://www.ebi.ac.uk/chembldb/compound/inspect/CHEMBL220491">CHEMBL220491</a>). The structure in the PDB file however is something else, an isomer of brinzolamide - the IUPAC name of the ligand in the coordinate set is&nbsp;</div>
+<div class="separator" style="clear: both; text-align: left;">
+<br /></div>
+<div class="separator" style="clear: both; text-align: left;">
+</div>
+<pre style="white-space: pre-wrap; word-wrap: break-word;">(4R)-2-(2-ETHOXYETHYL)-4-(ETHYLAMINO)-3,4-DIHYDRO-2H-THIENO[3,2-E][1,2]THIAZINE-6-SULFONAMIDE 1,1-DIOXIDE</pre>
+<pre style="white-space: pre-wrap; word-wrap: break-word;"></pre>
+<br />
+So instead of having the methoxy at the chain terminus there is an ethoxy, and the chain between the oxygen and the ring is one atom shorter - the oxygen has migrated one atom along. This is not brinzolamide, but it's called brinzolamide in the PDB entry (but the structure's wrong), and the paper (where the structure is right). The most likely explanation is that when the crystallographers built the topology file for the ligand they mistyped the atom name/element/whatever - this was a pain back then.<br />
+<br />
+As a first question - what should PDB curators do here? Spot the error and fix the data, probably not, that's not the way that PDB works, but this post-loading, fixing and futzing around with the original data is common in other databases (<i>e.g.</i> ChEMBL). For me, this is the difference between an archive, an a curated resource.<br />
+<br />
+The next level of ambiguity is where people try and extract the chemical structure from the PDB entry (for historical reasons there is no connection table in the PDB file); there's two general ways of doing this - 1) from the IUPAC name in the header, and 2) from the coordinates. Most workers have tackled the latter method, but working out the bonding from the coordinates is surprisingly hard to do completely correctly.<br />
+<br />
+So what happens in this case? Well the&nbsp;<a href="http://pc1664.pharmazie.uni-marburg.de/affinity/">AffinDB</a>&nbsp;resource has this (AffinDB is a great resource for structure-based design and dockers).<br />
+<br />
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://2.bp.blogspot.com/-OqRkv4gtA_Q/Tx_Byurm4_I/AAAAAAAABf0/94t_iLuhIhY/s1600/PastedGraphic-1.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="203" src="http://2.bp.blogspot.com/-OqRkv4gtA_Q/Tx_Byurm4_I/AAAAAAAABf0/94t_iLuhIhY/s320/PastedGraphic-1.png" width="320" /></a></div>
+So, two problems here, loss of stereochem off the ring (it is unambiguous in the 3D coords) and secondly the loss of the double bond for the thiophene - this has the side effect of introducing two new chiral centres into the molecule (so eight possible enantiomers, from the one defined structure used in the experiment). So the ligand, if converted to 3D, from the above structure could not recover the geometry as found in the database. Also the sulphonamide, which binds to the zinc in CAH will no longer be acidic (aryl sulphonamides are weakly acidic), and so the difference will have big differences in terms of inhibitor properties.<br />
+<br />
+And what about <a href="http://www.ebi.ac.uk/pdbe">PDBe</a>?&nbsp;Well the structure there is this....<br />
+<br />
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://1.bp.blogspot.com/-74cxQw5_hT8/Tx_CzvjxDxI/AAAAAAAABf8/-u-HhciJMVc/s1600/PastedGraphic-2.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="289" src="http://1.bp.blogspot.com/-74cxQw5_hT8/Tx_CzvjxDxI/AAAAAAAABf8/-u-HhciJMVc/s320/PastedGraphic-2.png" width="320" /></a></div>
+<br />
+Which gets the double bond in the thiophene right, but introduces a spurious chiral centre at the sulphonamide nitrogen. This is quite a subtle case, since the nitrogen in a sulphonamide has a lot of sp<sup>3</sup> character, and maybe one configuration is trapped in the crystal complex - but in solution, it will very rapidly invert and equilibrate - it is not a chiral centre.<br />
+<br />
+In summary, this chain of events makes the data integration problem a hard one (for example if one wanted to query across ChEMBL, PDBe, AffinDB at least), and there are confounding statements on what the identity of a particular molecule is, and taking the PDB entry on face value would be confusing. So, data integration is hard! - 'Trust and Verify' is the mantra, but trust and verify names and synonyms even more.<br />
+<div style="text-align: left;">
+<br /></div>

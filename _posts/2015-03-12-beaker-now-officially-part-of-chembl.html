@@ -1,0 +1,125 @@
+---
+layout: post
+title: Beaker now officially part of ChEMBL web services
+date: '2015-03-12T11:02:00.000Z'
+author: kott
+tags:
+- Web Services
+modified_time: '2015-03-31T22:29:57.360+01:00'
+thumbnail: http://4.bp.blogspot.com/-4LwrBp_uYyU/VOEjHS8MYsI/AAAAAAAAF44/lgBe1PwRc9s/s72-c/tandem.png
+blogger_id: tag:blogger.com,1999:blog-2546008714740235720.post-5359707135520848384
+blogger_orig_url: http://chembl.blogspot.com/2015/03/beaker-now-officially-part-of-chembl.html
+---
+
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://4.bp.blogspot.com/-4LwrBp_uYyU/VOEjHS8MYsI/AAAAAAAAF44/lgBe1PwRc9s/s1600/tandem.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="http://4.bp.blogspot.com/-4LwrBp_uYyU/VOEjHS8MYsI/AAAAAAAAF44/lgBe1PwRc9s/s1600/tandem.png" height="192" width="400" />&nbsp;</a></div>
+<div class="separator" style="clear: both; text-align: left;">
+<br /></div>
+<div class="separator" style="clear: both; text-align: left;">
+We have mentioned Beaker (a.k.a the ChEMBL cheminformatics utility web service), several times on the blog (<a href="http://chembl.blogspot.co.uk/2014/10/mychembl-19-released.html">here</a>, <a href="http://chembl.blogspot.co.uk/2014/11/finding-key-compounds-in-med-chemistry.html">here</a> and <a href="http://chembl.blogspot.co.uk/2013/11/rdkit-and-raphaeljs.html">here</a>), but have not devoted an entire post to Beaker. Well, here it is.</div>
+<div class="separator" style="clear: both; text-align: left;">
+<br /></div>
+<h3 class="separator" style="clear: both; text-align: left;">
+Beaker - what's this?</h3>
+<div class="separator" style="clear: both; text-align: left;">
+<br /></div>
+<div class="separator" style="clear: both; text-align: left;">
+It's a small utility, that makes chemistry software available securely over <i>https</i>. You no longer need to install a chemical toolkit in order to convert your <a href="https://en.wikipedia.org/wiki/Chemical_table_file">molfile</a> to <a href="https://en.wikipedia.org/wiki/Simplified_molecular-input_line-entry_system">SMILES</a> or calculate descriptors. If you have an internet connection (if you can read this, chances are you do), you can use Beaker. We recommend you head over to the interactive online documentation (<a href="https://www.ebi.ac.uk/chembl/api/utils/docs">https://www.ebi.ac.uk/chembl/api/utils/docs</a>), to see the full list of functionality it offers and try it with your own data.</div>
+<div class="separator" style="clear: both; text-align: left;">
+<br /></div>
+<h3 class="separator" style="clear: both; text-align: left;">
+Which toolkits are used by Beaker?</h3>
+<div class="separator" style="clear: both; text-align: left;">
+Under-the-hood Beaker is exposing the functionality of the <a href="http://www.rdkit.org/">RDKit</a> cheminformatics library. Beaker's optical structure recognition methods use the <a href="http://cactus.nci.nih.gov/osra/">OSRA</a> library.</div>
+<h3 class="separator" style="clear: both; text-align: left;">
+&nbsp;</h3>
+<h3 class="separator" style="clear: both; text-align: left;">
+Do I need an API Key?</h3>
+<div class="separator" style="clear: both; text-align: left;">
+<br /></div>
+<div class="separator" style="clear: both; text-align: left;">
+As long as you are making no more than 1 request per second, you do not need an API key. Beaker provides standard set of response headers to inform about rate limiting:</div>
+<div class="separator" style="clear: both; text-align: left;">
+<br /></div>
+<br />
+<script src="https://gist.github.com/mnowotka/ed4f82d911c2e02a61bd.js"></script><br />
+There is also one custom header:<br />
+<div class="separator" style="clear: both; text-align: left;">
+<br /></div>
+<script src="https://gist.github.com/mnowotka/84035af1f9c2e2342bee.js"></script><br />
+<div class="separator" style="clear: both; text-align: left;">
+<br /></div>
+This lets you know how you have been authenticated. The default authentication is IP-based, which means that if any other person uses Beaker from the same IP, it will affect your rate limit. This is why having your own API key can be useful - no one can 'steal' your rate limit and it will be slightly higher than default as well. If you need a key, just write to us.<br />
+<br />
+<h3>
+I tried it and it doesn't work...</h3>
+<br />
+Before contacting us and submitting bug report, please try a few things first:<br />
+<br />
+1. Submit data <i>via</i> <a href="https://www.ebi.ac.uk/chembl/api/utils/docs">https://www.ebi.ac.uk/chembl/api/utils/docs</a>. It it works there, see point 2.<br />
+2. Check data encoding. Unlike the <a href="http://chembl.blogspot.co.uk/2015/02/new-chembl-web-services.html">ChEMBL data web services</a> (where you should use percent encoding as described in the <a href="http://chembl.blogspot.co.uk/2015/03/get-and-smiles-interference.html">previous blog post</a>), if you are accessing Beaker <i>via</i> <a href="https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#Request_methods">GET</a>, then all data provided should be <a href="https://en.wikipedia.org/wiki/Base64">base64</a> encoded. This is why, if you want to use GET to convert '<span style="font-family: &quot;Courier New&quot;,Courier,monospace;">CCC</span>' SMILES to molfile this link won't work: <span style="font-family: &quot;Courier New&quot;,Courier,monospace;">&nbsp;</span><br />
+<span style="font-family: &quot;Courier New&quot;,Courier,monospace;">https://www.ebi.ac.uk/chembl/api/utils/smiles2ctab/CCC</span>.<br />
+'<span style="font-family: &quot;Courier New&quot;,Courier,monospace;">CCC</span>' has to be <i>base64</i> encoded first<b> </b>and <span style="font-family: &quot;Courier New&quot;,Courier,monospace;">&nbsp;</span><br />
+<span style="font-family: &quot;Courier New&quot;,Courier,monospace;">base64('CCC') == 'Q0NDQw=='</span>,<br />
+so the valid link is <a href="https://www.ebi.ac.uk/chembl/api/utils/smiles2ctab/Q0NDQw==">https://www.ebi.ac.uk/chembl/api/utils/smiles2ctab/Q0NDQw==</a>. Our online documentation will do encoding for you, and present what URL was really executed:<br />
+<br />
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://3.bp.blogspot.com/-B1jJePySlpk/VOEsXBCx10I/AAAAAAAAF5U/8ivEhr1ZRCw/s1600/Screen%2BShot%2B2015-02-15%2Bat%2B23.31.20.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="http://3.bp.blogspot.com/-B1jJePySlpk/VOEsXBCx10I/AAAAAAAAF5U/8ivEhr1ZRCw/s1600/Screen%2BShot%2B2015-02-15%2Bat%2B23.31.20.png" height="332" width="640" /></a></div>
+<br />
+3. Use <a href="https://en.wikipedia.org/wiki/POST_%28HTTP%29">POST</a> where possible. GET requests are nice, because everything gets included into URL, so you can embed such a URL in a blogpost, like we just did. One issue with GET is that there is often a maximum number of characters you can send, although this does depend on server setup. If you would like to use Beaker from ChEMBL servers for example, your link can't exceed 4000 characters. <i>Base64 </i>encoding will make any parameter <a href="http://stackoverflow.com/a/4715499/940208">about 1/3 longer</a>. So for example, if you would like to send an image, in order to perform Optical Structure Recognition (<a href="http://cactus.nci.nih.gov/osra/">OSRA</a>), it's very hard to find a valid, good quality image, that is less than 1.2 Kb in size, so in that case using GET is not a good idea. Also, do not forget you can use <a href="http://curl.haxx.se/">curl</a> to submit your POST requests. Below we provide some examples of how to access Beaker <i>via</i> POST with <i>curl</i>:<br />
+<br />
+<script src="https://gist.github.com/mnowotka/e6a55e90bd0c3baf5217.js"></script><br />
+<br />
+4. If using GET, check what type of <i>base64</i> are you using. Standard implementation of <i>base64</i> use the following characters: <br />
+<pre class="default prettyprint prettyprinted"><code><span class="str">[a-zA-Z0-9+/]</span></code></pre>
+&nbsp;Those two last signs ('<span style="font-family: &quot;Courier New&quot;,Courier,monospace;">+</span>' and '<span style="font-family: &quot;Courier New&quot;,Courier,monospace;">/</span>'), are not url-safe as they have special meaning in URLs. This is why Beaker uses url-safe version which substitutes <span style="font-family: &quot;Courier New&quot;,Courier,monospace;"><span class="docutils literal"><span class="pre">'-'</span></span></span> instead of <span style="font-family: &quot;Courier New&quot;,Courier,monospace;"><span class="docutils literal"><span class="pre">'+'</span></span></span> and '<span style="font-family: &quot;Courier New&quot;,Courier,monospace;"><span class="docutils literal"><span class="pre">_</span></span></span>' instead of '<span style="font-family: &quot;Courier New&quot;,Courier,monospace;"><span class="docutils literal"><span class="pre">/</span></span></span>' in the standard <i>base64</i> alphabet. For reference, please click <a href="https://docs.python.org/2/library/base64.html#base64.urlsafe_b64encode">here</a>.<br />
+<br />
+<b>Does ChEMBL python client library work with Beaker?</b><br />
+<br />
+Yes, and even more it adds enough syntactic sugar to make it feel like your are using locally installed chemical toolkit. For example, look how easy it is, to compute maximum common substructure from three compounds, given as SMILES strings:<br />
+<br />
+<script src="https://gist.github.com/mnowotka/5685a888c45186cba1a9.js"></script><br />
+You can install the python client library by using '<span style="font-family: &quot;Courier New&quot;,Courier,monospace;">pip install chembl_webresource_client</span>' or download it <a href="https://github.com/chembl/chembl_webresource_client">here</a> and expect more examples in a future blog post.<br />
+<br />
+<b>Does it work without the client?</b><br />
+<br />
+Of course it does. You have already seen an example of how to use Beaker from JavaScript (using the <a href="https://www.ebi.ac.uk/chembl/api/utils/docs">online documentation</a>) and python (using the <a href="https://github.com/chembl/chembl_webresource_client">client library</a>). But because <i>curl</i> is very common tool, available on many platforms, you can execute calls to Beaker from your command line in bash. Bash has a very cool feature called <a href="https://en.wikipedia.org/wiki/Pipeline_%28Unix%29">pipes</a>, so you can chain the output of one command to the input of another. This way you can mix calls to our data web services with Beaker calls. As an example let's assume that you have a photo of a compound. This could be a scan of the paper document, such as patent or a photo of a conference poster taken using your mobile phone, but it has to have decent resolution and quality:<br />
+<br />
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://4.bp.blogspot.com/-0ZbyS4sepYE/VQBBq064_oI/AAAAAAAAF7I/kx9cB2IN2mQ/s1600/IMG_20130809_132458.jpg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="http://4.bp.blogspot.com/-0ZbyS4sepYE/VQBBq064_oI/AAAAAAAAF7I/kx9cB2IN2mQ/s1600/IMG_20130809_132458.jpg" height="124" width="320" /></a></div>
+<div class="separator" style="clear: both; text-align: center;">
+<br /></div>
+<div style="text-align: center;">
+Original image available <a href="https://www.dropbox.com/s/brripjdcqcqotjr/IMG_20130809_132458.jpg?dl=0">here</a>.&nbsp;</div>
+<div style="text-align: center;">
+<br /></div>
+If we would like to find the compound in ChEMBL that is most similar to the one recognized from the image above, we could use this line of bash script:<br />
+<br />
+<script src="https://pastebin.com/embed_js.php?i=hCmJdLJy"></script><br />
+<br />
+The script may look a bit hackish, but this is because we wanted to only use standard command line tools, that can be found on OSX and Linux systems. In production, we would never use <i>grep</i>, <i>sed</i> and <i>awk</i> to parse JSON because <a href="http://stackoverflow.com/a/1732454/940208">this is bad</a> (instead we encourage you to try <a href="https://stedolan.github.io/jq/">jq</a>), but we wanted to show a nice example of using pipes to combine different tools. Anyway, the end result of running this command will be open the following page in your browser: <a href="https://www.ebi.ac.uk/chembl/api/data/image/CHEMBL2107150">https://www.ebi.ac.uk/chembl/api/data/image/CHEMBL2107150</a>.<br />
+<br />
+<br />
+<b>Is Beaker open source software, can I see the code?</b><br />
+<br />
+Yes, it's hosted on GitHub (<a href="https://github.com/mnowotka/chembl_beaker">https://github.com/chembl/chembl_beaker</a>) under a Apache 2.0 license and the latest stable version is always registered in <a href="https://pypi.python.org/pypi/chembl_business_model/0.5.19">PyPI</a>.<br />
+<br />
+This also means that you can deploy your own local Beaker version. Reasons why you might like to do this include:<br />
+<br />
+1. You don't want to rely on availability of ChEMBL web services or care about rate limiting.<br />
+2. You don't want to send proprietary compounds to a public service.<br />
+3. You would prefer to install your own chemical toolkit (on only 1 machine), and access its services<i> </i>over http(s).<br />
+<b><br />
+</b> <b>How do I cite Beaker?</b><br />
+<br />
+<br />
+Please use the following publication<a href="http://dx.doi.org/10.3390/challe5020444"></a>: <br />
+<br />
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://1.bp.blogspot.com/-FFMvTAF30SU/VOEk1PSrHQI/AAAAAAAAF5E/Qx2HFaA2FSk/s1600/Screen%2BShot%2B2015-02-15%2Bat%2B22.55.06.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="http://1.bp.blogspot.com/-FFMvTAF30SU/VOEk1PSrHQI/AAAAAAAAF5E/Qx2HFaA2FSk/s1600/Screen%2BShot%2B2015-02-15%2Bat%2B22.55.06.png" height="320" width="232" /></a></div>
+<div style="text-align: center;">
+doi:<a href="http://dx.doi.org/10.3390/challe5020444">10.3390/challe5020444</a></div>
+<br />
+<br />
+<script src="https://gist.github.com/mnowotka/bf3530059614152e1cf5.js"></script><br />
+If you have any questions about Beaker or any other ChEMBL services, <a href="mailto:chembl-help@ebi.ac.uk">please let us know</a>.

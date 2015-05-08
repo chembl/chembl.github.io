@@ -1,0 +1,44 @@
+---
+layout: post
+title: ChEMBL ChEMBL RDF
+date: '2013-05-13T09:34:00.001+01:00'
+author: Mark Davies
+tags:
+- Databases
+- Open PHACTS
+- RDF
+modified_time: '2013-05-13T15:12:28.227+01:00'
+thumbnail: http://3.bp.blogspot.com/-7QCllwRu2f0/UYyBF8YMoSI/AAAAAAAAC_s/6CIjbByUEDQ/s72-c/images.jpeg
+blogger_id: tag:blogger.com,1999:blog-2546008714740235720.post-5357048360156116576
+blogger_orig_url: http://chembl.blogspot.com/2013/05/chembl-chembl-rdf.html
+---
+
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://3.bp.blogspot.com/-7QCllwRu2f0/UYyBF8YMoSI/AAAAAAAAC_s/6CIjbByUEDQ/s1600/images.jpeg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="http://3.bp.blogspot.com/-7QCllwRu2f0/UYyBF8YMoSI/AAAAAAAAC_s/6CIjbByUEDQ/s1600/images.jpeg" /></a></div>
+<br />
+<br />
+We would like to draw attention to readers of The ChEMBL-og to an excellent new paper in the <a href="http://www.jcheminf.com/">Journal of Cheminformatics</a>, describing the work of Egon Willighagen and co-authors in building the first published, publicly available version of ChEMBL data in RDF form (ChEMBL RDF). The paper also provides details on a number of linked data based applications built on top of an RDF data model, demonstrating the benefits of the data transformation. More details about the paper are provided <a href="http://chem-bla-ics.blogspot.nl/2013/05/new-paper-chembl-database-as-linked.html">here</a> and the link to the paper is <a href="http://www.jcheminf.com/content/5/1/23/abstract">here</a>.<br />
+<br />
+<pre>%T The ChEMBL database as linked open data
+%A E.L. Willighagen
+%A A. Waagmeester
+%A O. Spjuth
+%A P. Ansell
+%A A.J. Williams
+%A V. Tkachenko
+%A J. Hastings
+%A B. Chen
+%A D. J Wild
+%J J. Cheminf.
+%D 2013
+%V 5
+%O doi:10.1186/1758-2946-5-23
+</pre>
+<br />
+The ChEMBL group have been funded by the IMI&nbsp;<a href="http://www.openphacts.org/">OpenPhacts</a> project to build and deploy an RDF version of ChEMBL (which we are currently calling ChEMBL ChEMBL RDF, sorry for the confusion!). With changes in content and curation closely coupled to, and tracking where required, the current relational schema database.<br />
+<br />
+The ChEMBL group's version is available to download and can be picked up from ChEMBL ftpsite <a href="ftp://ftp.ebi.ac.uk/pub/databases/chembl/ChEMBL-RDF/">here</a>. We have run some project workshops on the ChEMBL ChEMBL RDF, but otherwise have remained a little bit quiet on its existence as we continue to make a number of small changes, hence the minor version number increments, but 15.8 is the latest version and expect 16.0 this week. Just to be clear, the ChEMBL ChEMBL RDF version we are making available is not the same same as the version being described in the Journal of Cheminformatics paper, and the functionality and queries will be non-interoperable.<br />
+<br />
+Our OpenPhacts involvement is not the only reason we have created an RDF version of the ChEMBL database, we have had many requests from the broader global ChEMBL community to provide RDF in our official release process, so going forward this is something we will commit to providing. We are also keen to minimise the impact of changes we make to the ChEMBL relational model, which has evolved significantly since its first release, (ChEMBL data integrators out there will certainly noticed some pretty big changes in our <a href="http://chembl.blogspot.co.uk/2013/01/chembl15-released.html">ChEMBL_15 release</a>). So we also commit to keeping the RDF data model in sync with the relational model.<br />
+<br />
+mark

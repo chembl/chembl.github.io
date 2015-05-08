@@ -1,0 +1,101 @@
+---
+layout: post
+title: A sort of H-index for the coverage of bioactivity databases
+date: '2013-08-26T11:18:00.000+01:00'
+author: John Overington
+tags:
+- Databases
+- Some Of The Interesting Things You'll See On A Long Distance Flight
+modified_time: '2013-08-26T12:40:03.537+01:00'
+thumbnail: http://3.bp.blogspot.com/-WYoTg1rPXzg/UhspdSmexZI/AAAAAAAADHg/qjz0rroAdHs/s72-c/metallic_ball_in_garden.jpg
+blogger_id: tag:blogger.com,1999:blog-2546008714740235720.post-2675532927950260069
+blogger_orig_url: http://chembl.blogspot.com/2013/08/a-sort-of-h-index-for-coverage-of.html
+---
+
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://3.bp.blogspot.com/-WYoTg1rPXzg/UhspdSmexZI/AAAAAAAADHg/qjz0rroAdHs/s1600/metallic_ball_in_garden.jpg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="320" src="http://3.bp.blogspot.com/-WYoTg1rPXzg/UhspdSmexZI/AAAAAAAADHg/qjz0rroAdHs/s320/metallic_ball_in_garden.jpg" width="240" /></a></div>
+<div>
+<br /></div>
+After a long time out of the office on summer holiday, I'm just sorting out my satchel, uniform and pencil case for the autumn term. I've missed being in the office, and I've missed my group and colleagues. I've had time to think of some ideas, some bad, and some potentially useful - the group are pretty good at sorting out into the relevant piles.<br />
+<div>
+<br /></div>
+<div>
+So here's a little idea about quantifying the coverage/diversity of the contents of a bioactivity database (like ChEMBL, but also the internal knowledge of a company in it's screening and lead optimisation programs, <i>etc</i>). Essentially, it's applying the <a href="http://en.wikipedia.org/wiki/H-index">H-index</a>, regularly used for citation analysis to bioassay results. There's a lot of criticism of the H-index in it's use of comparing researchers, and plenty of problems in cross-field comparison, but that is not for here. However, the H-index is a pretty robust statistic capturing the structure of a frequency-class distribution.</div>
+<div>
+<br /></div>
+<div>
+In the context of bioassay data, the H-index (well lets call it the Ch-index and Ass-index from now on to avoid confusion), can capture the number of bioassays data-points for a set of compounds, or the number of compounds screened across a set of bioassays. Probably best illustrated with a series of pictures of hypothetical bioactivity matrices - a red cell indicates the presence of a measured bioactivity - the columns are assays, the rows are compounds.<br />
+<br />
+So here is high-throughput screen - a single assay, with a large number of tested compounds.<br />
+<br />
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://4.bp.blogspot.com/-muYcKJOONcg/UhswL9L1rsI/AAAAAAAADHw/wuWnK3-Wh9Q/s1600/matrix+6.tiff" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="211" src="http://4.bp.blogspot.com/-muYcKJOONcg/UhswL9L1rsI/AAAAAAAADHw/wuWnK3-Wh9Q/s320/matrix+6.tiff" width="320" /></a></div>
+<br /></div>
+<div>
+And here is a broad-profiling of a single compound.<br />
+<br />
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://4.bp.blogspot.com/-RdM50Abv418/UhswWGa5IhI/AAAAAAAADH4/dPpTslAjJ4A/s1600/matrix+5.tiff" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="211" src="http://4.bp.blogspot.com/-RdM50Abv418/UhswWGa5IhI/AAAAAAAADH4/dPpTslAjJ4A/s320/matrix+5.tiff" width="320" /></a></div>
+<br /></div>
+<div>
+Here is a sparse matrix, essentially full of cherry picked bioassay datapoints of one compound in one assay - there's very little SAR data within this set (so allowing the exploration of differences within an assay or compound series), and so building predictive models, and whole bunch of other stuff that one would want to do is difficult.&nbsp;</div>
+<div>
+<br /></div>
+<div>
+<br /></div>
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://2.bp.blogspot.com/-B5fwvy3C6IU/Uhsj0bav_2I/AAAAAAAADG0/l7zR9rY-MNY/s1600/matrix+1.tiff" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="211" src="http://2.bp.blogspot.com/-B5fwvy3C6IU/Uhsj0bav_2I/AAAAAAAADG0/l7zR9rY-MNY/s320/matrix+1.tiff" width="320" /></a></div>
+<div>
+<br /></div>
+<div>
+<br /></div>
+<div>
+Imagine some more experiments (profiling) are done on this set of assays/compounds, and you end up with a matrix such as the following. You can see there's now blocks of data, and stripes (both columns and rows) A row is a compound run across multiple assays, and a column is an assay with multiple compounds tested. Of course, the axes can be ordered to maximise the 'blockiness' of the view of the data.</div>
+<div>
+<br /></div>
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://2.bp.blogspot.com/-n7z1-TN7uic/Uhsl0MeT15I/AAAAAAAADHA/SK2yIuZbM1w/s1600/matrix+2.tiff" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="212" src="http://2.bp.blogspot.com/-n7z1-TN7uic/Uhsl0MeT15I/AAAAAAAADHA/SK2yIuZbM1w/s320/matrix+2.tiff" width="320" /></a></div>
+<div class="separator" style="clear: both; text-align: center;">
+<br /></div>
+<div class="separator" style="clear: both; text-align: left;">
+Here is after some more assays are run, the Ch- and Ass-index will both increase further. The data becomes more useful, since it is likely that a larger number of queries one would want to make would be actually already known, and for the missing ones, one would assume that better predictive models could be built.</div>
+<div class="separator" style="clear: both; text-align: center;">
+<br /></div>
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://2.bp.blogspot.com/-CWA7PVQhiRQ/Uhsl5GRcY6I/AAAAAAAADHI/BKJsXaI7i-E/s1600/matrix+3.tiff" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="212" src="http://2.bp.blogspot.com/-CWA7PVQhiRQ/Uhsl5GRcY6I/AAAAAAAADHI/BKJsXaI7i-E/s320/matrix+3.tiff" width="320" /></a></div>
+<div class="separator" style="clear: both; text-align: center;">
+<br /></div>
+<div>
+Finally, complete knowledge, everything becomes a simple lookup, assuming the data is accurate (<i>etc</i>.).<br />
+<br /></div>
+<div>
+</div>
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://2.bp.blogspot.com/-jelVp8Xg1kE/Uhsm70WL65I/AAAAAAAADHU/NP_A1qMxdIc/s1600/matrix+4.tiff" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="211" src="http://2.bp.blogspot.com/-jelVp8Xg1kE/Uhsm70WL65I/AAAAAAAADHU/NP_A1qMxdIc/s320/matrix+4.tiff" width="320" /></a></div>
+<div>
+<br /></div>
+<div>
+So as one goes through this progression of filling in the matrix (and expense incurred) the Ch- and Ass-indices both get larger. For the above, the possible 'space' has been confined, but of course, new compounds are made all the time, and new bioassays are developed all the time, the total possible space increases.</div>
+<div>
+<br /></div>
+<div>
+There are also some interesting features to the above; imagine collapsing data across assays for orthologues - if you assume that mouse, and dog, and human and zebra activities for a given target are all pretty much the same, you don't really 'value' an extra species added to the matrix. You can however go further, and collapse across protein families (for example pfam domains), to get an idea of total target class diversity. Similarly, it's possible to index/cluster compounds by shared scaffolds/chemotypes, and one can imagine the exploration of a series of 'lenses', that allow one to view coverage from a sets of different perspective.</div>
+<div>
+<br /></div>
+<div>
+<i>So how does this map on to the real world?</i></div>
+<div>
+<br /></div>
+<div>
+<b>ChEMBL classic</b> (for want of a better phrase) is like the 4th matrix in the series above, largely a set of stripe- and some block-like structures around a chemical series (since chemists typically explore the chemical space around a lead in optimisation) and screen against related targets. <b>ChEMBL depositions</b>, such as the great GSK PKIS sets, are larger blocks, more comprehensive profiling of a set of compounds across a set of assays. <b>PubChem Bioassay</b> - specifically the output of the NIH MLP, is 'complete' for a relatively small set of assays, but for compounds that are within the set diverse.</div>
+<div>
+<br /></div>
+<div>
+Finally - Ass-index is probably not the best acronym.<br />
+<div>
+<br /></div>
+<div>
+jpo</div>
+<div>
+<br /></div>
+</div>

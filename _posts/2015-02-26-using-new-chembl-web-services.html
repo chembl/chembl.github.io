@@ -1,0 +1,379 @@
+---
+layout: post
+title: Using the New ChEMBL Web Services
+date: '2015-02-26T10:25:00.000Z'
+author: kott
+tags:
+- Web Services
+modified_time: '2015-03-31T22:29:27.232+01:00'
+thumbnail: http://2.bp.blogspot.com/-fLEgLQ1ZDlg/VNow-y8V9rI/AAAAAAAAF4E/BAxXq_I6UWo/s72-c/10896977_10205768757245194_8040546627991927598_n.jpg
+blogger_id: tag:blogger.com,1999:blog-2546008714740235720.post-2292263281829214331
+blogger_orig_url: http://chembl.blogspot.com/2015/02/using-new-chembl-web-services.html
+---
+
+<div dir="ltr" style="text-align: left;" trbidi="on">
+<br />
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://2.bp.blogspot.com/-fLEgLQ1ZDlg/VNow-y8V9rI/AAAAAAAAF4E/BAxXq_I6UWo/s1600/10896977_10205768757245194_8040546627991927598_n.jpg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="http://2.bp.blogspot.com/-fLEgLQ1ZDlg/VNow-y8V9rI/AAAAAAAAF4E/BAxXq_I6UWo/s1600/10896977_10205768757245194_8040546627991927598_n.jpg" height="320" width="256" /></a></div>
+<br />
+As promised in our <a href="http://chembl.blogspot.co.uk/2015/02/new-chembl-web-services.html">earlier post</a>, here are some more details on making the most of the new ChEMBL web services. The best place to get started is to head over to the&nbsp; documentation page: <a href="https://www.ebi.ac.uk/chembl/api/data/docs">https://www.ebi.ac.uk/chembl/api/data/docs</a>. There you will find the list of resources (e.g. Molecule, Target and Assay) that are available and their methods. More importantly you can also execute each method with your own or default parameters, and view the URL, the response content and response status code. This is definitely the quickest way to start familiarizing yourself with the new ChEMBL web services.<br />
+<br />
+Looking at the resources in more detail, you will find that each resource has three basic methods:<br />
+<br />
+1. <b>https://www.ebi.ac.uk/chembl/api/data/RESOURCE</b> - will return all available objects of type RESOURCE from ChEMBL. An example could be <a href="https://www.ebi.ac.uk/chembl/api/data/molecule">https://www.ebi.ac.uk/chembl/api/data/molecule</a> which returns all molecules (remember that data is paginated - more on this later).<br />
+<br />
+2. <b>https://www.ebi.ac.uk/chembl/api/data/RESOURCE/ID</b> - will return a single object of type RESOURCE, identified by ID. For some resources, there can be more than one type of ID, for example the Molecule resource will accept:<br />
+<ul>
+<li>ChEMBL ID (<a href="https://www.ebi.ac.uk/chembl/api/data/molecule/CHEMBL1">https://www.ebi.ac.uk/chembl/api/data/molecule/CHEMBL1</a>),&nbsp;</li>
+<li>SMILES (<a href="https://www.ebi.ac.uk/chembl/api/data/molecule/COc1ccc2%5BC@@H%5D3%5BC@H%5D%28COc2c1%29C%28C%29%28C%29OC4=C3C%28=O%29C%28=O%29C5=C4OC%28C%29%28C%29%5BC@@H%5D6COc7cc%28OC%29ccc7%5BC@H%5D56">https://www.ebi.ac.uk/chembl/api/data/molecule/COc1ccc2%5BC@@H%5D3%5BC@H%5D%28COc2c1%29C%28C%29%28C%29OC4=C3C%28=O%29C%28=O%29C5=C4OC%28C%29%28C%29%5BC@@H%5D6COc7cc%28OC%29ccc7%5BC@H%5D56</a>) and&nbsp;</li>
+<li>InChI key (<a href="https://www.ebi.ac.uk/chembl/api/data/molecule/GHBOEFUAGSHXPO-XZOTUCIWSA-N">https://www.ebi.ac.uk/chembl/api/data/molecule/GHBOEFUAGSHXPO-XZOTUCIWSA-N</a>).&nbsp;</li>
+</ul>
+<br />
+Note that all three examples above will return the same molecule. The same identifiers are valid for 'substructure' and 'similarity' resources.<br />
+<br />
+Some resources can return more than one object for given ID, for example 'atc_class' will accept any <a href="http://www.whocc.no/atc_ddd_index/">ATC Level</a> as it's ID. Only level 5 is unique across atc_class objects so <a href="https://www.ebi.ac.uk/chembl/api/data/atc_class/D05AX05">https://www.ebi.ac.uk/chembl/api/data/atc_class/D05AX05</a> will return a single resource, but <a href="https://www.ebi.ac.uk/chembl/api/data/atc_class/D">https://www.ebi.ac.uk/chembl/api/data/atc_class/D</a> will return a list of <span class="st"><a href="http://www.whocc.no/atc_ddd_index/?code=D">dermatologicals</a>.</span><br />
+<br />
+3. <b>https://www.ebi.ac.uk/chembl/api/data/RESOURCE/set/ID_1;ID_2;...;ID_N </b>- will return N objects of type RESOURCE with IDs in set (ID_1, ID_2,...,ID_N), for example: <a href="https://www.ebi.ac.uk/chembl/api/data/molecule/set/CHEMBL900;CHEMBL1096643;CHEMBL1490">https://www.ebi.ac.uk/chembl/api/data/molecule/set/CHEMBL900;CHEMBL1096643;CHEMBL1490</a> (note that ID separator is semicolon ';').<br />
+<h3>
+<br />
+Format</h3>
+<br />
+If you do not specify a format, the default serialisation is XML. Other available formats include JSON and <a href="https://en.wikipedia.org/wiki/JSONP">JSONP</a>. There are three ways to provide format information:<br />
+<ol>
+<li>Extension, for example <a href="https://www.ebi.ac.uk/chembl/api/data/molecule/CHEMBL1.json">https://www.ebi.ac.uk/chembl/api/data/molecule/CHEMBL1.json</a></li>
+<li>Format parameter, for example <a href="https://www.ebi.ac.uk/chembl/api/data/molecule?format=json">https://www.ebi.ac.uk/chembl/api/data/molecule?format=json</a></li>
+<li>Accept header, for example:<br />
+<br />
+<script src="https://gist.github.com/mnowotka/fde1e9b75551163a0a8f.js"></script></li>
+</ol>
+<br />
+For images the available formats are:<br />
+<ol>
+<li>png (<a href="https://www.ebi.ac.uk/chembl/api/data/image/CHEMBL1.png">https://www.ebi.ac.uk/chembl/api/data/image/CHEMBL1.png</a>)</li>
+<li>svg (<a href="https://www.ebi.ac.uk/chembl/api/data/image/CHEMBL1.svg">https://www.ebi.ac.uk/chembl/api/data/image/CHEMBL1.svg</a>)</li>
+<li>json (<a href="https://www.ebi.ac.uk/chembl/api/data/image/CHEMBL1.json">https://www.ebi.ac.uk/chembl/api/data/image/CHEMBL1.json</a>) </li>
+</ol>
+For png images, please remember that the default chemical rendering uses <a href="http://www.rdkit.org/">RDKit</a> but you can always switch to Indigo like this:<br />
+<br />
+<a href="https://www.ebi.ac.uk/chembl/api/data/image/CHEMBL1.png?engine=indigo">https://www.ebi.ac.uk/chembl/api/data/image/CHEMBL1.png?engine=indigo</a><br />
+<br />
+Changing size works by adding 'dimensions' parameter:<br />
+<br />
+<a href="https://www.ebi.ac.uk/chembl/api/data/image/CHEMBL1.png?engine=indigo&amp;dimensions=100">https://www.ebi.ac.uk/chembl/api/data/image/CHEMBL1.png?engine=indigo&amp;dimensions=100</a><br />
+<br />
+The last thing worth noting about image format is that when you add <span style="font-family: &quot;Courier New&quot;,Courier,monospace;">X-Requested-With: XMLHttpRequest</span> header to your request (i.e. you make an <a href="https://en.wikipedia.org/wiki/Ajax_%28programming%29">Ajax</a> call), the resulting image will be <a href="https://en.wikipedia.org/wiki/Base64">base64-encoded</a>. For example to make ajax call using <a href="https://jquery.com/">jQuery</a> library and render result as image you can use this code:<br />
+<br />
+<iframe allowfullscreen="allowfullscreen" frameborder="0" height="200" src="//jsfiddle.net/j0te8pm4/2/embedded/" width="100%"></iframe><br />
+<br />
+Alternatively, if you don't want to explicitly include the header in your jQuery code, you can use <span style="font-family: &quot;Courier New&quot;,Courier,monospace;">crossDomain: false</span> parameter (yes, you are doing a cross-domain request, but we do support <a href="https://en.wikipedia.org/wiki/Cross-origin_resource_sharing">CORS</a> so this will work as discussed <a href="https://stackoverflow.com/questions/8163703/cross-domain-ajax-doesnt-send-x-requested-with-header">here</a>):<br />
+<br />
+<iframe allowfullscreen="allowfullscreen" frameborder="0" height="200" src="//jsfiddle.net/j0te8pm4/1/embedded/" width="100%"></iframe> <br />
+<h3>
+&nbsp;</h3>
+<h3>
+Pagination</h3>
+<br />
+When you make the following request <a href="https://www.ebi.ac.uk/chembl/api/data/molecule">https://www.ebi.ac.uk/chembl/api/data/molecule</a> only the first 20 molecules will be returned. This corresponds to the first page of the molecule result set being requested. Pagination has been introduced to help reduce server load and also protect us from inadvertent DDoS attacks. It also allows clients to quickly obtain a portion of data without having to wait for the full data set. The most important page parameters are <i><b>limit</b></i> and <i><b>offset</b></i>, which are illustrated in the image below:<br />
+<br />
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://1.bp.blogspot.com/-iQ81agRa1cM/VNpB2LXdv-I/AAAAAAAAF4g/DkAcsSgc4bU/s1600/limits-and-offsets-numbers5.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="http://1.bp.blogspot.com/-iQ81agRa1cM/VNpB2LXdv-I/AAAAAAAAF4g/DkAcsSgc4bU/s1600/limits-and-offsets-numbers5.png" height="81" width="640" /></a></div>
+<br />
+The red border presents a page of limit=10 and offset=10. Limit is a maximum number of objects on single page. Offset is a distance between the first element in result set and the first element in page. Please note, that objects are indexed staring from 0. The default limit is 20 and default offset is 0 and this is why accessing <a href="https://www.ebi.ac.uk/chembl/api/data/molecule">https://www.ebi.ac.uk/chembl/api/data/molecule</a> provides first 20 elements. You can increase page size by providing bigger limit parameter, however the&nbsp; maximum allowed limit value is 1000.<br />
+<br />
+All paginated results come in an 'envelope', which contains a resource object section and page metadata section. An example molecule page in json format looks like:<br />
+<br />
+<script src="https://gist.github.com/mnowotka/3985c83ceea04643cde4.js"></script><br />
+As can be seen, a 'page' of 20 molecule objects is stored in an array called 'molecules'. A 'page_meta' block provides information on page limit and offset. The 'page_meta' block also provides links (when available), to the previous and next pages and the total object count. In this example you can see that there are 1,463,270 compounds available in ChEMBL. The same information viewed in XML format:</div>
+<div dir="ltr" style="text-align: left;" trbidi="on">
+<br />
+<script src="https://gist.github.com/mnowotka/f07b23940335e21fcca3.js"></script><br />
+<h3>
+Filtering</h3>
+<h3>
+&nbsp;</h3>
+Filtering can be complex so let's start with the example. In the Molecule resource, there is a 'max_phase' numeric field. This is the maximum phase of development reached by a molecule. 4 is the highest phase and this means the molecule has been approved by the relevant regulatory body, such as the <a href="http://www.fda.gov/">FDA</a>. So let's select all approved drugs by adding a filter to the max_phase field:<br />
+<br />
+<a href="https://www.ebi.ac.uk/chembl/api/data/molecule.json?max_phase=4">https://www.ebi.ac.uk/chembl/api/data/molecule.json?max_phase=4</a><br />
+<br />
+OK, so now we know that the filter can be passed as parameters and the simplest form is &lt;field_name&gt;=&lt;value&gt;, which means that we expect to get only items with field_name exactly matching the specified value. Right, let's add another filter. Inside a Molecule resource, we can find 'molecule_properties' object nested. One of the properties is a number of aromatic rings, so let's select compounds with at least two:<br />
+<br />
+<a href="https://www.ebi.ac.uk/chembl/api/data/molecule.json?max_phase=4&amp;molecule_properties__aromatic_rings__gte=2">https://www.ebi.ac.uk/chembl/api/data/molecule.json?max_phase=4&amp;<span class="prop" title="&lt;root&gt;.molecules[0].molecule_properties">molecule_properties__</span><span class="prop" title="&lt;root&gt;.molecules[0].molecule_properties.aromatic_rings">aromatic_rings__gte=2</span></a><br />
+<br />
+Now we see, that many filters can be joined together using '&amp;' sign. If the filter applies to the nested attribute we have to provide the name of the nested object first, followed by the name of the attribute, using double underscore '__' as a separator. Because we don't want to have an exact match, we have to explicitly specify the name of the relation, in our case 'greater then or equal' (gte). There are many other types of relations we can use in filters:<br />
+<br />
+<div dir="ltr" style="margin-left: 0pt;">
+<table style="border-collapse: collapse; border: none;"><colgroup><col width="150"></col><col width="161"></col><col width="290"></col></colgroup><tbody>
+<tr style="height: 0px;"><td style="border-bottom: solid #000000 1px; border-left: solid #000000 1px; border-right: solid #000000 1px; border-top: solid #000000 1px; padding: 2px 2px 2px 2px; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: Arial; font-size: 13px; font-style: normal; font-variant: normal; font-weight: bold; text-decoration: none; vertical-align: baseline;">Filter Types</span></div>
+</td><td style="border-bottom: solid #000000 1px; border-left: solid #000000 1px; border-right: solid #000000 1px; border-top: solid #000000 1px; padding: 2px 2px 2px 2px; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: Arial; font-size: 13px; font-style: normal; font-variant: normal; font-weight: bold; text-decoration: none; vertical-align: baseline;">Description</span></div>
+</td><td style="border-bottom: solid #000000 1px; border-left: solid #000000 1px; border-right: solid #000000 1px; border-top: solid #000000 1px; padding: 2px 2px 2px 2px; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: Arial; font-size: 13px; font-style: normal; font-variant: normal; font-weight: bold; text-decoration: none; vertical-align: baseline;">Example</span></div>
+</td></tr>
+<tr style="height: 0px;"><td style="border-bottom: solid #000000 1px; border-left: solid #000000 1px; border-right: solid #000000 1px; border-top: solid #000000 1px; padding: 2px 2px 2px 2px; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: Calibri; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">exact (iexact)</span></div>
+</td><td style="border-bottom: solid #000000 1px; border-left: solid #000000 1px; border-right: solid #000000 1px; border-top: solid #000000 1px; padding: 2px 2px 2px 2px; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: Arial; font-size: 13px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Exact match with query</span></div>
+</td><td style="border-bottom: solid #000000 1px; border-left: solid #000000 1px; border-right: solid #000000 1px; border-top: solid #000000 1px; padding: 2px 2px 2px 2px; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="color: blue;"><a href="https://www.ebi.ac.uk/chembl/api/data/assay?assay_type__exact=B"><span style="background-color: transparent; font-family: Arial; font-size: 13px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">https://www.ebi.ac.uk/chembl/api/data/assay?assay_type__exact=B</span></a></span></div>
+</td></tr>
+<tr style="height: 0px;"><td style="border-bottom: solid #000000 1px; border-left: solid #000000 1px; border-right: solid #000000 1px; border-top: solid #000000 1px; padding: 2px 2px 2px 2px; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: Calibri; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">contains (icontains)</span></div>
+</td><td style="border-bottom: solid #000000 1px; border-left: solid #000000 1px; border-right: solid #000000 1px; border-top: solid #000000 1px; padding: 2px 2px 2px 2px; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: Arial; font-size: 13px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Wild card search with query</span></div>
+</td><td style="border-bottom: solid #000000 1px; border-left: solid #000000 1px; border-right: solid #000000 1px; border-top: solid #000000 1px; padding: 2px 2px 2px 2px; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<a href="https://www.ebi.ac.uk/chembl/api/data/assay?description__icontains=toxicity"><span style="background-color: transparent; color: black; font-family: Arial; font-size: 13px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;"><span style="color: blue;">https://www.ebi.ac.uk/chembl/api/data/assay?description__icontains=toxicity</span><span style="background-color: magenta;"><span style="background-color: black;"></span></span></span></a></div>
+</td></tr>
+<tr style="height: 0px;"><td style="border-bottom: solid #000000 1px; border-left: solid #000000 1px; border-right: solid #000000 1px; border-top: solid #000000 1px; padding: 2px 2px 2px 2px; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: Calibri; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">startswith (istartswith)</span></div>
+</td><td style="border-bottom: solid #000000 1px; border-left: solid #000000 1px; border-right: solid #000000 1px; border-top: solid #000000 1px; padding: 2px 2px 2px 2px; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: Arial; font-size: 13px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Starts with query</span></div>
+</td><td style="border-bottom: solid #000000 1px; border-left: solid #000000 1px; border-right: solid #000000 1px; border-top: solid #000000 1px; padding: 2px 2px 2px 2px; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="color: blue;"><a href="https://www.ebi.ac.uk/chembl/api/data/target?pref_name__istartswith=serotonin"><span style="background-color: transparent; font-family: Arial; font-size: 13px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">https://www.ebi.ac.uk/chembl/api/data/target?pref_name__istartswith=serotonin</span></a></span></div>
+</td></tr>
+<tr style="height: 0px;"><td style="border-bottom: solid #000000 1px; border-left: solid #000000 1px; border-right: solid #000000 1px; border-top: solid #000000 1px; padding: 2px 2px 2px 2px; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: Calibri; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">endswith (iendswith)</span></div>
+</td><td style="border-bottom: solid #000000 1px; border-left: solid #000000 1px; border-right: solid #000000 1px; border-top: solid #000000 1px; padding: 2px 2px 2px 2px; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: Arial; font-size: 13px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Ends with query</span></div>
+</td><td style="border-bottom: solid #000000 1px; border-left: solid #000000 1px; border-right: solid #000000 1px; border-top: solid #000000 1px; padding: 2px 2px 2px 2px; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="color: blue;"><a href="https://www.ebi.ac.uk/chembl/api/data/cell_line?cell_source_tissue__iendswith=carcinoma"><span style="background-color: transparent; font-family: Arial; font-size: 13px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">https://www.ebi.ac.uk/chembl/api/data/cell_line?cell_source_tissue__iendswith=carcinoma</span></a></span></div>
+</td></tr>
+<tr style="height: 0px;"><td style="border-bottom: solid #000000 1px; border-left: solid #000000 1px; border-right: solid #000000 1px; border-top: solid #000000 1px; padding: 2px 2px 2px 2px; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: Calibri; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">regex (iregex)</span></div>
+</td><td style="border-bottom: solid #000000 1px; border-left: solid #000000 1px; border-right: solid #000000 1px; border-top: solid #000000 1px; padding: 2px 2px 2px 2px; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: Arial; font-size: 13px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Regular expression query</span></div>
+</td><td style="border-bottom: solid #000000 1px; border-left: solid #000000 1px; border-right: solid #000000 1px; border-top: solid #000000 1px; padding: 2px 2px 2px 2px; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="color: blue;"><a href="https://www.ebi.ac.uk/chembl/api/data/target?pref_name__iregex=(cdk1|cdk2)"><span style="background-color: transparent; font-family: Arial; font-size: 13px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">https://www.ebi.ac.uk/chembl/api/data/target?pref_name__iregex=(cdk1|cdk2)</span></a></span></div>
+</td></tr>
+<tr style="height: 0px;"><td style="border-bottom: solid #000000 1px; border-left: solid #000000 1px; border-right: solid #000000 1px; border-top: solid #000000 1px; padding: 2px 2px 2px 2px; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: Calibri; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">gt (gte)</span></div>
+</td><td style="border-bottom: solid #000000 1px; border-left: solid #000000 1px; border-right: solid #000000 1px; border-top: solid #000000 1px; padding: 2px 2px 2px 2px; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: Arial; font-size: 13px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Greater than (or equal)</span></div>
+</td><td style="border-bottom: solid #000000 1px; border-left: solid #000000 1px; border-right: solid #000000 1px; border-top: solid #000000 1px; padding: 2px 2px 2px 2px; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="color: blue;"><a href="https://www.ebi.ac.uk/chembl/api/data/molecule?molecule_properties__full_mwt__gte=100"><span style="background-color: transparent; font-family: Arial; font-size: 13px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">https://www.ebi.ac.uk/chembl/api/data/molecule?molecule_properties__full_mwt__gte=100</span></a></span></div>
+</td></tr>
+<tr style="height: 0px;"><td style="border-bottom: solid #000000 1px; border-left: solid #000000 1px; border-right: solid #000000 1px; border-top: solid #000000 1px; padding: 2px 2px 2px 2px; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: Calibri; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">lt (lte)</span></div>
+</td><td style="border-bottom: solid #000000 1px; border-left: solid #000000 1px; border-right: solid #000000 1px; border-top: solid #000000 1px; padding: 2px 2px 2px 2px; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: Arial; font-size: 13px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Less than (or equal)</span></div>
+</td><td style="border-bottom: solid #000000 1px; border-left: solid #000000 1px; border-right: solid #000000 1px; border-top: solid #000000 1px; padding: 2px 2px 2px 2px; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="color: blue;"><a href="https://www.ebi.ac.uk/chembl/api/data/molecule?molecule_properties__alogp__lte=5"><span style="background-color: transparent; font-family: Arial; font-size: 13px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">https://www.ebi.ac.uk/chembl/api/data/molecule?molecule_properties__alogp__lte=5</span></a></span></div>
+</td></tr>
+<tr style="height: 0px;"><td style="border-bottom: solid #000000 1px; border-left: solid #000000 1px; border-right: solid #000000 1px; border-top: solid #000000 1px; padding: 2px 2px 2px 2px; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: Calibri; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">range</span></div>
+</td><td style="border-bottom: solid #000000 1px; border-left: solid #000000 1px; border-right: solid #000000 1px; border-top: solid #000000 1px; padding: 2px 2px 2px 2px; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: Arial; font-size: 13px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Within a range of values</span></div>
+</td><td style="border-bottom: solid #000000 1px; border-left: solid #000000 1px; border-right: solid #000000 1px; border-top: solid #000000 1px; padding: 2px 2px 2px 2px; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="color: blue;"><a href="https://www.ebi.ac.uk/chembl/api/data/molecule?molecule_properties__full_mwt__range=200,500"><span style="background-color: transparent; font-family: Arial; font-size: 13px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">https://www.ebi.ac.uk/chembl/api/data/molecule?molecule_properties__full_mwt__range=200,500</span></a></span></div>
+</td></tr>
+<tr style="height: 0px;"><td style="border-bottom: solid #000000 1px; border-left: solid #000000 1px; border-right: solid #000000 1px; border-top: solid #000000 1px; padding: 2px 2px 2px 2px; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: Calibri; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">in</span></div>
+</td><td style="border-bottom: solid #000000 1px; border-left: solid #000000 1px; border-right: solid #000000 1px; border-top: solid #000000 1px; padding: 2px 2px 2px 2px; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: Arial; font-size: 13px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Appears within list of query values</span></div>
+</td><td style="border-bottom: solid #000000 1px; border-left: solid #000000 1px; border-right: solid #000000 1px; border-top: solid #000000 1px; padding: 2px 2px 2px 2px; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="color: blue;"><a href="https://www.ebi.ac.uk/chembl/api/data/molecule?molecule_chembl_id__in=CHEMBL25,CHEMBL941,CHEMBL1000"><span style="background-color: transparent; font-family: Arial; font-size: 13px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">https://www.ebi.ac.uk/chembl/api/data/molecule?molecule_chembl_id__in=CHEMBL25,CHEMBL941,CHEMBL1000</span></a></span></div>
+</td></tr>
+<tr style="height: 0px;"><td style="border-bottom: solid #000000 1px; border-left: solid #000000 1px; border-right: solid #000000 1px; border-top: solid #000000 1px; padding: 2px 2px 2px 2px; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: Calibri; font-size: 15px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">isnull</span></div>
+</td><td style="border-bottom: solid #000000 1px; border-left: solid #000000 1px; border-right: solid #000000 1px; border-top: solid #000000 1px; padding: 2px 2px 2px 2px; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="background-color: transparent; color: black; font-family: Arial; font-size: 13px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Field is null</span></div>
+</td><td style="border-bottom: solid #000000 1px; border-left: solid #000000 1px; border-right: solid #000000 1px; border-top: solid #000000 1px; padding: 2px 2px 2px 2px; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="color: blue;"><a href="https://www.ebi.ac.uk/chembl/api/data/molecule?helm_notation__isnull=false"><span style="background-color: transparent; font-family: Arial; font-size: 13px; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">https://www.ebi.ac.uk/chembl/api/data/molecule?helm_notation__isnull=false</span></a></span></div>
+</td></tr>
+</tbody></table>
+</div>
+<br />
+Please note, that you can't use every relation for every type. For example regex matching is not allowed on numeric fields and ordering is forbidden on text. If you want to check, which filters can be applied to which resource, you can take a look at the resource schema, for example the 'molecule' resource, schema is available here:<br />
+<br />
+<a href="https://www.ebi.ac.uk/chembl/api/data/molecule/schema.json">https://www.ebi.ac.uk/chembl/api/data/molecule/schema.json</a><br />
+<br />
+<h3>
+Ordering</h3>
+<br />
+Ordering is similar to filtering. As an example let's sort molecules by their molecular weight. There is a field called '<span class="prop" title="&lt;root&gt;.molecules[0].molecule_properties.full_mwt">full_mwt</span>' inside molecule properties, so ordering will look like this:<br />
+<br />
+<a href="https://www.ebi.ac.uk/chembl/api/data/molecule.json?order_by=molecule_properties__full_mwt">https://www.ebi.ac.uk/chembl/api/data/molecule.json?order_by=molecule_properties__full_mwt</a><br />
+<br />
+And as we see, Helium is our first compound. In order to sort, we just have to add 'order_by' parameter with the value being the name of the field, prefixed with all intermediate nested objects. By default we sort ascending. To reverse this order and get molecules sorted from the heaviest to the lightest we have to add minus '-' sign before field name like this:<br />
+<br />
+<a href="https://www.ebi.ac.uk/chembl/api/data/molecule.json?molecule_properties__isnull=false&amp;order_by=-molecule_properties__full_mwt">https://www.ebi.ac.uk/chembl/api/data/molecule.json?molecule_properties__isnull=false&amp;order_by=-molecule_properties__full_mwt</a><br />
+<br />
+This time the first element is a very heavy compound. Note that we had to add a filter to eliminate compounds without specified weight, otherwise, they will stick to the top of the results (This is because NULLS FIRST is the
+  default for descending order in Oracle DB which we are using in production as described <a href="https://stackoverflow.com/questions/18698311/oracle-order-null-last-by-default">here</a>). We can have multiple 'order_by' params in the URL like here:<br />
+<br />
+<a href="https://www.ebi.ac.uk/chembl/api/data/molecule.json?order_by=molecule_properties__aromatic_rings&amp;order_by=-molecule_properties__full_mwt">https://www.ebi.ac.uk/chembl/api/data/molecule.json?order_by=molecule_properties__aromatic_rings&amp;order_by=-molecule_properties__full_mwt</a><br />
+<br />
+In which case molecules will be first sorted by the number of aromatic rings in ascending order, followed by molecular weight in descending order.<br />
+<br />
+Filtering and ordering can be mixed together, but we leave it as an example for the reader.<br />
+<br />
+<h3>
+Equivalent Web Service Requests&nbsp; </h3>
+<br />
+We will continue to support the 'old' web services until the end of the year. To help users with the upcoming migration process, the table below provides a mapping between the example web services requests found in the <a href="https://www.ebi.ac.uk/chembl//ws/home_old">old documentation </a>to the equivalent call in the new web services. It will be up to the end user to handle the different response format and the pagination of the returned data.<br />
+<span style="font-family: inherit;"><br id="docs-internal-guid-05585b41-c0e8-e293-9d99-5ab8efd9e6ce" /></span> <br />
+<div dir="ltr" style="margin-left: 0pt;">
+<table style="border-collapse: collapse; border: none; width: 400px;"><colgroup><col width="100px"></col><col width="150px"></col><col width="150px"></col></colgroup><tbody>
+<tr style="height: 0px;"><td style="border-color: rgb(0, 0, 0); border-style: solid; border-width: 1px; padding: 7px; vertical-align: top;" width="100px"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt; text-align: center;">
+<span style="font-family: inherit; font-size: x-small;"><span style="background-color: transparent; color: black; font-style: normal; font-variant: normal; font-weight: bold; text-decoration: none; vertical-align: baseline;">Description</span></span></div>
+</td><td style="border-color: rgb(0, 0, 0); border-style: solid; border-width: 1px; padding: 7px; vertical-align: top;" width="150px"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt; text-align: center;">
+<span style="font-family: inherit; font-size: x-small;"><span style="background-color: transparent; color: black; font-style: normal; font-variant: normal; font-weight: bold; text-decoration: none; vertical-align: baseline;">Old Web Service URL</span></span></div>
+</td><td style="border-color: rgb(0, 0, 0); border-style: solid; border-width: 1px; padding: 7px; vertical-align: top;" width="150px"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt; text-align: center;">
+<span style="font-family: inherit; font-size: x-small;"><span style="background-color: transparent; color: black; font-style: normal; font-variant: normal; font-weight: bold; text-decoration: none; vertical-align: baseline;">New Web Service URL</span></span></div>
+</td></tr>
+<tr style="height: 0px;"><td style="border-color: rgb(0, 0, 0); border-style: solid; border-width: 1px; padding: 7px; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="font-family: inherit; font-size: x-small;"><span style="background-color: transparent; color: black; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Check API status</span></span></div>
+</td><td style="border-color: rgb(0, 0, 0); border-style: solid; border-width: 1px; padding: 7px; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="font-family: inherit; font-size: x-small;"><a href="https://www.ebi.ac.uk/chemblws/status" style="text-decoration: none;"><span style="background-color: transparent; color: #1155cc; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: underline; vertical-align: baseline;">https://www.ebi.ac.uk/chemblws/status</span></a></span></div>
+</td><td style="border-color: rgb(0, 0, 0); border-style: solid; border-width: 1px; padding: 7px; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="font-family: inherit; font-size: x-small;"><a href="https://www.ebi.ac.uk/chembl/api/data/status" style="text-decoration: none;"><span style="background-color: transparent; color: #1155cc; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: underline; vertical-align: baseline;">https://www.ebi.ac.uk/chembl/api/data/status</span></a></span></div>
+</td></tr>
+<tr style="height: 0px;"><td style="border-color: rgb(0, 0, 0); border-style: solid; border-width: 1px; padding: 7px; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="font-family: inherit; font-size: x-small;"><span style="background-color: transparent; color: black; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Get compound by ChEMBLID</span></span></div>
+</td><td style="border-color: rgb(0, 0, 0); border-style: solid; border-width: 1px; padding: 7px; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="font-family: inherit; font-size: x-small;"><a href="https://www.ebi.ac.uk/chemblws/compounds/CHEMBL1" style="text-decoration: none;"><span style="background-color: transparent; color: #1155cc; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: underline; vertical-align: baseline;">https://www.ebi.ac.uk/chemblws/compounds/CHEMBL1</span></a></span></div>
+</td><td style="border-color: rgb(0, 0, 0); border-style: solid; border-width: 1px; padding: 7px; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="font-family: inherit; font-size: x-small;"><a href="https://www.ebi.ac.uk/chembl/api/data/molecule/CHEMBL1" style="text-decoration: none;"><span style="background-color: transparent; color: #1155cc; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: underline; vertical-align: baseline;">https://www.ebi.ac.uk/chembl/api/data/molecule/CHEMBL1</span></a></span></div>
+</td></tr>
+<tr style="height: 0px;"><td style="border-color: rgb(0, 0, 0); border-style: solid; border-width: 1px; padding: 7px; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="font-family: inherit; font-size: x-small;"><span style="background-color: transparent; color: black; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Get compound by Standard InChiKey</span></span></div>
+</td><td style="border-color: rgb(0, 0, 0); border-style: solid; border-width: 1px; padding: 7px; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="font-family: inherit; font-size: x-small;"><a href="https://www.ebi.ac.uk/chemblws/compounds/stdinchikey/QFFGVLORLPOAEC-SNVBAGLBSA-N" style="text-decoration: none;"><span style="background-color: transparent; color: #1155cc; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: underline; vertical-align: baseline;">https://www.ebi.ac.uk/chemblws/compounds/stdinchikey/QFFGVLORLPOAEC-SNVBAGLBSA-N</span></a></span></div>
+</td><td style="border-color: rgb(0, 0, 0); border-style: solid; border-width: 1px; padding: 7px; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="font-family: inherit; font-size: x-small;"><a href="https://www.ebi.ac.uk/chembl/api/data/molecule/QFFGVLORLPOAEC-SNVBAGLBSA-N" style="text-decoration: none;"><span style="background-color: transparent; color: #1155cc; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: underline; vertical-align: baseline;">https://www.ebi.ac.uk/chembl/api/data/molecule/QFFGVLORLPOAEC-SNVBAGLBSA-N</span></a></span></div>
+</td></tr>
+<tr style="height: 0px;"><td style="border-color: rgb(0, 0, 0); border-style: solid; border-width: 1px; padding: 7px; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="font-family: inherit; font-size: x-small;"><span style="background-color: transparent; color: black; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Get list of compounds matching Canonical SMILES</span></span></div>
+</td><td style="border-color: rgb(0, 0, 0); border-style: solid; border-width: 1px; padding: 7px; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="font-family: inherit; font-size: x-small;"><a href="https://www.ebi.ac.uk/chemblws/compounds/smiles/COc1ccc2%5BC@@H%5D3%5BC@H%5D%28COc2c1%29C%28C%29%28C%29OC4=C3C%28=O%29C%28=O%29C5=C4OC%28C%29%28C%29%5BC@@H%5D6COc7cc%28OC%29ccc7%5BC@H%5D56" style="text-decoration: none;"><span style="background-color: transparent; color: #1155cc; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: underline; vertical-align: baseline;">https://www.ebi.ac.uk/chemblws/compounds/smiles/COc1ccc2%5BC@@H%5D3%5BC@H%5D%28COc2c1%29C%28C%29%28C%29OC4=C3C%28=O%29C%28=O%29C5=C4OC%28C%29%28C%29%5BC@@H%5D6COc7cc%28OC%29ccc7%5BC@H%5D56</span></a></span></div>
+</td><td style="border-color: rgb(0, 0, 0); border-style: solid; border-width: 1px; padding: 7px; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="font-family: inherit; font-size: x-small;"><a href="https://www.ebi.ac.uk/chembl/api/data/molecule/COc1ccc2%5BC@@H%5D3%5BC@H%5D%28COc2c1%29C%28C%29%28C%29OC4=C3C%28=O%29C%28=O%29C5=C4OC%28C%29%28C%29%5BC@H%5D6COc7cc%28OC%29ccc7%5BC@@H%5D56" style="text-decoration: none;"><span style="background-color: transparent; color: #1155cc; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: underline; vertical-align: baseline;">https://www.ebi.ac.uk/chembl/api/data/molecule/COc1ccc2%5BC@@H%5D3%5BC@H%5D%28COc2c1%29C%28C%29%28C%29OC4=C3C%28=O%29C%28=O%29C5=C4OC%28C%29%28C%29%5BC@H%5D6COc7cc%28OC%29ccc7%5BC@@H%5D56</span></a></span></div>
+</td></tr>
+<tr style="height: 0px;"><td style="border-color: rgb(0, 0, 0); border-style: solid; border-width: 1px; padding: 7px; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="font-family: inherit; font-size: x-small;"><span style="background-color: transparent; color: black; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Get list of compounds containing the substructure represented by a given Canonical SMILES</span></span></div>
+</td><td style="border-color: rgb(0, 0, 0); border-style: solid; border-width: 1px; padding: 7px; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="font-family: inherit; font-size: x-small;"><a href="https://www.ebi.ac.uk/chemblws/compounds/substructure/CN%28CCCN%29c1cccc2ccccc12" style="text-decoration: none;"><span style="background-color: transparent; color: #1155cc; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: underline; vertical-align: baseline;">https://www.ebi.ac.uk/chemblws/compounds/substructure/CN%28CCCN%29c1cccc2ccccc12</span></a></span></div>
+</td><td style="border-color: rgb(0, 0, 0); border-style: solid; border-width: 1px; padding: 7px; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="font-family: inherit; font-size: x-small;"><a href="https://www.ebi.ac.uk/chembl/api/data/substructure/CN%28CCCN%29c1cccc2ccccc12" style="text-decoration: none;"><span style="background-color: transparent; color: #1155cc; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: underline; vertical-align: baseline;">https://www.ebi.ac.uk/chembl/api/data/substructure/CN%28CCCN%29c1cccc2ccccc12</span></a></span></div>
+</td></tr>
+<tr style="height: 0px;"><td style="border-color: rgb(0, 0, 0); border-style: solid; border-width: 1px; padding: 7px; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="font-family: inherit; font-size: x-small;"><span style="background-color: transparent; color: black; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Get list of compounds similar to the one represented by a given Canonical SMILES, at a given cutoff percentage</span></span></div>
+</td><td style="border-color: rgb(0, 0, 0); border-style: solid; border-width: 1px; padding: 7px; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="font-family: inherit; font-size: x-small;"><a href="https://www.ebi.ac.uk/chemblws/compounds/similarity/COc1ccc2%5BC@@H%5D3%5BC@H%5D%28COc2c1%29C%28C%29%28C%29OC4=C3C%28=O%29C%28=O%29C5=C4OC%28C%29%28C%29%5BC@@H%5D6COc7cc%28OC%29ccc7%5BC@H%5D56/70" style="text-decoration: none;"><span style="background-color: transparent; color: #1155cc; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: underline; vertical-align: baseline;">https://www.ebi.ac.uk/chemblws/compounds/similarity/COc1ccc2%5BC@@H%5D3%5BC@H%5D%28COc2c1%29C%28C%29%28C%29OC4=C3C%28=O%29C%28=O%29C5=C4OC%28C%29%28C%29%5BC@@H%5D6COc7cc%28OC%29ccc7%5BC@H%5D56/70</span></a></span></div>
+</td><td style="border-color: rgb(0, 0, 0); border-style: solid; border-width: 1px; padding: 7px; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="font-family: inherit; font-size: x-small;"><a href="https://www.ebi.ac.uk/chembl/api/data/similarity/COc1ccc2%5BC@@H%5D3%5BC@H%5D%28COc2c1%29C%28C%29%28C%29OC4=C3C%28=O%29C%28=O%29C5=C4OC%28C%29%28C%29%5BC@@H%5D6COc7cc%28OC%29ccc7%5BC@H%5D56/70" style="text-decoration: none;"><span style="background-color: transparent; color: #1155cc; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: underline; vertical-align: baseline;">https://www.ebi.ac.uk/chembl/api/data/similarity/COc1ccc2%5BC@@H%5D3%5BC@H%5D%28COc2c1%29C%28C%29%28C%29OC4=C3C%28=O%29C%28=O%29C5=C4OC%28C%29%28C%29%5BC@@H%5D6COc7cc%28OC%29ccc7%5BC@H%5D56/70</span></a></span></div>
+</td></tr>
+<tr style="height: 0px;"><td style="border-color: rgb(0, 0, 0); border-style: solid; border-width: 1px; padding: 7px; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="font-family: inherit; font-size: x-small;"><span style="background-color: transparent; color: black; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Get image of a ChEMBL compound by ChEMBLID</span></span></div>
+</td><td style="border-color: rgb(0, 0, 0); border-style: solid; border-width: 1px; padding: 7px; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="font-family: inherit; font-size: x-small;"><a href="https://www.ebi.ac.uk/chemblws/compounds/CHEMBL192/image" style="text-decoration: none;"><span style="background-color: transparent; color: #1155cc; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: underline; vertical-align: baseline;">https://www.ebi.ac.uk/chemblws/compounds/CHEMBL192/image</span></a></span></div>
+</td><td style="border-color: rgb(0, 0, 0); border-style: solid; border-width: 1px; padding: 7px; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="font-family: inherit; font-size: x-small;"><a href="https://www.ebi.ac.uk/chembl/api/data/image/CHEMBL192" style="text-decoration: none;"><span style="background-color: transparent; color: #1155cc; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: underline; vertical-align: baseline;">https://www.ebi.ac.uk/chembl/api/data/image/CHEMBL192</span></a></span></div>
+</td></tr>
+<tr style="height: 0px;"><td style="border-color: rgb(0, 0, 0); border-style: solid; border-width: 1px; padding: 7px; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="font-family: inherit; font-size: x-small;"><span style="background-color: transparent; color: black; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Get individual compound bioactivities</span></span></div>
+</td><td style="border-color: rgb(0, 0, 0); border-style: solid; border-width: 1px; padding: 7px; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="font-family: inherit; font-size: x-small;"><a href="https://www.ebi.ac.uk/chemblws/compounds/CHEMBL2/bioactivities" style="text-decoration: none;"><span style="background-color: transparent; color: #1155cc; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: underline; vertical-align: baseline;">https://www.ebi.ac.uk/chemblws/compounds/CHEMBL2/bioactivities</span></a></span></div>
+</td><td style="border-color: rgb(0, 0, 0); border-style: solid; border-width: 1px; padding: 7px; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="font-family: inherit; font-size: x-small;"><a href="https://www.ebi.ac.uk/chembl/api/data/activity?molecule_chembl_id=CHEMBL2" style="text-decoration: none;"><span style="background-color: transparent; color: #1155cc; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: underline; vertical-align: baseline;">https://www.ebi.ac.uk/chembl/api/data/activity?molecule_chembl_id=CHEMBL2</span></a></span></div>
+</td></tr>
+<tr style="height: 0px;"><td style="border-color: rgb(0, 0, 0); border-style: solid; border-width: 1px; padding: 7px; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="font-family: inherit; font-size: x-small;"><span style="background-color: transparent; color: black; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Get alternative compound forms (e.g. parent and salts) of a compound</span></span></div>
+</td><td style="border-color: rgb(0, 0, 0); border-style: solid; border-width: 1px; padding: 7px; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="font-family: inherit; font-size: x-small;"><a href="https://www.ebi.ac.uk/chemblws/compounds/CHEMBL278020/form" style="text-decoration: none;"><span style="background-color: transparent; color: #1155cc; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: underline; vertical-align: baseline;">https://www.ebi.ac.uk/chemblws/compounds/CHEMBL278020/form</span></a></span></div>
+</td><td style="border-color: rgb(0, 0, 0); border-style: solid; border-width: 1px; padding: 7px; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="font-family: inherit; font-size: x-small;"><a href="https://www.ebi.ac.uk/chembl/api/data/molecule_form/CHEMBL278020" style="text-decoration: none;"><span style="background-color: transparent; color: #1155cc; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: underline; vertical-align: baseline;">https://www.ebi.ac.uk/chembl/api/data/molecule_form/CHEMBL278020</span></a></span></div>
+</td></tr>
+<tr style="height: 0px;"><td style="border-color: rgb(0, 0, 0); border-style: solid; border-width: 1px; padding: 7px; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="font-family: inherit; font-size: x-small;"><span style="background-color: transparent; color: black; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Get mechanism of action details for compound (where compound is a drug)</span></span></div>
+</td><td style="border-color: rgb(0, 0, 0); border-style: solid; border-width: 1px; padding: 7px; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="font-family: inherit; font-size: x-small;"><a href="https://www.ebi.ac.uk/chemblws/compounds/CHEMBL1642/drugMechanism" style="text-decoration: none;"><span style="background-color: transparent; color: #1155cc; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: underline; vertical-align: baseline;">https://www.ebi.ac.uk/chemblws/compounds/CHEMBL1642/drugMechanism</span></a></span></div>
+</td><td style="border-color: rgb(0, 0, 0); border-style: solid; border-width: 1px; padding: 7px; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="font-family: inherit; font-size: x-small;"><a href="https://www.ebi.ac.uk/chembl/api/data/mechanism?molecule_chembl_id=CHEMBL1642" style="text-decoration: none;"><span style="background-color: transparent; color: #1155cc; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: underline; vertical-align: baseline;">https://www.ebi.ac.uk/chembl/api/data/mechanism?molecule_chembl_id=CHEMBL1642</span></a></span></div>
+</td></tr>
+<tr style="height: 0px;"><td style="border-color: rgb(0, 0, 0); border-style: solid; border-width: 1px; padding: 7px; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="font-family: inherit; font-size: x-small;"><span style="background-color: transparent; color: black; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Get all targets</span></span></div>
+</td><td style="border-color: rgb(0, 0, 0); border-style: solid; border-width: 1px; padding: 7px; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="font-family: inherit; font-size: x-small;"><a href="https://www.ebi.ac.uk/chemblws/targets" style="text-decoration: none;"><span style="background-color: transparent; color: #1155cc; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: underline; vertical-align: baseline;">https://www.ebi.ac.uk/chemblws/targets</span></a></span></div>
+</td><td style="border-color: rgb(0, 0, 0); border-style: solid; border-width: 1px; padding: 7px; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="font-family: inherit; font-size: x-small;"><a href="https://www.ebi.ac.uk/chembl/api/data/target" style="text-decoration: none;"><span style="background-color: transparent; color: #1155cc; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: underline; vertical-align: baseline;">https://www.ebi.ac.uk/chembl/api/data/target</span></a></span></div>
+</td></tr>
+<tr style="height: 0px;"><td style="border-color: rgb(0, 0, 0); border-style: solid; border-width: 1px; padding: 7px; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="font-family: inherit; font-size: x-small;"><span style="background-color: transparent; color: black; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Get target by ChEMBLID</span></span></div>
+</td><td style="border-color: rgb(0, 0, 0); border-style: solid; border-width: 1px; padding: 7px; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="font-family: inherit; font-size: x-small;"><a href="https://www.ebi.ac.uk/chemblws/targets/CHEMBL247" style="text-decoration: none;"><span style="background-color: transparent; color: #1155cc; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: underline; vertical-align: baseline;">https://www.ebi.ac.uk/chemblws/targets/CHEMBL247</span></a></span></div>
+</td><td style="border-color: rgb(0, 0, 0); border-style: solid; border-width: 1px; padding: 7px; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="font-family: inherit; font-size: x-small;"><a href="https://www.ebi.ac.uk/chembl/api/data/target/CHEMBL247" style="text-decoration: none;"><span style="background-color: transparent; color: #1155cc; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: underline; vertical-align: baseline;">https://www.ebi.ac.uk/chembl/api/data/target/CHEMBL247</span></a></span></div>
+</td></tr>
+<tr style="height: 0px;"><td style="border-color: rgb(0, 0, 0); border-style: solid; border-width: 1px; padding: 7px; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="font-family: inherit; font-size: x-small;"><span style="background-color: transparent; color: black; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Get target by UniProt Accession Identifier</span></span></div>
+</td><td style="border-color: rgb(0, 0, 0); border-style: solid; border-width: 1px; padding: 7px; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="font-family: inherit; font-size: x-small;"><a href="https://www.ebi.ac.uk/chemblws/targets/uniprot/Q13936" style="text-decoration: none;"><span style="background-color: transparent; color: #1155cc; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: underline; vertical-align: baseline;">https://www.ebi.ac.uk/chemblws/targets/uniprot/Q13936</span></a></span></div>
+</td><td style="border-color: rgb(0, 0, 0); border-style: solid; border-width: 1px; padding: 7px; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="font-family: inherit; font-size: x-small;"><a href="https://www.ebi.ac.uk/chembl/api/data/target?target_components__accession=Q13936&amp;target_type=SINGLE%20PROTEIN" style="text-decoration: none;"><span style="background-color: transparent; color: #1155cc; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: underline; vertical-align: baseline;">https://www.ebi.ac.uk/chembl/api/data/target?target_components__accession=Q13936&amp;target_type=SINGLE%20PROTEIN</span></a></span></div>
+</td></tr>
+<tr style="height: 0px;"><td style="border-color: rgb(0, 0, 0); border-style: solid; border-width: 1px; padding: 7px; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="font-family: inherit; font-size: x-small;"><span style="background-color: transparent; color: black; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Get individual target bioactivities</span></span></div>
+</td><td style="border-color: rgb(0, 0, 0); border-style: solid; border-width: 1px; padding: 7px; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="font-family: inherit; font-size: x-small;"><a href="https://www.ebi.ac.uk/chemblws/targets/CHEMBL240/bioactivities" style="text-decoration: none;"><span style="background-color: transparent; color: #1155cc; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: underline; vertical-align: baseline;">https://www.ebi.ac.uk/chemblws/targets/CHEMBL240/bioactivities</span></a></span></div>
+</td><td style="border-color: rgb(0, 0, 0); border-style: solid; border-width: 1px; padding: 7px; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="font-family: inherit; font-size: x-small;"><a href="https://www.ebi.ac.uk/chembl/api/data/activity?target_chembl_id=CHEMBL240" style="text-decoration: none;"><span style="background-color: transparent; color: #1155cc; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: underline; vertical-align: baseline;">https://www.ebi.ac.uk/chembl/api/data/activity?target_chembl_id=CHEMBL240</span></a></span></div>
+</td></tr>
+<tr style="height: 0px;"><td style="border-color: rgb(0, 0, 0); border-style: solid; border-width: 1px; padding: 7px; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="font-family: inherit; font-size: x-small;"><span style="background-color: transparent; color: black; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Get approved drugs for target</span></span></div>
+</td><td style="border-color: rgb(0, 0, 0); border-style: solid; border-width: 1px; padding: 7px; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="font-family: inherit; font-size: x-small;"><a href="https://www.ebi.ac.uk/chemblws/targets/CHEMBL1824/approvedDrug" style="text-decoration: none;"><span style="background-color: transparent; color: #1155cc; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: underline; vertical-align: baseline;">https://www.ebi.ac.uk/chemblws/targets/CHEMBL1824/approvedDrug</span></a></span></div>
+</td><td style="border-color: rgb(0, 0, 0); border-style: solid; border-width: 1px; padding: 7px; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="font-family: inherit; font-size: x-small;"><a href="https://www.ebi.ac.uk/chembl/api/data/mechanism?target_chembl_id=CHEMBL1824" style="text-decoration: none;"><span style="background-color: transparent; color: #1155cc; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: underline; vertical-align: baseline;">https://www.ebi.ac.uk/chembl/api/data/mechanism?target_chembl_id=CHEMBL1824</span></a></span></div>
+</td></tr>
+<tr style="height: 0px;"><td style="border-color: rgb(0, 0, 0); border-style: solid; border-width: 1px; padding: 7px; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="font-family: inherit; font-size: x-small;"><span style="background-color: transparent; color: black; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Get assay by ChEMBLID</span></span></div>
+</td><td style="border-color: rgb(0, 0, 0); border-style: solid; border-width: 1px; padding: 7px; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="font-family: inherit; font-size: x-small;"><a href="https://www.ebi.ac.uk/chemblws/assays/CHEMBL1217643" style="text-decoration: none;"><span style="background-color: transparent; color: #1155cc; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: underline; vertical-align: baseline;">https://www.ebi.ac.uk/chemblws/assays/CHEMBL1217643</span></a></span></div>
+</td><td style="border-color: rgb(0, 0, 0); border-style: solid; border-width: 1px; padding: 7px; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="font-family: inherit; font-size: x-small;"><a href="https://www.ebi.ac.uk/chembl/api/data/assay/CHEMBL1217643" style="text-decoration: none;"><span style="background-color: transparent; color: #1155cc; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: underline; vertical-align: baseline;">https://www.ebi.ac.uk/chembl/api/data/assay/CHEMBL1217643</span></a></span></div>
+</td></tr>
+<tr style="height: 0px;"><td style="border-color: rgb(0, 0, 0); border-style: solid; border-width: 1px; padding: 7px; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="font-family: inherit; font-size: x-small;"><span style="background-color: transparent; color: black; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Get individual assay bioactivities</span></span></div>
+</td><td style="border-color: rgb(0, 0, 0); border-style: solid; border-width: 1px; padding: 7px; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="font-family: inherit; font-size: x-small;"><a href="https://www.ebi.ac.uk/chemblws/assays/CHEMBL1217643/bioactivities" style="text-decoration: none;"><span style="background-color: transparent; color: #1155cc; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: underline; vertical-align: baseline;">https://www.ebi.ac.uk/chemblws/assays/CHEMBL1217643/bioactivities</span></a></span></div>
+</td><td style="border-color: rgb(0, 0, 0); border-style: solid; border-width: 1px; padding: 7px; vertical-align: top;"><div dir="ltr" style="line-height: 1.2; margin-bottom: 0pt; margin-top: 0pt;">
+<span style="font-family: inherit; font-size: x-small;"><a href="https://www.ebi.ac.uk/chembl/api/data/activity?assay_chembl_id=CHEMBL1217643" style="text-decoration: none;"><span style="background-color: transparent; color: #1155cc; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: underline; vertical-align: baseline;">https://www.ebi.ac.uk/chembl/api/data/activity?assay_chembl_id=CHEMBL1217643</span></a></span></div>
+</td></tr>
+</tbody></table>
+</div>
+<br />
+<h3>
+ChEMBL Targets and UniProt Accessions</h3>
+</div>
+<div dir="ltr" style="text-align: left;" trbidi="on">
+<br />
+It is also worth noting that requests for ChEMBL targets by UniProt accessions is handled slightly differently in the new web services. It is now possible to return complexes, protein families and other target types, which contain the UniProt accession, not just the single protein targets. For example <a href="https://www.ebi.ac.uk/chembl/api/data/target?target_components__accession=Q13936&amp;target_type=SINGLE%20PROTEIN">https://www.ebi.ac.uk/chembl/api/data/target?target_components__accession=Q13936&amp;target_type=SINGLE%20PROTEIN</a>, will return the ChEMBL target for Q13936. Removing the target_type filter, <a href="https://www.ebi.ac.uk/chembl/api/data/target?target_components__accession=Q13936">https://www.ebi.ac.uk/chembl/api/data/target?target_components__accession=Q13936</a>, will return multiple targets (<a href="https://www.ebi.ac.uk/chembl/target/inspect/CHEMBL2095229">CHEMBL2095229</a>, <a href="https://www.ebi.ac.uk/chembl/target/inspect/CHEMBL2363032">CHEMBL2363032</a> and <a href="https://www.ebi.ac.uk/chembl/target/inspect/CHEMBL1940">CHEMBL1940</a> in ChEMBL release 20).<br />
+<br /></div>
+<div dir="ltr" style="text-align: left;" trbidi="on">
+</div>
+<div dir="ltr" style="text-align: left;" trbidi="on">
+Expect some more web service related blog posts over the coming weeks and if you have any questions please <a href="mailto:chembl-help@ebi.ac.uk">get in touch</a>.<br />
+<br /></div>
+<div dir="ltr" style="text-align: left;" trbidi="on">
+</div>
+<div dir="ltr" style="text-align: left;" trbidi="on">
+The ChEMBL Team </div>
+<div dir="ltr" style="text-align: left;" trbidi="on">
+</div>
+<div dir="ltr" style="text-align: left;" trbidi="on">
+</div>
+<div dir="ltr" style="text-align: left;" trbidi="on">
+</div>
+<div dir="ltr" style="text-align: left;" trbidi="on">
+<br />
+<span style="color: #1155cc;"><span style="font-family: inherit;">&nbsp;</span></span> <br />
+<h3>
+&nbsp;</h3>
+</div>
+<div dir="ltr" style="text-align: left;" trbidi="on">
+<br /></div>
+<div dir="ltr" style="text-align: left;" trbidi="on">
+<br /></div>
+<div dir="ltr" style="text-align: left;" trbidi="on">
+<br /></div>

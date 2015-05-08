@@ -1,0 +1,31 @@
+---
+layout: post
+title: Molecular databases and molecule complexity - part 1
+date: '2011-04-24T10:27:00.001+01:00'
+author: John Overington
+tags:
+- Databases
+modified_time: '2011-04-24T10:28:42.723+01:00'
+thumbnail: http://1.bp.blogspot.com/-f8jnP1pM0VI/TbPd0wvYjPI/AAAAAAAABFk/ItM78Ne72kY/s72-c/tumblr_lj3mnh2Iyd1qi5fw0o1_500.jpg
+blogger_id: tag:blogger.com,1999:blog-2546008714740235720.post-7256363804116070778
+blogger_orig_url: http://chembl.blogspot.com/2011/04/molecular-databases-and-molecule.html
+---
+
+<div class="separator" style="clear: both; text-align: center;"><a href="http://1.bp.blogspot.com/-f8jnP1pM0VI/TbPd0wvYjPI/AAAAAAAABFk/ItM78Ne72kY/s1600/tumblr_lj3mnh2Iyd1qi5fw0o1_500.jpg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="250" src="http://1.bp.blogspot.com/-f8jnP1pM0VI/TbPd0wvYjPI/AAAAAAAABFk/ItM78Ne72kY/s400/tumblr_lj3mnh2Iyd1qi5fw0o1_500.jpg" width="400" /></a></div><br />
+At one level a database of small molecules seems a really simple thing - a set of identifiers and then a 2D structure. You can then do a bunch of really cool things with this, as the large literature in the area shows. For example, one thing which is pretty common is to take a library of molecules, then 'dock' them into a protein structure, hopefully to find a novel lead; or maybe even a new use for a drug (or prediction of a side effect of a known drug). The wide availability of pipeline tools, web services connecting directly to remote databases, and so forth, makes this sort of thing really simple, and arguably too simple.<br />
+<br />
+However, there are many challenges with handling normalised 2-D chemical data. One thing we have started to think about recently, is just how ambiguous a 2D representation of a structure is for typical users interested in the analysis of compound properties, docking, <i>etc</i>.<br />
+<br />
+The problem arises from the fact that molecules are 'complex', in that a single valid 2D representation can have multiple, readily interconvertable distinct physical manefestations. These factors involving ambiguity include <a href="http://en.wikipedia.org/wiki/Ionization">ionization</a>, <a href="http://en.wikipedia.org/wiki/Tautomerism">tautomerisation</a>, hydration (for example, the formation of geminal hydroxy forms from aldehydes), <a href="http://en.wikipedia.org/wiki/Stereoisomerism">stereoisomerism</a>, and of course there is conformational flexibility. When a real physical experiment is done, the lowest free energy result emerges from this ensemble of possibilities.<br />
+<br />
+During the registration of a molecule into a database there is a typically a series of normalisation steps that happen, in order to reduce this level of real physical world multiple structures to a simpler '<a href="http://en.wikipedia.org/wiki/Canonical">canonical</a>' form. When one wants to use the data, a user may then need to 'enumerate' a set of possible structures in order to do anything useful with them. (of course, stereoisomers are not usually physically interconvertable. However often molecules have undefined stereochemistry when registered in a database, and for some tasks (<i>e.g</i>. docking) the results depend enormously on the actual stereo form, since the two enantiomers will bind to the (usually chiral) receptor with different energies, whereas other properties are identical in this case (<i>e.g</i>. logP).<br />
+<br />
+So in summary, there is a processing step when one registers a molecule to reduce complexity in the representation, and then a processing step when one takes a molecule from a database to do something useful with it (caveat - alternatives to this general model exist).<br />
+<br />
+<div class="separator" style="clear: both; text-align: center;"><a href="http://3.bp.blogspot.com/-RHiPxznM_SI/TbPsYZNR7DI/AAAAAAAABFs/3csA-j1TRbA/s1600/dataflow.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="224" src="http://3.bp.blogspot.com/-RHiPxznM_SI/TbPsYZNR7DI/AAAAAAAABFs/3csA-j1TRbA/s320/dataflow.png" width="320" /></a></div><br />
+<br />
+Some molecules will have a limited (maybe even a single) number of physical forms, others will be incredibly complex and have a very large number of physical forms.<br />
+<br />
+How widely appreciated is this fact - well, based on some of the questions and requests we get for ChEMBL support, I'd say not very widely, and we're thinking of ways to incorporate this into the database somehow.....<br />
+<br />
+It's <a href="http://en.wikipedia.org/wiki/Easter_egg_hunt">Easter Egg Hunt</a> time in <a href="http://en.wikipedia.org/wiki/Cheam">Cheam</a> now.... so more tomorrow.

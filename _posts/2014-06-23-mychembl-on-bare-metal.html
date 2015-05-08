@@ -1,0 +1,90 @@
+---
+layout: post
+title: myChEMBL on Bare Metal
+date: '2014-06-23T15:37:00.000+01:00'
+author: kott
+tags:
+- Virtual Machines
+- myChEMBL
+- RDKit
+- Software
+modified_time: '2014-06-24T17:23:42.650+01:00'
+thumbnail: http://4.bp.blogspot.com/-R1aQ57kOcfw/U6BVaxYyJhI/AAAAAAAAFxA/TE1-hBY_2vk/s72-c/Colossus.jpg
+blogger_id: tag:blogger.com,1999:blog-2546008714740235720.post-8394937015485491348
+blogger_orig_url: http://chembl.blogspot.com/2014/06/mychembl-on-bare-metal.html
+---
+
+<br />
+<div class="separator" style="clear: both; text-align: center;">
+<b><a href="http://4.bp.blogspot.com/-R1aQ57kOcfw/U6BVaxYyJhI/AAAAAAAAFxA/TE1-hBY_2vk/s1600/Colossus.jpg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="http://4.bp.blogspot.com/-R1aQ57kOcfw/U6BVaxYyJhI/AAAAAAAAFxA/TE1-hBY_2vk/s1600/Colossus.jpg" height="211" width="320" /></a></b></div>
+<br />
+<br />
+<a href="http://chembl.blogspot.co.uk/2014/06/mychembl-launchpadlaunched.html">myChEMBL</a> is distributed as a <a href="https://en.wikipedia.org/wiki/Virtual_machine">Virtual Machine</a> (VM), which is good because you can treat it like another file on your filesystem. It can be transmitted, copied, renamed, deleted,&nbsp;<i>etc</i>. The myChEMBL VM behaves like a sandbox, so software installed there can't harm your computer.<br />
+<br />
+But there are sometimes costs associated with using a VM, for example VMs are usually several percent slower than the host they are running on. There are also a number of scenarios where using a VM may not optimal or even possible, for example:<br />
+<ul>
+<li>You just want to enrich your existing machine with chemistry-related software </li>
+<li>The only machine you have is itself virtual - VM provisioning software often prevents you from installing a VM within a VM</li>
+<li>When performance is critical</li>
+</ul>
+In these cases you may not want the whole myChEMBL VM, only the software that it ships with. <br />
+<br />
+Fortunately we have a script, that automates the process of creating our customized VM. But not only that - we keep it publicly <a href="https://github.com/chembl/mychembl">available</a> along with all other resources, necessary to build myChEMBL! The main entry point is a bash script called '<a href="https://github.com/chembl/mychembl/blob/master/bootstrap.sh">bootstrap.sh</a>', which when executed it performs following steps:<br />
+<ul>
+<li>Creates user called 'chembl' and adds it to sudoers list</li>
+<li>Updates software distribution channels and upgrades OS</li>
+<li>Installs common software libraries required by our tools</li>
+<li>Installs python/ipython notebook/postgres DB</li>
+<li>Sets up python environment using virtualenvwrapper/virtulenv</li>
+<li>Downloads ChEMBL_18 data dump, and stores it in freshly created database</li>
+<li>Installs <a href="http://www.rdkit.org/">RDKit</a> and builds postgres <a href="http://www.rdkit.org/docs/Cartridge.html">cartridge</a></li>
+<li>Installs and configures a web server and all resources that will be accessible via browser</li>
+<li>Configures network</li>
+<li>Adds some branding </li>
+</ul>
+<br />
+<b>How to use it?</b><br />
+<br />
+Just run:<br />
+<br />
+<span style="font-family: &quot;Courier New&quot;,Courier,monospace;"><b><span class="s2">curl -s https://raw.githubusercontent.com/chembl/mychembl/master/bootstrap.sh | bash</span>&nbsp;</b></span><br />
+<br />
+you can optionally wrap it with 'time' to know how long did it take to execute:<b><span class="s2">&nbsp;</span></b><br />
+<br />
+<span style="font-family: &quot;Courier New&quot;,Courier,monospace;"><b><span class="s2">time(curl -s https://raw.githubusercontent.com/chembl/mychembl/master/bootstrap.sh | bash)</span></b>&nbsp;</span><br />
+<br />
+It takes about 6 hours on our machines, but we have fast internet connection. It could take 2-3 times longer on your connection, depending on bandwidth and your computer speed. The script is extremely verbose so you will easily notice what is being installed at the moment. Tip: you can redirect stdout/stderr to file(s) or even /dev/null to make it silent.<br />
+<br />
+<b>What takes the most time?</b><br />
+<br />
+Depending on your configuration these are most time consuming operations performed during execution of the script:<br />
+<ul>
+<li>Creating fingerprints and indexes for chemistry cartridge </li>
+<li>Downloading ChEMBL_18 dump from EBI's FTP (917 MB) </li>
+<li>Compiling libraries</li>
+</ul>
+<b>Requirements</b><br />
+<br />
+Currently 'bootstrap.sh' script was tested only on <a href="http://www.ubuntu.com/">Ubuntu</a>. It should work on every standard Ubuntu release since 12.04 (and probably <a href="http://www.linuxmint.com/">Linux Mint</a> as well). It's possible that the script will work fine (after some minor tweaks) with <a href="https://www.debian.org/">Debian</a> since Ubuntu is based on it and they both use the same package manager. In future we are planning to make it work with other systems (<a href="https://www.centos.org/">CentOS</a> and <a href="http://gb.redhat.com/">RedHat</a>).<br />
+<br />
+Furthermore, in order to execute this script you should have root privileges as it uses 'sudo' many times.<br />
+<br />
+<b>Is it safe?</b><br />
+<br />
+What we are asking you to do is a "curl pipe sh" pattern, which may be of <a href="http://blog.classicalcode.com/2012/11/curl-pipe-sh-exploit-proof-of-concept/">some security concern</a>.<br />
+We believe this is fastest, most convenient and elegant way for majority of our users. If you trust:<br />
+<ul>
+<li>Your internet connection (no man in the middle, would be hard anyway since we are using http<b>s</b> here).</li>
+<li>github.com.</li>
+<li>us at ChEMBL (we hope so!)</li>
+</ul>
+If you are not convinced, you can do:<br />
+<ol>
+<li><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">curl -o bootstrap.sh&nbsp; https://github.com/chembl/mychembl/blob/master/bootstrap.sh</span></li>
+<li>Carefully analyze contents, making sure there is no malware</li>
+<li><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">chmod +x bootstrap.sh</span></li>
+<li><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">./bootstrap.sh</span></li>
+</ol>
+In that case, please note that this process can be recursive since, bootstrap.sh itself contains "curl pipe sh" pattern many times.<br />
+<br />
+<a href="mailto:mychembl@ebi.ac.uk">Let us know</a> if you have any follow up questions about this post or about myChEMBL.

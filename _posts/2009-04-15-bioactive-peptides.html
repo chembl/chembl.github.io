@@ -1,0 +1,37 @@
+---
+layout: post
+title: Bioactive Peptides
+date: '2009-04-15T07:22:00.009+01:00'
+author: John Overington
+tags:
+- Databases
+modified_time: '2009-04-15T19:33:44.504+01:00'
+thumbnail: http://4.bp.blogspot.com/_SlPG9DIz_AA/SeWIdSbneVI/AAAAAAAAAPk/i5uHpQvF-_M/s72-c/FHM9QZXyUB27.jpg
+blogger_id: tag:blogger.com,1999:blog-2546008714740235720.post-991599172969407987
+blogger_orig_url: http://chembl.blogspot.com/2009/04/bioactive-peptides.html
+---
+
+<a onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}" href="http://4.bp.blogspot.com/_SlPG9DIz_AA/SeWIdSbneVI/AAAAAAAAAPk/i5uHpQvF-_M/s1600-h/FHM9QZXyUB27.jpg"><img style="display:block; margin:0px auto 10px; text-align:center;cursor:pointer; cursor:hand;width: 200px; height: 146px;" src="http://4.bp.blogspot.com/_SlPG9DIz_AA/SeWIdSbneVI/AAAAAAAAAPk/i5uHpQvF-_M/s200/FHM9QZXyUB27.jpg" border="0" alt=""id="BLOGGER_PHOTO_ID_5324812171180734802" /></a>
+Peptides (short polymers built from amide-linked alpha-amino acids) are one of the largest classes of bioactive compounds. Many drugs are peptides, or peptide derivatives; furthermore the ready accessibility of amino-acid monomers and chemistry for reliable assembly have led to very extensive characterisation of peptides as bioactives. An additional very useful property of peptide derivatives is that due to their modular nature, and the conformational constraints enforced by stereochemistry and the peptide backbone geometry, it is often possible to get some pretty good QSARs derived from amino-acid sidechain properties. It is also possible to automatically classify peptides into various subclasses (natural, non-natural, N-capped, C-capped, cyclic, <I>etc,</I>) in some sort of ontology-based classification.
+<P>
+The following is a brief overview of the peptide content of StARlite (release 31). In total, 41,128 compounds contain the simplest possible dipeptide substructure (di-glycine), this corresponds to about 9% of StARlite; so as a first approximation it is possible to say that 9% of StARlite is peptidic in nature (this also happens to be the largest single non-trivial structural class in StARlite). A table was then built of all distinct peptide units of a given length (up to 10 amino-acids in this case). The data is as follows....
+<P>
+<TABLE border=1>
+<TR><TH align="left"><B>peptide length</B><TH align="left"><B># length or longer</B><TH align="left"><B># exact length</B><TR>
+<TR><TD align="left">2<TD align="right">41,128<TD align="right">16,512</TR>
+<TR><TD align="left">3<TD align="right">24,616<TD align="right">6,079</TR>
+<TR><TD align="left">4<TD align="right">18,537<TD align="right">3,228</TR>
+<TR><TD align="left">5<TD align="right">15,309<TD align="right">2,397</TR>
+<TR><TD align="left">6<TD align="right">12,912<TD align="right">2,369</TR>
+<TR><TD align="left">7<TD align="right">10,543<TD align="right">1,769</TR>
+<TR><TD align="left">8<TD align="right">8,774<TD align="right">1,905</TR>
+<TR><TD align="left">9<TD align="right">6,869<TD align="right">1,302</TR>
+<TR><TD align="left">10<TD align="right">5,567<TD align="right">1,242</TR>
+</TABLE>
+<P>Considering all possible natural amino-acid dipeptides gives 400 distinct dipeptides (20^2), this compares to the 16,512 dipeptides found in StARlite, implying a very diverse and expanded set of amino-acids. It would be pretty interesting to find out what fraction of the 400 possible natural dipeptides are actually sampled. Of course, much of the variation of the dipeptides will come from groups attached N- and C-terminal to the dipeptide, but even so, the sampled variation of sidechains is pretty good. There are 8,000 distinct tri-peptides (20^3) constructed from the 20 natural amino-acids, it is clear that, even assuming the tripeptides are all simple and unelaborated) that there is poor coverage of tripeptides (6,079 <I>vs</I> 8,000) - chemical diversity scales very poorly! It is also pretty clear that there is a pseudo-power law distribution to the observed peptide length distribution (see below).
+<P>
+Here is a graph, I know it is bad practice not having labelled axes, but the x-axis is the peptide length, and the y-axis is the frequency of that class. Green is the class of that length or more, and yellow is of that exact length class.
+<P>
+<a onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}" href="http://1.bp.blogspot.com/_SlPG9DIz_AA/SeWG7hE_rmI/AAAAAAAAAPc/dgZq1OKAsZA/s1600-h/peptide+length+png.png"><img style="display:block; margin:0px auto 10px; text-align:center;cursor:pointer; cursor:hand;width: 320px; height: 234px;" src="http://1.bp.blogspot.com/_SlPG9DIz_AA/SeWG7hE_rmI/AAAAAAAAAPc/dgZq1OKAsZA/s320/peptide+length+png.png" border="0" alt=""id="BLOGGER_PHOTO_ID_5324810491485204066" /></a>
+<P>
+I have also pulled back some ligand efficiency data for this peptide set, at first glance, it looks very interesting..... More later.

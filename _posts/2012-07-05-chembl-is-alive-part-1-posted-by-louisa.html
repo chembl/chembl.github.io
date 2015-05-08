@@ -1,0 +1,34 @@
+---
+layout: post
+title: ChEMBL Is Alive! Part 1 - posted by Louisa
+date: '2012-07-05T13:50:00.001+01:00'
+author: Louisa
+tags:
+- ChEMBL Curation Notes
+modified_time: '2012-07-05T13:50:20.707+01:00'
+thumbnail: http://3.bp.blogspot.com/-njmQt4ppR_8/T_QbGPKB-mI/AAAAAAAAAE4/8RGIV_y9-tU/s72-c/dert.gif
+blogger_id: tag:blogger.com,1999:blog-2546008714740235720.post-603811829974546470
+blogger_orig_url: http://chembl.blogspot.com/2012/07/chembl-is-alive-part-1-posted-by-louisa.html
+---
+
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://3.bp.blogspot.com/-njmQt4ppR_8/T_QbGPKB-mI/AAAAAAAAAE4/8RGIV_y9-tU/s1600/dert.gif" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="320" src="http://3.bp.blogspot.com/-njmQt4ppR_8/T_QbGPKB-mI/AAAAAAAAAE4/8RGIV_y9-tU/s320/dert.gif" width="238" /></a></div>
+<br />
+'ChEMBL Is Alive' is to show that <a href="http://www.ebi.ac.uk/chembldb" target="_blank">ChEMBLdb</a> is a living database that is constantly being worked on by a number of people.&nbsp;As the <a href="http://en.wikipedia.org/wiki/Curator" target="_blank">Chemical Curator</a> for ChEMBL, I (Louisa Bellis) thought it would be interesting for our Blog readers to find out what goes on behind the scenes at 'ChEMBL Towers' and to get regular updates on what we are doing to the data between releases and in response to user emails sent to chembl-help@ebi.ac.uk.<br />
+<br />
+As well as being the chemical curator, I also deal with most of the <a href="http://en.wikipedia.org/wiki/Help_desk" target="_blank">help-desk</a>&nbsp;traffic, where users can email in and let us know of any errors that they may have found, or even to suggest an improvement or enhancement for the interface.<br />
+<br />
+As an example of the work that is done to ChEMBL on an ongoing basis, I thought it would be good to give a brief summary of some of the chemical curation that occurred during the month of June 2012:<br />
+<br />
+An external user pointed out to me that they had come across a 'few' compounds that had the same canonical <a href="http://en.wikipedia.org/wiki/Simplified_molecular-input_line-entry_system" target="_blank">SMILES</a> string, but had different standard <a href="http://en.wikipedia.org/wiki/InChI" target="_blank">InChI</a> strings. I created a spreadsheet of these duplicate SMILES, which came to a whopping 967 lines. Of these, just over 100 lines were due to E/Z isomerism, some needed to be merged for being incorrect and the rest were checked individually to see why the SMILES were the same. It turned out that there was an issue with the molfiles so each of these compounds was redrawn from scratch. This came to 1,112 compound redraws in all which will be loaded into ChEMBL as soon as possible and will be visible to external users in the ChEMBL_15 release (expected end of November 2012).<br />
+<br />
+I also started working on a list of duplicate names in the ChEMBL database. This was to support my own work flow and not suggested by our users - it created a list of 9,952 duplicate names. However, not all duplicate names are actual duplicates that need to be merged together, they can simply have the same simple chemical name that is not reflecting that they are enantiomers of each other.&nbsp;This work is still ongoing, but I have been able to redraw and merge about 100 compounds as a direct result of this list. I am only about 10% of the way through this spreadsheet, so I can say that it will keep me busy for a little while yet.<br />
+<br />
+In June, we also received two emails from users to let us know that they had found what they believed were errors.&nbsp;In one case, the units had been incorrectly extracted from the paper as nM, when they were in fact uM. Upon checking the paper, I could see where the confusion had arisen. I could see that it had one table where they displayed uM and all the rest of the tables were nM, so the extractor had not seen this difference. These have now been fixed and will be visible in ChEMBL_14 (due for release end of July 2012).<br />
+<br />
+The other email I'll mention here was to do with target assignment, where we had assigned a target to some data, and the user had read the paper and believed that the data was incorrectly assigned. This is still being checked by our biological curator, but if found to be incorrect, will be changed immediately in the database.<br />
+<br />
+These are both great examples of users helping us to improve the quality of data in ChEMBL.<br />
+<br />
+I hope to add more curation information in the future, but if there is anything specific that you would like to see me blog about (relating to curation or error checking) then please <a href="mailto:chembl-help@ebi.ac.uk">let me know</a>.<br />
+<br />

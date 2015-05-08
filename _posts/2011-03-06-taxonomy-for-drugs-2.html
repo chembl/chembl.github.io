@@ -1,0 +1,35 @@
+---
+layout: post
+title: 'A Taxonomy for Drugs: 2 - Stereochemistry'
+date: '2011-03-06T14:28:00.010Z'
+author: John Overington
+tags:
+- Databases
+- Ontologies
+modified_time: '2011-03-08T10:07:25.599Z'
+thumbnail: https://lh6.googleusercontent.com/-4OmQA4wWQx0/TXOWoPuuDhI/AAAAAAAABCQ/1lYkc5QSRX8/s72-c/Unknown.jpeg
+blogger_id: tag:blogger.com,1999:blog-2546008714740235720.post-5821580268536805593
+blogger_orig_url: http://chembl.blogspot.com/2011/03/taxonomy-for-drugs-2.html
+---
+
+<div class="separator" style="clear: both; text-align: center;"><a href="https://lh6.googleusercontent.com/-4OmQA4wWQx0/TXOWoPuuDhI/AAAAAAAABCQ/1lYkc5QSRX8/s1600/Unknown.jpeg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="https://lh6.googleusercontent.com/-4OmQA4wWQx0/TXOWoPuuDhI/AAAAAAAABCQ/1lYkc5QSRX8/s1600/Unknown.jpeg" /></a></div><br />
+The next area for consideration in our descriptive taxonomy for drugs is <a href="http://en.wikipedia.org/wiki/Stereochemistry">stereochemistry</a>. There are many differing types of <a href="http://en.wikipedia.org/wiki/Stereoisomer">stereoisomers</a> encountered in general chemistry, and the area is complex, but the majority of these are not relevant for drug discovery; for example <a href="http://en.wikipedia.org/wiki/Atropisomer">atropisomers</a>, although an important effect is not important for among drug substances. The most significant category of stereochemistry for drug like molecules involves chiral centers at sp<sup>3</sup> hybridised carbon atoms connected to four chemically distinct atoms (often giving rise to&nbsp;<a href="http://en.wikipedia.org/wiki/Enantiomerism">enantiomerism</a>). Another relevant case of stereoisomerism for drugs are&nbsp;<a href="http://en.wikipedia.org/wiki/Diastereoisomers">diastereoisomers</a>, these are stereoisomers that are not enantiomers, and include <i>cis</i>-/<i>trans</i>- (<i>E</i>-/<i>Z</i>-) configuration of alkenes.<br />
+<br />
+So for <b>Drug_Stereochemistry_Class</b>, a drug can be:<br />
+<ul><li><b>Chiral</b> - containing a single defined stereoisomer of the drug substance, and which lacks an internal plane of symmetry.</li>
+<li><b>Racemic</b> - containing a mixture of stereoisomers of the drug substance.</li>
+<li><b>Achiral</b> - composed of a drug substance that does not display chirality.</li>
+<li><b>Other</b> - displaying a physiologically relevant stereochemical property not covered by the classes above.</li>
+</ul>The vast majority of biological monomers (e.g. amino acids, nucleotides, sugars) &nbsp;are chiral, and polymers of these are also chiral&nbsp;(so biological drugs and drug targets within the body). So biological drugs are 'chiral', but since it is so ubiquitous for molecules of this class, the convention is to ignore the issue of chirality for biologicals. For small molecule drugs, the importance is more significant, both scientifically and commercially, and several drugs which were initially synthesized and marketed as racemic mixtures, have subsequently been developed in a chirally pure form. An example of this is <a href="http://en.wikipedia.org/wiki/Omeprazole">Omeprazole</a>, which was subsequently replaced by the 'active' S-enantiomer&nbsp;<a href="http://en.wikipedia.org/wiki/Esomeprazole">Esomeprazole</a>. By convention, USANs and INNs for chirally distinct forms of a molecule have either <i>ar</i>- as a prefix for R-configuration and <i>es</i>- as a prefix for S-configuration forms. There is no correlation between the +/- labelling and R/S labelling of chirally active molecules. Previously, the USANs/INNs of chirally pure drugs were often denoted with&nbsp;<i>levo</i>- and <i>dextro</i>- prefices.<br />
+<br />
+It is important to note that since drugs tend to interact with chiral receptors, enantiomers will have different binding affinities against a target (or set of targets), metabolic routes, side-effects, half-lives, <i>etc</i>., and so in general there is usually more interest in developing a chirally pure or achiral&nbsp;drug. Chiral centers often add significantly to the synthetic complexity and cost of manufacture of a drug, and so again there are pressures to develop achiral drugs where possible. So as a general rule, achiral drugs are 'preferred' over chiral drugs which in turn are preferred over racemic drugs. There is a fuller discussion of isomerism and drug development <a href="http://www.ama-assn.org/ama/pub/physician-resources/medical-science/united-states-adopted-names-council/naming-guidelines/geometric-isomerism-chirality-the-usan-perspective.shtml">here</a>.<br />
+<br />
+Although most chirality in drugs occurs at sp<sup>3</sup> carbon atoms, an important and often neglected case is for <a href="http://en.wikipedia.org/wiki/Sulphoxide">sulfoxides</a>, where the geometry around the sulphur atom is tetrahedral, and optically active isomers are possible.<br />
+<br />
+For example:<br />
+<br />
+<a href="http://en.wikipedia.org/wiki/Sildenafil">Sildenafil</a> is an achiral drug.<br />
+<a href="http://en.wikipedia.org/wiki/L-dopa">Levodopa</a> is a chiral drug.<br />
+<a href="http://en.wikipedia.org/wiki/Armodafinil">Armodafanil</a> is a chiral drug (containing a chiral sulfoxide).<br />
+<a href="http://en.wikipedia.org/wiki/Citalopram">Citalopram</a> is a racemic drug.<br />
+<a href="http://en.wikipedia.org/wiki/Abciximab">Abciximab</a> is a chiral drug.

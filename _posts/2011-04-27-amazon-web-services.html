@@ -1,0 +1,37 @@
+---
+layout: post
+title: ChEMBL Amazon Web Services
+date: '2011-04-27T11:56:00.010+01:00'
+author: Mark Davies
+tags:
+- Web Services
+- Databases
+- Software
+modified_time: '2011-05-02T08:11:20.489+01:00'
+thumbnail: http://2.bp.blogspot.com/-igIfJgDHYlg/Tbf3W3P9pxI/AAAAAAAAAGk/PU1znH5CssI/s72-c/logo_aws.gif
+blogger_id: tag:blogger.com,1999:blog-2546008714740235720.post-7533383469047890607
+blogger_orig_url: http://chembl.blogspot.com/2011/04/amazon-web-services.html
+---
+
+<a href="http://2.bp.blogspot.com/-igIfJgDHYlg/Tbf3W3P9pxI/AAAAAAAAAGk/PU1znH5CssI/s1600/logo_aws.gif" onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}"><img alt="" border="0" id="BLOGGER_PHOTO_ID_5600216633818588946" src="http://2.bp.blogspot.com/-igIfJgDHYlg/Tbf3W3P9pxI/AAAAAAAAAGk/PU1znH5CssI/s320/logo_aws.gif" style="cursor: hand; cursor: pointer; display: block; height: 60px; margin: 0px auto 10px; text-align: center; width: 164px;" /></a>             <style>
+ <!--  /* Font Definitions */ @font-face  {font-family:"Courier New";  panose-1:2 7 3 9 2 2 5 2 4 4;  mso-font-charset:0;  mso-generic-font-family:auto;  mso-font-pitch:variable;  mso-font-signature:-536859905 -1073711037 9 0 511 0;} @font-face  {font-family:Times;  panose-1:2 0 5 0 0 0 0 0 0 0;  mso-font-charset:0;  mso-generic-font-family:auto;  mso-font-pitch:variable;  mso-font-signature:3 0 0 0 1 0;} @font-face  {font-family:"ＭＳ 明朝";  mso-font-charset:78;  mso-generic-font-family:auto;  mso-font-pitch:variable;  mso-font-signature:1 134676480 16 0 131072 0;} @font-face  {font-family:"ＭＳ 明朝";  mso-font-charset:78;  mso-generic-font-family:auto;  mso-font-pitch:variable;  mso-font-signature:1 134676480 16 0 131072 0;} @font-face  {font-family:Cambria;  panose-1:2 4 5 3 5 4 6 3 2 4;  mso-font-charset:0;  mso-generic-font-family:auto;  mso-font-pitch:variable;  mso-font-signature:-536870145 1073743103 0 0 415 0;}  /* Style Definitions */ p.MsoNormal, li.MsoNormal, div.MsoNormal  {mso-style-unhide:no;  mso-style-qformat:yes;  mso-style-parent:"";  margin:0in;  margin-bottom:.0001pt;  mso-pagination:widow-orphan;  font-size:12.0pt;  font-family:Cambria;  mso-ascii-font-family:Cambria;  mso-ascii-theme-font:minor-latin;  mso-fareast-font-family:"ＭＳ 明朝";  mso-fareast-theme-font:minor-fareast;  mso-hansi-font-family:Cambria;  mso-hansi-theme-font:minor-latin;  mso-bidi-font-family:"Times New Roman";  mso-bidi-theme-font:minor-bidi;} .MsoChpDefault  {mso-style-type:export-only;  mso-default-props:yes;  font-family:Cambria;  mso-ascii-font-family:Cambria;  mso-ascii-theme-font:minor-latin;  mso-fareast-font-family:"ＭＳ 明朝";  mso-fareast-theme-font:minor-fareast;  mso-hansi-font-family:Cambria;  mso-hansi-theme-font:minor-latin;  mso-bidi-font-family:"Times New Roman";  mso-bidi-theme-font:minor-bidi;} @page WordSection1  {size:8.5in 11.0in;  margin:1.0in 1.25in 1.0in 1.25in;  mso-header-margin:.5in;  mso-footer-margin:.5in;  mso-paper-source:0;} div.WordSection1  {page:WordSection1;}  /* List Definitions */ @list l0  {mso-list-id:802696187;  mso-list-template-ids:-181739314;} ol  {margin-bottom:0in;} ul  {margin-bottom:0in;} --> 
+</style>     <br />
+<div class="MsoNormal"><span style="font-family: Times; font-size: 10pt;"> </span></div><div class="MsoNormal" style="font-family: arial;"><span style="font-size: 10pt;"></span></div>We have started to use <a href="http://aws.amazon.com/">Amazon Web Services</a> (AWS) for a number of mini projects in the group. As part of this work we have created ChEMBL <a href="http://en.wikipedia.org/wiki/Amazon_Machine_Image">Amazon Machine Image</a> (AMI), which we have decided to make publicly available.  The ChEMBL AMI is based on the 64-bit Amazon Linux AMI, but additional comes installed with a MySQL server, which contains the ChEMBL_09 database. The benefit of making this available is that a user can have a MySQL instance up and running in a matter minutes and at almost no cost if the service is run on the <a href="http://aws.amazon.com/free/">AWS Free Usage Tier</a>. <br />
+<br />
+To create an instance based on the ChEMBL AMI, go through the following steps:  <br />
+<ol><li>Set up an AWS account (note you will need an existing      Amazon account or credit card to do this).</li>
+<li>Login to the <a href="http://aws.amazon.com/console/">AWS Management Console</a></li>
+<li>Change Region to EU West (Ireland). Currently the      ChEMBL AMI is only available to instances running in this region.</li>
+<li>Go to EC2 tab and click on Launch Instance button. The      Create Instance Wizard should appear.</li>
+<li>On the CHOOSE AN AMI section select the Community AMIs      tab and enter "chembl" in the search box. Only 1 public AMI      should appear (ami-cf91a6bb), click the select button. </li>
+<li>On the INSTANCE DETAILS section, make sure you select Mirco instance type if you want to use the      Free Usage Tier</li>
+<li>Proceed through CREATE KEY PAIR and CONFIGURE FIREWALL      sections of the wizard and you are done  </li>
+</ol><br />
+<br />
+The MySQL instance will be up running and a user named chembluser (password:chembluser, we recommend you change this) has been setup with access to the chembl_09 database. So you should be able to connect to your MySQL database with the following command: <br />
+<br />
+<span style="font-family: 'courier new';"> mysql -h xxxxxxxxxxxxxxxxx.compute.amazonaws.com -u chembluser -pchembluser chembl_09</span> <br />
+<br />
+(The command above assumes you have access to your instance on port 3306 from the ip range you are working from. This can be configured in the Security Groups section of the AWS Management Console). <br />
+<br />
+If this proves to be a useful resource to the users of the ChEMBL data we will make publicly available AMIs for future ChEMBL database releases.

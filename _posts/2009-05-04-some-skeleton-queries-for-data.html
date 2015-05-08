@@ -1,0 +1,91 @@
+---
+layout: post
+title: Some Queries For Data Retrieval From StARlite
+date: '2009-05-04T14:19:00.011+01:00'
+author: John Overington
+tags:
+- Databases
+modified_time: '2009-05-04T21:01:12.983+01:00'
+thumbnail: http://1.bp.blogspot.com/_SlPG9DIz_AA/Sf7wcH1o7LI/AAAAAAAAARE/iHFsY9yToGg/s72-c/facd164_tempus_fugit_350.jpg.jpeg
+blogger_id: tag:blogger.com,1999:blog-2546008714740235720.post-7828067835913207557
+blogger_orig_url: http://chembl.blogspot.com/2009/05/some-skeleton-queries-for-data.html
+---
+
+<a onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}" href="http://1.bp.blogspot.com/_SlPG9DIz_AA/Sf7wcH1o7LI/AAAAAAAAARE/iHFsY9yToGg/s1600-h/facd164_tempus_fugit_350.jpg.jpeg"><img style="display:block; margin:0px auto 10px; text-align:center;cursor:pointer; cursor:hand;width: 193px; height: 200px;" src="http://1.bp.blogspot.com/_SlPG9DIz_AA/Sf7wcH1o7LI/AAAAAAAAARE/iHFsY9yToGg/s200/facd164_tempus_fugit_350.jpg.jpeg" border="0" alt=""id="BLOGGER_PHOTO_ID_5331963374784277682" /></a>
+It is a public holiday in the UK today (we call these <A HREF="http://en.wikipedia.org/wiki/Bank_holidays">bank holidays</A>, for reasons that seem obscure nowadays). The weather is traditionally bad on such days, and today is no exception, at least the remainder of the week, when we return to work, will be fine and sunny.
+<P>
+We will run a further StARlite schema and query walkthrough webinar shortly, but in the meantime here are some skeleton sql queries, that perform a set of related queries retrieving compounds/bioactivities for a given target. In this case the target is <A HREF="http://www.uniprot.org/uniprot/P27815">human PDE4A</A> (for which the tid is 3), and <A HREF="http://www.uniprot.org/uniprot/O76074">human PDE5A</A> (for which the tid is 276). We will walk through getting these unique target identifiers (or tids) on another occasion, but suffice it to say, that this is easy, especially programmatically, using blastp.
+<P>
+Firstly, retrieving a set of potent inhibitors of human PDE4A or PDE5A. There are a number of parameters one needs to set to actually do this (the end-point, the affinity cutoff, <I>etc.</I> Specifically here we have selected high confidence assay to target assignments (the a2t.confidence=7 bit), and where the potency is better than 1000nM for an IC50 measurement. This is a pretty generic query, and piping in the target tid to this covers a surprisingly frequent use the the data.
+<P>
+<CODE>
+<PRE>
+select  act.molregno, act.activity_type, act.relation as operator, act.standard_value, act.standard_units, 
+   td.pref_name, td.organism, 
+   a.description as assay_description, 
+   docs.journal, docs.year, docs.volume, docs.first_page, docs.pubmed_id, cr.compound_key
+from  target_dictionary td, 
+   assay2target a2t,    
+   assays a, 
+   activities act, 
+   docs, 
+   compound_records cr
+where  td.tid in (3,276)
+and  td.tid = a2t.tid
+and  a2t.confidence = 7
+and  a2t.assay_id = a.assay_id
+and  a2t.assay_id = act.assay_id
+and  act.doc_id = docs.doc_id
+and  act.record_id = cr.record_id
+and  act.activity_type = 'IC50'
+and  act.relation in( '=', '<')
+and  act.standard_units = 'nM'
+and  act.standard_value <=1000
+and  a.assay_type = 'B';
+</PRE>
+</CODE>
+<P>
+Here is a modified form to retrieve just the compound identifiers (molregno)
+<CODE>
+<PRE>
+select  distinct act.molregno
+from  target_dictionary td, 
+  assay2target a2t,    
+  assays a,  
+  activities act
+where  td.tid in (3,276)
+and  td.tid = a2t.tid
+and  a2t.confidence = 7
+and  a2t.assay_id = a.assay_id
+and  a2t.assay_id = act.assay_id
+and  act.activity_type = 'IC50'
+and  act.relation in( '=', '<')
+and  act.standard_units = 'nM'
+and  act.standard_value <=1000
+and  a.assay_type = 'B';
+</PRE>
+</CODE>
+<P>
+Also a common requirement is to get the associated molecule structures from the database - here the syntax is for an sdf format output and the query does not rely on any fancy chemical cartridge manipulation (since we store the molfiles in a clob called molfile in the COMPOUNDS table). The query here simply retrieves the structures, and not the associated bioactivity data. The goofy looking concatenations (<CODE>||</CODE>) and newlines (<CODE>chr(10)</CODE>) just make sure that a validly formatted <A HREF="http://en.wikipedia.org/wiki/Chemical_table_file">sdf file</A> emerges at the end.
+<CODE>
+<PRE>
+select  c.molfile || chr(10) || '> <MOLREGNO>' ||chr(10)|| c.molregno||chr(10)||chr(10)||'$$$$'||chr(10)
+from  compounds c, 
+  (select distinct act.molregno
+  from  target_dictionary td, 
+    assay2target a2t,    
+    assays a, 
+   activities act
+ where  td.tid in (3,276)
+ and  td.tid = a2t.tid
+ and  a2t.confidence = 7
+ and  a2t.assay_id = a.assay_id
+ and  a2t.assay_id = act.assay_id
+ and  act.activity_type = 'IC50'
+ and  act.relation in( '=', '<')
+ and  act.standard_units = 'nM'
+ and  act.standard_value <=1000
+ and  a.assay_type = 'B') t1
+where  t1.molregno = c.molregno;
+</PRE>
+</CODE>

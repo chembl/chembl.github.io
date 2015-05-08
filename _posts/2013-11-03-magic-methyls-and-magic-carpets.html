@@ -1,0 +1,73 @@
+---
+layout: post
+title: 'Magic methyls and magic carpets '
+date: '2013-11-03T19:37:00.002Z'
+author: George Papadatos
+tags:
+- Some Of The Interesting Things You'll See On A Long Distance Flight
+modified_time: '2013-11-04T11:29:26.639Z'
+thumbnail: http://2.bp.blogspot.com/-csHzqPevg3U/UnOSEJjPqAI/AAAAAAAAAPo/XEyzncBTnJo/s72-c/vortex1.png
+blogger_id: tag:blogger.com,1999:blog-2546008714740235720.post-3208229988855589241
+blogger_orig_url: http://chembl.blogspot.com/2013/11/magic-methyls-and-magic-carpets.html
+---
+
+<div dir="ltr" style="text-align: left;" trbidi="on">
+<div class="separator" style="clear: both; text-align: center;">
+</div>
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://www.bestpracticesconstructionlaw.com/uploads/image/carpet.jpg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="186" src="http://www.bestpracticesconstructionlaw.com/uploads/image/carpet.jpg" width="320" /></a></div>
+<div style="text-align: center;">
+<span style="font-family: Trebuchet MS, sans-serif;"><br /></span></div>
+<div style="text-align: justify;">
+<span style="font-family: inherit;">A few days ago, there was this <a href="http://pipeline.corante.com/archives/2013/10/30/more_magic_methyls_please.php" target="_blank">post</a> by Derek Lowe, reviewing a recent <a href="http://onlinelibrary.wiley.com/doi/10.1002/anie.201303207/abstract" target="_blank">paper</a> on magic methyls and their&nbsp;occurrence&nbsp;and impact in medicinal chemistry practice. They're called 'magic' because, although methyls are relatively insignificant in terms of size, polarity or lipophilicity, the addition of one in a compound can&nbsp;<i>sometimes</i>&nbsp;have a dramatic impact in its potency - much more that it would be attributed to any simple desolvation effects.</span></div>
+<div style="text-align: justify;">
+<span style="font-family: inherit;"><br /></span></div>
+<div style="text-align: justify;">
+<span style="font-family: inherit;">More generally, the 'magic methyl' phenomenon pops up in discussions about the validity of the&nbsp;<a href="http://pubs.acs.org/doi/abs/10.1021/ci9800211" target="_blank">molecular similarity</a>&nbsp;principle, descriptors, QSAR - almost everything in the applied Chemoinformatics field - and belongs to the general class of '<a href="http://pubs.acs.org/doi/abs/10.1021/jm201706b" target="_blank">activity cliffs</a>'.&nbsp;</span></div>
+<div style="text-align: justify;">
+<span style="font-family: inherit;"><br /></span></div>
+<div style="text-align: justify;">
+<span style="font-family: inherit;">Methylation is a chemical transformation, and transformations along with their impact on a property of choice can be easily mined and studied using the so-called Matched Molecular Pairs analysis (<a href="http://pubs.acs.org/doi/abs/10.1021/jm200452d" target="_blank">MMPA</a>). We already have a comprehensive database of all the matched pairs and transformations in ChEMBL, so it was relatively&nbsp;straightforward&nbsp;to extract all the methylations (H&gt;&gt;CH3) recorded in <a href="https://www.ebi.ac.uk/chembl/" target="_blank">ChEMBL_17</a> and analyse their impact in binding affinity. (b.t.w., MMPs are coming to the ChEMBL interface soon, so look out for this feature if you are interested in this area).</span></div>
+<div style="text-align: justify;">
+<span style="font-family: inherit;"><br /></span></div>
+<div style="text-align: justify;">
+<span style="font-family: inherit;">So, in more detail, I extracted all the H&gt;&gt;CH3 pairs and joined them with their pActivities (Ki, IC<sub>50</sub>, EC<sub>50</sub>) against human proteins as reported in the literature (our data validity <a href="http://chembl.blogspot.co.uk/2013/02/latest-activities-on-activities-table.html" target="_blank">flags</a> were quite useful in this case). The trick here is to only consider molecule pairs tested against the <i>same</i> assay, so that their respective activities are directly comparable and one can safely subtract one from the other.</span></div>
+<div style="text-align: justify;">
+<span style="font-family: inherit;"><br /></span></div>
+<div style="text-align: justify;">
+<span style="font-family: inherit;">I ended up with 37,771 data points - much more than another recent <a href="http://pubs.acs.org/doi/abs/10.1021/jm3003697" target="_blank">publication</a> that looked at this. Here's how the histogram of Delta pActivity (log units) looks like:</span></div>
+<div style="text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;"><br /></span></div>
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://2.bp.blogspot.com/-csHzqPevg3U/UnOSEJjPqAI/AAAAAAAAAPo/XEyzncBTnJo/s1600/vortex1.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="480" src="http://2.bp.blogspot.com/-csHzqPevg3U/UnOSEJjPqAI/AAAAAAAAAPo/XEyzncBTnJo/s640/vortex1.png" width="640" /></a></div>
+<div style="text-align: justify;">
+<span style="font-family: inherit;">As you can see, the scale tilts slightly to the left of zero, meaning that methylation has overall neutral to negative effect on binding affinity. This is not the first <a href="http://pubs.acs.org/doi/abs/10.1021/jm070838y" target="_blank">time</a>&nbsp;people see this. There are indeed,&nbsp;however, several examples (~2.3K out of 37.8K, to be exact) of magic methyls with more than 10-fold increase in activity. More about this later.</span></div>
+<div style="text-align: justify;">
+<span style="font-family: inherit;"><br /></span></div>
+<div style="text-align: justify;">
+<span style="font-family: inherit;">Some of you will ask: 'OK, but what about the context? - methylation of a carbon, nitrogen or oxygen is not the same'. You're right, it's <a href="http://pubs.acs.org/doi/abs/10.1021/ci100258p" target="_blank">not</a>. So I trellised the above plot by a perception of context - i.e. whether the methylation happens next to an aromatic/aliphatic C or N or next to an oxygen:</span></div>
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://1.bp.blogspot.com/-eDUiq86xOV8/UnOUsjMVcbI/AAAAAAAAAP0/WkYsegunTP0/s1600/vortex2.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="480" src="http://1.bp.blogspot.com/-eDUiq86xOV8/UnOUsjMVcbI/AAAAAAAAAP0/WkYsegunTP0/s640/vortex2.png" width="640" /></a></div>
+<div class="separator" style="clear: both; text-align: justify;">
+<span style="font-family: inherit;">The same trend, more or less, is observed with the&nbsp;exception&nbsp;of the aromatic carbon context, whereby methylation seems to have more favourable effect that expected by the overall distribution. Perhaps that could be explained by introducing torsional and planarity changes, etc. For a more thorough explanation of this, see <a href="http://pubs.acs.org/doi/abs/10.1021/jm3003697" target="_blank">here</a>.&nbsp;</span></div>
+<div class="separator" style="clear: both; text-align: justify;">
+<span style="font-family: inherit;"><br /></span></div>
+<div class="separator" style="clear: both; text-align: justify;">
+<span style="font-family: inherit;">Here are some examples of 'magic methyls' in the literature:</span></div>
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://4.bp.blogspot.com/-Eg70fNe8uRc/UneE_i_CwaI/AAAAAAAAAQw/Mz2L4q5bT4w/s1600/vortex10.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="400" src="http://4.bp.blogspot.com/-Eg70fNe8uRc/UneE_i_CwaI/AAAAAAAAAQw/Mz2L4q5bT4w/s640/vortex10.png" width="640" /></a></div>
+<div class="separator" style="clear: both; text-align: justify;">
+<span style="font-family: inherit;"><br /></span></div>
+<div class="separator" style="clear: both; text-align: center;">
+</div>
+<div class="separator" style="clear: both; text-align: justify;">
+<span style="font-family: inherit;">The take home message is: Magic methyls, unlike magic carpets, do exist but there are also equally as many, or even more, 'nasty' methyls. However, both of them are just a rather small minority compared to the 'boring' methyls - i.e. methyls with minimal or zero impact on potency.</span></div>
+<div class="separator" style="clear: both; text-align: justify;">
+<span style="font-family: inherit;"><br /></span></div>
+<div class="separator" style="clear: both; text-align: justify;">
+<span style="font-family: inherit;">It's just human nature to remember the few exceptions and outliers and forget the vast evidence to the contrary. However, isolating and understanding such edge cases and black swans is what could make the difference in drug discovery.&nbsp;</span></div>
+<div class="separator" style="clear: both; text-align: justify;">
+<span style="font-family: inherit;"><br /></span></div>
+<div class="separator" style="clear: both; text-align: justify;">
+<span style="font-family: inherit;">George</span></div>
+</div>

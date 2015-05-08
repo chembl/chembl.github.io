@@ -1,0 +1,50 @@
+---
+layout: post
+title: Chemical data provenance and a big pile of mess that should be celebrated on
+  National Mess Day
+date: '2013-02-02T10:08:00.000Z'
+author: John Overington
+tags:
+- Databases
+- Some Of The Interesting Things You'll See On A Long Distance Flight
+modified_time: '2013-02-03T07:51:47.216Z'
+thumbnail: http://2.bp.blogspot.com/-cIq7nOyvvc0/UQzbFDR1CtI/AAAAAAAACyA/9QoTTkvahDk/s72-c/220px-Asymetric_cryptography_-_step_2.svg.png
+blogger_id: tag:blogger.com,1999:blog-2546008714740235720.post-5367290329880247265
+blogger_orig_url: http://chembl.blogspot.com/2013/02/chemical-data-provenance-and-big-pile.html
+---
+
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://2.bp.blogspot.com/-cIq7nOyvvc0/UQzbFDR1CtI/AAAAAAAACyA/9QoTTkvahDk/s1600/220px-Asymetric_cryptography_-_step_2.svg.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="http://2.bp.blogspot.com/-cIq7nOyvvc0/UQzbFDR1CtI/AAAAAAAACyA/9QoTTkvahDk/s1600/220px-Asymetric_cryptography_-_step_2.svg.png" /></a></div>
+<br />
+<br />
+One of the increasing problems for those working in the chemical database field is one of distinguishing between primary and secondary sources, especially if salt stripping, normalization, errors, and assignment of new id's happen in this process. Here is a tale....<br />
+<i><b><br /></b></i>
+<i><b>Alice </b>is&nbsp;publicly spirited and puts her chemical database of 1000 compounds in the public domain. She assigns a clear permissive license to her data, and encourages reuse by providing a suitable download format. Her hope is that people, somewhere will see that she has these particular compounds, and they will contact her and collaborate Alice, maybe.</i><br />
+<i><br /></i><i><b>Bob</b>&nbsp;has a similarly public spirit, and has 500 compounds to share. He has the same hope that people will search his database and collaborate with him.</i><br />
+<i><br /></i>
+<i><b>Carlos</b> is interested in compounds containing a pyridine group. So he wants to search both Alice's and Bob's databases - he could either search both Alice's and Bob's separate databases (assuming that they have the facilities in their labs to run a database system) - or he could use a system that <b>Trent </b>has built, Trent doesn't have any actual compounds, but he is a good programmer, and can integrate the data from Alice and Bob, so that Carlos doesn't need to do two searches, and then merge the results. Trent's system is liked by quite a few people, and so others start to contact Trent with their data.&nbsp;Trent contributes a lot to operation of the community, he is an independent broker of data, and simplifies the field by providing federated searches.</i><br />
+<i><br /></i>
+<i>Alice and Bob are both busy people, and now some compounds they had are no longer available, Carlos found a few compounds, and so did a few of Carlos' friends, so these were sent in the post and disappeared from Alice and Bob's collections. However, Alice and Bob also made some new compounds and wanted to share these to, since maybe they would help <b>Dan</b> discover new drugs for trypanosomiasis. Alice and Bob update their local databases to reflect the deleted and new chemicals, and since they like to know a little about the history of the chemicals that they had, and need to write reports about how many new compounds they have made over the past year, they provide versions on their databases, since they can track when new things appeared. Trent should of course keep an eye on Alice's and Bob's sites and update his system appropriately.&nbsp;</i><br />
+<i><br /></i>
+<i>Trent largely works on his own though, and doesn't have a lot of time, in fact his employer wasn't really keen on this work, but tolerated Trent's activities, and managed to&nbsp;justify&nbsp;it under another grant. Of course when Trent first planned his system he wrote it without thinking about future updates, it was just a fun hack - build it once, merge this cool chemical data and show the value. All that code to administer the federated database are just a drag, and the users never see all that effort.</i><br />
+<i><br /></i>
+<i>Trent gets a new job in a different city, and he and his partner adopt a child, this means Trent has even less time to keep things in his database up to date.&nbsp;</i><br />
+<i><br /></i>
+<i>Dan is getting increasingly frustrated though, since Trent's system is now out of date - although he relied on Trent having all of Alice's and Bob's data in one place, when he looks at it he sees it's old data, say five years out of date and Alice has got a whole bunch of new compounds that no-one seems interested in, because they use Trent's system.</i><br />
+<i><br /></i>
+<i><b>Erin</b> sees this problem and tries to sort it out; she then takes Trent's data, and decides to add <b>Frank</b> and <b>George's</b> data, which is new to her system. But relying on Trent's versions of Alice's and Bob's data (and Trent had assigned new identifiers as part of his merging of the compounds from Alice and Bob) has meant that she is serving old data, and no-one can possibly work out where on earth anything has actually come from.</i><br />
+<i><br /></i>
+<i>Trent gets a new job again, and his kid goes to kindergarten, so he gets stuck back into this project, he decides to build on top of Erin's work and adds new data from <b>Henry</b> and <b>Irma</b>.</i><br />
+<i><br /></i>
+<i><b>James</b> doesn't know too much about chemoinformatics, he's a lab biologist just needing some ideas for compounds to test in an assay he's developed that models DNA methylation in Aplysia, and thinks that Trent's pages contain everything.</i><br />
+<br />
+You'll agree that this is a fictional story - but how far divorced from reality is it? We ourselves face big problems when we try and take secondary sources (those that consolidate data from other 'primary' sources), and work out what is new data and what is processed old data. There is a clear subset of ChEMBL that is <i>primary</i> in the sense that we are the first point of entry on the data onto the internet, and we actively curate this "primary ChEMBL" set - but we certainly can't curate other people's data, and have this survive refreshes from the primary sources. We also make statements like "yeah, we have PubChem structures in ChEMBL", but of course we took a subset, applied some filters, and there is some delay in us taking a snapshot and processing it into ChEMBL. So if you want the latest, most definitive data from PubChem, go to PubChem.<br />
+<br />
+Over this year, we will address the provenance of data that we load into UniChem and ChEMBL, making it easier for our users to know exactly what versions of what they are using. If others are interested in working with us on some community mechanism for versioning and persistence of parent source identifiers, let us know. Continuing the explosion of alternate secondary, tertiary, and so forth identifiers for compounds is not a good way forward, for anyone.<br />
+<br />
+"Farm Fresh ChEMBL<sup>TM</sup>" is always available from <a href="http://www.ebi.ac.uk/chembl">us</a>, there are a number of other places you can get fresh ChEMBL (a number of groups are already working hard on ChEMBL 15 integration into their systems). Some of the ChEMBLs out there aren't so fresh, so like every good consumer, check the "produced on" date!<br />
+<br />
+<br />
+The names have some some deeper semantic meaning here (look at the <a href="http://en.wikipedia.org/wiki/Alice_and_Bob">Alice and Bob wikipedia page</a> - of course there are inevitably a few <b>Chuck</b>'s around as well trying to lock data behind paywalls or search boxes).<br />
+<br />
+jpo

@@ -1,0 +1,28 @@
+---
+layout: post
+title: DrugStore - An Overview
+date: '2009-02-23T08:02:00.006Z'
+author: John Overington
+tags:
+- Databases
+modified_time: '2009-02-23T14:13:43.411Z'
+thumbnail: http://2.bp.blogspot.com/_SlPG9DIz_AA/SaJaANqBrYI/AAAAAAAAAI8/Q74kHHXEjJ8/s72-c/tabs.png
+blogger_id: tag:blogger.com,1999:blog-2546008714740235720.post-7488354358159589722
+blogger_orig_url: http://chembl.blogspot.com/2009/02/drugstore-overview.html
+---
+
+<a onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}" href="http://2.bp.blogspot.com/_SlPG9DIz_AA/SaJaANqBrYI/AAAAAAAAAI8/Q74kHHXEjJ8/s1600-h/tabs.png"><img style="display:block; margin:0px auto 10px; text-align:center;cursor:pointer; cursor:hand;width: 200px; height: 118px;" src="http://2.bp.blogspot.com/_SlPG9DIz_AA/SaJaANqBrYI/AAAAAAAAAI8/Q74kHHXEjJ8/s200/tabs.png" border="0" alt=""id="BLOGGER_PHOTO_ID_5305902270708297090" /></a>
+DrugStore is a database of drugs - both small molecules and biologicals. It is quite small, but complex, since drugs and the way they work are <A HREF="http://www.ebi.ac.uk/chembl/downloads/overington_NRDD.pdf">surprisingly complex</A>. The basic content of DrugStore is three domains - 
+<P>
+<B>Chemistry</B>., the 2-D structure of the drug, and in the case of biologicals the sequence. We also take care of the case where the dosed drug is a <A HREF="http://en.wikipedia.org/wiki/Prodrug">prodrug</A> (a case where the dosed ingredient is essentially inactive, and a metabolic transformation is required to generate the active form). Given this data, it is then trivial to calculate a large number of compound associated properties (MW, clogP, <I>etc.</I>).
+<P>
+<B>Biology</B>, the mechanism of action and the molecular target of the drug. This is surprisingly complicated, for many drugs there are complex modes of action, or cases where the target assignment is still tentative, here we have a confidence score for the target assignment. We are also careful to only include targets that are responsible for the clinical efficacy of the drug, since many drugs bind to serum albumin, but you wouldn’t really want to include that as a drug target. Where possible, we also include the binding domain for the drug within its target, alongside <A HREF="http://pfam.sanger.ac.uk/">PFAM</A> domain, <I>etc.</I>
+<P>
+<B>Medicine</B>, what the drug is used for, and its properties, for example included are things like black-box warnings, withdrawn status, etc. We include a number of ontologies (well to use the word ontology here is a bit of a stretch) to describe the therapeutic application of a drug. We also differentiate between genuine therapeutic agents, imaging agents, and non-therapeutics - this has the number of therapeutic drugs appear smaller than sometimes thought.
+
+<P> 
+Sprinkled across the database are properties like the dosage size, dosage form (oral, topical, parenteral, etc), pharmacokinetic properties, trade names, various approval dates, full package inserts, <I>etc., etc.</I> There are many things we have been asked for in the past, like quantitative side-effects, biomarker data, pharmacogenetic data, adventitious pharmacology, detailed toxicology data, sales revenues, but there is no simple way to consistently harvest these data, and other resources (unfortunately often proprietary) cover some of these areas incredibly well. We also store some data within our curation schema that we cannot (currently) distribute due to copyright restrictions, however, these additional data would be available to interested collaborators.
+<P>
+We are developing a plan to integrate the data within DrugStore within some other public databases that address drugs and drug action, and to eventually tightly integrate the most interesting features into CandiStore, treating launched drugs as Phase IV agents.
+<P>
+Since there are so few drugs launched, keeping DrugStore up to date is quite straightforward, and we plan to post data for new drug approvals on the <A HREF="http://ww.chemblog.org">ChEMBLog</A>.

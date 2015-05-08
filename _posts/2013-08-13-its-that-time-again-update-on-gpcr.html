@@ -1,0 +1,92 @@
+---
+layout: post
+title: It's that time again.. An update on the GPCR structures!
+date: '2013-08-13T10:28:00.001+01:00'
+author: David Westergaard
+tags:
+- GPCRs
+modified_time: '2013-08-13T14:41:40.975+01:00'
+thumbnail: http://3.bp.blogspot.com/-Mxh10fwC8SA/Ufp6QgTYIyI/AAAAAAAAABo/NCp9WgOoWDY/s72-c/Screen+Shot+2013-08-01+at+16.09.01.png
+blogger_id: tag:blogger.com,1999:blog-2546008714740235720.post-4957741152367385776
+blogger_orig_url: http://chembl.blogspot.com/2013/08/its-that-time-again-update-on-gpcr.html
+---
+
+It's been roughly a month ago since the&nbsp;<a href="http://chembl.blogspot.co.uk/2013/07/new-gpcr-structures-smo-5-ht1b-5-ht2b.html">last update on GPCR structures</a>, and, oh boy, we do live in interesting times! <br />
+<br />
+As I mentioned in my last post, the next major publication would probably be the glucagon receptor. And indeed it was (4L6R, 1). However, the good folks at Heptares had a surprise for us, as they simultaneous released the structure of the corticotropin-releasing factor receptor 1 (4K5Y, 2). Two class B GPCRs in just one month!<br />
+<br />
+Despite the glucagon structure only having a resolution of 3.3Å, it does show some interesting features. The binding pocket of the protein is exceptionally large, which is not surprising when considering its main ligand, glucagon. Also, the N-terminus of the first transmembrane helix is a bit longer than in any solved class A structures. This protein has been recognised as a potential drug target for diabetes-2, and this solved structure can hopefully help in this process. The protein was crystallized in complex with the antagonist <a href="http://pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?cid=23549991">NNC0640</a> (Sorry, no ChEMBL entry just yet!), however, it could not be reliably identified by electron density, so sadly the binding mode could not be identified.<br />
+<br />
+The corticotropin-releasing factor receptor is an interesting target, in the sense that it is already a well established drug target for diseases like diabetes, depression etc. The receptor was crystallized in a complex with the antagonist <a href="https://www.ebi.ac.uk/chembldb/compound/inspect/CHEMBL270948">CP-376395</a><br />
+<br />
+The GPCR structure research has also entered what I'd like to call phase 2. The first GPCRs with a disease-causing mutation was actually released a few months ago, but I missed them! 4BEZ and 4BEY both feature a G90D mutation in rhodopsin which causes night blindess (3). It'll be interesting to see when these starts being as common as mutated kinases!<br />
+<br />
+Ah, and as I ranted about in my last post, alignment based on pure sequence alone is next to impossible. Luckily, GPCRs share the common fold of having 7 transmembrane helices, so a 3D based pairwise alignment works out quite well! See first figure for the MNYFIT 'referenceless' structural alignment. The sequence alignment produced using t_coffee with Joy markup is displayed at the buttom.<br />
+<br />
+1. 4grvA (turquise) - Rat neurotensin receptor NTS1<br />
+2. 4l6rA (light purple) - Human Glucagon receptor<br />
+3. 1f88A (yellow) - Bovine Rhodopsin<br />
+4. 4k5yA (red) - Human corticotropin-releasing factor receptor<br />
+<br />
+<div class="separator" style="clear: both; text-align: center;"><a href="http://3.bp.blogspot.com/-Mxh10fwC8SA/Ufp6QgTYIyI/AAAAAAAAABo/NCp9WgOoWDY/s1600/Screen+Shot+2013-08-01+at+16.09.01.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="http://3.bp.blogspot.com/-Mxh10fwC8SA/Ufp6QgTYIyI/AAAAAAAAABo/NCp9WgOoWDY/s320/Screen+Shot+2013-08-01+at+16.09.01.png" /></a></div><br />
+<pre>10        20        30        40        50  
+4grvA  (  52 )                            nsdl<u>d</u>VnT<b>d</b><span style="color: red;">iy<u>s</u>kvlv<u>t</u>aiYlalfvv</span>
+4l6rA  ( 123 )                         m<b>d</b>ge<span style="color: red;">ei<u>e</u>vq<u>ke</u>vakmy<u>ss</u>fqvmy<u>t</u>vG<u>Ys</u>l</span>
+1f88A  (   1 )    m<u>n</u>G<span style="color: blue;"><b><u>t</u></b></span><span style="color: blue;">e</span>gpnf<span style="color: blue;">yV</span>Pf<u>s<b>n</b></u>kt<i>g</i>vVrsPfeap<u>Q</u><span style="color: maroon;">y<b><u>y</u></b>L</span><i>a</i>e<span style="color: red;">pwqF<u>s</u>mlAa<u>y</u>Mflliml</span>
+4k5yA  ( 115 )                                       h<span style="color: red;">yhvaaii<u>n</u>ylG<u>hc</u>i</span>
+                                                   aaaaaaaaaaaaaaaaa
+
+                           60        70        80        90        100 
+4grvA  (  78 )    <span style="color: red;">G<u>t</u>vg<u>Ns</u>v<u>t</u>lft</span>lar-k--sl<span style="color: red;">qs<u>t</u>v<u>h</u>yHlgsLal<u>SD</u>llILllAMpvEly<b><u>N</u></b></span>F
+4l6rA  ( 152 )    <span style="color: red;"><b><u>S</u></b></span><span style="color: red;">lgaLllAlaiL</span>g<i>g</i>l--skl<u>h</u><b>c</b>t<span style="color: red;">rNaI</span>Ha<u>n</u><span style="color: red;">LFa<u>S</u>Fvl<u>k</u>A<u>ss</u>v</span>-<span style="color: red;">lvidgl</span>-
+1f88A  (  51 )    <span style="color: red;">Gfpi<u>N</u>fl<u>T</u>lyV<u>T</u>vq</span><b><u>H</u></b>k--<u>k</u>L<u>r</u><b>t</b><span style="color: red;">pLNyILlnLAvA<u>D</u>lfMVfg</span>G<span style="color: red;">F<u>tTT</u>ly<u>T</u></span>-
+4k5yA  ( 130 )    <span style="color: red;"><b><u>S</u></b></span><span style="color: red;">lvaLlvAfvlFlr</span>--a<span style="color: maroon;">rsir</span><u>c</u><span style="color: red;">L<u>rN</u>iI<u>H</u>a<u>n</u>LIaAFil<u>rn</u>a<u>t</u>w</span>-<span style="color: red;">fvvql<u>T</u></span>-
+                  aaaaaaaaaaaa          aaaaaaaaaaaaaaaaaaaa aaaaaa 
+
+                           110       120       130       140       150 
+4grvA  ( 129 )    Iwvh<u>h</u>p<u>W</u>af<span style="color: red;"><i>g</i></span><span style="color: red;">dagÇ<u>r</u>gyYflRDa<b><u>c</u></b><u>t</u>YATAl<b>N</b>Va<u>s</u>L<u>S</u>vaRylAi<u>c</u></span>hpfkak
+4l6rA  ( 198 )    lr<u>t</u>--ls<span style="color: red;">dgav</span>agÇrv<span style="color: red;">aavfmqyGiVa<u>NY<b>c</b></u>WLlV<u>E</u>gl</span>yLhnllgl<i>a</i><u>t</u>l--
+1f88A  (  98 )    <span style="color: red;"><u>S</u></span><span style="color: red;">l<u>h</u></span>-<i>G</i>yFvf<span style="color: red;"><i>g</i></span><span style="color: red;">ptGÇ<u>n</u>l<b>E</b>GffA<u>T</u>LGG<u>E</u>IaL<u>wS</u>LvvLaie<u>R</u>yvvv</span><u>c</u><i>k</i>p<i>m</i>s-n
+4k5yA  ( 176 )    <span style="color: red;">m</span>s<span style="color: red;">p</span>-<span style="color: red;">evhq<u>s</u></span><b><u><i>n</i></u></b>v<span style="color: red;">gwÇrlv<u>t</u>aay<u>ny</u>fhV<u>TN</u>FFWMfGeG<u>c</u>ylh<u>t</u>aIv</span>l-----
+                           aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa       
+
+                           160       170       180       190       200 
+4grvA  ( 179 )    tlmsrsrt<span style="color: red;">kkfi<u>s</u>aIwla<b><u>S</u></b>allA</span>i-p<span style="color: red;">Mlft</span><span style="color: blue;">M<i>G</i>lq<b><u>n</u></b></span>r<b><u>S</u></b>ad-<i>g</i>t<b>h</b><span style="color: maroon;">pgG</span><span style="color: blue;">lVÇT</span>
+4l6rA  ( 259 )    p--ers<span style="color: maroon;">ffsl</span>ylgi<span style="color: maroon;">gwg</span><span style="color: red;">aPml</span>fVv<span style="color: red;">pwavvkclf</span>------en-v----qçw
+1f88A  ( 146 )    frfg<span style="color: red;">en<b>h</b>Aimgvaf<u>T</u>wvmAlaCA</span>a-<span style="color: maroon;">pPl</span>v<i>g</i><u>w</u><i>S</i><u>r<span style="color: blue;">Y</span></u><span style="color: blue;">IP<b>E</b></span><i>G</i>M------<u><i>Q</i></u><u>C</u><span style="color: blue;">SÇG</span>
+4k5yA  ( 220 )    t--<b>d</b><span style="color: red;">rlrawmficiG</span>wgv<span style="color: red;">PfpiivaWaig<u>K</u>lyy</span>------dn-e----<span style="color: maroon;"><i>kÇw</i></span>
+                          aaaaaaa  aaaaaa   aaaa                    
+
+                           210       220       230       240       250 
+4grvA  ( 227 )    ----<span style="color: blue;">P</span>ivd<span style="color: red;">ta<u>t</u>vkvvIqvN<u>t</u>fmS</span>F<span style="color: red;">lfPmlvIsil<u>Nt</u>vIA<u>n</u>kL<u>t</u></span>vmv----
+4l6rA  ( 296 )    t-------s-nd<i>n</i><span style="color: red;">mgfwwi</span>l<span style="color: red;">rfPvflaili<u>N</u>ffifvrIvqll</span>v<span style="color: red;">aklr</span>a--
+1f88A  ( 189 )    <span style="color: blue;">I</span><b>D</b>YYTp<i>h</i>ee<u>t</u><i>n</i><span style="color: red;"><u>N</u></span><span style="color: red;">esFVi<u>y</u>Mfvv</span><u>H</u>f<span style="color: red;">iiPlivIff<u>c</u>ygq</span>Lvftvkea<i>A</i>--aS
+4k5yA  ( 260 )    aG------krp<i>g</i>vyTd<span style="color: red;">yiyqgp</span>-<span style="color: red;">MalvlliNfiflfnIvrilm<u>t</u></span>kl<u>r</u>a--
+                               aaaaaaaaa  aaaaaaaaaaaaaaaaaa        
+
+                           260       270       280       290       300 
+4grvA  ( 300 )    ---v------q<span style="color: red;">alrhGVlvAraVviafvv<b><u>c</u></b>WlpYHvRRlmF<u>C</u></span>yis<i>d</i>eqW<b>t</b>
+4l6rA  ( 336 )    ----<i>r</i>qm<b>h</b>ht<b>d</b><span style="color: red;">ykfrlAk<u>sT</u></span>l<u>t</u>LIp<span style="color: red;">lLGvh</span>evvfafvt-d-eh<i>a</i>q-----
+1f88A  ( 241 )    <i>a</i><b><u>t</u></b>tq------k<span style="color: red;">aek<b><u>e</u></b>v<u>T</u>rMV</span>i<span style="color: red;">iMviaFli<b><u>C</u></b>WlpYAgvAfyIf<u>t</u></span>h<u>q</u>--<i>g</i>--
+4k5yA  ( 301 )    ----<u>s</u><i>t</i><b>t</b><span style="color: red;">seTiqA<u>rk</u>avka<u>T</u>lvLlplLgitymlaf</span>vne<span style="color: red;">vs</span>----------
+                             aaaaaaaaa aaaaaaaaaaaaaa   aa          
+
+                           310       320       330       340       350 
+4grvA  ( 341 )    <span style="color: red;">tflFdfY<u>Hy</u>fYml<u>T</u>NalAYasSAi<u>n</u>pilYnlvs</span>a<u>n</u>Fr<b><u>q</u></b>v           
+4l6rA  ( 375 )    ---<span style="color: red;">gtlr<u>s</u>a<u>k</u>lffdlfls<u>S</u></span>f<span style="color: red;"><u>q</u></span><span style="color: red;">GllVAvlY</span><u>C</u>fln<span style="color: red;">keV<u>qs</u>elrrrw<u>h</u>rwrlg</span>
+1f88A  ( 281 )    ---sdfg<span style="color: red;">PifM<b><u>t</u></b>ipAFfA</span><span style="color: maroon;">K<u>tS</u>A</span>v<span style="color: red;">yNPviYimm</span><b>n</b><span style="color: red;">k<u>q</u>F<u>rn<b>C</b></u>mv<u>tt</u>l</span><u>c</u><i>cg</i>knp
+4k5yA  ( 341 )    ------<span style="color: red;">rvvfiyfnAfLe<u>S</u>fqGffV<u>S</u>vfA<u>c</u>fln</span><i>s</i>                
+                        aaaaaaaaaaaaa aaaaaaaaaaaa                  
+
+                           360   
+4grvA                            
+4l6rA  ( 422 )    <span style="color: red;">kvlweer</span>n       
+1f88A  ( 334 )    sttvskt<i>et</i>sqvapa
+4k5yA                            
+                                 
+</pre>Nature. 2013 Jul 25;499(7459):444-9<br />
+(1) Siu, F.Y et al., Nature 16 Juli 2013: 499, 444–9<br />
+(2) Hollenstein, K et al., Nature 16 Juli 2013: Advance Online Publication, 1476-4687<br />
+(3) Singhal, A et al., EMBO Rep, June 2013, 14(6):520-6<br />
+<br />
+david

@@ -1,0 +1,37 @@
+---
+layout: post
+title: To Remove Or Not To Remove - That Is The Question
+date: '2013-03-04T11:54:00.000Z'
+author: Louisa
+tags:
+- ChEMBL Curation Notes
+- Compound Clean Up
+modified_time: '2013-03-04T16:45:24.023Z'
+thumbnail: http://3.bp.blogspot.com/-BPKUHknKQn0/UTSFiJ2E_JI/AAAAAAAAAHw/qP3LjBnE6cU/s72-c/penguin.jpg
+blogger_id: tag:blogger.com,1999:blog-2546008714740235720.post-3180245877225522034
+blogger_orig_url: http://chembl.blogspot.com/2013/03/to-remove-or-not-to-remove-that-is.html
+---
+
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://3.bp.blogspot.com/-BPKUHknKQn0/UTSFiJ2E_JI/AAAAAAAAAHw/qP3LjBnE6cU/s1600/penguin.jpg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="320" src="http://3.bp.blogspot.com/-BPKUHknKQn0/UTSFiJ2E_JI/AAAAAAAAAHw/qP3LjBnE6cU/s320/penguin.jpg" width="254" /></a></div>
+<br />
+During the course of standard compound curation, I come across problem inorganic compounds. An example of these are <a href="https://www.ebi.ac.uk/chembldb/compound/inspect/CHEMBL11359" target="_blank">Cisplatin</a> and <a href="https://www.ebi.ac.uk/chembldb/compound/inspect/CHEMBL1386" target="_blank">Transplatin</a>. These compounds only differ in the orientation of their complex bonds but complex bonds cannot be drawn in a standard molfile without causing InChI issues. At the &nbsp;moment, they are kept separate by showing standard bonds between the Pt, Cl and NH3 in Cisplatin, but we have removed the bonds altogether for Transplatin. This is not an ideal situation, nor an accurate structural representation.<br />
+<br />
+Another example is the <a href="https://www.ebi.ac.uk/chembldb/compound/inspect/CHEMBL103516" target="_blank">compound</a>, below left, and how it should look as a complex, right, from the paper:<br />
+<br />
+<div class="separator" style="clear: both; text-align: center;">
+</div>
+<br />
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://2.bp.blogspot.com/-6zFFO3mPLpE/UTSKFY2P8MI/AAAAAAAAAIM/KzaQkhBIMaE/s1600/example.jpg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="164" src="http://2.bp.blogspot.com/-6zFFO3mPLpE/UTSKFY2P8MI/AAAAAAAAAIM/KzaQkhBIMaE/s200/example.jpg" width="200" /></a><a href="http://1.bp.blogspot.com/-U7nk6Nzmq6w/UTSKFW2wknI/AAAAAAAAAII/fHVS96W9UqM/s1600/example2.jpg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="169" src="http://1.bp.blogspot.com/-U7nk6Nzmq6w/UTSKFW2wknI/AAAAAAAAAII/fHVS96W9UqM/s320/example2.jpg" width="320" /></a></div>
+<br />
+At the moment, there are approximately 1,800 cases like this, which only accounts for 0.15% of the entire ChEMBL compound set.<br />
+<br />
+What we are proposing to do is to remove the structures for these complex compounds and to keep only their names and all of the associated biological data. This would then treat them in a similar way to the antibodies and large peptides that we store in ChEMBL.<br />
+<br />
+So, we have set up an online private <a href="http://doodle.com/v492h2c528e6skep">Doodle Poll</a>&nbsp;for you, our users, to have your vote on whether we should remove the structures and keep the biological data, or leave them as they are.<br />
+<br />
+All comments are welcome.<br />
+<br />
+<br />
+Louisa

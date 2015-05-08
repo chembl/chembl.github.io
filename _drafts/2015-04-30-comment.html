@@ -1,0 +1,53 @@
+---
+layout: post
+title: ChEMBL python client update
+date: '2015-04-30T17:02:00.000+01:00'
+author: kott
+tags: 
+modified_time: '2015-04-30T17:02:17.153+01:00'
+blogger_id: tag:blogger.com,1999:blog-2546008714740235720.post-7686535474019354798
+blogger_orig_url: https://www.blogger.com/comment.g?blogID=2546008714740235720&postID=7686535474019354798
+---
+
+Along with updating ChEMBL web services to the new 2.x version, we've also updated the python client library (chembl_webresource_client). The change was backwards compatible so it's possible that existing users haven't even noticed the change.<br />
+<br />
+As we've already provided examples of using new web services via cURL or using live docs, it's time to explain the changes made to the python client.<br />
+<br />
+First of all, if you haven't installed (or updated) it yet, you can do it using Python Package index:<br />
+<br />
+pip install -U chembl_webresource_client<br />
+<br />
+Now you can access, new functionality using the following import statement:<br />
+<br />
+from chembl_webresource_client.new_client import new_client<br />
+<br />
+In 0.8.x versions of the client the new part will be called 'new_client'. In 0.9.x it will change the name to 'client' and the old part will be renamed to 'old_client' and deprecated. In 1.0.x the old functionality will be removed completely.<br />
+<br />
+OK, so since we know how to import out new_client object, we can try to do something useful. Let's retrieve some activities. We know, that the new web services introduces filtering, so we can try to get only activities with standard type equal to 'Log Ki' and with standard value greater or equal 5:<br />
+<br />
+acts = activity.filter(standard_type="Log Ki").filter(standard_value__gte=5)<br />
+<br />
+We've already applied two filters, so you may expect that the client made two requests to server as well (one to get all activities with specified standard type and another one to filter on the standard value). In reality no interaction with server has been performed so far. This is because our client is lazy - but in the good sense. It waits until you are actually trying to use some of the data requested and then tries to perform the most sensible query to the server so you don't have to care.<br />
+<br />
+So If we would like to access the fifth element:<br />
+<br />
+print acts[5]<br />
+<br />
+or loop through all the elements:<br />
+<br />
+for act in acts:<br />
+&nbsp;&nbsp; ...<br />
+<br />
+the client will interact with server and retrieve a chunk of data that is large enough to prevent from hammering the server too frequently. The data is then cached locally, so if you restart a computer and rerun your script all the data will be fetched from the cache (if available).<br />
+<br />
+A careful reader with IT background will notice that our client presents an interface that is very similar to Django QuerySet. This is true, we designed our client to mimic Django ORM behavior by implementing chaining filters and lazy evaluation. You don't have to be a django expert to see advantages of such approach, but if you do have some experience with django you will feel like home.<br />
+<br />
+We can now try something more complicated. In the main chembl web services page, there is an "Use Cases" section, which provides an example of investigating the potency of approved drugs against their efficacy targets. Let's try to rewrite it using our client:<br />
+<br />
+&nbsp;from chembl_webresource_client.new_client import new_client as nc<br />
+<br />
+approved_drugs = nc.molecule.filter(max_phase=4).order_by('chembl_id')<br />
+drug_ids = [drug['chembl_id'] for drug in drug_ids] <br />
+mechanisms = nc.mechanism.filter(molecule_chembl_id__in=[drug_ids]).order_by('molecule_chembl_id')<br />
+target_ids = [mec['target_chembl_id'] for mac in mechanisms] <br />
+binding_assays = nc.assay.filter(target_chembl_id__in=[target_ids]).filter(relationship_type='D').filter(assay_type='B')

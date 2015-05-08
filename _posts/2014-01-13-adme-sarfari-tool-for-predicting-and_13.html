@@ -1,0 +1,270 @@
+---
+layout: post
+title: 'ADME SARfari: A tool for predicting and comparing cross-species ADME targets'
+date: '2014-01-13T13:31:00.000Z'
+author: Mark Davies
+tags:
+- SARfari
+- Databases
+- ADMET SARfari
+- Software
+modified_time: '2014-01-27T16:24:02.393Z'
+thumbnail: http://1.bp.blogspot.com/-7HmZ_AM8cSo/UuaGIzoIukI/AAAAAAAAAU0/gqJ1_U_Zmhc/s72-c/Screen+Shot+2014-01-27+at+16.14.30.png
+blogger_id: tag:blogger.com,1999:blog-2546008714740235720.post-5294962281084482303
+blogger_orig_url: http://chembl.blogspot.com/2014/01/adme-sarfari-tool-for-predicting-and_13.html
+---
+
+<div dir="ltr" style="text-align: left;" trbidi="on">
+<div style="text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;"><br /></span></div>
+<div class="separator" style="clear: both; text-align: center;">
+<br /></div>
+<br />
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://1.bp.blogspot.com/-7HmZ_AM8cSo/UuaGIzoIukI/AAAAAAAAAU0/gqJ1_U_Zmhc/s1600/Screen+Shot+2014-01-27+at+16.14.30.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="http://1.bp.blogspot.com/-7HmZ_AM8cSo/UuaGIzoIukI/AAAAAAAAAU0/gqJ1_U_Zmhc/s1600/Screen+Shot+2014-01-27+at+16.14.30.png" height="280" width="640" /></a></div>
+<div class="separator" style="clear: both; text-align: justify;">
+<br /></div>
+<div style="text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;"><br /></span></div>
+<div style="text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;">ADME
+ studies are focused on understanding the disposition of a compound 
+within an organism and the results of such studies play a critical role 
+in the drug development process. ADME studies (more commonly referred to
+ as pharmacokinetic or PK studies) are focused on 4 main areas: 
+Absorption, Distribution, Metabolism and Excretion. More information on 
+the PK measurement types can be found <a href="http://en.wikipedia.org/wiki/Pharmacokinetics">here</a>.</span></div>
+<div style="text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;"><br /></span></div>
+<div style="text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;">Comparisons
+ of PK data across species is a potential problem drug researchers need 
+to deal with, as model organism studies are the primary source of such 
+data. For example, in an animal model study, which may be carried out on a compound as it passes through the drug development pipeline, is it 
+meaningful to compare clearance or bioavailability data from a mouse or 
+rat to human? Clearly there are many differences (physical, metabolic, 
+genetic,..), which make answering these types of questions difficult. Building tools which guide researchers to potential answers or provide a better understanding of the inter-species differences are of great value - leading us nicely to the focus of this blog post.</span></div>
+<div style="text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;"><br /></span></div>
+<div style="text-align: justify;">
+<div class="separator" style="clear: both; text-align: center;">
+<a href="https://images-blogger-opensocial.googleusercontent.com/gadgets/proxy?url=http%3A%2F%2F2.bp.blogspot.com%2F-g4vzUDNXHl0%2FUs--pZoOKlI%2FAAAAAAAAASQ%2FS3eCElFUgaQ%2Fs1600%2FScreen%2BShot%2B2014-01-10%2Bat%2B09.34.01.png&amp;container=blogger&amp;gadget=a&amp;rewriteMime=image%2F*" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img alt="https://www.ebi.ac.uk/chembl/admesarfari" border="0" src="http://2.bp.blogspot.com/-g4vzUDNXHl0/Us--pZoOKlI/AAAAAAAAASQ/S3eCElFUgaQ/s1600/Screen+Shot+2014-01-10+at+09.34.01.png" height="356" width="640" /></a></div>
+<br />
+<br />
+<span style="font-family: Trebuchet MS, sans-serif;">It
+ turns out the ChEMBL database has a wealth of PK measurements data, 
+which allows users to start asking ADME focused questions. You can 
+access all of this data via the <a href="https://www.ebi.ac.uk/chembl/">ChEMBL Interface</a> or from one of <a href="ftp://ftp.ebi.ac.uk/pub/databases/chembl/ChEMBLdb/latest/">our downloads</a>,
+ but in order to answer some of the more complex questions a significant
+ amount of data processing first needs to take place. So to help the 
+ChEMBL community get started&nbsp;analysing&nbsp;this data, we, in collaboration 
+with our colleagues at <a href="http://www.gsk.com/uk">GSK</a>, set about building a new ADME focused system. The new system is called <a href="https://www.ebi.ac.uk/chembl/admesarfari">ADME SARfari</a> and it aims to centralise all ADME data currently stored in ChEMBL and other related databases, as well as providing new tools&nbsp;</span><span style="font-family: 'Trebuchet MS', sans-serif;">to help interrogate the data.</span></div>
+<div style="text-align: center;">
+<span style="font-family: Trebuchet MS, sans-serif;"><br /></span></div>
+<div class="separator" style="clear: both; text-align: center;">
+<span style="font-family: Trebuchet MS, sans-serif; margin-left: 1em; margin-right: 1em;"></span></div>
+<div style="text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;"><br /></span></div>
+<div style="text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;">In order to build the system we have pulled data from a number of sources, which include:</span></div>
+<ul>
+<li style="text-align: justify;"><span style="font-family: Trebuchet MS, sans-serif;"><a href="https://www.ebi.ac.uk/chembl/">ChEMBL</a> - Bioactivity data, PK data and molecules.</span></li>
+<li style="text-align: justify;"><span style="font-family: Trebuchet MS, sans-serif;"><a href="http://www.pharmaadme.org/">PharmaADME</a> - An online 
+resource providing a list ADME related human genes. We used this to 
+build our primary list of ADME Targets, but have also added a couple of 
+extra ones.</span></li>
+<li style="text-align: justify;"><span style="font-family: Trebuchet MS, sans-serif;"><a href="http://www.proteinatlas.org/">The Human Protein Atlas</a> -&nbsp; Protein expression data for human ADME Targets.</span></li>
+<li style="text-align: justify;"><span style="font-family: Trebuchet MS, sans-serif;"><a href="http://www.ensembl.org/">ENSEMBL</a> - Orthologue (using the <a href="http://www.ensembl.org/info/genome/compara/index.html">Compara Service</a>) and <a href="http://en.wikipedia.org/wiki/Single-nucleotide_polymorphism">SNP</a> data for ADME Targets.</span></li>
+<li style="text-align: justify;"><span style="font-family: Trebuchet MS, sans-serif;">The <span class="st">Göttingen minipig</span> and beagle dog genome predicted ADME Targets. <a href="http://www.gsk.com/uk">GSK</a> have sequenced the&nbsp; genomes of these two pharmaceutically significant species. More details on the genomes can be found <a href="http://dx.doi.org/10.1016/j.taap.2013.04.007">here</a>.</span></li>
+</ul>
+<div style="text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;">When you visit the site you will find it is divided into the following 7 sections:</span></div>
+<ul>
+<li style="text-align: justify;"><span style="font-family: Trebuchet MS, sans-serif;"><a href="https://www.ebi.ac.uk/chembl/admesarfari">Home</a> - Allows user to initiate a compound or protein focused search.</span></li>
+<li style="text-align: justify;"><span style="font-family: Trebuchet MS, sans-serif;"><a href="https://www.ebi.ac.uk/chembl/admesarfari/orthologues">Orthologues</a>
+ - A table of ADME orthologues. The first column of the table 
+corresponds to the human ADME targets and additional columns correspond 
+to targets found in model organisms.</span></li>
+<li style="text-align: justify;"><span style="font-family: Trebuchet MS, sans-serif;"><a href="https://www.ebi.ac.uk/chembl/admesarfari/tissues">Tissues</a> - Protein expression data for human ADME targets.</span></li>
+<li style="text-align: justify;"><span style="font-family: Trebuchet MS, sans-serif;"><a href="https://www.ebi.ac.uk/chembl/admesarfari/bioactivities">Bioactivities</a>
+ -  Bioactivity data and PK measurements for all ADME related targets in
+ the system, which are also found in the ChEMBL database.</span></li>
+<li style="text-align: justify;"><span style="font-family: Trebuchet MS, sans-serif;"><a href="https://www.ebi.ac.uk/chembl/admesarfari/molecules">Molecules</a> - Distinct set of ChEMBL molecules linked to ADME related targets via the bioactivity data.</span></li>
+<li style="text-align: justify;"><span style="font-family: Trebuchet MS, sans-serif;"><a href="https://www.ebi.ac.uk/chembl/admesarfari/pharmacokinetics">Pharmacokinetic</a> - A cross species comparison of PK data for compounds found in the&nbsp; ChEMBL database&nbsp; (see red heatmap image at top). </span></li>
+<li style="text-align: justify;"><span style="font-family: Trebuchet MS, sans-serif;"><a href="https://www.ebi.ac.uk/chembl/admesarfari/about">About</a> - More details on how to use the system</span></li>
+</ul>
+<div style="text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;">By clicking on the links above, you can view and download all of 
+the data associated within each of the sections. One exception is the 
+Pharmacokinetics section, as there is too much data to display in the 
+heatmap by default, so you must first initiate a search (we will 
+come back to this later). Now that you have a better idea of what is in 
+the system, what are the types of questions you can ask? Looking at the 
+homepage you will see there are 2 ways to initiate a search of the 
+system: Compound-initiated, using the chemical sketcher box and protein-initiated, using the BLAST or keyword search.</span></div>
+<div style="text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;"><br /></span></div>
+<div style="text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;"><br /></span></div>
+<div style="text-align: justify;">
+<b><span style="font-family: Trebuchet MS, sans-serif;">Protein Search&nbsp; (Using BLAST)</span></b></div>
+<div style="text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;"><br /></span></div>
+<div style="text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;">To run a BLAST search paste a sequence in the text box to the right on the homepage:</span></div>
+<div style="text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;"><br /></span></div>
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://2.bp.blogspot.com/-7RlJntaXnPA/Us_8nWJqXQI/AAAAAAAAATY/_ednOvtFEy4/s1600/Screen+Shot+2014-01-10+at+13.46.55.png" style="margin-left: 1em; margin-right: 1em;"><span style="font-family: Trebuchet MS, sans-serif;"><img border="0" src="http://2.bp.blogspot.com/-7RlJntaXnPA/Us_8nWJqXQI/AAAAAAAAATY/_ednOvtFEy4/s1600/Screen+Shot+2014-01-10+at+13.46.55.png" height="361" width="640" /></span></a></div>
+<div style="text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;"><br /></span></div>
+<div style="text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;"><br /></span></div>
+<div style="text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;">BLAST
+ search results will be displayed on the Orthologues page and only rows 
+which contain hits to your search query will be returned:</span></div>
+<div style="text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;"><br /></span></div>
+<div style="text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;"><br /></span></div>
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://4.bp.blogspot.com/-iPE9A8ZI76Q/UuaGxOlUH7I/AAAAAAAAAVA/9juGBiFu55s/s1600/Screen+Shot+2014-01-27+at+16.17.38.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="http://4.bp.blogspot.com/-iPE9A8ZI76Q/UuaGxOlUH7I/AAAAAAAAAVA/9juGBiFu55s/s1600/Screen+Shot+2014-01-27+at+16.17.38.png" height="168" width="640" /></a></div>
+<div class="separator" style="clear: both; text-align: justify;">
+<br /></div>
+<div style="text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;"><br /></span></div>
+<div style="text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;"><br /></span></div>
+<div style="text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;">Clicking on the Tissues tab displays the protein expression levels of the human targets returned by the BLAST search:</span></div>
+<div style="text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;"><br /></span></div>
+<div style="text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;"><br /></span></div>
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://4.bp.blogspot.com/-x0zrndXZowc/Us_8ny_TrPI/AAAAAAAAATg/4JyVchWQe5E/s1600/Screen+Shot+2014-01-10+at+13.53.39.png" style="margin-left: 1em; margin-right: 1em;"><span style="font-family: Trebuchet MS, sans-serif;"><img border="0" src="http://4.bp.blogspot.com/-x0zrndXZowc/Us_8ny_TrPI/AAAAAAAAATg/4JyVchWQe5E/s1600/Screen+Shot+2014-01-10+at+13.53.39.png" height="222" width="640" /></span></a></div>
+<div style="text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;"><br /></span></div>
+<div style="text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;"><br /></span></div>
+<div style="text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;">Clicking on the Bioactivities tab returns all of the ChEMBL bioactivity data for targets returned by BLAST search:</span></div>
+<div style="text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;"><br /></span></div>
+<div style="text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;"><br /></span></div>
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://2.bp.blogspot.com/-c_fKXzbbV7o/Us_8m2BcW-I/AAAAAAAAATQ/Ht2cX0GTttE/s1600/Screen+Shot+2014-01-10+at+13.52.35.png" style="margin-left: 1em; margin-right: 1em;"><span style="font-family: Trebuchet MS, sans-serif;"><img border="0" src="http://2.bp.blogspot.com/-c_fKXzbbV7o/Us_8m2BcW-I/AAAAAAAAATQ/Ht2cX0GTttE/s1600/Screen+Shot+2014-01-10+at+13.52.35.png" height="354" width="640" /></span></a></div>
+<div style="text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;"><br /></span></div>
+<div style="text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;"><br /></span></div>
+<div style="text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;">Clicking on the Molecules tab returns the distinct set of compounds currently displayed in the Bioactivities section:</span></div>
+<div style="text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;"><br /></span></div>
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://1.bp.blogspot.com/-U1ZQUJpQdyE/Us_8px5djQI/AAAAAAAAAT0/W_yZKsW_7lM/s1600/Screen+Shot+2014-01-10+at+13.53.17.png" style="margin-left: 1em; margin-right: 1em;"><span style="font-family: Trebuchet MS, sans-serif;"><img border="0" src="http://1.bp.blogspot.com/-U1ZQUJpQdyE/Us_8px5djQI/AAAAAAAAAT0/W_yZKsW_7lM/s1600/Screen+Shot+2014-01-10+at+13.53.17.png" height="284" width="640" /></span></a></div>
+<div style="text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;"><br /></span></div>
+<div style="text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;"><br /></span></div>
+<div style="text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;">Clicking
+ on the Pharmacokinetics tab will provide a cross-species overview of 
+the PK data in ChEMBL for the compounds currently displayed in the 
+Molecules section (Note that not all compounds will have PK 
+measurements):</span></div>
+<div style="text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;"><br /></span></div>
+<div style="text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;"><br /></span></div>
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://1.bp.blogspot.com/-7HmZ_AM8cSo/UuaGIzoIukI/AAAAAAAAAU8/WxYsrvDTS3E/s1600/Screen+Shot+2014-01-27+at+16.14.30.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="http://1.bp.blogspot.com/-7HmZ_AM8cSo/UuaGIzoIukI/AAAAAAAAAU8/WxYsrvDTS3E/s1600/Screen+Shot+2014-01-27+at+16.14.30.png" height="280" width="640" /></a></div>
+<div class="separator" style="clear: both; text-align: justify;">
+<br /></div>
+<div style="text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;"><br /></span></div>
+<div style="text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;">The following points help explain what the heatmap above is displaying: </span></div>
+<ul>
+<li style="text-align: justify;"><span style="font-family: Trebuchet MS, sans-serif;">Each narrow row corresponds to a compound. </span></li>
+<li style="text-align: justify;"><span style="font-family: Trebuchet MS, sans-serif;">Each column corresponds to a PK measurement in a specific organism.&nbsp;</span></li>
+<li style="text-align: justify;"><span style="font-family: Trebuchet MS, sans-serif;">The PK measurements summarised in this view are <a href="http://en.wikipedia.org/wiki/Clearance_%28medicine%29">Clearance</a> (Cl), <a href="http://en.wikipedia.org/wiki/Cmax_%28pharmacology%29">Cmax</a>, <a href="http://en.wikipedia.org/wiki/Bioavailability">Bioavailability</a> (f), <a href="http://en.wikipedia.org/wiki/Biological_half-life">T1/2</a>, Tmax and <a href="http://en.wikipedia.org/wiki/Volume_of_distribution">Volume of Distribution</a> (Vd).&nbsp;</span></li>
+<li style="text-align: justify;"><span style="font-family: Trebuchet MS, sans-serif;">The colour of each cell corresponds to a low, medium and high binned
+ PK measurement, making it easier to compare values across species.</span></li>
+<li style="text-align: justify;"><span style="font-family: Trebuchet MS, sans-serif;">The columns can be sorted by clicking on the header (see the second column, 
+which corresponds to the Human Clearance data). </span></li>
+</ul>
+<div style="text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;"><br /></span></div>
+<div style="text-align: justify;">
+<b><span style="font-family: Trebuchet MS, sans-serif;">Compound Search </span></b></div>
+<div style="text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;"><br /></span></div>
+<div style="text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;">It is also 
+possible to search the system using a compound structure. Simply draw or
+ paste a structure into the compound sketcher on the left of the 
+homepage:</span></div>
+<div style="text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;"><br /></span></div>
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://1.bp.blogspot.com/-CTs7Ygl3prQ/UtALuwwKfiI/AAAAAAAAAUI/p_PbQVb9qdg/s1600/Screen+Shot+2014-01-10+at+15.02.57.png" style="margin-left: 1em; margin-right: 1em;"><span style="font-family: Trebuchet MS, sans-serif;"><img border="0" src="http://1.bp.blogspot.com/-CTs7Ygl3prQ/UtALuwwKfiI/AAAAAAAAAUI/p_PbQVb9qdg/s1600/Screen+Shot+2014-01-10+at+15.02.57.png" height="360" width="640" /></span></a></div>
+<div style="text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;">&nbsp;<b> </b></span></div>
+<div style="text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;"><br /></span></div>
+<div style="text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;">You
+ can then choose to run a substructure and similarity search. When you 
+run the search you will first be taken Molecules section and you can 
+then explore the other sections, which are all connected based on this 
+initial set of compounds.</span></div>
+<div style="text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;"><br /></span></div>
+<div style="text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;"><br /></span></div>
+<div style="text-align: justify;">
+<b><span style="font-family: Trebuchet MS, sans-serif;">Predictive Model Search</span></b></div>
+<div style="text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;"><br /></span></div>
+<div style="text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;">The
+ system also allows a user to predict which ADME protein target a 
+molecule will interact with. The binding data (displayed in the 
+Bioactivities section) has been used to build a multi-category naive Bayesian &nbsp;classifier. We will follow up with a more detailed post describing the 
+model building process, but essentially the model is able to predict if a
+ user-submitted molecule will interact with 133 of the ADME targets included 
+in the system. The <a href="https://www.ebi.ac.uk/chembl/admesarfari/about">About</a> page provides some additional data on the targets included in the model.&nbsp; </span></div>
+<div style="text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;"><br /></span></div>
+<div style="text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;">To
+ run a search against the predictive model, draw or paste a structure 
+into the compound sketcher on the left of the homepage and hit the 
+"Model Prediction" button. You will be taken to the Orthologues section,
+ but only the rows which include a target predicted to interact with 
+submitted molecule (coloured green) will be on display:</span></div>
+<div style="text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;"><br /></span></div>
+<div style="text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;"><br /></span></div>
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://4.bp.blogspot.com/-Y8Td9pNPJq0/UuaGI8nw6AI/AAAAAAAAAU4/WX2ntsvfzFs/s1600/Screen+Shot+2014-01-27+at+16.13.14.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="http://4.bp.blogspot.com/-Y8Td9pNPJq0/UuaGI8nw6AI/AAAAAAAAAU4/WX2ntsvfzFs/s1600/Screen+Shot+2014-01-27+at+16.13.14.png" height="252" width="640" /></a></div>
+<div class="separator" style="clear: both; text-align: justify;">
+<br /></div>
+<div style="text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;"><br /></span></div>
+<div style="text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;"><br /></span></div>
+<div style="text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;">We hope you find the ADME SARfari system useful and if you have any questions please let us know.</span></div>
+<div style="text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;"><br /></span></div>
+<div style="text-align: justify;">
+<span style="font-family: Trebuchet MS, sans-serif;">The ChEMBL Team </span></div>
+<div style="text-align: justify;">
+<br /></div>
+</div>

@@ -1,0 +1,96 @@
+---
+layout: post
+title: Accessing web services with cURL
+date: '2014-12-01T14:28:00.000Z'
+author: kott
+tags: 
+modified_time: '2014-12-01T14:28:24.055Z'
+blogger_id: tag:blogger.com,1999:blog-2546008714740235720.post-6024824613697020939
+blogger_orig_url: http://chembl.blogspot.com/2014/12/accessing-web-services-with-curl.html
+---
+
+<div class="separator" style="clear: both; text-align: center;"><a href="http://imgs.xkcd.com/comics/real_programmers.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="http://imgs.xkcd.com/comics/real_programmers.png" /></a></div><br />
+ChEMBL web services are really friendly. We provide <a href="https://www.ebi.ac.uk/chemblws/docs">live online documentation</a>, support for <a href="https://en.wikipedia.org/wiki/Cross-origin_resource_sharing">CORS</a> and <a href="https://en.wikipedia.org/wiki/JSONP">JSONP</a> techniques to support web developers in creating their own web widgets. For Python developers, we provide <a href="http://chembl.blogspot.co.uk/2014/05/a-python-client-for-accessing-chembl.html">dedicated client library</a> as well as examples using the client and well known <a href="http://docs.python-requests.org/en/latest/">requests</a> library in a form of <a href="http://nbviewer.ipython.org/github/chembl/mychembl/blob/master/ipython_notebooks/02_myChEMBL_web_services.ipynb">ipython notebook</a>. There are also examples for Java and Perl, you can find it <a href="https://www.ebi.ac.uk/chembl/ws">here</a>.<br />
+<br />
+But this is nothing for real UNIX/Linux hackers. Real hackers use <a href="https://en.wikipedia.org/wiki/CURL">cURL</a>. And there is a good reason to do so. cURL comes preinstalled on many Linux distributions as well as OSX. It follows <a href="https://en.wikipedia.org/wiki/Unix_philosophy">Unix philosophy</a> and can be joined with other tools using <a href="https://en.wikipedia.org/wiki/Pipeline_%28Unix%29">pipes</a>. Finally, it can be used inside bash scripts which is very useful for automating tasks.<br />
+<br />
+Unfortunately first experiences with cURL can be frustrating. For example, after studying <a href="http://man.cx/curl">cURL manual pages</a>, one may think that following will return set of compounds in json format:<br />
+<br />
+<script src="https://gist.github.com/mnowotka/2e36541950608be55d62.js"></script><br />
+But the result is quite dissapointing...<br />
+<br />
+<script src="https://gist.github.com/mnowotka/8e173cb970def8f3ec93.js"></script><br />
+The reason is that <code>--data-urlencode (-d)</code> tells our server (by setting <a href="http://www.w3.org/Protocols/rfc1341/4_Content-Type.html">Content-Type header</a>) that this request parameters are encoded in "<a href="https://en.wikipedia.org/wiki/Percent-encoding#The_application.2Fx-www-form-urlencoded_type">application/x-www-form-urlencoded</a>" - the default <a href="https://en.wikipedia.org/wiki/Internet_media_type">Internet media type</a>. In this format, each key-value pair is separated by an '&amp;' character, and each key is separated from its value by an '=' character for example:<br />
+<br />
+<script src="https://gist.github.com/mnowotka/510d9c41966982ef0183.js"></script><br />
+This is not the format we used. We provided our data in <a href="https://en.wikipedia.org/wiki/JSON">JSON</a> format, so how do we tell the ChEMBL servers the format we are using? It turns out it is quite simple, we just need to specify a Content-Type header:<br />
+<br />
+<script src="https://gist.github.com/mnowotka/12f0b782a0f033d356d4.js"></script><br />
+If we would like to omit the header, correct invocation would be:<br />
+<br />
+<script src="https://gist.github.com/mnowotka/6443e1d9e7dbb1fddd08.js"></script><br />
+OK, so request parameters can be encoded as key-value pairs (default) or JSON (header required). What about result format? Currently, ChEMBL web services support JSON and XML output formats. How do we choose the format we would like the results to be returned as? This can be done in three ways:<br />
+<br />
+1. Default - if you don't do anything to indicate desired output format, XML will be assumed. So this:<br />
+<br />
+<script src="https://gist.github.com/mnowotka/0685a8a5a42838cafd68.js"></script><br />
+will produce XML.<br />
+<br />
+2. Format extension - you can append format extension (.xml or .json) to explicitly state your desired format:<br />
+<br />
+<script src="https://gist.github.com/mnowotka/0570451691f1eef8685a.js"></script><br />
+will produce JSON.<br />
+<br />
+3. `Accept` Header - this header specifies Content-Types that are acceptable for the response, so:<br />
+<br />
+<script src="https://gist.github.com/mnowotka/27e1f9c1d59afefe52de.js"></script><br />
+will produce JSON.<br />
+<br />
+<h1>Enough boring stuff - Lets write a script!</h1><br />
+Scripts can help us to automate repetitive tasks we have to perform. One example of such a task would be retrieving a batch of first 100 compounds (<a href="https://www.ebi.ac.uk/chembl/compound/inspect/CHEMBL1">CHEMBL1</a> to <a href="https://www.ebi.ac.uk/chembl/compound/inspect/CHEMBL100">CHEMBL100</a>). This is very easy to code with bash using curl (Note the usage of the -s parameter, which prevents curl from printing out network and progress information):<br />
+<br />
+<script src="https://gist.github.com/mnowotka/ba97cc2fca99afb9456f.js"></script><br />
+Executing this script will return information about first 100 compounds in JSON format. But if you carefully inspect the returned output you will find that some compound identifiers don't exist in ChEMBL:<br />
+<br />
+<script src="https://gist.github.com/mnowotka/ef97cc7ca760b7de30b9.js"></script><br />
+We need to add some error handling, for example checking if <a href="https://en.wikipedia.org/wiki/List_of_HTTP_status_codes">HTTP status code</a> returned by server is equal to <a href="https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#2xx_Success">200</a> (OK). Curl comes with <code>--fail (-f)</code> option, which tells it to return <a href="http://tldp.org/LDP/abs/html/exit-status.html">non-zero exit code</a> if response is not valid. With this knowledge we can modify our script to add error handling:<br />
+<br />
+<script src="https://gist.github.com/mnowotka/9edf3186b65bdfbed996.js"></script><br />
+OK, but the output still looks like a chaotic soup of strings and brackets, and is not very readable...<br />
+<br />
+Usually we would use a classic trick to pretty print json - piping it through python:<br />
+<br />
+<script src="https://gist.github.com/mnowotka/7c64acd5329b1aac26b1.js"></script><br />
+But it won't work in our case:<br />
+<br />
+<script src="https://gist.github.com/mnowotka/760e96c44c31ebd5d7bd.js"></script><br />
+<br />
+Why? The reason is that python trick can pretty-print a single JSON document. And what we get as the output is a collection of JSON documents, each of which describes different compound and is written in separate line. Such a format is called <a href="https://en.wikipedia.org/wiki/Line_Delimited_JSON">Line Delimited JSON</a> and is very useful and well known.<br />
+<br />
+Anyway, we are data scientists after all so we know a <a href="http://jeroenjanssens.com/2013/09/19/seven-command-line-tools-for-data-science.html">plenty of other tools</a> that can help. In this case the most useful is <a href="https://stedolan.github.io/jq/">jq</a> - "lightweight and flexible command-line JSON processor", kind of <a href="https://en.wikipedia.org/wiki/Sed">sed</a> for JSON.<br />
+<br />
+With jq it's very easy to pretty print our script output:<br />
+<br />
+<script src="https://gist.github.com/mnowotka/48b855b129937fe22d8e.js"></script><br />
+<script src="https://gist.github.com/mnowotka/fa0c490acc85c2e2f662.js"></script><br />
+Great, so we finally can really see what we have returned from a server. Let's try to extract some data from our JSON collection, let it be chemblId and molecular weight:<br />
+<br />
+<script src="https://gist.github.com/mnowotka/79cde5a479cc407b2109.js"></script><br />
+<script src="https://gist.github.com/mnowotka/0d3983ee6403319f76d5.js"></script><br />
+Perfect, can we have both properties printed in one line and separated by tab? Yes, we can!<br />
+<br />
+<script src="https://gist.github.com/mnowotka/52cce489158309c051ec.js"></script><br />
+<script src="https://gist.github.com/mnowotka/9c38ddf55ae3b3f354f0.js"></script><br />
+So now we can get the ranking of first 100 compounds sorted by their weight:<br />
+<br />
+<script src="https://gist.github.com/mnowotka/f0212b6e4c65f6bd1905.js"></script><br />
+<script src="https://gist.github.com/mnowotka/db126384032101e5c2db.js"></script><br />
+<br />
+Exercises for readers:<br />
+<br />
+1. Can you modify compounds.sh script to accept a range (first argument is start, second argument is length) of compounds?<br />
+2. Can you modify the script to read compound identifiers from a file?<br />
+3. Can you add a 'structure' parameter, which accepts a SMILES string. When this 'structure' parameter is present, the script will return similar compounds (you can decide on the similarity cut off or add an extra parameter)?<br />
+<br />
+<br />
+<br />

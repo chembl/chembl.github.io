@@ -1,0 +1,32 @@
+---
+layout: post
+title: PPI Library - part 1
+date: '2012-03-06T12:19:00.004Z'
+author: John Overington
+tags:
+- PPIs
+modified_time: '2012-03-06T12:46:17.085Z'
+thumbnail: http://2.bp.blogspot.com/-T0Gz26Bd8Ls/T1X73_V_xeI/AAAAAAAABl4/ZWCK9NYVJy8/s72-c/3860202_orig.jpg
+blogger_id: tag:blogger.com,1999:blog-2546008714740235720.post-8191784399613410805
+blogger_orig_url: http://chembl.blogspot.com/2012/03/ppi-library-part-1.html
+---
+
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://2.bp.blogspot.com/-T0Gz26Bd8Ls/T1X73_V_xeI/AAAAAAAABl4/ZWCK9NYVJy8/s1600/3860202_orig.jpg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="320" src="http://2.bp.blogspot.com/-T0Gz26Bd8Ls/T1X73_V_xeI/AAAAAAAABl4/ZWCK9NYVJy8/s320/3860202_orig.jpg" width="213" /></a></div>
+<br />
+Some Open Science - Yay! A sort of research journal for a small project involving structural bioinformatics and cheminformatics.<br />
+<br />
+So here is an approach to looking in a systematic way at peptidomimetics, specifically those that have the potential to serve as the basis for the design of small-molecule non-peptide-based ligands for the modulation of protein-protein interactions (PPIs).<br />
+<br />
+The design principle is to:<br />
+<br />
+1) Identify peptide conformations important in PPIs.<br />
+2) Find small molecule scaffolds that display the 'side-chains' with a given geometry in a way that mimic the conformations found in 1).<br />
+<br />
+The idea here is to be as general and comprehensive as possible, and also provide some ability to understand the effects of cutoffs and parameters that inevitably will be applied in this sort of work.<br />
+<br />
+It's actually quite difficult to identify a set of PPIs - I have some ideas, but they rely on me roping in some colleagues (Roman) to do it in an easy way. We also need to split, for now, the contiguous epitope from the distributed epitope case - we'll look at the discrete epitome case first. This is where sequentially adjacent residues interact with the target. So let's be super general and look at all peptide conformations observed in a large set of proteins - the protein-protein interaction ones will be a subset of these, and we can tag them up later, and probably teasing apart the features of conformations over- or under-represented in PPIs is a useful thing.<br />
+<br />
+So this post concerns the building of the general peptide conformer library. I've looked at tetrapeptides in the first case - since each amino acid residue in a protein has an average molecular weight of just over 110 - this gives the average tetrapeptide a weight of about 440 - but the minima is for Gly-Gly-Gly-Gly (weight ~246 Da) and the largest is Trp-Trp-Trp-Trp (weight ~762 Da). So if we are thinking about historical drugs and in particular small rigid scaffolds, this tetrapeptide will be big enough.<br />
+<br />
+Part 2 after a sandwich.....

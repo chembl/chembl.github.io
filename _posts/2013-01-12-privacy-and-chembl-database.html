@@ -1,0 +1,58 @@
+---
+layout: post
+title: Privacy and the ChEMBL Database
+date: '2013-01-12T12:19:00.003Z'
+author: John Overington
+tags:
+- Data Privacy
+- Application Security
+modified_time: '2013-01-14T16:31:01.178Z'
+thumbnail: http://4.bp.blogspot.com/-8bjLnMFqYjc/UPFKMJQgsTI/AAAAAAAACp0/bjOrue4GKEQ/s72-c/Industry+Programme.png
+blogger_id: tag:blogger.com,1999:blog-2546008714740235720.post-1451426331054998710
+blogger_orig_url: http://chembl.blogspot.com/2013/01/privacy-and-chembl-database.html
+---
+
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://4.bp.blogspot.com/-8bjLnMFqYjc/UPFKMJQgsTI/AAAAAAAACp0/bjOrue4GKEQ/s1600/Industry+Programme.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="246" src="http://4.bp.blogspot.com/-8bjLnMFqYjc/UPFKMJQgsTI/AAAAAAAACp0/bjOrue4GKEQ/s320/Industry+Programme.png" width="320" /></a></div>
+<br />
+Privacy is pretty important - for example, in the picture above I have protected to privacy of two colleagues, as I think I should ;) In fact I've even made sure that the black box securing their identities is not a layer on the image that can be trivially removed.....<br />
+<br />
+Chemistry is a little different to some other areas of life-science research, and there is a little more caution applied typically in the use of 'public' database systems by people working on chemical structures - primarily because of patenting and novelty. There are probably similar privacy/security concerns over sequence data too - and in ChEMBL we've covered that too. I'm not going to drift on to what constitutes a 'publication', and all that sort of stuff since 1) I'm not qualified, 2) I don't have the time (and 1) anyway), and 3) it attracts trolls (and 1) and 2) anyway).<br />
+<br />
+I have been asked for a talk through on the usage and query privacy of ChEMBL as part of the great <a href="http://www.openphacts.org/">OpenPHACTS project</a> for some time; so here it is - to make it clear - I'm not an expert, but I do worry about these things, and I read a lot. Any feedback or suggestions would be great in the comment section.<br />
+<br />
+ChEMBL <a href="https://www.ebi.ac.uk/chembl">https://www.ebi.ac.uk/chembl</a> is hosted on production machines at a pair of physically separated load-balanced <a href="http://en.wikipedia.org/wiki/Data_center">Class 3 data centers</a> in London. These are pretty close to one of the main Internet backbones in the UK, so reliability, latency and throughput is pretty good. The ChEMBL database and application is automatically loaded from a staging system at Hinxton. Once it leaves our staging area, we can't access the production data/server at all; in fact only a small number of named staff, using all sorts of access control and logging mechanisms can get into the machine rooms.<br />
+<br />
+You may have noted that we use https: on the ChEMBL url above - even if you try and force use of http: to access the server, it will switch you over to https: (go on try it, I told you so). This ensures 1) that the server you access really is the genuine ChEMBL server (you should see a little lock in the corner of your browser), and 2) that the traffic between your client and our server is encrypted, and so no one can simply sit on the same network as you, listening to all your queries. So this is pretty secure, the <a href="http://en.wikipedia.org/wiki/Transport_Layer_Security">tls standard</a> used by https: is relied on by essentially everyone who implement secure and private web sites. It takes a little care to actually get https: to work properly - with a common reason for non-validation (so the little padlock doesn't appear) being the use of http: links on the nominally https: source page, or http: links to third party sites such as for advertisers, <i>etc</i>.<br />
+<br />
+We don't (currently) have a green bar in the browser for this https: service - the green bar (or something similar depending on your browser) comes from the use of a&nbsp;<a href="http://en.wikipedia.org/wiki/Extended_Validation_Certificate">Extended Validity Certificate</a> (EVC). For these, you and your Certification Authority need to do a little more paperwork, and then spend a little more money. There is no difference in the technical security - the little padlock is the mark of security, not the green bar, just that the certificate authority has done some more work to validate that you really physically are who you say you are and so on. At the moment, sites like PayPal and so forth have EVCs, but they will no doubt spread, as the public starts to associate only sites with a green url bar with 'enhanced' security, and assume that the green thing is The Mark of website safety.<br />
+<br />
+We do not use accounts to access the ChEMBL website - there is no need for the things we do - any personalisation is done <i>via</i> cookies saved on your machine in the cookies folder (we have an <a href="http://www.ebi.ac.uk/Information/cookies.html">Institutional cookie policy</a> too, that describes what cookies we will write on your computer). It is not straightforward to implement good password systems, as many large professional internet companies have amply shown (LinkedIn - I'm thinking of you!), and for us we don't need them for ChEMBL, so we haven't bothered.<br />
+<br />
+There is also an <a href="http://www.ebi.ac.uk/Information/e-directive.html">Institutional Privacy Policy</a> which covers a broad range of personal type data across all our activities (including recruitment, <i>etc</i>).<br />
+<br />
+There is an <a href="http://www.ebi.ac.uk/Information/termsofuse.html">Institutional Terms of Use</a> for all institute resources. There is usage logging performed on the servers for internally reviewing the use of our services, or for spotting of problems (like <a href="http://en.wikipedia.org/wiki/Denial_of_service">DOS attacks</a>, innocent scripting that can look like a DOS (Ben ;) )) and to collect statistics (like total usage, distribution of users, <i>etc</i>), to track enhanced usage following interface/data addition (this makes us feel good sometimes, it's nice to know our things are used). This data is all private, and is forbidden from being shared other than at aggregate level with third parties/collaborators.<br />
+<br />
+The ChEMBL web application is written to not store any user queries (chemical structures or sequences, or text queries), other than storage required for application and database performance - so for example some automatically flushed, short-lifetime caches that are part of Oracle, and as I've said above, we don't have access to these anyway on the production servers.<br />
+<br />
+We do not run <a href="http://en.wikipedia.org/wiki/Denial_of_service">google analytics</a> on our ChEMBL application (but some of the Institutes services do, and we do on the ChEMBL-og) - it is tempting to do use GA for the fancy plots and maps, but what it means is that a third party (Google for GA) will be seeing all the query IP source addresses and url strings. Google already know enough about me, they don't also need to know I have a late night penchant for 4-amino-anilines as well.<br />
+<br />
+So, if I was to extract some general principles from the above:<br />
+<ul>
+<li>Use https: for everything - there's no real cost over http:, and make sure it validates!</li>
+<li>Have a clear and easy to find Terms of Use.</li>
+<li>Have a clear and easy to find license for any data.</li>
+<li>Have a cookie policy and explain to users what the cookies you use are.</li>
+<li>Have a privacy policy.</li>
+<li>Keep your security certificates up to date.</li>
+<li>Do not store any user queries for later analysis.</li>
+<li>Think carefully before placing a user account system on your software - Does it really need it. If you do need implement one; for example your application has user uploaded data, has complex long running queries, or stores intermediate results, etc.? Read widely and plan defensively before you do.&nbsp;</li>
+<li>If you use third party analytics tools, make sure that your users know this, and if privacy is a concern to you, make sure you're also familiar with their ToU.</li>
+<li>If you deploy things 'on the cloud' - read the agreement and T&amp;Cs that you have with the company for your use of their services. Usually they do a very good job of dodging any responsibility, and sometimes grant themselves rights you would not expect. (We don't use third party cloud provision for any of our ebi.ac.uk/chembl services - but we do use the cloud for some data entry portals. For these we're not doing anything that really requires great privacy, since once we've entered the data, we give it away anyway). And once you've read the T&amp;Cs, read them again.</li>
+<li>ChEMBL is typically "tighter" than the our Institute policies, but I think it's too confusing to make this specifically clear.....</li>
+</ul>
+<div>
+Update - two things, 1) we do have a privacy policy specific to ChEMBL on our page http://www.ebi.ac.uk and 2) The readers of the ChEMBL-og are very smart people, really you are. My attempts at protecting the privacy of one of the fellas above was woeful - I left his name badge in plain view! Doh! Sorry.</div>
+<br />
+<br />
+<br />

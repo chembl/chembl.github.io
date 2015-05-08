@@ -1,0 +1,42 @@
+---
+layout: post
+title: VEHICLe - virtual exploratory heterocyclic library
+date: '2010-04-12T11:35:00.005+01:00'
+author: John Overington
+tags:
+- Books and Papers
+modified_time: '2010-04-12T12:25:26.315+01:00'
+thumbnail: http://2.bp.blogspot.com/_SlPG9DIz_AA/S8LsXP0JhNI/AAAAAAAAAuQ/ois9mTm69Fk/s72-c/Pi-thumb-580x243-110735-thumb-580x243-110736.jpg
+blogger_id: tag:blogger.com,1999:blog-2546008714740235720.post-4447407268161203958
+blogger_orig_url: http://chembl.blogspot.com/2010/04/vehicle-virtual-exploratory.html
+---
+
+<div class="separator" style="clear: both; text-align: center;"><a href="http://2.bp.blogspot.com/_SlPG9DIz_AA/S8LsXP0JhNI/AAAAAAAAAuQ/ois9mTm69Fk/s1600/Pi-thumb-580x243-110735-thumb-580x243-110736.jpg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="http://2.bp.blogspot.com/_SlPG9DIz_AA/S8LsXP0JhNI/AAAAAAAAAuQ/ois9mTm69Fk/s320/Pi-thumb-580x243-110735-thumb-580x243-110736.jpg" /></a></div><p>An interesting and thought provoking paper from last year was <a HREF="http://pubs.acs.org/doi/pdf/10.1021/jm801513z">'Heteroaromatic Rings of the Future'</A> by Will Pitt (of <a href="http://www.ucb.com/">UCB</a>) (subscription required) and others at UCB. The basic idea of the paper was to exhaustively identify then analyse the class of all possible heterocycles with the following constraints. i) mono and bicyclic rings, ii) Only 5 and 6 membered rings, iii) Only containing C, N, O, S and H, iv) neutral, v) obey <a HREF="http://en.wikipedia.org/wiki/Hückel%27s_rule">Hückel’s 4n+2 rule of aromaticity </A>, and vi) Only exocyclic carbonyls. Heterocycles like this are at the very core of drug discovery and medicinal chemistry.<br />
+<p>The dataset is now available for download from the <a HREF="ftp://ftp.ebi.ac.uk/pub/databases/chembl/VEHICLe/VEHICLe.csv">chembl ftp site</A>, and also as a <a HREF="http://spreadsheets.google.com/ccc?key=0ArHolifHje4FdDQ3Vmo5b2JSYjhBV1RsUnJHblhhckE&hl=en_GB">Google document</A><br />
+<p>The file contains...<br />
+<ul><li><b>regid:</b> the id for each distinct ring system<br />
+</li>
+<li><b>SMILES:</b> the encoded chemical structure of each ring system<br />
+</li>
+<li><b>Training dataset hits:</b> the count of substructure hits found in the<br />
+original search of commercial compound catalogues, drugs <i>etc.</I> (as reported in the paper).<br />
+</li>
+<li><b>Beilstein hits:</b> the count of substructure hits in the Beilstein<br />
+database at that time (June 2008). Some fields are blank - searching with benzene<br />
+and other common ring systems would have taken too long.<br />
+</li>
+<li><b>Pgood:</b> predicted synthetic tractability after training with both the<br />
+above datasets<br />
+</li>
+<li><b>Tautomer cluster:</b> tautomeric equivalents are grouped into clusters<br />
+</UL><p>Will can be contacted at will.pitt (at) ucb.com for a free reprint of the paper, or more discussions of the work.  <p>We will integrate the VEHICLe ring system regids into Chembl at some point in the future.  <pre></pre><pre>%T Heteroaromatic Rings of the Future
+%A W.R. Pitt
+%A D.M. Parry
+%A B.G. Perry
+%A C.R. Groom
+%J J. Med. Chem.
+%D 2009
+%V 52
+%P 2952-2963
+%O VEHICLe
+</pre></li>

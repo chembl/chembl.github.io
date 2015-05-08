@@ -1,0 +1,31 @@
+---
+layout: post
+title: UniChem - An EBI compound structure cross-referencing resource
+date: '2011-11-25T09:51:00.001Z'
+author: John Overington
+tags:
+- Databases
+- UniChem
+modified_time: '2011-11-25T10:19:52.827Z'
+thumbnail: http://4.bp.blogspot.com/-TO45ti6gll4/Ts9q3RyqSOI/AAAAAAAABa0/1wUhBa164K8/s72-c/unichem.png
+blogger_id: tag:blogger.com,1999:blog-2546008714740235720.post-958142803379452543
+blogger_orig_url: http://chembl.blogspot.com/2011/11/unichem.html
+---
+
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://4.bp.blogspot.com/-TO45ti6gll4/Ts9q3RyqSOI/AAAAAAAABa0/1wUhBa164K8/s1600/unichem.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="http://4.bp.blogspot.com/-TO45ti6gll4/Ts9q3RyqSOI/AAAAAAAABa0/1wUhBa164K8/s1600/unichem.png" /></a></div>
+<div class="separator" style="clear: both; text-align: center;">
+<br /></div>
+We have faced for some time some issues with compound integration with <a href="http://www.eb.ac.uk/chembl">ChEMBL</a> - specifically the loading of compound sets into ChEMBL for cross referencing, between for example, ChEBI, PDBe compounds, <i>etc</i>. The ChEMBL update cycle is relatively slow with respect to some other resources, and there is inevitable thrash with compounds not being present, especially for exciting new data. Without doing something different for compound integration, we were starting to face a scenario where we had a compound table with many millions of compounds without any bioactivity data, and following this the inevitable slowdown in searching, <i>etc</i>.<br />
+<br />
+We also had some issues facing us about curation of other people's primary data, changing compound structures, or their rendering, <i>etc</i>.<br />
+<br />
+So, we decided to set up an external system to resolve cross-references between various databases. This is a very simple Standard InChI lookup, containing compounds from resources such as ChEMBL, ChEBI, PDBe, DrugBank, KEGG, BindingDB, PubChem, and so forth. UniChem can also handle versioning of the contained resources. We will be migrating various components of the current ChEMBL interface across to use web services on UniChem, this way, the cross links will always be fresh and correct, and we can focus on curation and optimisation of ChEMBL content. There are some other resources, like <a href="http://zinc.docking.org/">ZINC</a>, <a href="http://stitch.embl.de/">STITCH</a>, and <a href="http://www.chemspider.com/">ChemSpider</a>, for example, that would be great to integrate, if we can get hold of the required data.<br />
+<br />
+The easiest way for us to handle deposition into UniChem is for us to take an ftp: feed of a simple table of resource_id, standard_InChI, and standard_InChI_key.<br />
+<br />
+At the moment, UniChem sits behind our firewall, but if people want to have a play, let us know.<br />
+<br />
+We will write something more specific and detailed, but would welcome thoughts of whether this resolver should be externally facing, and what other resources would be good to integrate?<br />
+<br />
+The image above may or may not be the UniChem logo.

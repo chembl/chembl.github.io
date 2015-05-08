@@ -1,0 +1,80 @@
+---
+layout: post
+title: 'A Taxonomy for Drugs: 1 - Drug Class'
+date: '2011-03-04T09:50:00.016Z'
+author: John Overington
+tags:
+- Databases
+- Ontologies
+modified_time: '2011-03-06T16:16:12.943Z'
+thumbnail: https://lh3.googleusercontent.com/-6JNkW6xOggA/TXC0bj3UEnI/AAAAAAAABCE/JEh-Ar4PEV0/s72-c/page12_1.jpg
+blogger_id: tag:blogger.com,1999:blog-2546008714740235720.post-1154682604621798824
+blogger_orig_url: http://chembl.blogspot.com/2011/03/taxonomy-for-drugs.html
+---
+
+<div class="separator" style="clear: both; text-align: center;"><a href="https://lh3.googleusercontent.com/-6JNkW6xOggA/TXC0bj3UEnI/AAAAAAAABCE/JEh-Ar4PEV0/s1600/page12_1.jpg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="214" src="https://lh3.googleusercontent.com/-6JNkW6xOggA/TXC0bj3UEnI/AAAAAAAABCE/JEh-Ar4PEV0/s320/page12_1.jpg" width="320" /></a></div><br />
+<br />
+It is intuitive to describe what a drug is in natural language - a small molecule, <i>etc</i>, but one problem is that these descriptive terms are context dependent, loosely defined and are used very variably across the literature; and so when someone asks 'How many small molecule drugs there are?' - first of all it depends on what is a 'drug', and secondly what is a 'small molecule'. As far as I can tell there is not a descriptive taxonomy for drugs (I use the term <a href="http://en.wikipedia.org/wiki/Taxonomy">taxonomy</a> here as a bridge term between a <a href="http://en.wikipedia.org/wiki/Controlled_vocabulary">controlled vocabulary</a>/<a href="http://en.wikipedia.org/wiki/Dictionary">dictionary</a> and an <a href="http://en.wikipedia.org/wiki/Ontology_(information_science)">ontology</a>). For our own purposes within ChEMBL we need such a taxonomy, but post our initial thoughts here for comment, and no doubt (and hopefully), significant correction and improvement (use the comment section of the blog, then everyone can see any discussions).<br />
+<br />
+Drugs are regulated products that are <i>'intended use in the diagnosis, cure, mitigation, treatment or prevention of disease'</i> - let's not visit what a disease is, but move swiftly on to trying to sub divide this into obvious and useful categories/classes when thinking about molecular drug structures.<br />
+<br />
+So for a <b>Drug_Class</b>, categorisation into the following seems intuitive and useful. Most of the action in drug discovery will be connected to the "Therapeutic" class.<br />
+<ul><li><b>Therapeutic</b> - A substance with a curative action on a disease.<br />
+</li>
+<li><b>Supplement</b> - A substance, used to address a deficiency of that substance (or of that substances normal function).<br />
+</li>
+<li><b>Imaging Agent</b> - A substance used to image a molecule or structure within the body.<br />
+</li>
+<li><b>Diagnostic Agent</b> - A substance used in the diagnosis of a disease, not involving imaging.<br />
+</li>
+<li><b>Other</b> - A substance not covered by the categories above.<br />
+</li>
+</ul>Drugs are then typically divided into <b>Drug_Types</b> - small molecules and biologicals.  <br />
+<ul><li><b>Small Molecule</b> - A substance with a molecular weight less than 1500 Da that is otherwise not a Biological.<br />
+</li>
+<li><b>Biological</b> - A substance primarily composed from monomers of naturally occuring substances (<i>e.g.</i> amino-acids, sugars, nucleotides, <i>etc.</i>).<br />
+</li>
+<li><b>Other</b> - A substance not covered by the categories above.<br />
+</li>
+</ul>I hate these sort of self referential/recursive definitions, but please mail improvements!  Within each of these two main classes there are some relevant, pragmatic and useful subdivisions - <b>Drug_Type_Subclass</b>.<br />
+<br />
+For <b>Small Molecules</b>: <br />
+<ul><li><b>Inorganic</b> - A non-organic substance.<br />
+</li>
+<li><b>Natural Product-derived</b> - A substance that is derived from a naturally occurring primary or secondary metabolite.<br />
+</li>
+<li><b>Synthetic</b> - An organic substance that is not derived from a naturally occurring priamry or secondary metabolite.<br />
+</li>
+<li><b>Other</b> - A substance that is a Small Molecule which is not covered by the categories above.<br />
+</li>
+</ul>For <b>Biologicals</b>:  <br />
+<ul><li><b>Monoclonal antibody (mAb)</b> - A substance similar in sequence to an antibody sequence.<br />
+</li>
+<li><b>Vaccine</b> - A substance that acts through eliciting an acquired immune response in the patient.<br />
+</li>
+<li><b>Enzyme</b> - A substance acting as a catalyst for a chemical reaction.<br />
+</li>
+<li><b>Virus</b> - A substance with the biological characteristics of a competant virus.<br />
+</li>
+<li><b>Cell</b> - A substance with the biological characteristics of a competant cell.<br />
+</li>
+<li><b>Peptide</b> - A substance which is a polymer built primarily from amino acids, containing between two and twenty amino acids.<br />
+</li>
+<li><b>Protein</b> - A substance which is a polymer built primarily from amino acids, containing in excess of twenty amino acids, and that is not a monoclonal antibody.</li>
+<li><b>Oligosaccharide</b> - A substance which is a polymer built primarily from sugar-like monomers.</li>
+<li><b>Oligonucleotide</b> - A substance which is a polymer built primarily from nucleotide-like monomers.<br />
+</li>
+<li><b>Other</b> - A substance which is not covered by the categories above.<br />
+</li>
+</ul>So, a consistent, semantically useful description of a specific drug is constructed from a combination of <b>Drug_Type_Subclass</b>, <b>Drug_Type</b>, and <b>Drug_Class</b>.<br />
+<br />
+For example:<br />
+<br />
+<a href="http://en.wikipedia.org/wiki/Sildenafil">Sildenafil</a> is a "synthetic small molecule therapeutic"<br />
+<a href="http://en.wikipedia.org/wiki/Abciximab">Abciximab</a> is a "monoclonal antibody biological therapeutic".<br />
+<a href="http://en.wikipedia.org/wiki/Vitamin_d">Vitamin D3</a> is a "natural product-derived small molecule supplement".<br />
+<a href="http://en.wikipedia.org/wiki/Ioflupane">Ioflupane 123I</a> is a "synthetic small molecule imaging agent"<br />
+<br />
+&nbsp;Any feedback, pointers to any existing classifications/taxonomies, <i>etc.</i> would be very welcome.<br />
+<br />
+Parts <a href="http://chembl.blogspot.com/2011/03/taxonomy-for-drugs-2.html">2</a>, 3 and 4 for this Drug taxonomy will be posted shortly.

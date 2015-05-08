@@ -1,0 +1,27 @@
+---
+layout: post
+title: ChEMBL RESTful Web Service API - Update
+date: '2011-04-13T17:45:00.012+01:00'
+author: Shaun
+tags:
+- API
+- Web Services
+- Databases
+modified_time: '2011-04-14T07:54:05.369+01:00'
+thumbnail: http://1.bp.blogspot.com/-U1nMwLSE-N0/TaYVH_viK2I/AAAAAAAABDk/iKEY9jyFKhg/s72-c/TroubleWithCheeses.jpg
+blogger_id: tag:blogger.com,1999:blog-2546008714740235720.post-7778283402319948729
+blogger_orig_url: http://chembl.blogspot.com/2011/04/chembl-restful-web-service-api-update.html
+---
+
+<div class="separator" style="clear: both; text-align: center;"><a href="http://1.bp.blogspot.com/-U1nMwLSE-N0/TaYVH_viK2I/AAAAAAAABDk/iKEY9jyFKhg/s1600/TroubleWithCheeses.jpg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="240" src="http://1.bp.blogspot.com/-U1nMwLSE-N0/TaYVH_viK2I/AAAAAAAABDk/iKEY9jyFKhg/s320/TroubleWithCheeses.jpg" width="320" /></a></div>We are pleased to announce that we have updated the ChEMBL RESTful Web Service API (<a href="http://en.wikipedia.org/wiki/Api">application programming interface</a>) with some more of the features that you, the ChEMBL users requested. In particular, we have added support for the:<br />
+<div><ul><li><span class="Apple-tab-span" style="white-space: pre;"> </span>Retrieval of results in <a href="http://en.wikipedia.org/wiki/Json">JSON</a> data format</li>
+<li><span class="Apple-tab-span" style="white-space: pre;"> </span>Searching of compounds by <a href="http://en.wikipedia.org/wiki/International_Chemical_Identifier">Standard InChiKey</a></li>
+<li><span class="Apple-tab-span" style="white-space: pre;"> </span>Searching of targets by <a href="http://www.uniprot.org/">UniProt</a> and <a href="http://www.ncbi.nlm.nih.gov/RefSeq/">RefSeq</a>&nbsp;identifiers</li>
+</ul><div></div><div></div><div>Sample urls:</div></div><div><ul><li><span class="Apple-tab-span" style="white-space: pre;"> </span>Retrieve a compound record in JSON format -<span class="Apple-tab-span" style="white-space: pre;"> </span><a href="https://www.ebi.ac.uk/chemblws/compounds/CHEMBL1.json">https://www.ebi.ac.uk/chemblws/compounds/CHEMBL1.json</a></li>
+</ul><ul><li><span class="Apple-tab-span" style="white-space: pre;"> </span>Search for a compound based on a given Standard InChiKey -<span class="Apple-tab-span" style="white-space: pre;"> </span><a href="https://www.ebi.ac.uk/chemblws/compounds/stdinchikey/QFFGVLORLPOAEC-SNVBAGLBSA-N"><span class="Apple-style-span">https://www.ebi.ac.uk/chemblws/compounds/stdinchikey/QFFGVLORLPOAEC-SNVBAGLBSA-N</span></a></li>
+</ul><ul><li><span class="Apple-tab-span" style="white-space: pre;"> </span>Search for a target based on a given UniProt accession -<span class="Apple-tab-span" style="white-space: pre;"> </span><span class="Apple-style-span"><a href="https://www.ebi.ac.uk/chemblws/targets/uniprot/Q13936">https://www.ebi.ac.uk/chemblws/targets/uniprot/Q13936</a></span></li>
+</ul><ul><li><span class="Apple-tab-span" style="white-space: pre;"> </span>Search for a target based on a given RefSeq accession and return it in JSON format -<span class="Apple-tab-span" style="white-space: pre;"> </span><a href="https://www.ebi.ac.uk/chemblws/targets/refseq/NP_001128722.json"><span class="Apple-style-span">https://www.ebi.ac.uk/chemblws/targets/refseq/NP_001128722.json</span></a></li>
+</ul></div><div></div><div>In addition to those new features we have added some example Perl and Python scripts to our <a href="https://www.ebi.ac.uk/chembldb/index.php/ws">documentation</a> page. We hope that these scripts will help you in your efforts to interact with the ChEMBL API from those popular programming languages. If you have any queries or problems then please e-mail us on: <a href="mailto:chembl-help@ebi.ac.uk">chembl-help@ebi.ac.uk</a> and we'll be happy to help<span class="Apple-style-span" style="color: #1d1d1d; font-family: 'Trebuchet MS', Trebuchet, sans-serif; line-height: 18px;"><span class="Apple-style-span">.</span></span><br />
+<span class="Apple-style-span" style="color: #1d1d1d; font-family: 'Trebuchet MS', Trebuchet, sans-serif; line-height: 18px;"><span class="Apple-style-span"><br />
+</span></span><br />
+<span class="Apple-style-span" style="color: #1d1d1d; line-height: 18px;"><span class="Apple-style-span" style="font-family: inherit;"><b>Update:</b> We have built some <a href="http://accelrys.com/products/pipeline-pilot/">Pipeline Pilot</a> protocols using these RESTful web services; more to come on this soon....</span></span></div>

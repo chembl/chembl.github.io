@@ -1,0 +1,31 @@
+---
+layout: post
+title: ChEMBL 15 Schema Changes
+date: '2013-01-29T11:05:00.000Z'
+author: Anna
+tags:
+- Databases
+modified_time: '2013-02-03T09:27:44.389Z'
+thumbnail: http://3.bp.blogspot.com/-WF1Kq2kOQzc/UQesIvJC-JI/AAAAAAAAAAU/10gChirFAFc/s72-c/chembl_15_small.png
+blogger_id: tag:blogger.com,1999:blog-2546008714740235720.post-4221561930367314233
+blogger_orig_url: http://chembl.blogspot.com/2013/01/chembl-15-schema-changes.html
+---
+
+<div class="separator" style="clear: both; text-align: center;">
+</div>
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://3.bp.blogspot.com/-WF1Kq2kOQzc/UQesIvJC-JI/AAAAAAAAAAU/10gChirFAFc/s1600/chembl_15_small.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="294" src="http://3.bp.blogspot.com/-WF1Kq2kOQzc/UQesIvJC-JI/AAAAAAAAAAU/10gChirFAFc/s320/chembl_15_small.png" width="320" /></a></div>
+<br />
+<br />
+ChEMBL_15 will be released this week. As mentioned previously, there will be some major schema changes. For many users, the most significant of these will be:<br />
+<br />
+1) Removal of protein-specific information (e.g., sequences/accessions) from the target_dictionary to a separate 'component_sequences' table. The target_dictionary now includes entries for protein complexes, protein families and other 'group' targets. These then link to their protein components via the target_components table.<br />
+<br />
+2) Removal of the assay2target table. Each assay now links only to a single target (though this target may consist of multiple proteins in the case of a protein complex/family). Information previously included on the assay2target table (tid, confidence_score etc) is now on the assays table.<br />
+<br />
+We have provided a diagram and documentation of the new schema on the chembl ftp site:<br />
+<a href="ftp://ftp.ebi.ac.uk/pub/databases/chembl/ChEMBLdb/releases/chembl_15/">ChEMBL_15 release documentation</a><br />
+<br />
+Please take some time to familiarise yourselves with the changes before integrating the new dataset.&nbsp;Further information will be provided in the release notes, and we will be running a webinar in the next few weeks to explain the changes.<br />
+<br />
+<br />

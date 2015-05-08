@@ -1,0 +1,48 @@
+---
+layout: post
+title: Are there around 1019 Lipinski-like small molecules?
+date: '2012-05-06T10:15:00.002+01:00'
+author: John Overington
+tags:
+- Some Of The Interesting Things You'll See On A Long Distance Flight
+modified_time: '2012-05-24T17:59:04.779+01:00'
+thumbnail: http://1.bp.blogspot.com/-RyHfCfD6SbQ/T6Y7cHuhGvI/AAAAAAAAByM/IIRCtKHwjO8/s72-c/Unknown.jpeg
+blogger_id: tag:blogger.com,1999:blog-2546008714740235720.post-7384034455635281275
+blogger_orig_url: http://chembl.blogspot.com/2012/05/are-there-around-10-19-lipinski-like.html
+---
+
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://1.bp.blogspot.com/-RyHfCfD6SbQ/T6Y7cHuhGvI/AAAAAAAAByM/IIRCtKHwjO8/s1600/Unknown.jpeg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="http://1.bp.blogspot.com/-RyHfCfD6SbQ/T6Y7cHuhGvI/AAAAAAAAByM/IIRCtKHwjO8/s1600/Unknown.jpeg" /></a></div>
+<br />
+I'm a big fan of the work of <a href="http://reymond.dcb.unibe.ch/">Jean-Louis Reymond at the University of Berne</a>, and am starting to imagine a time when the enormity of chemical space can be reasonably comprehensively mapped and explored, at least for 'fragment-sized' molecules. In the field of bioinformatics, the number of possible peptides is considered quite large - for example, for a peptide composed from the 20 natural peptides, there are 20<sup>10</sup> possible distinct decapeptides (this is 10240000000000, or 1.024 x 10<sup>13</sup> which is a big number of course, but not that big, and a decapeptide will have an average molecular weight of about 1,100 Da. For a 500ish molecular weight natural peptide there are only 3.2 million possibilities. However, small molecules comprehensively trash these 'biologically constrained' numbers, making cheminformatics I think a great frontier and challenge for HPC and "large data".<br />
+<br />
+The GDB databases give some idea of the size of drug-like chemical space. If you take the current GDB databases, and plot the size of the library as a function of the number of heavy atoms...<br />
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://3.bp.blogspot.com/-fEo8BfDf0OI/T6Y72tY11_I/AAAAAAAAByU/wT6jZHBoq2g/s1600/GDB+numbers.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="320" src="http://3.bp.blogspot.com/-fEo8BfDf0OI/T6Y72tY11_I/AAAAAAAAByU/wT6jZHBoq2g/s320/GDB+numbers.png" width="251" /></a></div>
+<div class="separator" style="clear: both; text-align: center;">
+<br /></div>
+<div class="separator" style="clear: both; text-align: left;">
+...you get a classic log plot, essentially the largest library is so much bigger than the smaller sets that it dominates the number of compounds in the library. So on a linear scale plot it looks like this,&nbsp;</div>
+<div class="separator" style="clear: both; text-align: center;">
+<br /></div>
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://4.bp.blogspot.com/-CJFuLQo2H0E/T6Y8msciTcI/AAAAAAAAByc/_O-y-w9Q9AE/s1600/lin+scale.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="225" src="http://4.bp.blogspot.com/-CJFuLQo2H0E/T6Y8msciTcI/AAAAAAAAByc/_O-y-w9Q9AE/s320/lin+scale.png" width="320" /></a></div>
+<div class="separator" style="clear: both; text-align: left;">
+but on a log scale, its approximately linear, and a regression can be readily established against this.</div>
+<div class="separator" style="clear: both; text-align: center;">
+<br /></div>
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://2.bp.blogspot.com/-StakqiObcvw/T6Y8s59wU3I/AAAAAAAAByk/B4qsnQMLQIk/s1600/log+scale.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="210" src="http://2.bp.blogspot.com/-StakqiObcvw/T6Y8s59wU3I/AAAAAAAAByk/B4qsnQMLQIk/s320/log+scale.png" width="320" /></a></div>
+<div class="separator" style="clear: both; text-align: center;">
+<br /></div>
+<div class="separator" style="clear: both; text-align: left;">
+So, for the GDB containing 33 heavy atoms (which at an average heavy atom mass of 15 Da, corresponds to a molecular weight of around 500), gives about 10<sup>19</sup>&nbsp;to 10<sup>20</sup>&nbsp;distinct molecules. Of course, there are a bunch of assumptions behind the GDB enumeration approach (limited elements, but sensibly limited, the fraction of Lipinski compliant molecules within that set is an open question, but even if only 1% are, then it doesn't affect this number too much.&nbsp;</div>
+<div class="separator" style="clear: both; text-align: left;">
+<br /></div>
+<div class="separator" style="clear: both; text-align: left;">
+10<sup>19</sup> is too big to even think about storing - as SMILES it is a <a href="http://en.wikipedia.org/wiki/Zettabyte">zettabyte</a> scale storage problem alone, but smart subset sampling, and the ever growing advances in data compression, processor power and connectivity, will no doubt start to chip away at this challenge of chemical comprehensiveness.&nbsp;</div>
+<div class="separator" style="clear: both; text-align: left;">
+<br /></div>
+<div class="separator" style="clear: both; text-align: left;">
+As an aside - a google search shows that one of the largest storage arrays in the world at the moment is a 150 petabyte system at IBM Alamaden - so 1 zettabyte is about 7,000 times the size of this.</div>
+<br />

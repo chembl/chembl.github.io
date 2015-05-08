@@ -1,0 +1,50 @@
+---
+layout: post
+title: Molecular Databases and Molecule Complexity - Part 3
+date: '2011-05-05T04:45:00.007+01:00'
+author: John Overington
+tags:
+- Databases
+modified_time: '2011-05-05T05:45:11.617+01:00'
+thumbnail: http://3.bp.blogspot.com/-_vFFhxpRxEU/TcIc0oCPrTI/AAAAAAAABGs/-Lg1FZchbPA/s72-c/heaven.png
+blogger_id: tag:blogger.com,1999:blog-2546008714740235720.post-4682373153320358606
+blogger_orig_url: http://chembl.blogspot.com/2011/05/molecular-databases-and-molecule.html
+---
+
+<div class="separator" style="clear: both; text-align: center;"><a href="http://3.bp.blogspot.com/-_vFFhxpRxEU/TcIc0oCPrTI/AAAAAAAABGs/-Lg1FZchbPA/s1600/heaven.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="320" src="http://3.bp.blogspot.com/-_vFFhxpRxEU/TcIc0oCPrTI/AAAAAAAABGs/-Lg1FZchbPA/s320/heaven.png" width="250" /></a></div><br />
+<br />
+So we can run some numbers, to get an idea of the scale of the issue, and then draw things together (in the next post) with a couple of things we are thinking of ourselves to do in <a href="http://www.ebi.ac.uk/chembl">ChEMBL</a>.<br />
+<br />
+<u>Stereocenters</u><br />
+For a molecule stored in a database with a single undefined sp<sup>3</sup> stereocenter, there are two possible distinct physical molecules (enantiomers), remember some properties are invariant w.r.t. the stereochemistry (e.g. logP) others aren't (e.g. binding energy to a receptor). As further undefined stereocenters are introduced, the number of possibilities increases as a simple combinatoric product. For three stereocenters, there are therefore 2**3 = 8 possibilities. There are a number of programs available to perform this stereo-enumeration - including <a href="http://tripos.com/index.php?family=modules,SimplePage,,,&amp;page=StereoPlex">stereoplex</a>.<br />
+<br />
+<u>Tautomers</u><br />
+Enumeration of possible tautomers is a complex issue, and there has to be introduced the concept of an energy difference (which will reflect how frequent that tautomer occurs) - however the energy difference between two tautomers is crucially dependent on solvation and stabilisation of a particular tautomer by complexation in a binding site, so it is a not trivial task to treat this matter both comprehensively and accurately. There is probably an interesting average scaling of the number of 'reasonable tautomers' as a function of molecular weight for typical drug like molecules in a database such as ChEMBL (we just haven't looked yet). However, it is an area of active research, and there are many tools available to treat these systems - including <a href="http://MN.TAUTOMER/">MN.TAUTOMER</a>.<br />
+<br />
+<u>Ionizable centers</u><br />
+As per tautomers there is the concept of reasonableness that needs to be applied here - in theory, benzene can act as both a base and an acid, but the pKb and pKa will be so outside the range encountered in what we currently understand as life-like conditions that it is irrelevant (the pKa of benzene is ~43). However, for molecules with 'regular' basic and acidic groups, there will be two (or more) states for each ionizable centers. There can be multiple states for some functional groups (e.g. <a href="http://en.wikipedia.org/wiki/Polyprotic_acid#Polyprotic_acids">polyprotic acids</a>), such as phosphates which will have multiple pKa values, reflecting increasing levels of overall charge. These charge effects will greatly affect binding to a target. A further complicating factor is that the pKa of molecules is often perturbable by their molecular environment, and this shifting of 'standard' pKa values is often a defining feature of catalytic residues in enzymes.<br />
+<br />
+However, for simple groups such as carboxylic acids, there are two states, and for simple aliphatic amines there are two states to be considered. These combine again in a combinatorial fashion, so a molecule with a simple basic and simple acidic center will have four possible states.<br />
+<br />
+A key feature in dealing with the treatment of the ionization state of a molecule from a normalised chemical database is <i>via</i> prediction of the pKa/pKb of a molecule. There are many tools available to do this - including&nbsp;<a href="http://www.acdlabs.com/products/pc_admet/physchem/physchemsuite/new.pdf">ACD/PhysChem Suite</a>.<br />
+<br />
+To further complicate things, the calculation of pKa/Pkb depends on the tautomers that the calculation is performed on.<br />
+<br />
+<u>Conformational flexibility</u><br />
+It is tempting to think of storing three-dimensional structures for molecules, since this information can be used in tasks such as docking of a library of rigid molecules to a receptor, or the generation of pharmacophores from a set of molecules that are known to bind to a receptor. However, in general the number of possible conformers is very large, and when combined with the additional complexities above of undefined stereocenters, tautomers, ionizable centers makes this a very challenging task. To give an idea of the complexity, two sp3-sp3 bonds will have three energy minima around that bond; as the number of rotatable bonds is increased, there will be an approximate combinatoric product, so for three independent sp3-sp3 rotatable bonds there will be 3**3 = 27 plausible conformers. Again these will have different energies (and therefore population frequencies), but again these energies are crucially dependent on tautomers, ionization and the solvent/receptor environment. It is complicated.<br />
+<br />
+A very widely used estimate of the conformational flexibility of a molecule, and the implied entropic cost of ordering a flexible molecule on binding to a receptor, is the number of rotatable bonds.<br />
+<br />
+Again there are many tools for the generation of reasonable three-dimensional conformers for a molecule - including <a href="http://www.molecular-networks.com/products/corina">CORINA</a>.<br />
+<br />
+<br />
+<u>Conclusion</u><br />
+So there is therefore a scale of complexity, molecules that are rigid, have no tautomeric forms, are not acids or bases and have completely defined (or no) stereochemistry are unambiguous, and can be safely used from a database like ChEMBL for things like docking. It is also possible to calculate a variety of descriptors for these molecules, and these calculations will be 'robust'. However it is important to appreciate that many property calculation methods require the selection of a single representative structure from the set of possibles.<br />
+<br />
+Other molecules are more complex, and to obtain a physically relevant structure (or set of low energy structures), may require substantial processing/enumeration, the number of possible physical forms can easily extend into hundreds for drug-like molecules; for example, the simple molecule below, has 96 possible forms to consider for something like docking (<i>and this ignores the very large number of conformational states from the 10 rotatable bonds in the structure, which alone are about 3**10 or over 59,000 'states'</i>).<br />
+<br />
+<div class="separator" style="clear: both; text-align: center;"><a href="http://4.bp.blogspot.com/-rVIzo8xcCs0/TcIqnNVLo3I/AAAAAAAABGw/GZpF2Rz6xbs/s1600/mole.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="173" src="http://4.bp.blogspot.com/-rVIzo8xcCs0/TcIqnNVLo3I/AAAAAAAABGw/GZpF2Rz6xbs/s320/mole.png" width="320" /></a></div><div class="separator" style="clear: both; text-align: left;">An annotated form of the points of interest in this molecule is</div><div class="separator" style="clear: both; text-align: center;"><br />
+</div><div class="separator" style="clear: both; text-align: center;"><a href="http://2.bp.blogspot.com/-sf4PCzdqNCw/TcIrPS1UGYI/AAAAAAAABG0/IBFrOb6C9eg/s1600/annot.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="199" src="http://2.bp.blogspot.com/-sf4PCzdqNCw/TcIrPS1UGYI/AAAAAAAABG0/IBFrOb6C9eg/s320/annot.png" width="320" /></a></div><div class="separator" style="clear: both; text-align: center;"><br />
+</div><div class="separator" style="clear: both; text-align: center;"><br />
+</div><div class="separator" style="clear: both; text-align: left;">In the next post, we will try and bring this together in the context of the ChEMBL database, and how we normalise our chemical structures on registration, and also how we calculate our descriptors, and some of the assumptions we make in this process.</div><div class="separator" style="clear: both; text-align: left;"><br />
+</div><div class="separator" style="clear: both; text-align: left;">The image above comes from the ever inspiring <a href="http://xkcd.com/">xkcd</a>.</div>

@@ -1,0 +1,64 @@
+---
+layout: post
+title: Tastypie & Chempi
+date: '2013-10-27T01:07:00.000+01:00'
+author: kott
+tags:
+- Django
+- Web Services
+modified_time: '2014-04-06T19:08:10.295+01:00'
+blogger_id: tag:blogger.com,1999:blog-2546008714740235720.post-5201634311759543539
+blogger_orig_url: http://chembl.blogspot.com/2013/10/tastypie-on-chempi.html
+---
+
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://1.bp.blogspot.com/-Wc9JYALzb58/UmweVi_0TdI/AAAAAAAAFqs/JS5aWT5V24A/s1600/DSC_0103.JPG" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="212" src="https://lh3.ggpht.com/-Wc9JYALzb58/UmweVi_0TdI/AAAAAAAAFqs/JS5aWT5V24A/s1600/DSC_0103.JPG" width="320" /></a></div>
+<br />
+<br />
+One of the immediate consequences of refactoring our webservices using <a href="https://www.djangoproject.com/">Django</a>, <a href="http://django-tastypie.readthedocs.org/en/latest/">Tastypie </a>and related approaches (as described <a href="http://chembl.blogspot.co.uk/2013/10/chembl-web-service-update-1.html">here</a>) is that we can run them on almost any database backend. Django abstracts communication with database and using custom <a href="http://www.blogger.com/%EF%BB%BF%EF%BB%BF%EF%BB%BF%EF%BB%BFhttps://docs.djangoproject.com/en/dev/topics/db/managers/">QueryManagers</a> we were able to implement chemisty-specific opererations, such as substructure and similarity search in a database agnostic manner.<br />
+<br />
+This means, that if we want, we can use only Open Source components (such as <a href="http://www.postgresql.org/">Postgres</a> and <a href="http://www.rdkit.org/">RDKit</a>), or elect to use optimised commercially sourced software as appropriate. However, what if we go one step further and try to use Open Hardware as well? This is exactly what we've just done! We managed to install full ChEMBL 17 on <a href="http://www.raspberrypi.org/">raspbery pi</a>.<br />
+<br />
+Some frequently asked questions (at lease those that have been asked internally) and technical details are below:<br />
+<br />
+<b>1. How much space does it take?</b><br />
+<b><br /></b>
+12 Gb, including OS, data and all relevant software. Unfortunately we a used 32 Gb SD card so this is size if you would like to use our cloned disk image.<br />
+<br />
+<b>EDIT: Compressed image takes 4.13 Gb.</b><br />
+<br />
+<b>2. What OS is it running?</b><br />
+<br />
+<a href="http://www.raspbian.org/">Raspbian</a>, free operating system based on Debian. <br />
+<br />
+<b>3. Is it slow?</b><br />
+<br />
+We haven't make any benchmarks yet. Obviously it's slower than our online web services - but then it's a lot cheaper. On the other hand, performing some sample requests we can say that performance is certainly acceptable; and there is a lot room for improvements - raspberry pis can be easily overclocked from 700 MHz to 1GHz and according to some benchmarks this can give rise to doubling of application speed in some cases. The SD card we used is not the fastest one as well. Finally, all caching is disabled because we wanted to save disk space but using database caching from Django <a href="https://docs.djangoproject.com/en/dev/topics/cache/">caching framework</a> should give further major improvements - so maybe use the 32 Gb image after all.<br />
+<br />
+Types of request that chempi can be slower on are:<br />
+<br />
+&nbsp;- Image generation, but if we replace image with JSON from which image can be generated using HTML5 canvas on the client side (the way we generated images in our <a href="http://chembl.blogspot.co.uk/2013/10/some-gamification-of-chembl.html">game</a>) it can be much faster. More about this topic in future blog post.<br />
+- Queries using aggregate functions such as COUNT (it seems that we need to optimise our postgres db by adding some more indexes).<br />
+- Substructure and similarity search - again, caching, over-clocking and some database and cartridge (choosing faster fingerprints) optimization should solve all the problems. "<a href="https://en.wikiquote.org/wiki/Donald_Knuth">Premature optimization is a root of all evil</a>", so we first wanted to have a proof of concept that just works, not necessarily works super fast.<br />
+<br />
+<b>4. Can I make my own chempi?</b><br />
+<b><br /></b>
+Yes, we are planning to share our SD card image, we will probably use BitTorrent protocol to do this due to image size, and some issues we have faced with distribution of the myChEMBL. We do remember that not everyone has mega-fast broadband!<br />
+<br />
+<b>5. Is chempi useful at all?</b><br />
+<b><br /></b>
+Although we think it is interesting as a proof of concept having chemical database on such small and open source hardware, we do think this may have some interesting future real-world applications:<br />
+<br />
+&nbsp;- plugging our chempi to local network makes it immediately accessible to other computers. So this is a zero configuration demonstration of ChEMBL.<br />
+- analogically to the thesis included in this <a href="http://www.biomedcentral.com/1471-2105/14/243">paper</a>, it can encourage cheminformatics education on low cost ARM hardware.<br />
+- raspberry can be easily enhanced with <a href="http://www.raspberrypi.org/camera">camera</a> to perform image recognition. This, combined with software like <a href="http://cactus.nci.nih.gov/osra/">OSRA</a> can give ability so scan compound images and search them in database.<br />
+- adding some e-ink display (for example,&nbsp;<a href="http://www.mpetroff.net/archives/2012/09/14/kindle-weather-display/">jailbroken Kindle?</a>) can produce very interesting small machine... <br />
+<br />
+<b>6. What are some of the technical details?</b><br />
+<br />
+To deploy our webservices (which are just another Django application) we've used <a href="http://gunicorn.org/">Gunicorn</a> as a server, which in turn connects to <a href="http://wiki.nginx.org/Main">NGINX</a> via standard unix pipe. To make it work as a deamon and launch on machine startup, we've used <a href="http://supervisord.org/index.html">Supervisor</a>. We believe this is ideal way to deploy Django not only on raspberry but on all production machines to if you like to run chembl webservices locally in your company/academia we suggest to do it this way.<br />
+<br />
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://4.bp.blogspot.com/-_kMNl1-CofA/UmwkN3ds7QI/AAAAAAAAFq8/Vcgzoko21k8/s1600/schema.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="312" src="https://lh3.ggpht.com/-_kMNl1-CofA/UmwkN3ds7QI/AAAAAAAAFq8/Vcgzoko21k8/s1600/schema.png" width="320" /></a></div>
+<br />
+michal

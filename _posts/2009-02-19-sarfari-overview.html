@@ -1,0 +1,23 @@
+---
+layout: post
+title: SARfari - An Overview
+date: '2009-02-19T07:45:00.015Z'
+author: John Overington
+tags:
+- SARfari
+- Databases
+- DrugEBIlity
+modified_time: '2009-09-13T21:39:34.608+01:00'
+thumbnail: http://3.bp.blogspot.com/_SlPG9DIz_AA/SZ0QksVJE3I/AAAAAAAAAIM/DJOM5duj6Es/s72-c/safari.jpg
+blogger_id: tag:blogger.com,1999:blog-2546008714740235720.post-4530352166786427479
+blogger_orig_url: http://chembl.blogspot.com/2009/02/sarfari-overview.html
+---
+
+<a onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}" href="http://3.bp.blogspot.com/_SlPG9DIz_AA/SZ0QksVJE3I/AAAAAAAAAIM/DJOM5duj6Es/s1600-h/safari.jpg"><img style="display:block; margin:0px auto 10px; text-align:center;cursor:pointer; cursor:hand;width: 200px; height: 162px;" src="http://3.bp.blogspot.com/_SlPG9DIz_AA/SZ0QksVJE3I/AAAAAAAAAIM/DJOM5duj6Es/s200/safari.jpg" border="0" alt=""id="BLOGGER_PHOTO_ID_5304414158673482610" /></a>
+SARfari is an integration platform built on top of our <A HREF="http://chembl.blogspot.com/search/label/Databases">databases (StARlite, CandiStore and DrugStore)</A>. It also includes an open architecture for the loading of proprietary (or other third party data). This loading is performed against a series of local 'business rules' that define chemical structure representation, target mapping, assay units, <I>etc.</I> The SARfaris are written in the <A HREF="http://en.wikipedia.org/wiki/Catalyst_MVC_Framework">Catalyst MVC framework</A> (so essentially a structured perl), and also <A HREF="http://www.apache.org/">Apache</A> for the application server. The original idea was to mirror in an informatics system a 'platform' view of drug discovery - in this case integrated data within a gene family of interest (but it could be around a metabolome-based view, <I>e.g.</I> adenine binding proteins, an entire genome, <I>etc.</I>. Our first foray into the area was in 2004 with a GPCR system built with <A HREF="http://en.wikipedia.org/wiki/SQLite">SQLite</A>, however, this was not very extensible, and we rapidly reached the bounds that were technologically possible. We then built a <A HREF="http://en.wikipedia.org/wiki/Protein_kinase">protein kinase</A> version, and then a <A HREF="http://en.wikipedia.org/wiki/Rhodopsin-like_receptors">rhodopsin-like GPCR</A> SARfari under Oracle, and included the ability to load 'local' data. SARfari is quite neat in that it integrates SAR, sequence alignment, binding site, and 3-D structure data all into a single, simple portal; with, of course, a focus on drug discovery processes. One additional thing we did here was to process patent crystal structures (which often never make it into the <A HREF="http://www.rcsb.org/pdb/home/home.do">RCSB PDB</A>) into a usable form, and then loading these into a version of SARfari.
+<P>
+Our future plans include building a generic SARfari builder (so you will be able to paste a sequence of an arbitrary target into a web page, and then, after a short while, fully integrated and federated data will be delivered, as a new stand-alone gene-family themed web application).
+<P>
+At the EMBL-EBI we will host a copy of kinase SARfari and GPCR SARfari, populated with the relevant public-domain data from our own databases, the software systems (including source code) will be downloadable <I>in toto</I> and <I>gratis</I>, and installable locally for loading of local lab data (we do not plan to allow upload of data onto the EMBL-EBI SARfaris). At the moment, SARfari requires Oracle 9, and the Symyx chemical data cartridge, but future development will be directed towards a more generic and Open Source solution, including the <A HREF="http://sourceforge.net/projects/cdk">CDK</A>. If anyone would like to try the existing SARfari systems in advance, please feel free to contact us now.
+<P>
+The same software infrastructure and look-and-feel will be used for the DrugEBIlity project at the EMBL-EBI.
