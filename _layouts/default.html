@@ -40,6 +40,32 @@
           {% else %}
             <span class="page-item">&laquo;</span>
           {% endif %}
+
+          {% assign page_start = paginator.page | minus: 2 %}
+          {% assign page_end = page_start | plus: 4 %}
+
+          {% if page_start < 1 %}
+            {% assign page_start = paginator.page %}
+            {% assign page_end = page_start | plus: 4 %}
+          {% endif %}
+          
+          {% if page_end > paginator.total_pages %}
+            {% assign page_end = paginator.total_pages %}
+            {% assign page_start = page_end | minus: 4 %}
+            {% if page_start < 1 %}
+                {% assign page_start = paginator.page %}
+            {% endif %}    
+          {% endif %}    
+
+          {% for page in (page_start..page_end) %}
+            {% if page == paginator.page %}
+              <span class="page-item">{{ page }}</span>
+            {% elsif page == 1 %}
+              <a href="{{ '/' | prepend: site.baseurl | replace: '//', '/' }}" class="page-item">{{ page }}</a>
+            {% else %}
+              <a href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', page }}" class="page-item">{{ page }}</a>
+            {% endif %}
+          {% endfor %}
        
           {% if paginator.next_page %}
             <a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}" class="page-item">&raquo;</a>
