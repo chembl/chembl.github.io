@@ -41,9 +41,17 @@
             <span class="page-item">&laquo;</span>
           {% endif %}
 
-          Page {{ paginator.page }} of {{ paginator.total_pages }}
+          {% capture page_start %}{{ paginator.page | minus: 2 }}{% endcapture %}
+          {% capture page_end %}{{ paginator.page | plus: 2 }}{% endcapture %}
+
+          {% for count in (page_start..page_end) %}
+              {% if count == paginator.page %}
+                  <span class="current">{{ count }}</span>
+              {% else %}
+                  <a href="/page/{{ count }}/" class="pagenavi-page" title="{{ count }}">{{ count }}</a>
+              {% endif %}
+          {% endfor %}
        
-        
           {% if paginator.next_page %}
             <a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}" class="page-item">&raquo;</a>
           {% else %}
