@@ -46,9 +46,11 @@
 
           {% for count in (page_start..page_end) %}
               {% if count == paginator.page %}
-                  <span class="current">{{ count }}</span>
+                  <span class="page-item">{{ page }}</span>
+            {% elsif page == 1 %}
+                  <a href="{{ '/' | prepend: site.baseurl | replace: '//', '/' }}" class="page-item">{{ page }}</a>                  
               {% else %}
-                  <a href="/page/{{ count }}/" class="pagenavi-page" title="{{ count }}">{{ count }}</a>
+                  <a href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', page }}" class="page-item">{{ page }}</a>
               {% endif %}
           {% endfor %}
        
